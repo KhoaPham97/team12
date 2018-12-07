@@ -1,0 +1,59 @@
+﻿@model WebApplication.Models.Plan
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/Layout2.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Plan</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Startdate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Startdate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Duedate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Duedate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StatusPlan.StatusName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StatusPlan.StatusName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.IDPlan }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
