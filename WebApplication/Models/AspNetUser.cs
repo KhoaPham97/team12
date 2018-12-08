@@ -24,8 +24,9 @@ namespace WebApplication.Models
             this.Buckets1 = new HashSet<Bucket>();
             this.Comments = new HashSet<Comment>();
             this.ListMembers = new HashSet<ListMember>();
-            this.tasks = new HashSet<task>();
             this.AspNetRoles = new HashSet<AspNetRole>();
+            this.Tasks = new HashSet<task>();
+            this.Tasks1 = new HashSet<task>();
         }
     
         public string Id { get; set; }
@@ -56,8 +57,10 @@ namespace WebApplication.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ListMember> ListMembers { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<task> tasks { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AspNetRole> AspNetRoles { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<task> Tasks { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<task> Tasks1 { get; set; }
     }
 }

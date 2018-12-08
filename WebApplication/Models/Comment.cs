@@ -29,6 +29,6 @@ namespace WebApplication.Models
         public virtual AspNetUser AspNetUser { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Attachment> Attachments { get; set; }
-        public virtual task task { get; set; }
+        public virtual task Task { get; set; }
     }
 }

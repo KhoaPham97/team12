@@ -18,7 +18,7 @@ namespace WebApplication.Models
         public Bucket()
         {
             this.Attachments = new HashSet<Attachment>();
-            this.tasks = new HashSet<task>();
+            this.Tasks = new HashSet<task>();
         }
     
         public int BucketID { get; set; }
@@ -38,6 +38,6 @@ namespace WebApplication.Models
         public virtual Plan Plan { get; set; }
         public virtual Status Status { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<task> tasks { get; set; }
+        public virtual ICollection<task> Tasks { get; set; }
     }
 }

@@ -10,7 +10,6 @@ using WebApplication.Models;
 
 namespace WebApplication.Controllers
 {
-    [Authorize]
     public class tasksController : Controller
     {
         private cap21t12Entities db = new cap21t12Entities();
@@ -18,7 +17,7 @@ namespace WebApplication.Controllers
         // GET: tasks
         public ActionResult Index()
         {
-            var tasks = db.tasks.Include(t => t.AspNetUser).Include(t => t.Bucket).Include(t => t.Status);
+            var tasks = db.tasks.Include(t => t.AspNetUser).Include(t => t.AspNetUser1).Include(t => t.Bucket).Include(t => t.Status);
             return View(tasks.ToList());
         }
 
@@ -41,6 +40,7 @@ namespace WebApplication.Controllers
         public ActionResult Create()
         {
             ViewBag.AssigneeID = new SelectList(db.AspNetUsers, "Id", "Email");
+            ViewBag.ReporterID = new SelectList(db.AspNetUsers, "Id", "Email");
             ViewBag.BucketID = new SelectList(db.Buckets, "BucketID", "Title");
             ViewBag.StatusID = new SelectList(db.Status, "ID", "StatusName");
             return View();
@@ -51,7 +51,7 @@ namespace WebApplication.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "TaskID,BucketID,StatusID,AssigneeID,Title,Description,Startdate,Duedate")] task task)
+        public ActionResult Create([Bind(Include = "TaskID,BucketID,StatusID,AssigneeID,ReporterID,Title,Description,Startdate,Duedate")] task task)
         {
             if (ModelState.IsValid)
             {
@@ -61,6 +61,7 @@ namespace WebApplication.Controllers
             }
 
             ViewBag.AssigneeID = new SelectList(db.AspNetUsers, "Id", "Email", task.AssigneeID);
+            ViewBag.ReporterID = new SelectList(db.AspNetUsers, "Id", "Email", task.ReporterID);
             ViewBag.BucketID = new SelectList(db.Buckets, "BucketID", "Title", task.BucketID);
             ViewBag.StatusID = new SelectList(db.Status, "ID", "StatusName", task.StatusID);
             return View(task);
@@ -79,6 +80,7 @@ namespace WebApplication.Controllers
                 return HttpNotFound();
             }
             ViewBag.AssigneeID = new SelectList(db.AspNetUsers, "Id", "Email", task.AssigneeID);
+            ViewBag.ReporterID = new SelectList(db.AspNetUsers, "Id", "Email", task.ReporterID);
             ViewBag.BucketID = new SelectList(db.Buckets, "BucketID", "Title", task.BucketID);
             ViewBag.StatusID = new SelectList(db.Status, "ID", "StatusName", task.StatusID);
             return View(task);
@@ -89,7 +91,7 @@ namespace WebApplication.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "TaskID,BucketID,StatusID,AssigneeID,Title,Description,Startdate,Duedate")] task task)
+        public ActionResult Edit([Bind(Include = "TaskID,BucketID,StatusID,AssigneeID,ReporterID,Title,Description,Startdate,Duedate")] task task)
         {
             if (ModelState.IsValid)
             {
@@ -98,6 +100,7 @@ namespace WebApplication.Controllers
                 return RedirectToAction("Index");
             }
             ViewBag.AssigneeID = new SelectList(db.AspNetUsers, "Id", "Email", task.AssigneeID);
+            ViewBag.ReporterID = new SelectList(db.AspNetUsers, "Id", "Email", task.ReporterID);
             ViewBag.BucketID = new SelectList(db.Buckets, "BucketID", "Title", task.BucketID);
             ViewBag.StatusID = new SelectList(db.Status, "ID", "StatusName", task.StatusID);
             return View(task);

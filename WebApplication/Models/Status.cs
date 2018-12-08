@@ -18,7 +18,7 @@ namespace WebApplication.Models
         public Status()
         {
             this.Buckets = new HashSet<Bucket>();
-            this.tasks = new HashSet<task>();
+            this.Tasks = new HashSet<task>();
         }
     
         public int ID { get; set; }
@@ -28,6 +28,6 @@ namespace WebApplication.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Bucket> Buckets { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<task> tasks { get; set; }
+        public virtual ICollection<task> Tasks { get; set; }
     }
 }

@@ -27,6 +27,6 @@ namespace WebApplication.Models
         public virtual Bucket Bucket { get; set; }
         public virtual Comment Comment { get; set; }
         public virtual Plan Plan { get; set; }
-        public virtual task task { get; set; }
+        public virtual task Task { get; set; }
     }
 }
