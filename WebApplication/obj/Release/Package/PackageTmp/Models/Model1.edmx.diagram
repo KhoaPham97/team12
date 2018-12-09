@@ -5,40 +5,41 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="dbce06167de54b3fab304eccd6a04e0b" Name="Diagram1">
-        <EntityTypeShape EntityType="cap21t12Model.C__MigrationHistory" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="cap21t12Model.AspNetRole" Width="1.5" PointX="0.75" PointY="9.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="cap21t12Model.AspNetUserClaim" Width="1.5" PointX="5.25" PointY="7.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="cap21t12Model.AspNetUserLogin" Width="1.5" PointX="5.25" PointY="10.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="cap21t12Model.AspNetUser" Width="1.5" PointX="3" PointY="7.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="cap21t12Model.Attachment" Width="1.5" PointX="8.25" PointY="8.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="cap21t12Model.Bucket" Width="1.5" PointX="5.25" PointY="3.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="cap21t12Model.Comment" Width="1.5" PointX="12.75" PointY="8" IsExpanded="true" />
-        <EntityTypeShape EntityType="cap21t12Model.ListMember" Width="1.5" PointX="8.25" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="cap21t12Model.Plan" Width="1.5" PointX="3" PointY="2.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="cap21t12Model.Status" Width="1.5" PointX="3" PointY="13.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="cap21t12Model.StatusPlan" Width="1.5" PointX="0.75" PointY="2.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="cap21t12Model.sysdiagram" Width="1.5" PointX="9.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="cap21t12Model.task" Width="1.5" PointX="10.5" PointY="6.125" IsExpanded="true" />
-        <AssociationConnector Association="cap21t12Model.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
-        <AssociationConnector Association="cap21t12Model.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
-        <AssociationConnector Association="cap21t12Model.FK_Attachment_AspNetUsers" ManuallyRouted="false" />
-        <AssociationConnector Association="cap21t12Model.FK_Bucket_AspNetUsers" ManuallyRouted="false" />
-        <AssociationConnector Association="cap21t12Model.FK_Bucket_AspNetUsers1" ManuallyRouted="false" />
-        <AssociationConnector Association="cap21t12Model.FK_Comment_AspNetUsers" ManuallyRouted="false" />
-        <AssociationConnector Association="cap21t12Model.FK_ListMember_AspNetUsers" ManuallyRouted="false" />
-        <AssociationConnector Association="cap21t12Model.FK_Task_AspNetUsers" ManuallyRouted="false" />
-        <AssociationConnector Association="cap21t12Model.FK_Attachment_Bucket" ManuallyRouted="false" />
-        <AssociationConnector Association="cap21t12Model.FK_Attachment_Comment" ManuallyRouted="false" />
-        <AssociationConnector Association="cap21t12Model.FK_Attachment_Plan" ManuallyRouted="false" />
-        <AssociationConnector Association="cap21t12Model.FK_Attachment_Task" ManuallyRouted="false" />
-        <AssociationConnector Association="cap21t12Model.FK_Bucket_Plan" ManuallyRouted="false" />
-        <AssociationConnector Association="cap21t12Model.FK_Bucket_Status" ManuallyRouted="false" />
-        <AssociationConnector Association="cap21t12Model.FK_Task_Bucket" ManuallyRouted="false" />
-        <AssociationConnector Association="cap21t12Model.FK_Comment_Task" ManuallyRouted="false" />
-        <AssociationConnector Association="cap21t12Model.FK_ListMember_Plan" ManuallyRouted="false" />
-        <AssociationConnector Association="cap21t12Model.FK_Plan_StatusPlan" ManuallyRouted="false" />
-        <AssociationConnector Association="cap21t12Model.FK_Task_Status" ManuallyRouted="false" />
-        <AssociationConnector Association="cap21t12Model.AspNetUserRoles" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="cap21t12Model.C__MigrationHistory" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="cap21t12Model.AspNetRole" Width="1.5" PointX="0.75" PointY="9.25" />
+        <EntityTypeShape EntityType="cap21t12Model.AspNetUserClaim" Width="1.5" PointX="5.25" PointY="22.5" />
+        <EntityTypeShape EntityType="cap21t12Model.AspNetUserLogin" Width="1.5" PointX="5.25" PointY="7.75" />
+        <EntityTypeShape EntityType="cap21t12Model.AspNetUser" Width="1.5" PointX="3" PointY="7.375" />
+        <EntityTypeShape EntityType="cap21t12Model.Attachment" Width="1.5" PointX="7.5" PointY="9.5" />
+        <EntityTypeShape EntityType="cap21t12Model.Bucket" Width="1.5" PointX="5.25" PointY="11.125" />
+        <EntityTypeShape EntityType="cap21t12Model.Comment" Width="1.5" PointX="12.75" PointY="9" />
+        <EntityTypeShape EntityType="cap21t12Model.ListMember" Width="1.5" PointX="8.25" PointY="5.75" />
+        <EntityTypeShape EntityType="cap21t12Model.Plan" Width="1.5" PointX="6" PointY="3.625" />
+        <EntityTypeShape EntityType="cap21t12Model.Status" Width="1.5" PointX="3" PointY="14" />
+        <EntityTypeShape EntityType="cap21t12Model.StatusPlan" Width="1.5" PointX="3.75" PointY="4.25" />
+        <EntityTypeShape EntityType="cap21t12Model.sysdiagram" Width="1.5" PointX="2.75" PointY="0.75" />
+        <EntityTypeShape EntityType="cap21t12Model.Tasks" Width="1.5" PointX="10.5" PointY="9.25" />
+        <AssociationConnector Association="cap21t12Model.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="cap21t12Model.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="cap21t12Model.FK_Attachment_AspNetUsers" />
+        <AssociationConnector Association="cap21t12Model.FK_Bucket_AspNetUsers" />
+        <AssociationConnector Association="cap21t12Model.FK_Bucket_AspNetUsers1" />
+        <AssociationConnector Association="cap21t12Model.FK_Comment_AspNetUsers" />
+        <AssociationConnector Association="cap21t12Model.FK_ListMember_AspNetUsers" />
+        <AssociationConnector Association="cap21t12Model.FK_Task_AspNetUsers" />
+        <AssociationConnector Association="cap21t12Model.FK_Task_AspNetUsers1" />
+        <AssociationConnector Association="cap21t12Model.FK_Attachment_Bucket" />
+        <AssociationConnector Association="cap21t12Model.FK_Attachment_Comment" />
+        <AssociationConnector Association="cap21t12Model.FK_Attachment_Plan" />
+        <AssociationConnector Association="cap21t12Model.FK_Attachment_Task" />
+        <AssociationConnector Association="cap21t12Model.FK_Bucket_Plan" />
+        <AssociationConnector Association="cap21t12Model.FK_Bucket_Status" />
+        <AssociationConnector Association="cap21t12Model.FK_Task_Bucket" />
+        <AssociationConnector Association="cap21t12Model.FK_Comment_Task" />
+        <AssociationConnector Association="cap21t12Model.FK_ListMember_Plan" />
+        <AssociationConnector Association="cap21t12Model.FK_Plan_StatusPlan" />
+        <AssociationConnector Association="cap21t12Model.FK_Task_Status" />
+        <AssociationConnector Association="cap21t12Model.AspNetUserRoles" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

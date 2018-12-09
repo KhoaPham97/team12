@@ -12,10 +12,10 @@ namespace WebApplication.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class task
+    public partial class Tasks
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public task()
+        public Tasks()
         {
             this.Attachments = new HashSet<Attachment>();
             this.Comments = new HashSet<Comment>();

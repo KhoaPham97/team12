@@ -40,7 +40,7 @@ namespace WebApplication.Models
         public virtual DbSet<Status> Status { get; set; }
         public virtual DbSet<StatusPlan> StatusPlans { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
-        public virtual DbSet<task> tasks { get; set; }
+        public virtual DbSet<Tasks> Tasks { get; set; }
     
         public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
         {

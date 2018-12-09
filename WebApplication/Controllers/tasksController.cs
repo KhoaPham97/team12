@@ -10,33 +10,33 @@ using WebApplication.Models;
 
 namespace WebApplication.Controllers
 {
-    public class tasksController : Controller
+    public class TasksController : Controller
     {
         private cap21t12Entities db = new cap21t12Entities();
 
-        // GET: tasks
+        // GET: Tasks
         public ActionResult Index()
         {
-            var tasks = db.tasks.Include(t => t.AspNetUser).Include(t => t.AspNetUser1).Include(t => t.Bucket).Include(t => t.Status);
-            return View(tasks.ToList());
+            var tasks1 = db.Tasks.Include(t => t.AspNetUser).Include(t => t.AspNetUser1).Include(t => t.Bucket).Include(t => t.Status);
+            return View(tasks1.ToList());
         }
 
-        // GET: tasks/Details/5
+        // GET: Tasks/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            task task = db.tasks.Find(id);
-            if (task == null)
+            Tasks tasks = db.Tasks.Find(id);
+            if (tasks == null)
             {
                 return HttpNotFound();
             }
-            return View(task);
+            return View(tasks);
         }
 
-        // GET: tasks/Create
+        // GET: Tasks/Create
         public ActionResult Create()
         {
             ViewBag.AssigneeID = new SelectList(db.AspNetUsers, "Id", "Email");
@@ -46,88 +46,88 @@ namespace WebApplication.Controllers
             return View();
         }
 
-        // POST: tasks/Create
+        // POST: Tasks/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "TaskID,BucketID,StatusID,AssigneeID,ReporterID,Title,Description,Startdate,Duedate")] task task)
+        public ActionResult Create([Bind(Include = "TaskID,BucketID,StatusID,AssigneeID,ReporterID,Title,Description,Startdate,Duedate")] Tasks tasks)
         {
             if (ModelState.IsValid)
             {
-                db.tasks.Add(task);
+                db.Tasks.Add(tasks);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.AssigneeID = new SelectList(db.AspNetUsers, "Id", "Email", task.AssigneeID);
-            ViewBag.ReporterID = new SelectList(db.AspNetUsers, "Id", "Email", task.ReporterID);
-            ViewBag.BucketID = new SelectList(db.Buckets, "BucketID", "Title", task.BucketID);
-            ViewBag.StatusID = new SelectList(db.Status, "ID", "StatusName", task.StatusID);
-            return View(task);
+            ViewBag.AssigneeID = new SelectList(db.AspNetUsers, "Id", "Email", tasks.AssigneeID);
+            ViewBag.ReporterID = new SelectList(db.AspNetUsers, "Id", "Email", tasks.ReporterID);
+            ViewBag.BucketID = new SelectList(db.Buckets, "BucketID", "Title", tasks.BucketID);
+            ViewBag.StatusID = new SelectList(db.Status, "ID", "StatusName", tasks.StatusID);
+            return View(tasks);
         }
 
-        // GET: tasks/Edit/5
+        // GET: Tasks/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            task task = db.tasks.Find(id);
-            if (task == null)
+            Tasks tasks = db.Tasks.Find(id);
+            if (tasks == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.AssigneeID = new SelectList(db.AspNetUsers, "Id", "Email", task.AssigneeID);
-            ViewBag.ReporterID = new SelectList(db.AspNetUsers, "Id", "Email", task.ReporterID);
-            ViewBag.BucketID = new SelectList(db.Buckets, "BucketID", "Title", task.BucketID);
-            ViewBag.StatusID = new SelectList(db.Status, "ID", "StatusName", task.StatusID);
-            return View(task);
+            ViewBag.AssigneeID = new SelectList(db.AspNetUsers, "Id", "Email", tasks.AssigneeID);
+            ViewBag.ReporterID = new SelectList(db.AspNetUsers, "Id", "Email", tasks.ReporterID);
+            ViewBag.BucketID = new SelectList(db.Buckets, "BucketID", "Title", tasks.BucketID);
+            ViewBag.StatusID = new SelectList(db.Status, "ID", "StatusName", tasks.StatusID);
+            return View(tasks);
         }
 
-        // POST: tasks/Edit/5
+        // POST: Tasks/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "TaskID,BucketID,StatusID,AssigneeID,ReporterID,Title,Description,Startdate,Duedate")] task task)
+        public ActionResult Edit([Bind(Include = "TaskID,BucketID,StatusID,AssigneeID,ReporterID,Title,Description,Startdate,Duedate")] Tasks tasks)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(task).State = EntityState.Modified;
+                db.Entry(tasks).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.AssigneeID = new SelectList(db.AspNetUsers, "Id", "Email", task.AssigneeID);
-            ViewBag.ReporterID = new SelectList(db.AspNetUsers, "Id", "Email", task.ReporterID);
-            ViewBag.BucketID = new SelectList(db.Buckets, "BucketID", "Title", task.BucketID);
-            ViewBag.StatusID = new SelectList(db.Status, "ID", "StatusName", task.StatusID);
-            return View(task);
+            ViewBag.AssigneeID = new SelectList(db.AspNetUsers, "Id", "Email", tasks.AssigneeID);
+            ViewBag.ReporterID = new SelectList(db.AspNetUsers, "Id", "Email", tasks.ReporterID);
+            ViewBag.BucketID = new SelectList(db.Buckets, "BucketID", "Title", tasks.BucketID);
+            ViewBag.StatusID = new SelectList(db.Status, "ID", "StatusName", tasks.StatusID);
+            return View(tasks);
         }
 
-        // GET: tasks/Delete/5
+        // GET: Tasks/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            task task = db.tasks.Find(id);
-            if (task == null)
+            Tasks tasks = db.Tasks.Find(id);
+            if (tasks == null)
             {
                 return HttpNotFound();
             }
-            return View(task);
+            return View(tasks);
         }
 
-        // POST: tasks/Delete/5
+        // POST: Tasks/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            task task = db.tasks.Find(id);
-            db.tasks.Remove(task);
+            Tasks tasks = db.Tasks.Find(id);
+            db.Tasks.Remove(tasks);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

@@ -1,453 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="cap21t12Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-  <EntityType Name="C__MigrationHistory">
-    <Key>
-      <PropertyRef Name="MigrationId" />
-      <PropertyRef Name="ContextKey" />
-    </Key>
-    <Property Name="MigrationId" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="ContextKey" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="Model" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
-    <Property Name="ProductVersion" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
-  </EntityType>
-  <EntityType Name="AspNetRole">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="Name" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
-    <NavigationProperty Name="AspNetUsers" Relationship="Self.AspNetUserRoles" FromRole="AspNetRoles" ToRole="AspNetUsers" />
-  </EntityType>
-  <EntityType Name="AspNetUserClaim">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="AspNetUser" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUserClaims" ToRole="AspNetUsers" />
-  </EntityType>
-  <EntityType Name="AspNetUserLogin">
-    <Key>
-      <PropertyRef Name="LoginProvider" />
-      <PropertyRef Name="ProviderKey" />
-      <PropertyRef Name="UserId" />
-    </Key>
-    <Property Name="LoginProvider" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="ProviderKey" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-    <NavigationProperty Name="AspNetUser" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUserLogins" ToRole="AspNetUsers" />
-  </EntityType>
-  <EntityType Name="AspNetUser">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
-    <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
-    <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
-    <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
-    <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
-    <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
-    <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
-    <Property Name="UserName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
-    <NavigationProperty Name="AspNetUserClaims" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserClaims" />
-    <NavigationProperty Name="AspNetUserLogins" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserLogins" />
-    <NavigationProperty Name="Attachments" Relationship="Self.FK_Attachment_AspNetUsers" FromRole="AspNetUsers" ToRole="Attachment" />
-    <NavigationProperty Name="Buckets" Relationship="Self.FK_Bucket_AspNetUsers" FromRole="AspNetUsers" ToRole="Bucket" />
-    <NavigationProperty Name="Buckets1" Relationship="Self.FK_Bucket_AspNetUsers1" FromRole="AspNetUsers" ToRole="Bucket" />
-    <NavigationProperty Name="Comments" Relationship="Self.FK_Comment_AspNetUsers" FromRole="AspNetUsers" ToRole="Comment" />
-    <NavigationProperty Name="ListMembers" Relationship="Self.FK_ListMember_AspNetUsers" FromRole="AspNetUsers" ToRole="ListMember" />
-    <NavigationProperty Name="AspNetRoles" Relationship="Self.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
-    <NavigationProperty Name="Tasks" Relationship="cap21t12Model.FK_Task_AspNetUsers1" FromRole="AspNetUser" ToRole="Task1" />
-    <NavigationProperty Name="Tasks1" Relationship="cap21t12Model.FK_Task_AspNetUsers11" FromRole="AspNetUser" ToRole="Task1" />
-  </EntityType>
-  <EntityType Name="Attachment">
-    <Key>
-      <PropertyRef Name="ID" />
-    </Key>
-    <Property Name="ID" Type="Int32" Nullable="false" />
-    <Property Name="PlanID" Type="Int32" Nullable="false" />
-    <Property Name="BucketID" Type="Int32" />
-    <Property Name="TaskID" Type="Int32" />
-    <Property Name="CommentID" Type="Int32" />
-    <Property Name="Reporter" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="Attachment1" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
-    <NavigationProperty Name="AspNetUser" Relationship="Self.FK_Attachment_AspNetUsers" FromRole="Attachment" ToRole="AspNetUsers" />
-    <NavigationProperty Name="Bucket" Relationship="Self.FK_Attachment_Bucket" FromRole="Attachment" ToRole="Bucket" />
-    <NavigationProperty Name="Comment" Relationship="Self.FK_Attachment_Comment" FromRole="Attachment" ToRole="Comment" />
-    <NavigationProperty Name="Plan" Relationship="Self.FK_Attachment_Plan" FromRole="Attachment" ToRole="Plan" />
-    <NavigationProperty Name="Task" Relationship="cap21t12Model.FK_Attachment_Task1" FromRole="Attachment" ToRole="Task1" />
-  </EntityType>
-  <EntityType Name="Bucket">
-    <Key>
-      <PropertyRef Name="BucketID" />
-    </Key>
-    <Property Name="BucketID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="PlanID" Type="Int32" Nullable="false" />
-    <Property Name="StatusID" Type="Int32" Nullable="false" />
-    <Property Name="Assignee" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
-    <Property Name="Reporter" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="Title" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="Description" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-    <Property Name="StartDate" Type="DateTime" Precision="3" />
-    <Property Name="DueDate" Type="DateTime" Precision="3" />
-    <NavigationProperty Name="AspNetUser" Relationship="Self.FK_Bucket_AspNetUsers" FromRole="Bucket" ToRole="AspNetUsers" />
-    <NavigationProperty Name="AspNetUser1" Relationship="Self.FK_Bucket_AspNetUsers1" FromRole="Bucket" ToRole="AspNetUsers" />
-    <NavigationProperty Name="Attachments" Relationship="Self.FK_Attachment_Bucket" FromRole="Bucket" ToRole="Attachment" />
-    <NavigationProperty Name="Plan" Relationship="Self.FK_Bucket_Plan" FromRole="Bucket" ToRole="Plan" />
-    <NavigationProperty Name="Status" Relationship="Self.FK_Bucket_Status" FromRole="Bucket" ToRole="Status" />
-    <NavigationProperty Name="Tasks" Relationship="cap21t12Model.FK_Task_Bucket1" FromRole="Bucket" ToRole="Task1" />
-  </EntityType>
-  <EntityType Name="Comment">
-    <Key>
-      <PropertyRef Name="ID" />
-    </Key>
-    <Property Name="ID" Type="Int32" Nullable="false" />
-    <Property Name="AccountID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="TaskID" Type="Int32" Nullable="false" />
-    <Property Name="LastUpdate" Type="DateTime" Nullable="false" Precision="3" />
-    <Property Name="Comment1" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-    <NavigationProperty Name="AspNetUser" Relationship="Self.FK_Comment_AspNetUsers" FromRole="Comment" ToRole="AspNetUsers" />
-    <NavigationProperty Name="Attachments" Relationship="Self.FK_Attachment_Comment" FromRole="Comment" ToRole="Attachment" />
-    <NavigationProperty Name="Task" Relationship="cap21t12Model.FK_Comment_Task1" FromRole="Comment" ToRole="Task1" />
-  </EntityType>
-  <EntityType Name="ListMember">
-    <Key>
-      <PropertyRef Name="ID" />
-    </Key>
-    <Property Name="ID" Type="Int32" Nullable="false" />
-    <Property Name="AccountID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="PlanID" Type="Int32" Nullable="false" />
-    <Property Name="RoleProject" Type="Boolean" Nullable="false" />
-    <Property Name="DateJoined" Type="DateTime" Nullable="false" Precision="3" />
-    <Property Name="DateLeft" Type="DateTime" Nullable="false" Precision="3" />
-    <NavigationProperty Name="AspNetUser" Relationship="Self.FK_ListMember_AspNetUsers" FromRole="ListMember" ToRole="AspNetUsers" />
-    <NavigationProperty Name="Plan" Relationship="Self.FK_ListMember_Plan" FromRole="ListMember" ToRole="Plan" />
-  </EntityType>
-  <EntityType Name="Plan">
-    <Key>
-      <PropertyRef Name="IDPlan" />
-    </Key>
-    <Property Name="IDPlan" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="StatusID" Type="Int32" Nullable="false" />
-    <Property Name="Title" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="Description" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-    <Property Name="Startdate" Type="DateTime" Nullable="false" Precision="3" />
-    <Property Name="Duedate" Type="DateTime" Nullable="false" Precision="3" />
-    <NavigationProperty Name="Attachments" Relationship="Self.FK_Attachment_Plan" FromRole="Plan" ToRole="Attachment" />
-    <NavigationProperty Name="Buckets" Relationship="Self.FK_Bucket_Plan" FromRole="Plan" ToRole="Bucket" />
-    <NavigationProperty Name="ListMembers" Relationship="Self.FK_ListMember_Plan" FromRole="Plan" ToRole="ListMember" />
-    <NavigationProperty Name="StatusPlan" Relationship="Self.FK_Plan_StatusPlan" FromRole="Plan" ToRole="StatusPlan" />
-  </EntityType>
-  <EntityType Name="Status">
-    <Key>
-      <PropertyRef Name="ID" />
-    </Key>
-    <Property Name="ID" Type="Int32" Nullable="false" />
-    <Property Name="StatusName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="Description" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="Buckets" Relationship="Self.FK_Bucket_Status" FromRole="Status" ToRole="Bucket" />
-    <NavigationProperty Name="Tasks" Relationship="cap21t12Model.FK_Task_Status1" FromRole="Status" ToRole="Task1" />
-  </EntityType>
-  <EntityType Name="StatusPlan">
-    <Key>
-      <PropertyRef Name="ID" />
-    </Key>
-    <Property Name="ID" Type="Int32" Nullable="false" />
-    <Property Name="StatusName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
-    <NavigationProperty Name="Plans" Relationship="Self.FK_Plan_StatusPlan" FromRole="StatusPlan" ToRole="Plan" />
-  </EntityType>
-  <EntityType Name="sysdiagram">
-    <Key>
-      <PropertyRef Name="diagram_id" />
-    </Key>
-    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="principal_id" Type="Int32" Nullable="false" />
-    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="version" Type="Int32" />
-    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
-  </EntityType>
-  <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
-    <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
-      <OnDelete Action="Cascade" />
-    </End>
-    <End Role="AspNetUserClaims" Type="Self.AspNetUserClaim" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="AspNetUsers">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="AspNetUserClaims">
-        <PropertyRef Name="UserId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
-    <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
-      <OnDelete Action="Cascade" />
-    </End>
-    <End Role="AspNetUserLogins" Type="Self.AspNetUserLogin" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="AspNetUsers">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="AspNetUserLogins">
-        <PropertyRef Name="UserId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Attachment_AspNetUsers">
-    <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1" />
-    <End Role="Attachment" Type="Self.Attachment" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="AspNetUsers">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Attachment">
-        <PropertyRef Name="Reporter" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Bucket_AspNetUsers">
-    <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1" />
-    <End Role="Bucket" Type="Self.Bucket" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="AspNetUsers">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Bucket">
-        <PropertyRef Name="Reporter" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Bucket_AspNetUsers1">
-    <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="0..1" />
-    <End Role="Bucket" Type="Self.Bucket" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="AspNetUsers">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Bucket">
-        <PropertyRef Name="Assignee" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Comment_AspNetUsers">
-    <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1" />
-    <End Role="Comment" Type="Self.Comment" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="AspNetUsers">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Comment">
-        <PropertyRef Name="AccountID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_ListMember_AspNetUsers">
-    <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1" />
-    <End Role="ListMember" Type="Self.ListMember" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="AspNetUsers">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="ListMember">
-        <PropertyRef Name="AccountID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Attachment_Bucket">
-    <End Role="Bucket" Type="Self.Bucket" Multiplicity="0..1" />
-    <End Role="Attachment" Type="Self.Attachment" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Bucket">
-        <PropertyRef Name="BucketID" />
-      </Principal>
-      <Dependent Role="Attachment">
-        <PropertyRef Name="BucketID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Attachment_Comment">
-    <End Role="Comment" Type="Self.Comment" Multiplicity="0..1" />
-    <End Role="Attachment" Type="Self.Attachment" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Comment">
-        <PropertyRef Name="ID" />
-      </Principal>
-      <Dependent Role="Attachment">
-        <PropertyRef Name="CommentID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Attachment_Plan">
-    <End Role="Plan" Type="Self.Plan" Multiplicity="1" />
-    <End Role="Attachment" Type="Self.Attachment" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Plan">
-        <PropertyRef Name="IDPlan" />
-      </Principal>
-      <Dependent Role="Attachment">
-        <PropertyRef Name="PlanID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Bucket_Plan">
-    <End Role="Plan" Type="Self.Plan" Multiplicity="1" />
-    <End Role="Bucket" Type="Self.Bucket" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Plan">
-        <PropertyRef Name="IDPlan" />
-      </Principal>
-      <Dependent Role="Bucket">
-        <PropertyRef Name="PlanID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Bucket_Status">
-    <End Role="Status" Type="Self.Status" Multiplicity="1" />
-    <End Role="Bucket" Type="Self.Bucket" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Status">
-        <PropertyRef Name="ID" />
-      </Principal>
-      <Dependent Role="Bucket">
-        <PropertyRef Name="StatusID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_ListMember_Plan">
-    <End Role="Plan" Type="Self.Plan" Multiplicity="1" />
-    <End Role="ListMember" Type="Self.ListMember" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Plan">
-        <PropertyRef Name="IDPlan" />
-      </Principal>
-      <Dependent Role="ListMember">
-        <PropertyRef Name="PlanID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Plan_StatusPlan">
-    <End Role="StatusPlan" Type="Self.StatusPlan" Multiplicity="1" />
-    <End Role="Plan" Type="Self.Plan" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="StatusPlan">
-        <PropertyRef Name="ID" />
-      </Principal>
-      <Dependent Role="Plan">
-        <PropertyRef Name="StatusID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="AspNetUserRoles">
-    <End Role="AspNetRoles" Type="Self.AspNetRole" Multiplicity="*" />
-    <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="*" />
-  </Association>
   <EntityContainer Name="cap21t12Entities" annotation:LazyLoadingEnabled="true">
-    <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" />
-    <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRole" />
-    <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaim" />
-    <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogin" />
-    <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUser" />
-    <EntitySet Name="Attachments" EntityType="Self.Attachment" />
-    <EntitySet Name="Buckets" EntityType="Self.Bucket" />
-    <EntitySet Name="Comments" EntityType="Self.Comment" />
-    <EntitySet Name="ListMembers" EntityType="Self.ListMember" />
-    <EntitySet Name="Plans" EntityType="Self.Plan" />
-    <EntitySet Name="Status" EntityType="Self.Status" />
-    <EntitySet Name="StatusPlans" EntityType="Self.StatusPlan" />
-    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
-    <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
-      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
-      <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
-    </AssociationSet>
-    <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
-      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
-      <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Attachment_AspNetUsers" Association="Self.FK_Attachment_AspNetUsers">
-      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
-      <End Role="Attachment" EntitySet="Attachments" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Bucket_AspNetUsers" Association="Self.FK_Bucket_AspNetUsers">
-      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
-      <End Role="Bucket" EntitySet="Buckets" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Bucket_AspNetUsers1" Association="Self.FK_Bucket_AspNetUsers1">
-      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
-      <End Role="Bucket" EntitySet="Buckets" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Comment_AspNetUsers" Association="Self.FK_Comment_AspNetUsers">
-      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
-      <End Role="Comment" EntitySet="Comments" />
-    </AssociationSet>
-    <AssociationSet Name="FK_ListMember_AspNetUsers" Association="Self.FK_ListMember_AspNetUsers">
-      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
-      <End Role="ListMember" EntitySet="ListMembers" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Attachment_Bucket" Association="Self.FK_Attachment_Bucket">
-      <End Role="Bucket" EntitySet="Buckets" />
-      <End Role="Attachment" EntitySet="Attachments" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Attachment_Comment" Association="Self.FK_Attachment_Comment">
-      <End Role="Comment" EntitySet="Comments" />
-      <End Role="Attachment" EntitySet="Attachments" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Attachment_Plan" Association="Self.FK_Attachment_Plan">
-      <End Role="Plan" EntitySet="Plans" />
-      <End Role="Attachment" EntitySet="Attachments" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Bucket_Plan" Association="Self.FK_Bucket_Plan">
-      <End Role="Plan" EntitySet="Plans" />
-      <End Role="Bucket" EntitySet="Buckets" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Bucket_Status" Association="Self.FK_Bucket_Status">
-      <End Role="Status" EntitySet="Status" />
-      <End Role="Bucket" EntitySet="Buckets" />
-    </AssociationSet>
-    <AssociationSet Name="FK_ListMember_Plan" Association="Self.FK_ListMember_Plan">
-      <End Role="Plan" EntitySet="Plans" />
-      <End Role="ListMember" EntitySet="ListMembers" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Plan_StatusPlan" Association="Self.FK_Plan_StatusPlan">
-      <End Role="StatusPlan" EntitySet="StatusPlans" />
-      <End Role="Plan" EntitySet="Plans" />
-    </AssociationSet>
-    <AssociationSet Name="AspNetUserRoles" Association="Self.AspNetUserRoles">
-      <End Role="AspNetRoles" EntitySet="AspNetRoles" />
-      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
-    </AssociationSet>
-    <EntitySet Name="tasks" EntityType="cap21t12Model.task" />
-    <AssociationSet Name="FK_Task_AspNetUsers1" Association="cap21t12Model.FK_Task_AspNetUsers1">
-      <End Role="AspNetUser" EntitySet="AspNetUsers" />
-      <End Role="Task1" EntitySet="tasks" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Task_AspNetUsers11" Association="cap21t12Model.FK_Task_AspNetUsers11">
-      <End Role="AspNetUser" EntitySet="AspNetUsers" />
-      <End Role="Task1" EntitySet="tasks" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Attachment_Task1" Association="cap21t12Model.FK_Attachment_Task1">
-      <End Role="Task1" EntitySet="tasks" />
-      <End Role="Attachment" EntitySet="Attachments" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Task_Bucket1" Association="cap21t12Model.FK_Task_Bucket1">
-      <End Role="Bucket" EntitySet="Buckets" />
-      <End Role="Task1" EntitySet="tasks" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Comment_Task1" Association="cap21t12Model.FK_Comment_Task1">
-      <End Role="Task1" EntitySet="tasks" />
-      <End Role="Comment" EntitySet="Comments" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Task_Status1" Association="cap21t12Model.FK_Task_Status1">
-      <End Role="Status" EntitySet="Status" />
-      <End Role="Task1" EntitySet="tasks" />
-    </AssociationSet>
     <FunctionImport Name="sp_alterdiagram">
       <Parameter Name="diagramname" Mode="In" Type="String" />
       <Parameter Name="owner_id" Mode="In" Type="Int32" />
@@ -478,8 +31,290 @@
       <Parameter Name="new_diagramname" Mode="In" Type="String" />
     </FunctionImport>
     <FunctionImport Name="sp_upgraddiagrams" />
+    <EntitySet Name="C__MigrationHistory" EntityType="cap21t12Model.C__MigrationHistory" />
+    <EntitySet Name="AspNetRoles" EntityType="cap21t12Model.AspNetRole" />
+    <EntitySet Name="AspNetUserClaims" EntityType="cap21t12Model.AspNetUserClaim" />
+    <EntitySet Name="AspNetUserLogins" EntityType="cap21t12Model.AspNetUserLogin" />
+    <EntitySet Name="AspNetUsers" EntityType="cap21t12Model.AspNetUser" />
+    <EntitySet Name="Attachments" EntityType="cap21t12Model.Attachment" />
+    <EntitySet Name="Buckets" EntityType="cap21t12Model.Bucket" />
+    <EntitySet Name="Comments" EntityType="cap21t12Model.Comment" />
+    <EntitySet Name="ListMembers" EntityType="cap21t12Model.ListMember" />
+    <EntitySet Name="Plans" EntityType="cap21t12Model.Plan" />
+    <EntitySet Name="Status" EntityType="cap21t12Model.Status" />
+    <EntitySet Name="StatusPlans" EntityType="cap21t12Model.StatusPlan" />
+    <EntitySet Name="sysdiagrams" EntityType="cap21t12Model.sysdiagram" />
+    <EntitySet Name="Tasks1" EntityType="cap21t12Model.Tasks" />
+    <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="cap21t12Model.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUser" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserClaim" EntitySet="AspNetUserClaims" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="cap21t12Model.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUser" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserLogin" EntitySet="AspNetUserLogins" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Attachment_AspNetUsers" Association="cap21t12Model.FK_Attachment_AspNetUsers">
+      <End Role="AspNetUser" EntitySet="AspNetUsers" />
+      <End Role="Attachment" EntitySet="Attachments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Bucket_AspNetUsers" Association="cap21t12Model.FK_Bucket_AspNetUsers">
+      <End Role="AspNetUser" EntitySet="AspNetUsers" />
+      <End Role="Bucket" EntitySet="Buckets" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Bucket_AspNetUsers1" Association="cap21t12Model.FK_Bucket_AspNetUsers1">
+      <End Role="AspNetUser" EntitySet="AspNetUsers" />
+      <End Role="Bucket" EntitySet="Buckets" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Comment_AspNetUsers" Association="cap21t12Model.FK_Comment_AspNetUsers">
+      <End Role="AspNetUser" EntitySet="AspNetUsers" />
+      <End Role="Comment" EntitySet="Comments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ListMember_AspNetUsers" Association="cap21t12Model.FK_ListMember_AspNetUsers">
+      <End Role="AspNetUser" EntitySet="AspNetUsers" />
+      <End Role="ListMember" EntitySet="ListMembers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Task_AspNetUsers" Association="cap21t12Model.FK_Task_AspNetUsers">
+      <End Role="AspNetUser" EntitySet="AspNetUsers" />
+      <End Role="Task" EntitySet="Tasks1" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Task_AspNetUsers1" Association="cap21t12Model.FK_Task_AspNetUsers1">
+      <End Role="AspNetUser" EntitySet="AspNetUsers" />
+      <End Role="Task" EntitySet="Tasks1" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Attachment_Bucket" Association="cap21t12Model.FK_Attachment_Bucket">
+      <End Role="Bucket" EntitySet="Buckets" />
+      <End Role="Attachment" EntitySet="Attachments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Attachment_Comment" Association="cap21t12Model.FK_Attachment_Comment">
+      <End Role="Comment" EntitySet="Comments" />
+      <End Role="Attachment" EntitySet="Attachments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Attachment_Plan" Association="cap21t12Model.FK_Attachment_Plan">
+      <End Role="Plan" EntitySet="Plans" />
+      <End Role="Attachment" EntitySet="Attachments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Attachment_Task" Association="cap21t12Model.FK_Attachment_Task">
+      <End Role="Task" EntitySet="Tasks1" />
+      <End Role="Attachment" EntitySet="Attachments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Bucket_Plan" Association="cap21t12Model.FK_Bucket_Plan">
+      <End Role="Plan" EntitySet="Plans" />
+      <End Role="Bucket" EntitySet="Buckets" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Bucket_Status" Association="cap21t12Model.FK_Bucket_Status">
+      <End Role="Status" EntitySet="Status" />
+      <End Role="Bucket" EntitySet="Buckets" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Task_Bucket" Association="cap21t12Model.FK_Task_Bucket">
+      <End Role="Bucket" EntitySet="Buckets" />
+      <End Role="Task" EntitySet="Tasks1" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Comment_Task" Association="cap21t12Model.FK_Comment_Task">
+      <End Role="Task" EntitySet="Tasks1" />
+      <End Role="Comment" EntitySet="Comments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ListMember_Plan" Association="cap21t12Model.FK_ListMember_Plan">
+      <End Role="Plan" EntitySet="Plans" />
+      <End Role="ListMember" EntitySet="ListMembers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Plan_StatusPlan" Association="cap21t12Model.FK_Plan_StatusPlan">
+      <End Role="StatusPlan" EntitySet="StatusPlans" />
+      <End Role="Plan" EntitySet="Plans" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Task_Status" Association="cap21t12Model.FK_Task_Status">
+      <End Role="Status" EntitySet="Status" />
+      <End Role="Task" EntitySet="Tasks1" />
+    </AssociationSet>
+    <AssociationSet Name="AspNetUserRoles" Association="cap21t12Model.AspNetUserRoles">
+      <End Role="AspNetRole" EntitySet="AspNetRoles" />
+      <End Role="AspNetUser" EntitySet="AspNetUsers" />
+    </AssociationSet>
   </EntityContainer>
-  <EntityType Name="task">
+  <ComplexType Name="sp_helpdiagramdefinition_Result">
+    <Property Type="Int32" Name="version" Nullable="true" />
+    <Property Type="Binary" Name="definition" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagrams_Result">
+    <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="OwnerID" Nullable="false" />
+  </ComplexType>
+  <EntityType Name="C__MigrationHistory">
+    <Key>
+      <PropertyRef Name="MigrationId" />
+      <PropertyRef Name="ContextKey" />
+    </Key>
+    <Property Name="MigrationId" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="ContextKey" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="true" />
+    <Property Name="Model" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+    <Property Name="ProductVersion" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="AspNetRole">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AspNetUsers" Relationship="cap21t12Model.AspNetUserRoles" FromRole="AspNetRole" ToRole="AspNetUser" />
+  </EntityType>
+  <EntityType Name="AspNetUserClaim">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AspNetUser" Relationship="cap21t12Model.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUserClaim" ToRole="AspNetUser" />
+  </EntityType>
+  <EntityType Name="AspNetUserLogin">
+    <Key>
+      <PropertyRef Name="LoginProvider" />
+      <PropertyRef Name="ProviderKey" />
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="LoginProvider" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="ProviderKey" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AspNetUser" Relationship="cap21t12Model.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUserLogin" ToRole="AspNetUser" />
+  </EntityType>
+  <EntityType Name="AspNetUser">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+    <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+    <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+    <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
+    <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+    <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+    <Property Name="UserName" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AspNetUserClaims" Relationship="cap21t12Model.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUser" ToRole="AspNetUserClaim" />
+    <NavigationProperty Name="AspNetUserLogins" Relationship="cap21t12Model.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUser" ToRole="AspNetUserLogin" />
+    <NavigationProperty Name="Attachments" Relationship="cap21t12Model.FK_Attachment_AspNetUsers" FromRole="AspNetUser" ToRole="Attachment" />
+    <NavigationProperty Name="Buckets" Relationship="cap21t12Model.FK_Bucket_AspNetUsers" FromRole="AspNetUser" ToRole="Bucket" />
+    <NavigationProperty Name="Buckets1" Relationship="cap21t12Model.FK_Bucket_AspNetUsers1" FromRole="AspNetUser" ToRole="Bucket" />
+    <NavigationProperty Name="Comments" Relationship="cap21t12Model.FK_Comment_AspNetUsers" FromRole="AspNetUser" ToRole="Comment" />
+    <NavigationProperty Name="ListMembers" Relationship="cap21t12Model.FK_ListMember_AspNetUsers" FromRole="AspNetUser" ToRole="ListMember" />
+    <NavigationProperty Name="Tasks" Relationship="cap21t12Model.FK_Task_AspNetUsers" FromRole="AspNetUser" ToRole="Task" />
+    <NavigationProperty Name="Tasks1" Relationship="cap21t12Model.FK_Task_AspNetUsers1" FromRole="AspNetUser" ToRole="Task" />
+    <NavigationProperty Name="AspNetRoles" Relationship="cap21t12Model.AspNetUserRoles" FromRole="AspNetUser" ToRole="AspNetRole" />
+  </EntityType>
+  <EntityType Name="Attachment">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="PlanID" Type="Int32" Nullable="false" />
+    <Property Name="BucketID" Type="Int32" />
+    <Property Name="TaskID" Type="Int32" />
+    <Property Name="CommentID" Type="Int32" />
+    <Property Name="Reporter" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="Attachment1" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="AspNetUser" Relationship="cap21t12Model.FK_Attachment_AspNetUsers" FromRole="Attachment" ToRole="AspNetUser" />
+    <NavigationProperty Name="Bucket" Relationship="cap21t12Model.FK_Attachment_Bucket" FromRole="Attachment" ToRole="Bucket" />
+    <NavigationProperty Name="Comment" Relationship="cap21t12Model.FK_Attachment_Comment" FromRole="Attachment" ToRole="Comment" />
+    <NavigationProperty Name="Plan" Relationship="cap21t12Model.FK_Attachment_Plan" FromRole="Attachment" ToRole="Plan" />
+    <NavigationProperty Name="Task" Relationship="cap21t12Model.FK_Attachment_Task" FromRole="Attachment" ToRole="Task" />
+  </EntityType>
+  <EntityType Name="Bucket">
+    <Key>
+      <PropertyRef Name="BucketID" />
+    </Key>
+    <Property Name="BucketID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PlanID" Type="Int32" Nullable="false" />
+    <Property Name="StatusID" Type="Int32" Nullable="false" />
+    <Property Name="Assignee" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="Reporter" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="Title" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="StartDate" Type="DateTime" Precision="3" />
+    <Property Name="DueDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="AspNetUser" Relationship="cap21t12Model.FK_Bucket_AspNetUsers" FromRole="Bucket" ToRole="AspNetUser" />
+    <NavigationProperty Name="AspNetUser1" Relationship="cap21t12Model.FK_Bucket_AspNetUsers1" FromRole="Bucket" ToRole="AspNetUser" />
+    <NavigationProperty Name="Attachments" Relationship="cap21t12Model.FK_Attachment_Bucket" FromRole="Bucket" ToRole="Attachment" />
+    <NavigationProperty Name="Plan" Relationship="cap21t12Model.FK_Bucket_Plan" FromRole="Bucket" ToRole="Plan" />
+    <NavigationProperty Name="Status" Relationship="cap21t12Model.FK_Bucket_Status" FromRole="Bucket" ToRole="Status" />
+    <NavigationProperty Name="Tasks" Relationship="cap21t12Model.FK_Task_Bucket" FromRole="Bucket" ToRole="Task" />
+  </EntityType>
+  <EntityType Name="Comment">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="AccountID" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="TaskID" Type="Int32" Nullable="false" />
+    <Property Name="LastUpdate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Comment1" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AspNetUser" Relationship="cap21t12Model.FK_Comment_AspNetUsers" FromRole="Comment" ToRole="AspNetUser" />
+    <NavigationProperty Name="Attachments" Relationship="cap21t12Model.FK_Attachment_Comment" FromRole="Comment" ToRole="Attachment" />
+    <NavigationProperty Name="Task" Relationship="cap21t12Model.FK_Comment_Task" FromRole="Comment" ToRole="Task" />
+  </EntityType>
+  <EntityType Name="ListMember">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="AccountID" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="PlanID" Type="Int32" Nullable="false" />
+    <Property Name="RoleProject" Type="Boolean" Nullable="false" />
+    <Property Name="DateJoined" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="DateLeft" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="AspNetUser" Relationship="cap21t12Model.FK_ListMember_AspNetUsers" FromRole="ListMember" ToRole="AspNetUser" />
+    <NavigationProperty Name="Plan" Relationship="cap21t12Model.FK_ListMember_Plan" FromRole="ListMember" ToRole="Plan" />
+  </EntityType>
+  <EntityType Name="Plan">
+    <Key>
+      <PropertyRef Name="IDPlan" />
+    </Key>
+    <Property Name="IDPlan" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="StatusID" Type="Int32" Nullable="false" />
+    <Property Name="Title" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Startdate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Duedate" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="Attachments" Relationship="cap21t12Model.FK_Attachment_Plan" FromRole="Plan" ToRole="Attachment" />
+    <NavigationProperty Name="Buckets" Relationship="cap21t12Model.FK_Bucket_Plan" FromRole="Plan" ToRole="Bucket" />
+    <NavigationProperty Name="ListMembers" Relationship="cap21t12Model.FK_ListMember_Plan" FromRole="Plan" ToRole="ListMember" />
+    <NavigationProperty Name="StatusPlan" Relationship="cap21t12Model.FK_Plan_StatusPlan" FromRole="Plan" ToRole="StatusPlan" />
+  </EntityType>
+  <EntityType Name="Status">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="StatusName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Buckets" Relationship="cap21t12Model.FK_Bucket_Status" FromRole="Status" ToRole="Bucket" />
+    <NavigationProperty Name="Tasks" Relationship="cap21t12Model.FK_Task_Status" FromRole="Status" ToRole="Task" />
+  </EntityType>
+  <EntityType Name="StatusPlan">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="StatusName" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Plans" Relationship="cap21t12Model.FK_Plan_StatusPlan" FromRole="StatusPlan" ToRole="Plan" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Tasks">
     <Key>
       <PropertyRef Name="TaskID" />
     </Key>
@@ -492,42 +327,166 @@
     <Property Name="Description" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
     <Property Name="Startdate" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="Duedate" Type="DateTime" Nullable="false" Precision="3" />
-    <NavigationProperty Name="AspNetUser" Relationship="cap21t12Model.FK_Task_AspNetUsers1" FromRole="Task1" ToRole="AspNetUser" />
-    <NavigationProperty Name="AspNetUser1" Relationship="cap21t12Model.FK_Task_AspNetUsers11" FromRole="Task1" ToRole="AspNetUser" />
-    <NavigationProperty Name="Attachments" Relationship="cap21t12Model.FK_Attachment_Task1" FromRole="Task1" ToRole="Attachment" />
-    <NavigationProperty Name="Bucket" Relationship="cap21t12Model.FK_Task_Bucket1" FromRole="Task1" ToRole="Bucket" />
-    <NavigationProperty Name="Comments" Relationship="cap21t12Model.FK_Comment_Task1" FromRole="Task1" ToRole="Comment" />
-    <NavigationProperty Name="Status" Relationship="cap21t12Model.FK_Task_Status1" FromRole="Task1" ToRole="Status" />
+    <NavigationProperty Name="AspNetUser" Relationship="cap21t12Model.FK_Task_AspNetUsers" FromRole="Task" ToRole="AspNetUser" />
+    <NavigationProperty Name="AspNetUser1" Relationship="cap21t12Model.FK_Task_AspNetUsers1" FromRole="Task" ToRole="AspNetUser" />
+    <NavigationProperty Name="Attachments" Relationship="cap21t12Model.FK_Attachment_Task" FromRole="Task" ToRole="Attachment" />
+    <NavigationProperty Name="Bucket" Relationship="cap21t12Model.FK_Task_Bucket" FromRole="Task" ToRole="Bucket" />
+    <NavigationProperty Name="Comments" Relationship="cap21t12Model.FK_Comment_Task" FromRole="Task" ToRole="Comment" />
+    <NavigationProperty Name="Status" Relationship="cap21t12Model.FK_Task_Status" FromRole="Task" ToRole="Status" />
   </EntityType>
-  <Association Name="FK_Task_AspNetUsers1">
-    <End Type="cap21t12Model.AspNetUser" Role="AspNetUser" Multiplicity="1" />
-    <End Type="cap21t12Model.task" Role="Task1" Multiplicity="*" />
+  <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+    <End Type="cap21t12Model.AspNetUser" Role="AspNetUser" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="cap21t12Model.AspNetUserClaim" Role="AspNetUserClaim" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="AspNetUser">
         <PropertyRef Name="Id" />
       </Principal>
-      <Dependent Role="Task1">
+      <Dependent Role="AspNetUserClaim">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+    <End Type="cap21t12Model.AspNetUser" Role="AspNetUser" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="cap21t12Model.AspNetUserLogin" Role="AspNetUserLogin" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUser">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserLogin">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Attachment_AspNetUsers">
+    <End Type="cap21t12Model.AspNetUser" Role="AspNetUser" Multiplicity="1" />
+    <End Type="cap21t12Model.Attachment" Role="Attachment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUser">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Attachment">
+        <PropertyRef Name="Reporter" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Bucket_AspNetUsers">
+    <End Type="cap21t12Model.AspNetUser" Role="AspNetUser" Multiplicity="1" />
+    <End Type="cap21t12Model.Bucket" Role="Bucket" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUser">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Bucket">
+        <PropertyRef Name="Reporter" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Bucket_AspNetUsers1">
+    <End Type="cap21t12Model.AspNetUser" Role="AspNetUser" Multiplicity="0..1" />
+    <End Type="cap21t12Model.Bucket" Role="Bucket" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUser">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Bucket">
+        <PropertyRef Name="Assignee" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Comment_AspNetUsers">
+    <End Type="cap21t12Model.AspNetUser" Role="AspNetUser" Multiplicity="1" />
+    <End Type="cap21t12Model.Comment" Role="Comment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUser">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Comment">
+        <PropertyRef Name="AccountID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ListMember_AspNetUsers">
+    <End Type="cap21t12Model.AspNetUser" Role="AspNetUser" Multiplicity="1" />
+    <End Type="cap21t12Model.ListMember" Role="ListMember" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUser">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ListMember">
+        <PropertyRef Name="AccountID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Task_AspNetUsers">
+    <End Type="cap21t12Model.AspNetUser" Role="AspNetUser" Multiplicity="1" />
+    <End Type="cap21t12Model.Tasks" Role="Task" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUser">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Task">
         <PropertyRef Name="AssigneeID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Task_AspNetUsers11">
+  <Association Name="FK_Task_AspNetUsers1">
     <End Type="cap21t12Model.AspNetUser" Role="AspNetUser" Multiplicity="1" />
-    <End Type="cap21t12Model.task" Role="Task1" Multiplicity="*" />
+    <End Type="cap21t12Model.Tasks" Role="Task" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="AspNetUser">
         <PropertyRef Name="Id" />
       </Principal>
-      <Dependent Role="Task1">
+      <Dependent Role="Task">
         <PropertyRef Name="ReporterID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Attachment_Task1">
-    <End Type="cap21t12Model.task" Role="Task1" Multiplicity="0..1" />
+  <Association Name="FK_Attachment_Bucket">
+    <End Type="cap21t12Model.Bucket" Role="Bucket" Multiplicity="0..1" />
     <End Type="cap21t12Model.Attachment" Role="Attachment" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="Task1">
+      <Principal Role="Bucket">
+        <PropertyRef Name="BucketID" />
+      </Principal>
+      <Dependent Role="Attachment">
+        <PropertyRef Name="BucketID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Attachment_Comment">
+    <End Type="cap21t12Model.Comment" Role="Comment" Multiplicity="0..1" />
+    <End Type="cap21t12Model.Attachment" Role="Attachment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Comment">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Attachment">
+        <PropertyRef Name="CommentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Attachment_Plan">
+    <End Type="cap21t12Model.Plan" Role="Plan" Multiplicity="1" />
+    <End Type="cap21t12Model.Attachment" Role="Attachment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Plan">
+        <PropertyRef Name="IDPlan" />
+      </Principal>
+      <Dependent Role="Attachment">
+        <PropertyRef Name="PlanID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Attachment_Task">
+    <End Type="cap21t12Model.Tasks" Role="Task" Multiplicity="0..1" />
+    <End Type="cap21t12Model.Attachment" Role="Attachment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Task">
         <PropertyRef Name="TaskID" />
       </Principal>
       <Dependent Role="Attachment">
@@ -535,23 +494,47 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Task_Bucket1">
+  <Association Name="FK_Bucket_Plan">
+    <End Type="cap21t12Model.Plan" Role="Plan" Multiplicity="1" />
+    <End Type="cap21t12Model.Bucket" Role="Bucket" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Plan">
+        <PropertyRef Name="IDPlan" />
+      </Principal>
+      <Dependent Role="Bucket">
+        <PropertyRef Name="PlanID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Bucket_Status">
+    <End Type="cap21t12Model.Status" Role="Status" Multiplicity="1" />
+    <End Type="cap21t12Model.Bucket" Role="Bucket" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Status">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Bucket">
+        <PropertyRef Name="StatusID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Task_Bucket">
     <End Type="cap21t12Model.Bucket" Role="Bucket" Multiplicity="1" />
-    <End Type="cap21t12Model.task" Role="Task1" Multiplicity="*" />
+    <End Type="cap21t12Model.Tasks" Role="Task" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Bucket">
         <PropertyRef Name="BucketID" />
       </Principal>
-      <Dependent Role="Task1">
+      <Dependent Role="Task">
         <PropertyRef Name="BucketID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Comment_Task1">
-    <End Type="cap21t12Model.task" Role="Task1" Multiplicity="1" />
+  <Association Name="FK_Comment_Task">
+    <End Type="cap21t12Model.Tasks" Role="Task" Multiplicity="1" />
     <End Type="cap21t12Model.Comment" Role="Comment" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="Task1">
+      <Principal Role="Task">
         <PropertyRef Name="TaskID" />
       </Principal>
       <Dependent Role="Comment">
@@ -559,27 +542,44 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Task_Status1">
-    <End Type="cap21t12Model.Status" Role="Status" Multiplicity="1" />
-    <End Type="cap21t12Model.task" Role="Task1" Multiplicity="*" />
+  <Association Name="FK_ListMember_Plan">
+    <End Type="cap21t12Model.Plan" Role="Plan" Multiplicity="1" />
+    <End Type="cap21t12Model.ListMember" Role="ListMember" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="Status">
+      <Principal Role="Plan">
+        <PropertyRef Name="IDPlan" />
+      </Principal>
+      <Dependent Role="ListMember">
+        <PropertyRef Name="PlanID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Plan_StatusPlan">
+    <End Type="cap21t12Model.StatusPlan" Role="StatusPlan" Multiplicity="1" />
+    <End Type="cap21t12Model.Plan" Role="Plan" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="StatusPlan">
         <PropertyRef Name="ID" />
       </Principal>
-      <Dependent Role="Task1">
+      <Dependent Role="Plan">
         <PropertyRef Name="StatusID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <ComplexType Name="sp_helpdiagramdefinition_Result">
-    <Property Type="Int32" Name="version" Nullable="true" />
-    <Property Type="Binary" Name="definition" Nullable="true" />
-  </ComplexType>
-  <ComplexType Name="sp_helpdiagrams_Result">
-    <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
-    <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
-    <Property Type="Int32" Name="ID" Nullable="false" />
-    <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
-    <Property Type="Int32" Name="OwnerID" Nullable="false" />
-  </ComplexType>
+  <Association Name="FK_Task_Status">
+    <End Type="cap21t12Model.Status" Role="Status" Multiplicity="1" />
+    <End Type="cap21t12Model.Tasks" Role="Task" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Status">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Task">
+        <PropertyRef Name="StatusID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="AspNetUserRoles">
+    <End Type="cap21t12Model.AspNetRole" Role="AspNetRole" Multiplicity="*" />
+    <End Type="cap21t12Model.AspNetUser" Role="AspNetUser" Multiplicity="*" />
+  </Association>
 </Schema>

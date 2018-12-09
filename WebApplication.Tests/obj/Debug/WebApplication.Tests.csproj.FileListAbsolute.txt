@@ -1,0 +1,2 @@
+E:\10122018\1\team12\WebApplication.Tests\obj\Debug\WebApplication.Tests.csprojAssemblyReference.cache
+E:\10122018\1\team12\WebApplication.Tests\obj\Debug\WebApplication.Tests.csproj.CoreCompileInputs.cache

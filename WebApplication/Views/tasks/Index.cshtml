@@ -1,4 +1,4 @@
-﻿@model IEnumerable<WebApplication.Models.task>
+﻿@model IEnumerable<WebApplication.Models.Tasks>
 
 @{
     ViewBag.Title = "Index";
@@ -24,14 +24,12 @@
             @Html.DisplayNameFor(model => model.Duedate)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.AspNetUser.Email)
+            Assignee
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.AspNetUser1.Email)
+            Reporter
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Bucket.Assignee)
-        </th>
+       
         <th>
             @Html.DisplayNameFor(model => model.Status.StatusName)
         </th>
@@ -58,9 +56,7 @@
         <td>
             @Html.DisplayFor(modelItem => item.AspNetUser1.Email)
         </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Bucket.Assignee)
-        </td>
+    
         <td>
             @Html.DisplayFor(modelItem => item.Status.StatusName)
         </td>

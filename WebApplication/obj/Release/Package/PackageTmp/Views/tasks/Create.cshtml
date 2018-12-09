@@ -1,19 +1,17 @@
-﻿@model WebApplication.Models.task
+﻿@model WebApplication.Models.Tasks
 
 @{
     ViewBag.Title = "Create";
-    Layout = "~/Views/Shared/Layout2.cshtml";   
 }
 
 <h2>Create</h2>
 
-
-@using (Html.BeginForm())
+@using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
-
+    
     <div class="form-horizontal">
-        <h4>task</h4>
+        <h4>Tasks</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
@@ -37,6 +35,14 @@
             <div class="col-md-10">
                 @Html.DropDownList("AssigneeID", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.AssigneeID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ReporterID, "ReporterID", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("ReporterID", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.ReporterID, "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -83,9 +89,3 @@
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
-
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
-@Scripts.Render("~/bundles/jquery")
-@Scripts.Render("~/bundles/bootstrap")
