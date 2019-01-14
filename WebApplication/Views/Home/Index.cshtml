@@ -461,6 +461,8 @@
 
                 <div class="row">
 
+                    <p id="demo">&nbsp;</p>
+                  
 
                     <!-- ./col -->
                     <div class="col-lg-4 col-md-4">
@@ -472,14 +474,10 @@
                             <div class="card-body">
 
                                 <h3 class="card-title">
-                                    <select class="form-control" style="border-radius:5px">
-                                        <option>Plan A</option>
-                                        <option>option 2</option>
-                                        <option>option 3</option>
-                                        <option>option 4</option>
-                                        <option>option 5</option>
+                                    <select class="form-control" style="border-radius:5px" id="planA" onchange="myFunction()">
+                                        <option value=""> --Select Plan-- </option>
                                     </select>
-
+                                
 
 
                                 </h3>
@@ -500,13 +498,7 @@
                             <div class="card-body">
 
                                 <h3 class="card-title">
-                                    <select class="form-control select2 select2-hidden-accessible" style="border-radius:5px;">
-                                        <option>Bucket A</option>
-                                        <option>option 2</option>
-                                        <option>option 3</option>
-                                        <option>option 4</option>
-                                        <option>option 5</option>
-                                    </select>
+                                    <select class="form-control select2 select2-hidden-accessible" style="border-radius:5px;" id="bucketA"></select>
 
 
                                 </h3>
@@ -546,7 +538,6 @@
                     <!-- /.row -->
                     <!-- Main row -->
 
-                    <select id="test"></select>
                     <div class="row">
                         <div class="col-md-12">
                             <!-- Custom Tabs -->
@@ -959,15 +950,7 @@
     <script>
         var controllerUrl = "@this.Url.Action(actionName:"GetData", controllerName:"Home")";
 
-       
-
-
-
-
-
-
-
-
+    
     var settings = {
       
         "async": true,
@@ -978,6 +961,7 @@
 
     $.ajax(settings).done(function (response) {
         console.log(response);
+
         var response = JSON.parse(response);
         $("#plan").append(response.numsOfPlan);
         $("#bucket").append(response.numsOfMessages);
@@ -986,12 +970,69 @@
         $("#numsOfTaskInProgress").append(response.numsOfTaskInProgress);
         $("#numsOfTaskClosed").append(response.numsOfTaskClosed);
         $("#numsOfTaskDelay").append(response.numsOfTaskDelay);
+       
+        var ele = document.getElementById('planA');
+        var eleS = document.getElementById('bucketA');
+        for (i = 0; i < response.Data.length; ++i) {
+            //alert(response.Data[i].PlanID);
+            //document.getElementById("test").innerHTML += response.Data[i].Title+ "<br>";
+            ele.innerHTML = ele.innerHTML +
+                '<option value="' + response.Data[i].PlanID + '">' + response.Data[i].PlanID + "-"+ response.Data[i].Title + '</option>';
+         
+          //  for (j = 0; j < response.Data.length; ++j) {
+            //    eleS.innerHTML = eleS.innerHTML +
+            //        '<option value="' + response.Data[i].Buckets[j].BucketID + '">' + response.Data[i].Buckets[j].BucketID + "-" + response.Data[i].Buckets[j].Title + '</option>';
 
+            //alert(response.Data[i].Buckets[j].BucketID);
+            //eleS.innerHTML = ele.innerHTML +
+            //    '<option value="' + response.Data[i].ID + '">' + response.Data[i].Title + '</option>';
+         //   }
+        }
+         //alert(response.Data[i].PlanID);
         //alert(response.Data[0].PlanID);
-        $.each(response, function (i, value) {
-            $('#test').append($('<option>').text(value).attr('value', value));
+        //$.each(response, function (i, value) {
+        //    $('#test').append($('<option>').text(value).attr('value', value));
+        //});
+
         });
-      });
+
+    </script>
+    <script>
+
+        function myFunction() {
+              var controllerUrl = "@this.Url.Action(actionName:"GetData", controllerName:"Home")";
+
+                
+    var settings = {
+      
+        "async": true,
+        "crossDomain": true,
+        "url": controllerUrl,
+        "method": "GET"
+    }
+       
+            $.ajax(settings).done(function (response) {
+     
+      
+                var response = JSON.parse(response);
+                var eleS = document.getElementById('bucketA');
+                   $('#bucketA option[value!="0"]').remove();
+                var x = document.getElementById("planA").value;
+                
+           for (i = 0; i < response.Data.length; ++i) {                     
+               for (j = 0; j < response.Data.length; ++j) {
+                  // alert(response.Data[i].Buckets[j].Task[j].Title);
+                    if(x== response.Data[i].Buckets[j].PlanID ){
+              eleS.innerHTML = eleS.innerHTML +
+                    '<option value="' + response.Data[i].Buckets[j].BucketID + '">' + response.Data[i].Buckets[j].BucketID + "-" + response.Data[i].Buckets[j].Title + '</option>';
+             }
+            }
+        }
+ 
+              
+            });
+      
+  }
     </script>
 </body>
 </html>
