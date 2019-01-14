@@ -14,10 +14,9 @@ namespace WebApplication.Controllers
     {
         cap21t12Entities db = new cap21t12Entities();
         public PartialViewResult Index()
-        {
-            var task = db.Tasks.ToList().Where(p => p.ReporterID == User.Identity.GetUserId());
+        {          
 
-            return PartialView(task);
+            return PartialView();
         }
 
         public ActionResult About()
