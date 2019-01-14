@@ -440,7 +440,7 @@
             </section>
             <!-- /.sidebar -->
         </aside>
-x
+        
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
@@ -466,7 +466,7 @@ x
                     <div class="col-lg-4 col-md-4">
                         <div class="card text-white bg-success">
                             <div class="card-header">
-                                <h3 class="m-b-0 text-white">PLAN:10  <a href="/Plans/Create" class="btn btn-default" style="float: right;">Add  <i class="fa fa-plus"></i></a></h3>
+                                <h3 class="m-b-0 text-white">PLAN:<span id="plan"></span>  <a href="/Plans/Create" class="btn btn-default" style="float: right;">Add  <i class="fa fa-plus"></i></a></h3>
                             </div>
 
                             <div class="card-body">
@@ -495,7 +495,7 @@ x
                     <div class="col-lg-4 col-md-4">
                         <div class="card text-white bg-primary">
                             <div class="card-header">
-                                <h3 class="m-b-0 text-white">BUCKET:10   <a href="/Buckets/Create" class="btn btn-default" style="float: right;">Add <i class="fa fa-plus"></i> </a></h3>
+                                <h3 class="m-b-0 text-white">BUCKET:<span id="bucket"></span>   <a href="/Buckets/Create" class="btn btn-default" style="float: right;">Add <i class="fa fa-plus"></i> </a></h3>
                             </div>
                             <div class="card-body">
 
@@ -518,7 +518,7 @@ x
                     <div class="col-lg-4 col-md-4">
                         <div class="card text-white bg-warning">
                             <div class="card-header">
-                                <h3 class="m-b-0 text-white">TASK:10  <a href="/Tasks/Create" class="btn btn-default" style="float: right;">Add <i class="fa fa-plus"></i></a></h3>
+                                <h3 class="m-b-0 text-white">TASK:<span id="task"></span> <a href="/Tasks/Create" class="btn btn-default" style="float: right;">Add <i class="fa fa-plus"></i></a></h3>
                             </div>
 
                             <table class="table table-hover" style="margin-top:14px ">
@@ -530,10 +530,10 @@ x
 
                                 </tr>
                                 <tr>
-                                    <td>20</td>
-                                    <td>1</td>
-                                    <td>0</td>
-                                    <td>0</td>
+                                    <td><span id="numsOfTaskPlanned"></span> </td>
+                                    <td><span id="numsOfTaskInProgress"></span> </td>
+                                    <td><span id="numsOfTaskClosed"></span> </td>
+                                    <td><span id="numsOfTaskDelay"></span> </td>
 
                                 </tr>
 
@@ -546,13 +546,13 @@ x
                     <!-- /.row -->
                     <!-- Main row -->
 
-            
+                    <select id="test"></select>
                     <div class="row">
                         <div class="col-md-12">
                             <!-- Custom Tabs -->
                             <div class="nav-tabs-custom">
-                                <ul class="nav nav-tabs"  style="font-size:16px">
-                                    <li class="active"><a href="#tab_1" data-toggle="tab" aria-expanded="true" ><strong>All Tasks</strong></a></li>
+                                <ul class="nav nav-tabs" style="font-size:16px">
+                                    <li class="active"><a href="#tab_1" data-toggle="tab" aria-expanded="true"><strong>All Tasks</strong></a></li>
                                     <li class=""><a href="#tab_2" data-toggle="tab" aria-expanded="false"><strong>Reported By Me</strong></a></li>
                                     <li class=""><a href="#tab_3" data-toggle="tab" aria-expanded="false"><strong>My Open Tasks</strong></a></li>
 
@@ -575,31 +575,35 @@ x
                                                     if (item.AssigneeID == User.Identity.GetUserId())
                                                     {
 
-                                                <tr>
-                                                    <td>@item.TaskID</td>
-                                                    <td style="text-align:left">@item.Title</td>
-                                                    @if (@item.StatusID == 1)
-                                                    {
-                                                        <td><span class="label label-success">@item.Status.StatusName</span></td>
-                                                    }
-                                                    else if (@item.StatusID == 2)
-                                                    {
-                                                        <td><span class="label label-warning">@item.Status.StatusName</span></td>
-                                                    }
-                                                    else
-                                                    {
-                                                        <td><span class="label label-danger">@item.Status.StatusName</span></td>
-                                                    }
-                                                    <td>@item.AspNetUser.UserName</td>
+                                                        <tr>
+                                                            <td>@item.TaskID</td>
+                                                            <td style="text-align:left">@item.Title</td>
+                                                            @if (@item.StatusID == 1)
+                                                            {
+                                                                <td><span class="label label-success">@item.Status.StatusName</span></td>
+                                                            }
+                                                            else if (@item.StatusID == 2)
+                                                            {
+                                                                <td><span class="label label-warning">@item.Status.StatusName</span></td>
+                                                            }
+                                                            else
+                                                            {
+                                                                <td><span class="label label-danger">@item.Status.StatusName</span></td>
+                                                            }
+                                                            <td>@item.AspNetUser.UserName</td>
 
-                                                    <td>@item.Duedate</td>
+                                                            <td>@item.Duedate</td>
 
-                                                </tr>
+                                                        </tr>
                                                     }
                                                 }
                                             </table>
                                         </div>
                                     </div>
+                                    <div id="task"></div>
+                                    <span id="bucket"></span>
+                                    <span id="id"></span>
+
                                     <!-- /.tab-pane -->
                                     <div class="tab-pane" id="tab_2">
                                         <div class="box-body table-responsive no-padding" style="text-align:center">
@@ -618,27 +622,27 @@ x
                                                     if (item.ReporterID == User.Identity.GetUserId())
                                                     {
 
-                                                <tr>
-                                                    <td>@item.TaskID</td>
-                                                    <td style="text-align:left">@item.Title</td>
-                                                    @if (@item.StatusID == 1)
-                                                    {
-                                                        <td><span class="label label-success">@item.Status.StatusName</span></td>
-                                                    }
-                                                    else if (@item.StatusID == 2)
-                                                    {
-                                                        <td><span class="label label-warning">@item.Status.StatusName</span></td>
-                                                    }
-                                                    else
-                                                    {
-                                                        <td><span class="label label-danger">@item.Status.StatusName</span></td>
-                                                    }
-                                                    <td>@item.AspNetUser.UserName</td>
+                                                        <tr>
+                                                            <td>@item.TaskID</td>
+                                                            <td style="text-align:left">@item.Title</td>
+                                                            @if (@item.StatusID == 1)
+                                                            {
+                                                                <td><span class="label label-success">@item.Status.StatusName</span></td>
+                                                            }
+                                                            else if (@item.StatusID == 2)
+                                                            {
+                                                                <td><span class="label label-warning">@item.Status.StatusName</span></td>
+                                                            }
+                                                            else
+                                                            {
+                                                                <td><span class="label label-danger">@item.Status.StatusName</span></td>
+                                                            }
+                                                            <td>@item.AspNetUser.UserName</td>
 
-                                                    <td>@item.Duedate</td>
+                                                            <td>@item.Duedate</td>
 
 
-                                                </tr>
+                                                        </tr>
                                                     }
                                                 }
                                             </table>
@@ -649,11 +653,11 @@ x
                                         <div class="box-body table-responsive no-padding" style="text-align:center">
                                             <table class="table table-hover">
                                                 <tr>
-                                                <th style="text-align:center">ID</th>
-                                                <th style="text-align:center">Task</th>
-                                                <th style="text-align:center">Status</th>
-                                                <th style="text-align:center">Assigned</th>
-                                                <th style="text-align:center">Due Date</th>
+                                                    <th style="text-align:center">ID</th>
+                                                    <th style="text-align:center">Task</th>
+                                                    <th style="text-align:center">Status</th>
+                                                    <th style="text-align:center">Assigned</th>
+                                                    <th style="text-align:center">Due Date</th>
 
                                                 </tr>
                                                 @foreach (var item in Model)
@@ -661,32 +665,32 @@ x
                                                     if (item.AssigneeID == User.Identity.GetUserId() && (item.StatusID == 1 || item.StatusID == 2))
                                                     {
 
-                                                <tr>
-                                                    <td>@item.TaskID</td>
-                                                    <td style="text-align:left">@item.Title.Substring(0, Math.Min(@item.Title.Length, 50))...</td>
-                                                    @if (@item.StatusID == 1)
-                                                    {
-                                                        <td><span class="label label-success">@item.Status.StatusName</span></td>
-                                                    }
-                                                    else if (@item.StatusID == 2)
-                                                    {
-                                                        <td><span class="label label-warning">@item.Status.StatusName</span></td>
-                                                    }
-                                                    else
-                                                    {
-                                                        <td><span class="label label-danger">@item.Status.StatusName</span></td>
-                                                    }
+                                                        <tr>
+                                                            <td>@item.TaskID</td>
+                                                            <td style="text-align:left">@item.Title.Substring(0, Math.Min(@item.Title.Length, 50))...</td>
+                                                            @if (@item.StatusID == 1)
+                                                            {
+                                                                <td><span class="label label-success">@item.Status.StatusName</span></td>
+                                                            }
+                                                            else if (@item.StatusID == 2)
+                                                            {
+                                                                <td><span class="label label-warning">@item.Status.StatusName</span></td>
+                                                            }
+                                                            else
+                                                            {
+                                                                <td><span class="label label-danger">@item.Status.StatusName</span></td>
+                                                            }
 
 
 
 
 
 
-                                                    <td>@item.AspNetUser.UserName</td>
+                                                            <td>@item.AspNetUser.UserName</td>
 
-                                                    <td>@item.Duedate</td>
+                                                            <td>@item.Duedate</td>
 
-                                                </tr>
+                                                        </tr>
                                                     }
                                                 }
                                             </table>
@@ -948,5 +952,46 @@ x
     <script src="../area/dist/js/pages/dashboard.js"></script>
     <!-- AdminLTE for demo purposes -->
     <script src="../area/dist/js/demo.js"></script>
+    <script src="https://code.jquery.com/jquery-2.2.4.js"
+            integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI="
+            crossorigin="anonymous"></script>
+ 
+    <script>
+        var controllerUrl = "@this.Url.Action(actionName:"GetData", controllerName:"Home")";
+
+       
+
+
+
+
+
+
+
+
+    var settings = {
+      
+        "async": true,
+        "crossDomain": true,
+        "url": controllerUrl,
+        "method": "GET"
+    }
+
+    $.ajax(settings).done(function (response) {
+        console.log(response);
+        var response = JSON.parse(response);
+        $("#plan").append(response.numsOfPlan);
+        $("#bucket").append(response.numsOfMessages);
+        $("#task").append(response.numsOfTask);
+        $("#numsOfTaskPlanned").append(response.numsOfTaskPlanned);
+        $("#numsOfTaskInProgress").append(response.numsOfTaskInProgress);
+        $("#numsOfTaskClosed").append(response.numsOfTaskClosed);
+        $("#numsOfTaskDelay").append(response.numsOfTaskDelay);
+
+        //alert(response.Data[0].PlanID);
+        $.each(response, function (i, value) {
+            $('#test').append($('<option>').text(value).attr('value', value));
+        });
+      });
+    </script>
 </body>
 </html>
