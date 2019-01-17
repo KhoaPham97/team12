@@ -100,7 +100,7 @@
                 <div class="box-header with-border">
                     <div class="col-md-12">
                         <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Plan Name" id="title" onkeyup=handleInput(this)>
+                            <input type="text" required="true" class="form-control" placeholder="Plan Name" id="title" onkeyup=handleInput(this) >
                         </div>
                     </div>
                     <div class="col-md-4">
@@ -119,20 +119,21 @@
                         <div class="form-group">
                             <label>StartDate</label>
                             <div class='input-group date'>
-                                <input type='date' class="form-control" id="startdate" onkeyup=handleInput(this) />
+                                <input type='text' class="form-control" id="startdate" onkeydown="event.preventDefault()" onkeyup=handleInput(this) />
                                 <span class="input-group-addon">
-                                    <span class="glyphicon glyphicon-calendar"></span>
+                                    <span class="glyphicon glyphicon-calendar" onclick="Startdate()"></span>
                                 </span>
                             </div>
                         </div>
                     </div>
+
                     <div class="col-md-4">
                         <div class="form-group">
                             <label>DueDate</label>
                             <div class='input-group date'>
-                                <input type='date' class="form-control" id="duedate" onkeyup=handleInput(this) />
+                                <input type='text' class="form-control" id="duedate" onkeydown="event.preventDefault()" onkeyup=handleInput(this) onchange="DateCheck()" />
                                 <span class="input-group-addon">
-                                    <span class="glyphicon glyphicon-calendar"></span>
+                                    <span class="glyphicon glyphicon-calendar" onclick="Duedate()"></span>
                                 </span>
                             </div>
                         </div>
@@ -140,7 +141,7 @@
                     <div class="col-md-12">
                         <div class="form-group">
                             <label>Description</label>
-                            <textarea class="form-control" rows="3" placeholder="Type your description of the task here" id="description" onkeyup=handleInput(this)></textarea>
+                            <textarea class="form-control" rows="3" placeholder="Type your description of the task here" id="description" onkeyup=handleInput(this) required></textarea>
                         </div>
 
                         <div class="col-md-12">
@@ -162,27 +163,53 @@
                     <!-- form start -->
 
 
-
-
                 </div>
 
+                    </div>
             </div>
         </div>
-    </div>
-    <!-- /.row -->
+        <!-- /.row -->
 </section>
 @section scripts {
     @Scripts.Render("~/bundles/jqueryval")
-    <script type="text/javascript">
-        $(function () {
-            $('.startdate').datetimepicker();
-            $('.duedate').datetimepicker();
-        });
-    </script>
+
     <script src="https://code.jquery.com/jquery-2.2.4.js"
             integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI="
             crossorigin="anonymous"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6/jquery.min.js" type="text/javascript"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"
+            type="text/javascript"></script>
+    <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css"
+          rel="Stylesheet" type="text/css" />
+    <script type="text/javascript">
+      
+    </script>
     <script>
+        function Startdate() {
+            $("#startdate").focus();
+        }
+        function Duedate() {
+            $("#duedate").focus();
+        }
+        $(function () {
+                  $("#startdate").datepicker({
+                            numberOfMonths: 2,
+                            onSelect: function (selected) {
+                                var dt = new Date(selected);
+                                dt.setDate(dt.getDate() + 1);
+                                $("#duedate").datepicker("option", "minDate", dt);
+                            }
+                        });
+                        $("#duedate").datepicker({
+                        numberOfMonths: 2,
+                            onSelect: function (selected) {
+                                var dt = new Date(selected);
+                    dt.setDate(dt.getDate() - 1);
+                                $("#startdate").datepicker("option", "maxDate", dt);
+                }
+        });
+        });
+
         var createCORSRequest = function (method, url) {
             var xhr = new XMLHttpRequest();
             if ("withCredentials" in xhr) {
@@ -203,36 +230,36 @@
         var method = 'POST';
         var xhr = createCORSRequest(method, url);
 
-             xhr.onload = function () {
-           
-            };
+        xhr.onload = function () {
 
-            xhr.onerror = function () {
-                
-            };
-            function submitData() {
-                var output = document.getElementById("output");
-                var title = document.getElementById("title").value;
-                //alert(title);
-                var description = document.getElementById("description").value;
-                // alert(description);
-                var statuss = $('#status').val();
-                //alert(status);
-                var startdate = document.getElementById("startdate").value;
-                //alert(startdate);
-                var duedate = document.getElementById("duedate").value;
-                // alert(duedate);
-                var data = JSON.stringify({
-                    "title": title,
-                    "description": description,
-                    "status": statuss,
-                    "startdate": startdate,
-                    "duedate": duedate
-                });
-                xhr.send(data);
-                alert("Send" + data);
+        };
 
-            }
-        
+        xhr.onerror = function () {
+
+        };
+        function submitData() {
+            var output = document.getElementById("output");
+            var title = document.getElementById("title").value;
+            //alert(title);
+            var description = document.getElementById("description").value;
+            // alert(description);
+            var statuss = $('#status').val();
+            //alert(status);
+            var startdate = document.getElementById("startdate").value;
+            //alert(startdate);
+            var duedate = document.getElementById("duedate").value;
+            // alert(duedate);
+            var data = JSON.stringify({
+                "title": title,
+                "description": description,
+                "status": statuss,
+                "startdate": startdate,
+                "duedate": duedate
+            });
+            xhr.send(data);
+            alert("Send" + data);
+
+        }
+
     </script>
 }
