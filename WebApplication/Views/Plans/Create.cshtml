@@ -90,23 +90,25 @@
     <!-- /.row -->
         </section>
     }*@
+
 <section class="content">
     <div class="row">
         <div class="col-md-12">
             <!-- general form elements -->
             <div class="box box-primary">
+                <h2>Create Plan</h2>
                 <div class="box-header with-border">
                     <div class="col-md-12">
                         <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Plan Name" id="title">
+                            <input type="text" class="form-control" placeholder="Plan Name" id="title" onkeyup=handleInput(this)>
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
                             <label>Status</label>
-                            <select class="form-control select2" style="width: 100%;">
-                                <option selected="selected" value="1">Private</option>
-                                <option value="2">Public</option>
+                            <select class="form-control select2" style="width: 100%;" id="status" name="status " onkeyup=handleInput(this)>
+                                <option selected="selected" value="private">Private</option>
+                                <option value="public">Public</option>
 
                             </select>
                         </div>
@@ -117,7 +119,7 @@
                         <div class="form-group">
                             <label>StartDate</label>
                             <div class='input-group date'>
-                                <input type='date' class="form-control" id="startdate" />
+                                <input type='date' class="form-control" id="startdate" onkeyup=handleInput(this) />
                                 <span class="input-group-addon">
                                     <span class="glyphicon glyphicon-calendar"></span>
                                 </span>
@@ -128,7 +130,7 @@
                         <div class="form-group">
                             <label>DueDate</label>
                             <div class='input-group date'>
-                                <input type='date' class="form-control" id="duedate" />
+                                <input type='date' class="form-control" id="duedate" onkeyup=handleInput(this) />
                                 <span class="input-group-addon">
                                     <span class="glyphicon glyphicon-calendar"></span>
                                 </span>
@@ -138,7 +140,7 @@
                     <div class="col-md-12">
                         <div class="form-group">
                             <label>Description</label>
-                            <textarea class="form-control" rows="3" placeholder="Type your description of the task here" id="description"></textarea>
+                            <textarea class="form-control" rows="3" placeholder="Type your description of the task here" id="description" onkeyup=handleInput(this)></textarea>
                         </div>
 
                         <div class="col-md-12">
@@ -152,10 +154,10 @@
                     </div>
                     <div class="col-md-12">
                         <div class="form-group">
-                            <div style="text-align:right; margin-top:10px "><input type="submit" value="Save" id="btnsave"></div>
+                            <div style="text-align:right; margin-top:10px "><button onclick=submitData()>Send</button></div>
                         </div>
                     </div>
-
+                    <div id="output"></div>
                     <!-- /.box-header -->
                     <!-- form start -->
 
@@ -166,7 +168,8 @@
 
             </div>
         </div>
-        <!-- /.row -->
+    </div>
+    <!-- /.row -->
 </section>
 @section scripts {
     @Scripts.Render("~/bundles/jqueryval")
@@ -176,39 +179,60 @@
             $('.duedate').datetimepicker();
         });
     </script>
+    <script src="https://code.jquery.com/jquery-2.2.4.js"
+            integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI="
+            crossorigin="anonymous"></script>
     <script>
-        $(document).ready(function () {
-            //firing function on button click
-            $("#btnsave").click(function () {
-                //Creating Javascript array to post it as json data
-                var EmpModel = {
-                    Name: $("#Name").val(),
-                    City: $("#City").val(),
-                    Address: $("#Address").val()
-                };
-                $.ajax({
-                    type: "POST",
-                    URL: "/Home/AddEmployee",
-                    dataType: "json",
-                    contentType: "application/json",
-                    data: JSON.stringify({ EmpDet: EmpModel }),
-                    error: function (response) {
-                        alert(response.responseText);
+        var createCORSRequest = function (method, url) {
+            var xhr = new XMLHttpRequest();
+            if ("withCredentials" in xhr) {
+                // Most browsers.
+                xhr.open(method, url, true);
+            } else if (typeof XDomainRequest != "undefined") {
+                // IE8 & IE9
+                xhr = new XDomainRequest();
+                xhr.open(method, url);
+            } else {
+                // CORS not supported.
+                xhr = null;
+            }
+            return xhr;
+        };
 
-                    },
-                    //After successfully inserting records
-                    success: function (response) {
+        var url = 'http://capstoneproj.azurewebsites.net/api/CreatePlan?code=neSlU5xWY8WR4KxvDnbSIxWaAitArskdsBURwE2G36HvD581ZLhL2Q==';
+        var method = 'POST';
+        var xhr = createCORSRequest(method, url);
 
-                        //Reload Partial view to fetch latest added records
-                        $('#DivEmpList').load("/Home/EmployeeDetails");
-                        alert(response);
+             xhr.onload = function () {
+           
+            };
 
-                    }
+            xhr.onerror = function () {
+                
+            };
+            function submitData() {
+                var output = document.getElementById("output");
+                var title = document.getElementById("title").value;
+                //alert(title);
+                var description = document.getElementById("description").value;
+                // alert(description);
+                var statuss = $('#status').val();
+                //alert(status);
+                var startdate = document.getElementById("startdate").value;
+                //alert(startdate);
+                var duedate = document.getElementById("duedate").value;
+                // alert(duedate);
+                var data = JSON.stringify({
+                    "title": title,
+                    "description": description,
+                    "status": statuss,
+                    "startdate": startdate,
+                    "duedate": duedate
                 });
+                xhr.send(data);
+                alert("Send" + data);
 
-            });
-
-
-        });
+            }
+        
     </script>
 }

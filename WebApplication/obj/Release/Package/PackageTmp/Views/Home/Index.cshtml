@@ -9,28 +9,28 @@
     <title>VLU</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-    <!-- Bootstrap 3.3.7 -->
-    <link rel="stylesheet" href="../area/bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="@Url.Content("~/area/bower_components/bootstrap/dist/css/bootstrap.min.css")">
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="../area/bower_components/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="@Url.Content("~/area/bower_components/font-awesome/css/font-awesome.min.css")">
     <!-- Ionicons -->
-    <link rel="stylesheet" href="../area/bower_components/Ionicons/css/ionicons.min.css">
+    <link rel="stylesheet" href="@Url.Content("~/area/bower_components/Ionicons/css/ionicons.min.css")">
     <!-- Theme style -->
-    <link rel="stylesheet" href="../area/dist/css/AdminLTE.min.css">
+    <link rel="stylesheet" href="@Url.Content("~/area/dist/css/AdminLTE.min.css")">
 
     <!-- AdminLTE Skins. Choose a skin from the css/skins
          folder instead of downloading all of them to reduce the load. -->
-    <link rel="stylesheet" href="../area/dist/css/skins/_all-skins.min.css">
+    <link rel="stylesheet" href="@Url.Content("~/area/dist/css/skins/_all-skins.min.css")">
     <!-- Morris chart -->
-    <link rel="stylesheet" href="../area/bower_components/morris.js/morris.css">
+    <link rel="stylesheet" href="@Url.Content("~/area/bower_components/morris.js/morris.css")">
     <!-- jvectormap -->
-    <link rel="stylesheet" href="../area/bower_components/jvectormap/jquery-jvectormap.css">
+    <link rel="stylesheet" href="@Url.Content("~/area/bower_components/jvectormap/jquery-jvectormap.css")">
     <!-- Date Picker -->
-    <link rel="stylesheet" href="../area/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
+    <link rel="stylesheet" href="@Url.Content("~/area/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css")">
     <!-- Daterange picker -->
-    <link rel="stylesheet" href="../area/bower_components/bootstrap-daterangepicker/daterangepicker.css">
+    <link rel="stylesheet" href="@Url.Content("~/area/bower_components/bootstrap-daterangepicker/daterangepicker.css")">
     <!-- bootstrap wysihtml5 - text editor -->
-    <link rel="stylesheet" href="../area/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
+    <link rel="stylesheet" href="@Url.Content("~/area/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css")">
+
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -133,7 +133,7 @@
                         <li class="dropdown messages-menu">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 <i class="fa fa-envelope-o"></i>
-                                <span class="label label-success">4</span>
+                                <span class="label label-success" id="numsOfMessages"></span>
                             </a>
                             <ul class="dropdown-menu">
                                 <li class="header">You have 4 messages</li>
@@ -211,7 +211,7 @@
                         <li class="dropdown notifications-menu">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 <i class="fa fa-bell-o"></i>
-                                <span class="label label-warning">10</span>
+                                <span class="label label-warning" id="numsOfNotifications"></span>
                             </a>
                             <ul class="dropdown-menu">
                                 <li class="header">You have 10 notifications</li>
@@ -253,7 +253,7 @@
                         <li class="dropdown tasks-menu">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 <i class=" fa fa-calendar"></i>
-                                <span class="label label-danger">9</span>
+                                <span class="label label-danger" id="numsOfMeetings"></span>
                             </a>
                             <ul class="dropdown-menu">
                                 <li class="header">You have 9 tasks</li>
@@ -440,7 +440,7 @@
             </section>
             <!-- /.sidebar -->
         </aside>
-        
+
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
@@ -462,7 +462,7 @@
                 <div class="row">
 
                     <p id="demo">&nbsp;</p>
-                  
+
 
                     <!-- ./col -->
                     <div class="col-lg-4 col-md-4">
@@ -477,7 +477,7 @@
                                     <select class="form-control" style="border-radius:5px" id="selPlan" onchange="myPlanFunction()">
                                         <option value=""> --Select Plan-- </option>
                                     </select>
-                                
+
 
 
                                 </h3>
@@ -561,7 +561,7 @@
                                                     <th style="text-align:center">Due Date</th>
 
                                                 </tr>
-                                              
+
 
                                                 <tr>
                                                     <td> <span id="TaskId"> </span></td>
@@ -571,107 +571,104 @@
                                                     <td> <span id="TaskDuedate"> </span></td>
 
                                                 </tr>
-                                                
-                                                
+
+
                                             </table>
                                         </div>
                                     </div>
-                                    <div id="task"></div>
-                                    <span id="bucket"></span>
-                                    <span id="id"></span>
-
+                                    
                                     <!-- /.tab-pane -->
                                     @*<div class="tab-pane" id="tab_2">
-                                        <div class="box-body table-responsive no-padding" style="text-align:center">
-                                            <table class="table table-hover">
-                                                <tr>
-                                                    <th style="text-align:center">ID</th>
-                                                    <th style="text-align:center">Task</th>
-                                                    <th style="text-align:center">Status</th>
-                                                    <th style="text-align:center">Assigned</th>
-                                                    <th style="text-align:center">Due Date</th>
+                                            <div class="box-body table-responsive no-padding" style="text-align:center">
+                                                <table class="table table-hover">
+                                                    <tr>
+                                                        <th style="text-align:center">ID</th>
+                                                        <th style="text-align:center">Task</th>
+                                                        <th style="text-align:center">Status</th>
+                                                        <th style="text-align:center">Assigned</th>
+                                                        <th style="text-align:center">Due Date</th>
 
 
-                                                </tr>
-                                                @foreach (var item in Model)
-                                                {
-                                                    if (item.ReporterID == User.Identity.GetUserId())
+                                                    </tr>
+                                                    @foreach (var item in Model)
                                                     {
+                                                        if (item.ReporterID == User.Identity.GetUserId())
+                                                        {
 
-                                                        <tr>
-                                                            <td>@item.TaskID</td>
-                                                            <td style="text-align:left">@item.Title</td>
-                                                            @if (@item.StatusID == 1)
-                                                            {
-                                                                <td><span class="label label-success">@item.Status.StatusName</span></td>
-                                                            }
-                                                            else if (@item.StatusID == 2)
-                                                            {
-                                                                <td><span class="label label-warning">@item.Status.StatusName</span></td>
-                                                            }
-                                                            else
-                                                            {
-                                                                <td><span class="label label-danger">@item.Status.StatusName</span></td>
-                                                            }
-                                                            <td>@item.AspNetUser.UserName</td>
+                                                            <tr>
+                                                                <td>@item.TaskID</td>
+                                                                <td style="text-align:left">@item.Title</td>
+                                                                @if (@item.StatusID == 1)
+                                                                {
+                                                                    <td><span class="label label-success">@item.Status.StatusName</span></td>
+                                                                }
+                                                                else if (@item.StatusID == 2)
+                                                                {
+                                                                    <td><span class="label label-warning">@item.Status.StatusName</span></td>
+                                                                }
+                                                                else
+                                                                {
+                                                                    <td><span class="label label-danger">@item.Status.StatusName</span></td>
+                                                                }
+                                                                <td>@item.AspNetUser.UserName</td>
 
-                                                            <td>@item.Duedate</td>
+                                                                <td>@item.Duedate</td>
 
 
-                                                        </tr>
+                                                            </tr>
+                                                        }
                                                     }
-                                                }
-                                            </table>
+                                                </table>
+                                            </div>
                                         </div>
-                                    </div>
-                                     /.tab-pane 
-                                    <div class="tab-pane" id="tab_3">
-                                        <div class="box-body table-responsive no-padding" style="text-align:center">
-                                            <table class="table table-hover">
-                                                <tr>
-                                                    <th style="text-align:center">ID</th>
-                                                    <th style="text-align:center">Task</th>
-                                                    <th style="text-align:center">Status</th>
-                                                    <th style="text-align:center">Assigned</th>
-                                                    <th style="text-align:center">Due Date</th>
+                                         /.tab-pane
+                                        <div class="tab-pane" id="tab_3">
+                                            <div class="box-body table-responsive no-padding" style="text-align:center">
+                                                <table class="table table-hover">
+                                                    <tr>
+                                                        <th style="text-align:center">ID</th>
+                                                        <th style="text-align:center">Task</th>
+                                                        <th style="text-align:center">Status</th>
+                                                        <th style="text-align:center">Assigned</th>
+                                                        <th style="text-align:center">Due Date</th>
 
-                                                </tr>
-                                                @foreach (var item in Model)
-                                                {
-                                                    if (item.AssigneeID == User.Identity.GetUserId() && (item.StatusID == 1 || item.StatusID == 2))
+                                                    </tr>
+                                                    @foreach (var item in Model)
                                                     {
+                                                        if (item.AssigneeID == User.Identity.GetUserId() && (item.StatusID == 1 || item.StatusID == 2))
+                                                        {
 
-                                                        <tr>
-                                                            <td>@item.TaskID</td>
-                                                            <td style="text-align:left">@item.Title.Substring(0, Math.Min(@item.Title.Length, 50))...</td>
-                                                            @if (@item.StatusID == 1)
-                                                            {
-                                                                <td><span class="label label-success">@item.Status.StatusName</span></td>
-                                                            }
-                                                            else if (@item.StatusID == 2)
-                                                            {
-                                                                <td><span class="label label-warning">@item.Status.StatusName</span></td>
-                                                            }
-                                                            else
-                                                            {
-                                                                <td><span class="label label-danger">@item.Status.StatusName</span></td>
-                                                            }
-
-
-
-
+                                                            <tr>
+                                                                <td>@item.TaskID</td>
+                                                                <td style="text-align:left">@item.Title.Substring(0, Math.Min(@item.Title.Length, 50))...</td>
+                                                                @if (@item.StatusID == 1)
+                                                                {
+                                                                    <td><span class="label label-success">@item.Status.StatusName</span></td>
+                                                                }
+                                                                else if (@item.StatusID == 2)
+                                                                {
+                                                                    <td><span class="label label-warning">@item.Status.StatusName</span></td>
+                                                                }
+                                                                else
+                                                                {
+                                                                    <td><span class="label label-danger">@item.Status.StatusName</span></td>
+                                                                }
 
 
-                                                            <td>@item.AspNetUser.UserName</td>
 
-                                                            <td>@item.Duedate</td>
 
-                                                        </tr>
+
+
+                                                                <td>@item.AspNetUser.UserName</td>
+
+                                                                <td>@item.Duedate</td>
+
+                                                            </tr>
+                                                        }
                                                     }
-                                                }
-                                            </table>
-                                        </div>
-                                    </div>*@
+                                                </table>
+                                            </div>
+                                        </div>*@
                                     <!-- /.tab-pane -->
                                 </div>
                                 <!-- /.tab-content -->
@@ -891,53 +888,52 @@
         <div class="control-sidebar-bg"></div>
     </div>
     <!-- ./wrapper -->
-    <!-- jQuery 3 -->
-    <script src="../area/bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="@Url.Content("~/area/bower_components/jquery/dist/jquery.min.js")"></script>
     <!-- jQuery UI 1.11.4 -->
-    <script src="../area/bower_components/jquery-ui/jquery-ui.min.js"></script>
+    <script src="@Url.Content("~/area/bower_components/jquery-ui/jquery-ui.min.js")"></script>
     <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
     <script>
         $.widget.bridge('uibutton', $.ui.button);
     </script>
     <!-- Bootstrap 3.3.7 -->
-    <script src="../area/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="@Url.Content("~/area/bower_components/bootstrap/dist/js/bootstrap.min.js")"></script>
     <!-- Morris.js charts -->
-    <script src="../area/bower_components/raphael/raphael.min.js"></script>
-    <script src="../area/bower_components/morris.js/morris.min.js"></script>
+    <script src="@Url.Content("~/area/bower_components/raphael/raphael.min.js")"></script>
+    <script src="@Url.Content("~/area/bower_components/morris.js/morris.min.js")"></script>
     <!-- Sparkline -->
-    <script src="../area/bower_components/jquery-sparkline/dist/jquery.sparkline.min.js"></script>
+    <script src="@Url.Content("~/area/bower_components/jquery-sparkline/dist/jquery.sparkline.min.js")"></script>
     <!-- jvectormap -->
-    <script src="../area/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js"></script>
-    <script src="../area/plugins/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
+    <script src="@Url.Content("~/area/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js")"></script>
+    <script src="@Url.Content("~/area/plugins/jvectormap/jquery-jvectormap-world-mill-en.js")"></script>
     <!-- jQuery Knob Chart -->
-    <script src="../area/bower_components/jquery-knob/dist/jquery.knob.min.js"></script>
+    <script src="@Url.Content("~/area/bower_components/jquery-knob/dist/jquery.knob.min.js")"></script>
     <!-- daterangepicker -->
-    <script src="../area/bower_components/moment/min/moment.min.js"></script>
-    <script src="../area/bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
+    <script src="@Url.Content("~/area/bower_components/moment/min/moment.min.js")"></script>
+    <script src="@Url.Content("~/area/bower_components/bootstrap-daterangepicker/daterangepicker.js")"></script>
     <!-- datepicker -->
-    <script src="../area/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+    <script src="@Url.Content("~/area/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js")"></script>
     <!-- Bootstrap WYSIHTML5 -->
-    <script src="../area/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
+    <script src="@Url.Content("~/area/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js")"></script>
     <!-- Slimscroll -->
-    <script src="../area/bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+    <script src="@Url.Content("~/area/bower_components/jquery-slimscroll/jquery.slimscroll.min.js")"></script>
     <!-- FastClick -->
-    <script src="../area/bower_components/fastclick/lib/fastclick.js"></script>
+    <script src="@Url.Content("~/area/bower_components/fastclick/lib/fastclick.js")"></script>
     <!-- AdminLTE App -->
-    <script src="../area/dist/js/adminlte.min.js"></script>
+    <script src="@Url.Content("~/area/dist/js/adminlte.min.js")"></script>
     <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-    <script src="../area/dist/js/pages/dashboard.js"></script>
+    <script src="@Url.Content("~/area/dist/js/pages/dashboard.js")"></script>
     <!-- AdminLTE for demo purposes -->
-    <script src="../area/dist/js/demo.js"></script>
+    <script src="@Url.Content("~/area/dist/js/demo.js")"></script>
     <script src="https://code.jquery.com/jquery-2.2.4.js"
             integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI="
             crossorigin="anonymous"></script>
- 
+  
     <script>
         var controllerUrl = "@this.Url.Action(actionName:"GetData", controllerName:"Home")";
 
-    
+
     var settings = {
-      
+
         "async": true,
         "crossDomain": true,
         "url": controllerUrl,
@@ -955,6 +951,9 @@
         $("#numsOfTaskInProgress").append(response.numsOfTaskInProgress);
         $("#numsOfTaskClosed").append(response.numsOfTaskClosed);
         $("#numsOfTaskDelay").append(response.numsOfTaskDelay);
+        $("#numsOfMeetings").append(response.numsOfMeetings);
+        $("#numsOfMessages").append(response.numsOfMessages);
+        $("#numsOfNotifications").append(response.numsOfNotifications);
         //alert(response.Data[0].Buckets[0].Tasks[0].Title);
         var ele = document.getElementById('selPlan');
         var eleS = document.getElementById('selBucket');
@@ -963,7 +962,7 @@
             //document.getElementById("test").innerHTML += response.Data[i].Title+ "<br>";
             ele.innerHTML = ele.innerHTML +
                 '<option value="' + response.Data[i].PlanID + '">' + response.Data[i].PlanID + "-"+ response.Data[i].Title + '</option>';
-         
+
           //  for (j = 0; j < response.Data.length; ++j) {
             //    eleS.innerHTML = eleS.innerHTML +
             //        '<option value="' + response.Data[i].Buckets[j].BucketID + '">' + response.Data[i].Buckets[j].BucketID + "-" + response.Data[i].Buckets[j].Title + '</option>';
@@ -987,18 +986,18 @@
         function myPlanFunction() {
               var controllerUrl = "@this.Url.Action(actionName:"GetData", controllerName:"Home")";
 
-                
+
     var settings = {
-      
+
         "async": true,
         "crossDomain": true,
         "url": controllerUrl,
         "method": "GET"
     }
-       
+
             $.ajax(settings).done(function (response) {
-     
-      
+
+
                 var response = JSON.parse(response);
                 var eleBucket = document.getElementById('selBucket');
                 var eleTaskId = document.getElementById('TaskId');
@@ -1013,23 +1012,23 @@
                 document.getElementById("TaskAssignee").innerHTML = "";
                 document.getElementById("TaskDuedate").innerHTML = "";
                 var x = document.getElementById("selPlan").value;
-                     
+
                 for (i = 0; i < response.Data.length; ++i) {
                     for (j = 0; j < response.Data.length; ++j) {
-                                                  
+
                             if (x == response.Data[i].Buckets[j].PlanID) {
                                 eleBucket.innerHTML = eleBucket.innerHTML +
                                     '<option value="' + response.Data[i].Buckets[j].BucketID + '">' + response.Data[i].Buckets[j].BucketID + "-" + response.Data[i].Buckets[j].Title + '</option>';
 
-                                
+
                                 for (g = 0; g < response.Data.length; ++g) {
-                                
+
                                     eleTaskId.innerHTML = eleTaskId.innerHTML + response.Data[i].Buckets[j].Tasks[g].TaskID  + "<br>" ;
                                     eleTaskTitle.innerHTML = eleTaskTitle.innerHTML + response.Data[i].Buckets[j].Tasks[g].Title  + "<br>" ;
                                     eleTaskStatus.innerHTML = eleTaskStatus.innerHTML + response.Data[i].Buckets[j].Tasks[g].StatusID  + "<br>" ;
                                     eleTaskAssignee.innerHTML = eleTaskAssignee.innerHTML + response.Data[i].Buckets[j].Tasks[g].Assignee  + "<br>" ;
                                     eleTaskDuedate.innerHTML = eleTaskDuedate.innerHTML + response.Data[i].Buckets[j].Tasks[g].Duedate  + "<br>" ;
-                                
+
         }
                                     //for (g = 0; g < response.Data.length; ++g) {
 
@@ -1042,33 +1041,33 @@
                         }
                     }
                 }
-              
+
             });
-      
+
   }
       function myBucketFunction() {
               var controllerUrl = "@this.Url.Action(actionName:"GetData", controllerName:"Home")";
           var y = document.getElementById("selBucket").value;
-          var x = document.getElementById("selPlan").value;       
+          var x = document.getElementById("selPlan").value;
     var settings = {
-      
+
         "async": true,
         "crossDomain": true,
         "url": controllerUrl,
         "method": "GET"
     }
-       
+
             $.ajax(settings).done(function (response) {
-     
-      
+
+
                 var response = JSON.parse(response);
-             
+
                 var eleTaskId = document.getElementById('TaskId');
                 var eleTaskTitle = document.getElementById('TaskTitle');
                 var eleTaskStatus = document.getElementById('TaskStatus');
                 var eleTaskAssignee = document.getElementById('TaskAssignee');
                 var eleTaskDuedate = document.getElementById('TaskDuedate');
-                
+
                 document.getElementById("TaskId").innerHTML = "";
                 document.getElementById("TaskTitle").innerHTML = "";
                 document.getElementById("TaskStatus").innerHTML = "";
@@ -1076,32 +1075,29 @@
                 document.getElementById("TaskDuedate").innerHTML = "";
 
 
-                     
+
                 for (i = 0; i < response.Data.length; ++i) {
                     for (j = 0; j < response.Data.length; ++j) {
-                        for (g = 0; g < response.Data.length; ++g) {  
+                        for (g = 0; g < response.Data.length; ++g) {
                             if (x == response.Data[i].Buckets[j].PlanID) {
-                            if (y == response.Data[i].Buckets[j].Tasks[g].BucketID) {                                                     
-                               
-                                
+                            if (y == response.Data[i].Buckets[j].Tasks[g].BucketID) {
+
                                     eleTaskId.innerHTML = eleTaskId.innerHTML + response.Data[i].Buckets[j].Tasks[g].TaskID  + "<br>" ;
                                     eleTaskTitle.innerHTML = eleTaskTitle.innerHTML + response.Data[i].Buckets[j].Tasks[g].Title  + "<br>" ;
                                     eleTaskStatus.innerHTML = eleTaskStatus.innerHTML + response.Data[i].Buckets[j].Tasks[g].StatusID  + "<br>" ;
                                     eleTaskAssignee.innerHTML = eleTaskAssignee.innerHTML + response.Data[i].Buckets[j].Tasks[g].Assignee  + "<br>" ;
                                     eleTaskDuedate.innerHTML = eleTaskDuedate.innerHTML + response.Data[i].Buckets[j].Tasks[g].Duedate  + "<br>" ;
-                                
+
                                 }
                             }
                         }
                     }
                 }
-              
+
             });
-      
+
   }
     </script>
-    <script>
-         
-    </script>
+ 
 </body>
 </html>
