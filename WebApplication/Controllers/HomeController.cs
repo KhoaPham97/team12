@@ -15,11 +15,12 @@ namespace WebApplication.Controllers
     [Authorize]
     public class HomeController : Controller
     {
-        cap21t12Entities db = new cap21t12Entities();
-     
+       
+
         public PartialViewResult Index()
         {
-
+            cap21t12Entities db = new cap21t12Entities();
+            ViewBag.Id = new SelectList(db.AspNetUsers, "Id", "Email");
             return PartialView();
         }
 

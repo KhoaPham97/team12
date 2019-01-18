@@ -3,11 +3,13 @@ using System.ComponentModel.DataAnnotations;
 
 namespace WebApplication.Models
 {
+
     public class ExternalLoginConfirmationViewModel
     {
         [Required]
         [Display(Name = "Email")]
         public string Email { get; set; }
+
     }
 
     public class ExternalLoginListViewModel
@@ -109,4 +111,5 @@ namespace WebApplication.Models
         [Display(Name = "Email")]
         public string Email { get; set; }
     }
+
 }

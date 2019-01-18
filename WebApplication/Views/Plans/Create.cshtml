@@ -1,95 +1,16 @@
-﻿@model WebApplication.Models.Plan
-
+﻿
+@model WebApplication.Models.Students
 @{
     ViewBag.Title = "Create";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css">
+<script src="http://code.jquery.com/jquery-1.8.3.js"></script>
+<script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.4.2/chosen.jquery.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.4.2/chosen.css" />
 
 
-
-
-@*@using (Html.BeginForm())
-        {
-            @Html.AntiForgeryToken()
-            <section class="content">
-                <div class="row">
-                    <!-- left column -->
-                    <div class="col-md-12">
-                        <!-- general form elements -->
-                        <div class="box box-primary">
-                            <div class="box-header with-border">
-
-                                <h2>Create Plan</h2>
-                                <hr />
-                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-
-                                <div class="form-group">
-                                    @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-md-2" })
-                                    <div class="col-md-12">
-                                        @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
-                                        @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
-                                    </div>
-                                </div>
-
-                                <hr>
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        @Html.LabelFor(model => model.StatusID, "StatusID", htmlAttributes: new { @class = "control-label " })
-
-                                        @Html.DropDownList("StatusID", null, htmlAttributes: new { @class = "form-control" })
-                                        @Html.ValidationMessageFor(model => model.StatusID, "", new { @class = "text-danger" })
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        @Html.LabelFor(model => model.Startdate, htmlAttributes: new { @class = "control-label " })
-
-                                        @Html.EditorFor(model => model.Startdate, new { htmlAttributes = new { @class = "form-control datepicker" } })
-                                        @Html.ValidationMessageFor(model => model.Startdate, "", new { @class = "text-danger" })
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        @Html.LabelFor(model => model.Duedate, htmlAttributes: new { @class = "control-label " })
-
-                                        @Html.EditorFor(model => model.Duedate, new { htmlAttributes = new { @class = "form-control datepicker" } })
-                                        @Html.ValidationMessageFor(model => model.Duedate, "", new { @class = "text-danger" })
-                                    </div>
-                                </div>
-
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label " })
-
-                                        @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control", cols = "20" } })
-                                        @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <div class="col-md-offset-2 col-md-10" style="text-align:right">
-                                        <input type="submit" value="Create" class="btn btn-default" />
-                                    </div>
-                                </div>
-                            </div>
-
-
-                            @*<div>
-                                    @Html.ActionLink("Back to List", "Index")
-                                </div>
-                    </div>
-
-                </div>
-
-
-            </div>
-
-
-
-
-    <!-- /.row -->
-        </section>
-    }*@
 
 <section class="content">
     <div class="row">
@@ -97,76 +18,77 @@
             <!-- general form elements -->
             <div class="box box-primary">
                 <h2>Create Plan</h2>
-               
-                    <div class="box-header with-border">
 
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <input type="text" class="form-control" placeholder="Plan Name" id="title" required onkeyup=handleInput(this)>
-                            </div>
+                <div class="box-header with-border">
+
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Plan Name" id="title" required onkeyup=handleInput(this)>
                         </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label>Status</label>
-                                <select class="form-control select2" style="width: 100%;" id="status" name="status " onkeyup=handleInput(this)>
-                                    <option selected="selected" value="private">Private</option>
-                                    <option value="public">Public</option>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label>Status</label>
+                            <select class="form-control select2" style="width: 100%;" id="status" name="status " onkeyup=handleInput(this)>
+                                <option selected="selected" value="private">Private</option>
+                                <option value="public">Public</option>
 
-                                </select>
-                            </div>
-
+                            </select>
                         </div>
-
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label>StartDate</label>
-                                <div class='input-group date'>
-                                    <input type='text' class="form-control" id="startdate" onkeydown="event.preventDefault()" onkeyup=handleInput(this) />
-                                    <span class="input-group-addon">
-                                        <span class="glyphicon glyphicon-calendar" onclick="Startdate()"></span>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label>DueDate</label>
-                                <div class='input-group date'>
-                                    <input type='text' class="form-control" id="duedate" onkeydown="event.preventDefault()" onkeyup=handleInput(this) onchange="DateCheck()" />
-                                    <span class="input-group-addon">
-                                        <span class="glyphicon glyphicon-calendar" onclick="Duedate()"></span>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <label>Description</label>
-                                <textarea class="form-control" rows="3" placeholder="Type your description of the task here" id="description" onkeyup=handleInput(this) required></textarea>
-                            </div>
-
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <label for="exampleInputFile">Attachments</label>
-                                    <input type="file" id="exampleInputFile">
-
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <div style="text-align:right; margin-top:10px "><button onclick="submitData()">Send</button></div>
-                            </div>
-                        </div>
-                        <div id="output"></div>
-                        <!-- /.box-header -->
-                        <!-- form start -->
-
 
                     </div>
-               
+                
+
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label>StartDate</label>
+                            <div class='input-group date'>
+                                <input type='text' class="form-control" id="startdate" onkeydown="event.preventDefault()" onkeyup=handleInput(this) />
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-calendar" onclick="Startdate()"></span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label>DueDate</label>
+                            <div class='input-group date'>
+                                <input type='text' class="form-control" id="duedate" onkeydown="event.preventDefault()" onkeyup=handleInput(this) onchange="DateCheck()" />
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-calendar" onclick="Duedate()"></span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label>Description</label>
+                            <textarea class="form-control" rows="3" placeholder="Type your description of the task here" id="description" onkeyup=handleInput(this) required></textarea>
+                        </div>
+
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="exampleInputFile">Attachments</label>
+                                <input type="file" id="exampleInputFile">
+
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <div style="text-align:right; margin-top:10px "><button onclick="submitData()">Send</button></div>
+                        </div>
+                    </div>
+                    <div id="output"></div>
+                    <!-- /.box-header -->
+                    <!-- form start -->
+
+
+                </div>
+
             </div>
         </div>
     </div>
@@ -240,7 +162,7 @@
         xhr.onerror = function () {
 
         };
-  
+
         function submitData() {
             var title = document.getElementById("title").value;
             //  alert(title);
@@ -261,7 +183,7 @@
             });
 
             var urll = '@Url.Action("Index", "Home")';
-            if (title.length > 0 && description.length > 0 && startdate.length > 0 && duedate.length > 0) {     
+            if (title.length > 0 && description.length > 0 && startdate.length > 0 && duedate.length > 0) {
                 xhr.send(data);
                 alert("Success");
                 window.location.href = urll;
@@ -272,4 +194,10 @@
 
 
     </script>
+    <script>
+        $('.chosen-select').chosen();
+    
+
+    </script>
+
 }
