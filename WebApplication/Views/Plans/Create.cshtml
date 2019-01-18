@@ -97,78 +97,80 @@
             <!-- general form elements -->
             <div class="box box-primary">
                 <h2>Create Plan</h2>
-                <div class="box-header with-border">
-                    <div class="col-md-12">
-                        <div class="form-group">
-                            <input type="text" required="true" class="form-control" placeholder="Plan Name" id="title" onkeyup=handleInput(this) >
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            <label>Status</label>
-                            <select class="form-control select2" style="width: 100%;" id="status" name="status " onkeyup=handleInput(this)>
-                                <option selected="selected" value="private">Private</option>
-                                <option value="public">Public</option>
-
-                            </select>
-                        </div>
-
-                    </div>
-
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            <label>StartDate</label>
-                            <div class='input-group date'>
-                                <input type='text' class="form-control" id="startdate" onkeydown="event.preventDefault()" onkeyup=handleInput(this) />
-                                <span class="input-group-addon">
-                                    <span class="glyphicon glyphicon-calendar" onclick="Startdate()"></span>
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            <label>DueDate</label>
-                            <div class='input-group date'>
-                                <input type='text' class="form-control" id="duedate" onkeydown="event.preventDefault()" onkeyup=handleInput(this) onchange="DateCheck()" />
-                                <span class="input-group-addon">
-                                    <span class="glyphicon glyphicon-calendar" onclick="Duedate()"></span>
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-12">
-                        <div class="form-group">
-                            <label>Description</label>
-                            <textarea class="form-control" rows="3" placeholder="Type your description of the task here" id="description" onkeyup=handleInput(this) required></textarea>
-                        </div>
+               
+                    <div class="box-header with-border">
 
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label for="exampleInputFile">Attachments</label>
-                                <input type="file" id="exampleInputFile">
+                                <input type="text" class="form-control" placeholder="Plan Name" id="title" required onkeyup=handleInput(this)>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Status</label>
+                                <select class="form-control select2" style="width: 100%;" id="status" name="status " onkeyup=handleInput(this)>
+                                    <option selected="selected" value="private">Private</option>
+                                    <option value="public">Public</option>
 
+                                </select>
+                            </div>
+
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>StartDate</label>
+                                <div class='input-group date'>
+                                    <input type='text' class="form-control" id="startdate" onkeydown="event.preventDefault()" onkeyup=handleInput(this) />
+                                    <span class="input-group-addon">
+                                        <span class="glyphicon glyphicon-calendar" onclick="Startdate()"></span>
+                                    </span>
+                                </div>
                             </div>
                         </div>
 
-                    </div>
-                    <div class="col-md-12">
-                        <div class="form-group">
-                            <div style="text-align:right; margin-top:10px "><button onclick=submitData()>Send</button></div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>DueDate</label>
+                                <div class='input-group date'>
+                                    <input type='text' class="form-control" id="duedate" onkeydown="event.preventDefault()" onkeyup=handleInput(this) onchange="DateCheck()" />
+                                    <span class="input-group-addon">
+                                        <span class="glyphicon glyphicon-calendar" onclick="Duedate()"></span>
+                                    </span>
+                                </div>
+                            </div>
                         </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>Description</label>
+                                <textarea class="form-control" rows="3" placeholder="Type your description of the task here" id="description" onkeyup=handleInput(this) required></textarea>
+                            </div>
+
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="exampleInputFile">Attachments</label>
+                                    <input type="file" id="exampleInputFile">
+
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <div style="text-align:right; margin-top:10px "><button onclick="submitData()">Send</button></div>
+                            </div>
+                        </div>
+                        <div id="output"></div>
+                        <!-- /.box-header -->
+                        <!-- form start -->
+
+
                     </div>
-                    <div id="output"></div>
-                    <!-- /.box-header -->
-                    <!-- form start -->
-
-
-                </div>
-
-                    </div>
+               
             </div>
         </div>
-        <!-- /.row -->
+    </div>
+    <!-- /.row -->
 </section>
 @section scripts {
     @Scripts.Render("~/bundles/jqueryval")
@@ -181,8 +183,9 @@
             type="text/javascript"></script>
     <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css"
           rel="Stylesheet" type="text/css" />
+    <script data-main="scripts/main" src="scripts/require.js"></script>
     <script type="text/javascript">
-      
+
     </script>
     <script>
         function Startdate() {
@@ -192,22 +195,22 @@
             $("#duedate").focus();
         }
         $(function () {
-                  $("#startdate").datepicker({
-                            numberOfMonths: 2,
-                            onSelect: function (selected) {
-                                var dt = new Date(selected);
-                                dt.setDate(dt.getDate() + 1);
-                                $("#duedate").datepicker("option", "minDate", dt);
-                            }
-                        });
-                        $("#duedate").datepicker({
-                        numberOfMonths: 2,
-                            onSelect: function (selected) {
-                                var dt = new Date(selected);
-                    dt.setDate(dt.getDate() - 1);
-                                $("#startdate").datepicker("option", "maxDate", dt);
+            $("#startdate").datepicker({
+                numberOfMonths: 2,
+                onSelect: function (selected) {
+                    var dt = new Date(selected);
+                    dt.setDate(dt.getDate() + 1);
+                    $("#duedate").datepicker("option", "minDate", dt);
                 }
-        });
+            });
+            $("#duedate").datepicker({
+                numberOfMonths: 2,
+                onSelect: function (selected) {
+                    var dt = new Date(selected);
+                    dt.setDate(dt.getDate() - 1);
+                    $("#startdate").datepicker("option", "maxDate", dt);
+                }
+            });
         });
 
         var createCORSRequest = function (method, url) {
@@ -237,18 +240,18 @@
         xhr.onerror = function () {
 
         };
+  
         function submitData() {
-            var output = document.getElementById("output");
             var title = document.getElementById("title").value;
-            //alert(title);
+            //  alert(title);
             var description = document.getElementById("description").value;
-            // alert(description);
+            //  alert(description);
             var statuss = $('#status').val();
-            //alert(status);
+            //    alert(statuss);
             var startdate = document.getElementById("startdate").value;
-            //alert(startdate);
+            //    alert(startdate);
             var duedate = document.getElementById("duedate").value;
-            // alert(duedate);
+            //     alert(duedate);
             var data = JSON.stringify({
                 "title": title,
                 "description": description,
@@ -256,10 +259,17 @@
                 "startdate": startdate,
                 "duedate": duedate
             });
-            xhr.send(data);
-            alert("Send" + data);
 
+            var urll = '@Url.Action("Index", "Home")';
+            if (title.length > 0 && description.length > 0 && startdate.length > 0 && duedate.length > 0) {     
+                xhr.send(data);
+                alert("Success");
+                window.location.href = urll;
+            } else {
+                alert("Please fill in required fields");
+            }
         }
+
 
     </script>
 }
