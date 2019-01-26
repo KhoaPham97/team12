@@ -21,7 +21,13 @@ namespace WebApplication.Controllers
             var buckets = db.Buckets.Include(b => b.AspNetUser).Include(b => b.AspNetUser1).Include(b => b.Plan).Include(b => b.Status);
             return View(buckets.ToList());
         }
+        public ActionResult Management(int? id)
+        {
 
+            var model = db.Buckets.Where(x => x.PlanID == id);
+            return View(model);
+         
+        }
         // GET: Buckets/Details/5
         public ActionResult Details(int? id)
         {
@@ -40,6 +46,7 @@ namespace WebApplication.Controllers
         // GET: Buckets/Create
         public ActionResult Create()
         {
+         
             ViewBag.Reporter = new SelectList(db.AspNetUsers, "Id", "Email");
             ViewBag.Assignee = new SelectList(db.AspNetUsers, "Id", "Email");
             ViewBag.PlanID = new SelectList(db.Plans, "IDPlan", "Title");

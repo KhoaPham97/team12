@@ -6,10 +6,12 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
 using WebApplication.Models;
 
 namespace WebApplication.Controllers
 {
+    [Authorize]
     public class TasksController : Controller
     {
         private cap21t12Entities db = new cap21t12Entities();
@@ -20,7 +22,16 @@ namespace WebApplication.Controllers
             var tasks1 = db.Tasks.Include(t => t.AspNetUser).Include(t => t.AspNetUser1).Include(t => t.Bucket).Include(t => t.Status);
             return View(tasks1.ToList());
         }
-
+        public ActionResult Management(int? id)
+        {
+            var model = db.Tasks.Where(x => x.BucketID == id);
+            return View(model);
+        }
+        public ActionResult MyTask()
+        {
+            var product = db.Tasks.ToList().Where(p => p.AssigneeID == User.Identity.GetUserId());
+            return View(product);
+        }
         // GET: Tasks/Details/5
         public ActionResult Details(int? id)
         {
@@ -39,6 +50,7 @@ namespace WebApplication.Controllers
         // GET: Tasks/Create
         public ActionResult Create()
         {
+         
             ViewBag.AssigneeID = new SelectList(db.AspNetUsers, "Id", "Email");
             ViewBag.ReporterID = new SelectList(db.AspNetUsers, "Id", "Email");
             ViewBag.BucketID = new SelectList(db.Buckets, "BucketID", "Title");

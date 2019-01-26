@@ -7645,6 +7645,7 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Shared\Layout2.cshtml" />
     <Content Include="Views\Plans\Create.cshtml" />
     <Content Include="Views\Plans\Delete.cshtml" />
     <Content Include="Views\Plans\Details.cshtml" />
@@ -7655,13 +7656,14 @@
     <Content Include="Views\Buckets\Details.cshtml" />
     <Content Include="Views\Buckets\Edit.cshtml" />
     <Content Include="Views\Buckets\Index.cshtml" />
-    <Content Include="Views\Shared\Layout2.cshtml" />
     <Content Include="Views\Tasks\Create.cshtml" />
     <Content Include="Views\Tasks\Delete.cshtml" />
     <Content Include="Views\Tasks\Details.cshtml" />
     <Content Include="Views\Tasks\Edit.cshtml" />
     <Content Include="Views\Tasks\Index.cshtml" />
-    <Content Include="Views\Plans\Test.cshtml" />
+    <Content Include="Views\Tasks\Management.cshtml" />
+    <Content Include="Views\Buckets\Management.cshtml" />
+    <Content Include="Views\Tasks\MyTask.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

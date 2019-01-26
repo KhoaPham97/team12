@@ -2,6 +2,7 @@
 
 @{
     ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>Index</h2>
@@ -24,10 +25,10 @@
             @Html.DisplayNameFor(model => model.DueDate)
         </th>
         <th>
-            Reporter
+            @Html.DisplayNameFor(model => model.AspNetUser.Email)
         </th>
         <th>
-          Assginee
+            @Html.DisplayNameFor(model => model.AspNetUser1.Email)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Plan.Title)
@@ -38,41 +39,38 @@
         <th></th>
     </tr>
 
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Title)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.StartDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DueDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.AspNetUser.Email)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.AspNetUser1.Email)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Plan.Title)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Status.StatusName)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.BucketID }) |
-                @Html.ActionLink("Details", "Details", new { id = item.BucketID }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.BucketID })
-            </td>
-        </tr>
-    }
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StartDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DueDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AspNetUser.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AspNetUser1.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Plan.Title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Status.StatusName)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.BucketID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.BucketID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.BucketID })
+        </td>
+    </tr>
+}
 
 </table>
-@Scripts.Render("~/bundles/jquery")
-@Scripts.Render("~/bundles/bootstrap")

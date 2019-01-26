@@ -2,274 +2,192 @@
 
 @{
     ViewBag.Title = "Create";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+ 
 }
 
 
 
+@using (Html.BeginForm())
+{
 
-@*@using (Html.BeginForm())
-        {
-            @Html.AntiForgeryToken()
-            <section class="content">
-                <div class="row">
-                    <!-- left column -->
-                    <div class="col-md-12">
-                        <!-- general form elements -->
-                        <div class="box box-primary">
-                            <div class="box-header with-border">
+    @Html.AntiForgeryToken()
+    @*<section class="content">
+        <div class="row">
+            <!-- left column -->
+            <div class="col-md-12">
+                <!-- general form elements -->
+                <div class="box box-primary">
+                    <div class="box-header with-border">
+                        <div class="form-horizontal">
+                            <h4>
+                               Create Plan</h4>
+                                                            <hr />
+                                                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-                                <h2>Create Plan</h2>
-                                <hr />
-                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                                            <div class="col-md-12">
+                                                                <div class="form-group">
+                                                                    <label>Title</label>
 
-                                <div class="form-group">
-                                    @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-md-2" })
-                                    <div class="col-md-12">
-                                        @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
-                                        @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
-                                    </div>
-                                </div>
+                                                                    @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control", } })
+                                                                    @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+                                                                </div>
+                                                            </div>
 
-                                <hr>
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        @Html.LabelFor(model => model.StatusID, "StatusID", htmlAttributes: new { @class = "control-label " })
+                                                            <div class="col-md-2">
+                                                                <div class="form-group">
+                                                                    <label>Status</label>
+                                                                    @Html.DropDownList("StatusID", null, htmlAttributes: new { @class = "form-control " })
+                                                                    @Html.ValidationMessageFor(model => model.StatusID, "", new { @class = "text-danger" })
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <div class="form-group">
+                                                                    <label>Start Date</label>
+                                                                    @Html.EditorFor(model => model.Startdate, new { htmlAttributes = new { @class = "form-control startdate " } })
+                                                                    @Html.ValidationMessageFor(model => model.Startdate, "", new { @class = "text-danger" })
+                                                                </div>
+                                                            </div>
 
-                                        @Html.DropDownList("StatusID", null, htmlAttributes: new { @class = "form-control" })
-                                        @Html.ValidationMessageFor(model => model.StatusID, "", new { @class = "text-danger" })
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        @Html.LabelFor(model => model.Startdate, htmlAttributes: new { @class = "control-label " })
+                                                            <div class="col-md-4" style="float:right">
+                                                                <div class="form-group">
+                                                                    <label>Due Date</label>
+                                                                    @Html.EditorFor(model => model.Duedate, new { htmlAttributes = new { @class = "form-control duedate " } })
+                                                                    @Html.ValidationMessageFor(model => model.Duedate, "", new { @class = "text-danger" })
+                                                                </div>
+                                                            </div>
 
-                                        @Html.EditorFor(model => model.Startdate, new { htmlAttributes = new { @class = "form-control datepicker" } })
-                                        @Html.ValidationMessageFor(model => model.Startdate, "", new { @class = "text-danger" })
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        @Html.LabelFor(model => model.Duedate, htmlAttributes: new { @class = "control-label " })
+                                                            <div class="col-md-12">
+                                                                <div class="form-group">
+                                                                    @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label " })
 
-                                        @Html.EditorFor(model => model.Duedate, new { htmlAttributes = new { @class = "form-control datepicker" } })
-                                        @Html.ValidationMessageFor(model => model.Duedate, "", new { @class = "text-danger" })
-                                    </div>
-                                </div>
-
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label " })
-
-                                        @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control", cols = "20" } })
-                                        @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <div class="col-md-offset-2 col-md-10" style="text-align:right">
-                                        <input type="submit" value="Create" class="btn btn-default" />
-                                    </div>
-                                </div>
-                            </div>
+                                                                    @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+                                                                    @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                                                                </div>
+                                                            </div>
 
 
-                            @*<div>
-                                    @Html.ActionLink("Back to List", "Index")
-                                </div>
-                    </div>
-
-                </div>
-
-
-            </div>
+                                                            <div class="form-group">
+                                                                <div class="col-md-offset-2 col-md-10">
+                                                                    <input type="submit" value="Create" class="btn btn-default" />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
 
 
+                                                </div>
+
+                                            </div>
+
+                                        </div>
 
 
-    <!-- /.row -->
-        </section>
-    }*@
+                                    </section>
 
-<section class="content">
-    <div class="row">
-        <div class="col-md-12">
-            <!-- general form elements -->
-            <div class="box box-primary">
-                <h2>Create Plan</h2>
-               
+                                    <div>*@
+
+
+    <section class="content">
+        <div class="row">
+
+            <!-- left column -->
+            <div class="col-md-12">
+                <!-- general form elements -->
+
+                <div class="box box-primary">
+                    <h2>
+                        Create Plan
+                    </h2>
                     <div class="box-header with-border">
 
                         <div class="col-md-12">
                             <div class="form-group">
-                                <input type="text" class="form-control" placeholder="Plan Name" id="title" required onkeyup=handleInput(this)>
+                                <label>Title</label>
+                                @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control ", placeholder = "Plan Name" } })
+                                @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label>Status</label>
-                                <select class="form-control select2" style="width: 100%;" id="status" name="status " onkeyup=handleInput(this)>
-                                    <option selected="selected" value="private">Private</option>
-                                    <option value="public">Public</option>
-
-                                </select>
+                                @Html.DropDownList("StatusID", null, htmlAttributes: new { @class = "form-control " })
+                                @Html.ValidationMessageFor(model => model.StatusID, "", new { @class = "text-danger" })
                             </div>
-
                         </div>
-
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label>StartDate</label>
-                                <div class='input-group date'>
-                                    <input type='text' class="form-control" id="startdate" onkeydown="event.preventDefault()" onkeyup=handleInput(this) />
-                                    <span class="input-group-addon">
-                                        <span class="glyphicon glyphicon-calendar" onclick="Startdate()"></span>
-                                    </span>
-                                </div>
+                                <label>Start Date</label>
+                                @Html.EditorFor(model => model.Startdate, new { htmlAttributes = new { @class = "form-control " } })
+                                @Html.ValidationMessageFor(model => model.Startdate, "", new { @class = "text-danger" })
                             </div>
                         </div>
 
+
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label>DueDate</label>
-                                <div class='input-group date'>
-                                    <input type='text' class="form-control" id="duedate" onkeydown="event.preventDefault()" onkeyup=handleInput(this) onchange="DateCheck()" />
-                                    <span class="input-group-addon">
-                                        <span class="glyphicon glyphicon-calendar" onclick="Duedate()"></span>
-                                    </span>
-                                </div>
+                                <label>Due Date</label>
+
+                                @Html.EditorFor(model => model.Duedate, new { htmlAttributes = new { @class = "form-control " } })
+                                @Html.ValidationMessageFor(model => model.Duedate, "", new { @class = "text-danger" })
+
                             </div>
                         </div>
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label>Description</label>
-                                <textarea class="form-control" rows="3" placeholder="Type your description of the task here" id="description" onkeyup=handleInput(this) required></textarea>
+                                @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label " })
+                                <br>
+
+                                @Html.TextAreaFor(model => model.Description,5,55, new { htmlAttributes = new { @class = "form-control"   } })
+                                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
                             </div>
-
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <label for="exampleInputFile">Attachments</label>
-                                    <input type="file" id="exampleInputFile">
-
+                            <div class="form-group" style="float:right">
+                                <div class="col-md-offset-2 col-md-10" >
+                                    <input type="submit" value="Create" class="btn btn-default" />
                                 </div>
                             </div>
-
                         </div>
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <div style="text-align:right; margin-top:10px "><button onclick="submitData()">Send</button></div>
-                            </div>
-                        </div>
-                        <div id="output"></div>
                         <!-- /.box-header -->
                         <!-- form start -->
-
-
                     </div>
-               
+                </div>
             </div>
+
         </div>
-    </div>
-    <!-- /.row -->
-</section>
+
+
+
+        <!-- /.row -->
+    </section>
+    <!-- /.content -->
+
+}
+
+
 @section scripts {
     @Scripts.Render("~/bundles/jqueryval")
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
-    <script src="https://code.jquery.com/jquery-2.2.4.js"
-            integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI="
-            crossorigin="anonymous"></script>
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6/jquery.min.js" type="text/javascript"></script>
-    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"
-            type="text/javascript"></script>
-    <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css"
-          rel="Stylesheet" type="text/css" />
-    <script data-main="scripts/main" src="scripts/require.js"></script>
-    <script type="text/javascript">
-
-    </script>
     <script>
-        function Startdate() {
-            $("#startdate").focus();
-        }
-        function Duedate() {
-            $("#duedate").focus();
-        }
         $(function () {
-            $("#startdate").datepicker({
+            $("#Startdate").datepicker({
                 numberOfMonths: 2,
                 onSelect: function (selected) {
                     var dt = new Date(selected);
                     dt.setDate(dt.getDate() + 1);
-                    $("#duedate").datepicker("option", "minDate", dt);
+                    $("#Duedate").datepicker("option", "minDate", dt);
                 }
             });
-            $("#duedate").datepicker({
+            $("#Duedate").datepicker({
                 numberOfMonths: 2,
                 onSelect: function (selected) {
                     var dt = new Date(selected);
                     dt.setDate(dt.getDate() - 1);
-                    $("#startdate").datepicker("option", "maxDate", dt);
+                    $("#Startdate").datepicker("option", "maxDate", dt);
                 }
             });
         });
-
-        var createCORSRequest = function (method, url) {
-            var xhr = new XMLHttpRequest();
-            if ("withCredentials" in xhr) {
-                // Most browsers.
-                xhr.open(method, url, true);
-            } else if (typeof XDomainRequest != "undefined") {
-                // IE8 & IE9
-                xhr = new XDomainRequest();
-                xhr.open(method, url);
-            } else {
-                // CORS not supported.
-                xhr = null;
-            }
-            return xhr;
-        };
-
-        var url = 'http://capstoneproj.azurewebsites.net/api/CreatePlan?code=neSlU5xWY8WR4KxvDnbSIxWaAitArskdsBURwE2G36HvD581ZLhL2Q==';
-        var method = 'POST';
-        var xhr = createCORSRequest(method, url);
-
-        xhr.onload = function () {
-
-        };
-
-        xhr.onerror = function () {
-
-        };
-  
-        function submitData() {
-            var title = document.getElementById("title").value;
-            //  alert(title);
-            var description = document.getElementById("description").value;
-            //  alert(description);
-            var statuss = $('#status').val();
-            //    alert(statuss);
-            var startdate = document.getElementById("startdate").value;
-            //    alert(startdate);
-            var duedate = document.getElementById("duedate").value;
-            //     alert(duedate);
-            var data = JSON.stringify({
-                "title": title,
-                "description": description,
-                "status": statuss,
-                "startdate": startdate,
-                "duedate": duedate
-            });
-
-            var urll = '@Url.Action("Index", "Home")';
-            if (title.length > 0 && description.length > 0 && startdate.length > 0 && duedate.length > 0) {     
-                xhr.send(data);
-                alert("Success");
-                window.location.href = urll;
-            } else {
-                alert("Please fill in required fields");
-            }
-        }
-
-
     </script>
 }

@@ -2,6 +2,7 @@
 
 @{
     ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>Index</h2>
@@ -29,32 +30,29 @@
         <th></th>
     </tr>
 
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Title)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Startdate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Duedate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.StatusPlan.StatusName)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.IDPlan }) |
-                @Html.ActionLink("Details", "Details", new { id = item.IDPlan }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.IDPlan })
-            </td>
-        </tr>
-    }
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Startdate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Duedate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StatusPlan.StatusName)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.IDPlan }) |
+            @Html.ActionLink("Details", "Details", new { id=item.IDPlan }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.IDPlan })
+        </td>
+    </tr>
+}
 
 </table>
-@Scripts.Render("~/bundles/jquery")
-@Scripts.Render("~/bundles/bootstrap")
