@@ -118,7 +118,7 @@ namespace WebApplication.Controllers
             Plan plan = db.Plans.Find(id);
             db.Plans.Remove(plan);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", "Home");
         }
     
         protected override void Dispose(bool disposing)
