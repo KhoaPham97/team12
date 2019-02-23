@@ -69,7 +69,7 @@ namespace WebApplication.Controllers
             {
                 db.Tasks.Add(tasks);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Management", "Tasks", new { id = tasks.BucketID });
             }
 
             ViewBag.AssigneeID = new SelectList(db.AspNetUsers, "Id", "Email", tasks.AssigneeID);
@@ -109,7 +109,7 @@ namespace WebApplication.Controllers
             {
                 db.Entry(tasks).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Management", "Tasks", new { id = tasks.BucketID });
             }
             ViewBag.AssigneeID = new SelectList(db.AspNetUsers, "Id", "Email", tasks.AssigneeID);
             ViewBag.ReporterID = new SelectList(db.AspNetUsers, "Id", "Email", tasks.ReporterID);
@@ -141,7 +141,7 @@ namespace WebApplication.Controllers
             Tasks tasks = db.Tasks.Find(id);
             db.Tasks.Remove(tasks);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Management", "Tasks", new { id = tasks.BucketID });
         }
 
         protected override void Dispose(bool disposing)

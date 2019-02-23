@@ -8,6 +8,7 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
 <section class="content">
     <div class="col-md-2" style="margin-bottom:20px;margin-left:-12px">
         <a href="@Url.Action("Create", "Buckets")" class="btn btn-block btn-default btn-lg">Create Bucket</a>
@@ -17,226 +18,244 @@
     <div class="row">
 
         <div class="col-md-12">
+            <div class="box box-warning box-solid">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Plan</h3>
 
-            <!-- Custom Tabs -->
-
-
-            <div class="col-md-4">
-                <div class="box box">
-                    <div class="box-header with-border">
-                        <h3 class="box-title">Not Started</h3>
-
-                        <div class="box-tools pull-right">
-                            <button type="button" class="btn btn-box-tool" data-widget="collapse">
-                                <i class="fa fa-minus"></i>
-                            </button>
-                        </div>
-                        <!-- /.box-tools -->
+                    <div class="box-tools pull-right">
+                        <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                            <i class="fa fa-minus"></i>
+                        </button>
                     </div>
-                    <!-- /.box-header -->
-
-                    <div class="box-body" style="">
-
-                        <table class="table table-hover">
-                            <tr>
-                                <th style="text-align:center">ID</th>
-                                <th style="text-align:center">Title</th>
-                                <th style="text-align:center">Due Date</th>
-                                <th style="text-align:center">Options</th>
-                            </tr>
-                            @foreach (var item in Model)
-                            {
-
-                                if (@item.StatusID == 1)
-                                {
-
-                                    <tr>
-
-                                        <td>
-                                            <a href=" @Url.Action("Management", "Tasks",new {id = @item.BucketID }) " style="color:black">
-                                                @item.BucketID
-                                            </a>
-                                        </td>
-
-
-                                        <td style="text-align:left">
-                                            <a href=" @Url.Action("Management", "Tasks",new {id = @item.BucketID }) " style="color:black">
-                                                @item.Title.Substring(0, Math.Min(@item.Title.Length, 40))..
-                                            </a>
-                                        </td>
-
-                                        <td>
-                                            <a href=" @Url.Action("Management", "Tasks",new {id = @item.BucketID }) " style="color:black">
-                                                @item.DueDate
-                                            </a>
-                                        </td>
-
-                                        <td>
-                                            <a href=" @Url.Action("Edit", "Buckets",new {id = @item.BucketID }) " style="color:black">
-                                                <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                                            </a>
-                                            &nbsp;
-                                            <a href=" @Url.Action("Delete", "Buckets",new {id = @item.BucketID }) " style="color:black">
-                                                <i class="fa fa-trash" aria-hidden="true"></i>
-                                            </a>
-                                        </td>
-
-                                    </tr>
-                                }
-
-                            }
-                        </table>
-
-                    </div>
-
-
-                    <!-- /.box-body -->
+                    <!-- /.box-tools -->
                 </div>
-                <!-- /.box -->
+                <!-- /.box-header -->
+                <div class="box-body" style="">
+                    @foreach (var item in Model)
+                    {
+                        @item.Plan.Title
+                        break;
+                    }
+                    @foreach (var item in Model)
+                    {
+
+
+                    }
+
+                </div>
+                <!-- /.box-body -->
             </div>
-            <div class="col-md-4">
-                <div class="box box-success">
-                    <div class="box-header with-border">
-                        <h3 class="box-title">In Progess</h3>
+            <!-- /.box -->
+        </div>
+     
+        <div class="col-md-4">
+            <div class="box box">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Not Started</h3>
 
-                        <div class="box-tools pull-right">
-                            <button type="button" class="btn btn-box-tool" data-widget="collapse">
-                                <i class="fa fa-minus"></i>
-                            </button>
-                        </div>
+                    <div class="box-tools pull-right">
+                        <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                            <i class="fa fa-minus"></i>
+                        </button>
                     </div>
+                    <!-- /.box-tools -->
+                </div>
+                <!-- /.box-header -->
 
-                    <div class="box-body" style="">
+                <div class="box-body" style="">
 
-                        <table class="table table-hover">
-                            <tr>
-                                <th style="text-align:center">ID</th>
-                                <th style="text-align:center">Title</th>
-                                <th style="text-align:center">Due Date</th>
-                                <th style="text-align:center">Options</th>
+                    <table class="table table-hover">
+                        <tr>
+                            <th style="text-align:center">ID</th>
+                            <th style="text-align:center">Title</th>
+                            <th style="text-align:center">Due Date</th>
+                            <th style="text-align:center">Options</th>
+                        </tr>
+                        @foreach (var item in Model)
+                        {
 
-                            </tr>
-                            @foreach (var item in Model)
+                            if (@item.StatusID == 1)
                             {
 
-                                if (@item.StatusID == 2)
-                                {
+                                <tr>
 
-                                    <tr>
-                                        <td>
-                                            <a href=" @Url.Action("Management", "Tasks",new {id = @item.BucketID }) " style="color:black">
-                                                @item.BucketID
-                                            </a>
-                                        </td>
+                                    <td>
+                                        <a href=" @Url.Action("Management", "Tasks",new {id = @item.BucketID }) " style="color:black">
+                                            @item.BucketID
+                                        </a>
+                                    </td>
 
 
-                                        <td style="text-align:left">
-                                            <a href=" @Url.Action("Management", "Tasks",new {id = @item.BucketID }) " style="color:black">
-                                                @item.Title.Substring(0, Math.Min(@item.Title.Length, 40))..
-                                            </a>
-                                        </td>
+                                    <td style="text-align:left">
+                                        <a href=" @Url.Action("Management", "Tasks",new {id = @item.BucketID }) " style="color:black">
+                                            @item.Title.Substring(0, Math.Min(@item.Title.Length, 40))..
+                                        </a>
+                                    </td>
 
-                                        <td>
-                                            <a href=" @Url.Action("Management", "Tasks",new {id = @item.BucketID }) " style="color:black">
-                                                @item.DueDate
-                                            </a>
-                                        </td>
+                                    <td>
+                                        <a href=" @Url.Action("Management", "Tasks",new {id = @item.BucketID }) " style="color:black">
+                                            @item.DueDate
+                                        </a>
+                                    </td>
 
-                                        <td>
-                                            <a href=" @Url.Action("Edit", "Buckets",new {id = @item.BucketID }) " style="color:black">
-                                                <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                                            </a>
-                                            &nbsp;
-                                            <a href=" @Url.Action("Delete", "Buckets",new {id = @item.BucketID }) " style="color:black">
-                                                <i class="fa fa-trash" aria-hidden="true"></i>
-                                            </a>
-                                        </td>
+                                    <td>
+                                        <a href=" @Url.Action("Edit", "Buckets",new {id = @item.BucketID }) " style="color:black">
+                                            <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                        </a>
+                                        &nbsp;
+                                        <a href=" @Url.Action("Delete", "Buckets",new {id = @item.BucketID }) " style="color:black">
+                                            <i class="fa fa-trash" aria-hidden="true"></i>
+                                        </a>
+                                    </td>
 
-                                    </tr>
-                                }
+                                </tr>
                             }
-                        </table>
 
-                    </div>
+                        }
+                    </table>
 
                 </div>
+
+
+                <!-- /.box-body -->
             </div>
-            <div class="col-md-4">
-                <div class="box box-danger">
-                    <div class="box-header with-border">
-                        <h3 class="box-title">Completed</h3>
+            <!-- /.box -->
+        </div>
+        <div class="col-md-4">
+            <div class="box box-success">
+                <div class="box-header with-border">
+                    <h3 class="box-title">In Progess</h3>
 
-                        <div class="box-tools pull-right">
-                            <button type="button" class="btn btn-box-tool" data-widget="collapse">
-                                <i class="fa fa-minus"></i>
-                            </button>
-                        </div>
+                    <div class="box-tools pull-right">
+                        <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                            <i class="fa fa-minus"></i>
+                        </button>
                     </div>
+                </div>
 
-                    <div class="box-body" style="">
+                <div class="box-body" style="">
 
-                        <table class="table table-hover">
-                            <tr>
-                                <th style="text-align:center">ID</th>
-                                <th style="text-align:center">Title</th>
-                                <th style="text-align:center">Due Date</th>
-                                <th style="text-align:center">Options</th>
+                    <table class="table table-hover">
+                        <tr>
+                            <th style="text-align:center">ID</th>
+                            <th style="text-align:center">Title</th>
+                            <th style="text-align:center">Due Date</th>
+                            <th style="text-align:center">Options</th>
 
-                            </tr>
-                            @foreach (var item in Model)
+                        </tr>
+                        @foreach (var item in Model)
+                        {
+
+                            if (@item.StatusID == 2)
                             {
 
-                                if (@item.StatusID == 3)
-                                {
-
-                                    <tr>
-                                        <td>
-                                            <a href=" @Url.Action("Management", "Tasks",new {id = @item.BucketID }) " style="color:black">
-                                                @item.BucketID
-                                            </a>
-                                        </td>
+                                <tr>
+                                    <td>
+                                        <a href=" @Url.Action("Management", "Tasks",new {id = @item.BucketID }) " style="color:black">
+                                            @item.BucketID
+                                        </a>
+                                    </td>
 
 
-                                        <td style="text-align:left">
-                                            <a href=" @Url.Action("Management", "Tasks",new {id = @item.BucketID }) " style="color:black">
-                                                @item.Title.Substring(0, Math.Min(@item.Title.Length, 40))..
-                                            </a>
-                                        </td>
+                                    <td style="text-align:left">
+                                        <a href=" @Url.Action("Management", "Tasks",new {id = @item.BucketID }) " style="color:black">
+                                            @item.Title.Substring(0, Math.Min(@item.Title.Length, 40))..
+                                        </a>
+                                    </td>
 
-                                        <td>
-                                            <a href=" @Url.Action("Management", "Tasks",new {id = @item.BucketID }) " style="color:black">
-                                                @item.DueDate
-                                            </a>
-                                        </td>
-                                        <td>
-                                            <a href=" @Url.Action("Edit", "Buckets",new {id = @item.BucketID }) " style="color:black">
-                                                <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                                            </a>
-                                            &nbsp;
-                                            <a href=" @Url.Action("Delete", "Buckets",new {id = @item.BucketID }) " style="color:black">
-                                                <i class="fa fa-trash" aria-hidden="true"></i>
-                                            </a>
-                                        </td>
+                                    <td>
+                                        <a href=" @Url.Action("Management", "Tasks",new {id = @item.BucketID }) " style="color:black">
+                                            @item.DueDate
+                                        </a>
+                                    </td>
 
-                                    </tr>
-                                }
+                                    <td>
+                                        <a href=" @Url.Action("Edit", "Buckets",new {id = @item.BucketID }) " style="color:black">
+                                            <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                        </a>
+                                        &nbsp;
+                                        <a href=" @Url.Action("Delete", "Buckets",new {id = @item.BucketID }) " style="color:black">
+                                            <i class="fa fa-trash" aria-hidden="true"></i>
+                                        </a>
+                                    </td>
+
+                                </tr>
                             }
-                        </table>
-
-                    </div>
+                        }
+                    </table>
 
                 </div>
+
             </div>
         </div>
+        <div class="col-md-4">
+            <div class="box box-danger">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Completed</h3>
+
+                    <div class="box-tools pull-right">
+                        <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                            <i class="fa fa-minus"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="box-body" style="">
+
+                    <table class="table table-hover">
+                        <tr>
+                            <th style="text-align:center">ID</th>
+                            <th style="text-align:center">Title</th>
+                            <th style="text-align:center">Due Date</th>
+                            <th style="text-align:center">Options</th>
+
+                        </tr>
+                        @foreach (var item in Model)
+                        {
+
+                            if (@item.StatusID == 3)
+                            {
+
+                                <tr>
+                                    <td>
+                                        <a href=" @Url.Action("Management", "Tasks",new {id = @item.BucketID }) " style="color:black">
+                                            @item.BucketID
+                                        </a>
+                                    </td>
+
+
+                                    <td style="text-align:left">
+                                        <a href=" @Url.Action("Management", "Tasks",new {id = @item.BucketID }) " style="color:black">
+                                            @item.Title.Substring(0, Math.Min(@item.Title.Length, 40))..
+                                        </a>
+                                    </td>
+
+                                    <td>
+                                        <a href=" @Url.Action("Management", "Tasks",new {id = @item.BucketID }) " style="color:black">
+                                            @item.DueDate
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <a href=" @Url.Action("Edit", "Buckets",new {id = @item.BucketID }) " style="color:black">
+                                            <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                        </a>
+                                        &nbsp;
+                                        <a href=" @Url.Action("Delete", "Buckets",new {id = @item.BucketID }) " style="color:black">
+                                            <i class="fa fa-trash" aria-hidden="true"></i>
+                                        </a>
+                                    </td>
+
+                                </tr>
+                            }
+                        }
+                    </table>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
     </div>
 
 </section>
 
-
-    <script>
-        var url = window.location.pathname;
-        var id = url.substring(url.lastIndexOf('/') + 1);
-
-
-
-    </script>

@@ -11,80 +11,7 @@
 {
 
     @Html.AntiForgeryToken()
-    @*<section class="content">
-        <div class="row">
-            <!-- left column -->
-            <div class="col-md-12">
-                <!-- general form elements -->
-                <div class="box box-primary">
-                    <div class="box-header with-border">
-                        <div class="form-horizontal">
-                            <h4>
-                               Create Plan</h4>
-                                                            <hr />
-                                                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-
-                                                            <div class="col-md-12">
-                                                                <div class="form-group">
-                                                                    <label>Title</label>
-
-                                                                    @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control", } })
-                                                                    @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="col-md-2">
-                                                                <div class="form-group">
-                                                                    <label>Status</label>
-                                                                    @Html.DropDownList("StatusID", null, htmlAttributes: new { @class = "form-control " })
-                                                                    @Html.ValidationMessageFor(model => model.StatusID, "", new { @class = "text-danger" })
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-md-4">
-                                                                <div class="form-group">
-                                                                    <label>Start Date</label>
-                                                                    @Html.EditorFor(model => model.Startdate, new { htmlAttributes = new { @class = "form-control startdate " } })
-                                                                    @Html.ValidationMessageFor(model => model.Startdate, "", new { @class = "text-danger" })
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="col-md-4" style="float:right">
-                                                                <div class="form-group">
-                                                                    <label>Due Date</label>
-                                                                    @Html.EditorFor(model => model.Duedate, new { htmlAttributes = new { @class = "form-control duedate " } })
-                                                                    @Html.ValidationMessageFor(model => model.Duedate, "", new { @class = "text-danger" })
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="col-md-12">
-                                                                <div class="form-group">
-                                                                    @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label " })
-
-                                                                    @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
-                                                                    @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
-                                                                </div>
-                                                            </div>
-
-
-                                                            <div class="form-group">
-                                                                <div class="col-md-offset-2 col-md-10">
-                                                                    <input type="submit" value="Create" class="btn btn-default" />
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-
-                                                </div>
-
-                                            </div>
-
-                                        </div>
-
-
-                                    </section>
-
-                                    <div>*@
+  
 
 
     <section class="content">
@@ -117,29 +44,48 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label>Start Date</label>
-                                @Html.EditorFor(model => model.Startdate, new { htmlAttributes = new { @class = "form-control " } })
-                                @Html.ValidationMessageFor(model => model.Startdate, "", new { @class = "text-danger" })
+
+                                <div class="input-group date">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-calendar"  onclick="Startdate()"></i>
+                                    </div>
+                                    @Html.EditorFor(model => model.Startdate, new { htmlAttributes = new { @class = "form-control " } })
+                                    @Html.ValidationMessageFor(model => model.Startdate, "", new { @class = "text-danger" })
+                                </div>
+                                </div>
                             </div>
-                        </div>
 
 
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label>Due Date</label>
-
-                                @Html.EditorFor(model => model.Duedate, new { htmlAttributes = new { @class = "form-control " } })
-                                @Html.ValidationMessageFor(model => model.Duedate, "", new { @class = "text-danger" })
-
+                                <div class="input-group date">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-calendar"  onclick="Duedate()"></i>
+                                    </div>
+                                    @Html.EditorFor(model => model.Duedate, new { htmlAttributes = new { @class = "form-control " } })
+                                    @Html.ValidationMessageFor(model => model.Duedate, "", new { @class = "text-danger" })
+                                </div>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-md-12">
+                        @*<div class="col-md-12">
                             <div class="form-group">
                                 @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label " })
                                 <br>
 
-                                @Html.TextAreaFor(model => model.Description,5,55, new { htmlAttributes = new { @class = "form-control"   } })
+                                @Html.TextAreaFor(model => model.Description, 5, 55, new { htmlAttributes = new { @class = "form-control" } })
                                 @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
-                            </div>
+                            </div>*@
+                        <div class="box-body pad">
+                            <label>Description</label>
+                            <form>
+                                <textarea class="textarea" placeholder="Place some text here"
+                                          style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;" id="Description" name="Description"></textarea>
+                            </form>
+                        </div>
+                      
+                        
+                     
                             <div class="form-group" style="float:right">
                                 <div class="col-md-offset-2 col-md-10" >
                                     <input type="submit" value="Create" class="btn btn-default" />
@@ -148,7 +94,7 @@
                         </div>
                         <!-- /.box-header -->
                         <!-- form start -->
-                    </div>
+                   
                 </div>
             </div>
 
@@ -170,7 +116,13 @@
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
-    <script>
+    <script>  
+        function Startdate() {
+            $("#Startdate").focus();
+        }
+        function Duedate() {
+            $("#Duedate").focus();
+        }
         $(function () {
             $("#Startdate").datepicker({
                 numberOfMonths: 2,
@@ -188,6 +140,6 @@
                     $("#Startdate").datepicker("option", "maxDate", dt);
                 }
             });
-        });
+         });
     </script>
 }

@@ -1,22 +1,52 @@
 ﻿@using Microsoft.AspNet.Identity;
+
 @model IEnumerable<WebApplication.Models.Tasks>
 
 @{
     ViewBag.Title = "Management";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+<style>
+    #form1 {
+        display: none;
+    }
+</style>
 <section class="content">
     <div class="col-md-2" style="margin-bottom:20px;margin-left:-12px">
-        <a href="@Url.Action("Create", "Tasks")" class="btn btn-block btn-default btn-lg">Create Task</a>
-
+       
+            <a href="@Url.Action("Create", "Tasks")" class="btn btn-block btn-default btn-lg">Create Task</a>
+         
+        
     </div>
     <hr>
 
     <div class="row">
 
-        <div class="col-md-12">
+        
+            <div class="col-md-12">
+                <div class="box box-warning box-solid">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Bucket</h3>
 
+                        <div class="box-tools pull-right">
+                            <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                                <i class="fa fa-minus"></i>
+                            </button>
+                        </div>
+                        <!-- /.box-tools -->
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body" style="">
+                        @foreach (var item in Model)
+                        {
+                            @item.Bucket.Title
+                            break;
+                        }
+                    </div>
+                    <!-- /.box-body -->
+                </div>
+                <!-- /.box -->
+            </div>
             <!-- Custom Tabs -->
 
 
@@ -49,37 +79,37 @@
                                 if (@item.StatusID == 1)
                                 {
 
-                            <tr>
+                                    <tr>
 
-                                <td>
-                                    <a href=" @Url.Action("Edit", "Tasks",new {id = @item.TaskID }) " style="color:black">
-                                        @item.TaskID
-                                    </a>
-                                </td>
+                                        <td>
+                                            <a href=" @Url.Action("Edit", "Tasks",new {id = @item.TaskID }) " style="color:black">
+                                                @item.TaskID
+                                            </a>
+                                        </td>
 
 
-                                <td style="text-align:left">
-                                    <a href=" @Url.Action("Edit", "Tasks",new {id = @item.TaskID }) " style="color:black">
-                                        @item.Title.Substring(0, Math.Min(@item.Title.Length, 40))..
-                                    </a>
-                                </td>
+                                        <td style="text-align:left">
+                                            <a href=" @Url.Action("Edit", "Tasks",new {id = @item.TaskID }) " style="color:black">
+                                                @item.Title.Substring(0, Math.Min(@item.Title.Length, 40))..
+                                            </a>
+                                        </td>
 
-                                <td>
-                                    <a href=" @Url.Action("Edit", "Tasks",new {id = @item.TaskID }) " style="color:black">
-                                        @item.Duedate
-                                    </a>
-                                </td>
-                                <td>
-                                    <a href=" @Url.Action("Edit", "Tasks",new {id = @item.TaskID }) " style="color:black">
-                                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                                    </a>
-                                    &nbsp;
-                                    <a href=" @Url.Action("Delete", "Tasks",new {id = @item.TaskID }) " style="color:black">
-                                        <i class="fa fa-trash" aria-hidden="true"></i>
-                                    </a>
-                                </td>
+                                        <td>
+                                            <a href=" @Url.Action("Edit", "Tasks",new {id = @item.TaskID }) " style="color:black">
+                                                @item.Duedate
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <a href=" @Url.Action("Edit", "Tasks",new {id = @item.TaskID }) " style="color:black">
+                                                <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                            </a>
+                                            &nbsp;
+                                            <a href=" @Url.Action("Delete", "Tasks",new {id = @item.TaskID }) " style="color:black">
+                                                <i class="fa fa-trash" aria-hidden="true"></i>
+                                            </a>
+                                        </td>
 
-                            </tr>
+                                    </tr>
                                 }
 
                             }
@@ -120,36 +150,36 @@
                                 if (@item.StatusID == 2)
                                 {
 
-                            <tr>
-                                <td>
-                                    <a href=" @Url.Action("Edit", "Tasks",new {id = @item.TaskID }) " style="color:black">
-                                        @item.TaskID
-                                    </a>
-                                </td>
+                                    <tr>
+                                        <td>
+                                            <a href=" @Url.Action("Edit", "Tasks",new {id = @item.TaskID }) " style="color:black">
+                                                @item.TaskID
+                                            </a>
+                                        </td>
 
 
-                                <td style="text-align:left">
-                                    <a href=" @Url.Action("Edit", "Tasks",new {id = @item.TaskID }) " style="color:black">
-                                        @item.Title.Substring(0, Math.Min(@item.Title.Length, 40))..
-                                    </a>
-                                </td>
+                                        <td style="text-align:left">
+                                            <a href=" @Url.Action("Edit", "Tasks",new {id = @item.TaskID }) " style="color:black">
+                                                @item.Title.Substring(0, Math.Min(@item.Title.Length, 40))..
+                                            </a>
+                                        </td>
 
-                                <td>
-                                    <a href=" @Url.Action("Edit", "Tasks",new {id = @item.TaskID }) " style="color:black">
-                                        @item.Duedate
-                                    </a>
-                                </td>
+                                        <td>
+                                            <a href=" @Url.Action("Edit", "Tasks",new {id = @item.TaskID }) " style="color:black">
+                                                @item.Duedate
+                                            </a>
+                                        </td>
 
-                                <td>
-                                    <a href=" @Url.Action("Edit", "Tasks",new {id = @item.TaskID }) " style="color:black">
-                                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                                    </a>
-                                    &nbsp;
-                                    <a href=" @Url.Action("Delete", "Tasks",new {id = @item.TaskID }) " style="color:black">
-                                        <i class="fa fa-trash" aria-hidden="true"></i>
-                                    </a>
-                                </td>
-                            </tr>
+                                        <td>
+                                            <a href=" @Url.Action("Edit", "Tasks",new {id = @item.TaskID }) " style="color:black">
+                                                <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                            </a>
+                                            &nbsp;
+                                            <a href=" @Url.Action("Delete", "Tasks",new {id = @item.TaskID }) " style="color:black">
+                                                <i class="fa fa-trash" aria-hidden="true"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
                                 }
                             }
                         </table>
@@ -186,36 +216,36 @@
                                 if (@item.StatusID == 3)
                                 {
 
-                            <tr>
-                                <td>
-                                    <a href=" @Url.Action("Edit", "Tasks",new {id = @item.TaskID }) " style="color:black">
-                                        @item.TaskID
-                                    </a>
-                                </td>
+                                    <tr>
+                                        <td>
+                                            <a href=" @Url.Action("Edit", "Tasks",new {id = @item.TaskID }) " style="color:black">
+                                                @item.TaskID
+                                            </a>
+                                        </td>
 
 
-                                <td style="text-align:left">
-                                    <a href=" @Url.Action("Edit", "Tasks",new {id = @item.TaskID }) " style="color:black">
-                                        @item.Title.Substring(0, Math.Min(@item.Title.Length, 40))..
-                                    </a>
-                                </td>
+                                        <td style="text-align:left">
+                                            <a href=" @Url.Action("Edit", "Tasks",new {id = @item.TaskID }) " style="color:black">
+                                                @item.Title.Substring(0, Math.Min(@item.Title.Length, 40))..
+                                            </a>
+                                        </td>
 
-                                <td>
-                                    <a href=" @Url.Action("Edit", "Tasks",new {id = @item.TaskID }) " style="color:black">
-                                        @item.Duedate
-                                    </a>
-                                </td>
+                                        <td>
+                                            <a href=" @Url.Action("Edit", "Tasks",new {id = @item.TaskID }) " style="color:black">
+                                                @item.Duedate
+                                            </a>
+                                        </td>
 
-                                <td>
-                                    <a href=" @Url.Action("Edit", "Tasks",new {id = @item.TaskID }) " style="color:black">
-                                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                                    </a>
-                                    &nbsp;
-                                    <a href=" @Url.Action("Delete", "Tasks",new {id = @item.TaskID }) " style="color:black">
-                                        <i class="fa fa-trash" aria-hidden="true"></i>
-                                    </a>
-                                </td>
-                            </tr>
+                                        <td>
+                                            <a href=" @Url.Action("Edit", "Tasks",new {id = @item.TaskID }) " style="color:black">
+                                                <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                            </a>
+                                            &nbsp;
+                                            <a href=" @Url.Action("Delete", "Tasks",new {id = @item.TaskID }) " style="color:black">
+                                                <i class="fa fa-trash" aria-hidden="true"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
                                 }
                             }
                         </table>
@@ -225,8 +255,21 @@
                 </div>
             </div>
         </div>
-    </div>
+
 
 </section>
 
-
+@*@section scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+  $(document).ready(function(){
+    $("#formButton").click(function(){
+        $("#form1").toggle();
+    });
+});
+           var url = window.location.pathname;
+        var id = url.substring(url.lastIndexOf('/') + 1);
+     //   alert(id);
+          
+    </script>
+}*@

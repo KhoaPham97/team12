@@ -10,20 +10,20 @@ using WebApplication.Models;
 
 namespace WebApplication.Controllers
 {
-    [Authorize]
     public class BucketsController : Controller
     {
         private cap21t12Entities db = new cap21t12Entities();
 
         // GET: Buckets
-        public ActionResult Index()
+               public ActionResult Index()
         {
             var buckets = db.Buckets.Include(b => b.AspNetUser).Include(b => b.AspNetUser1).Include(b => b.Plan).Include(b => b.Status);
             return View(buckets.ToList());
         }
+     
         public ActionResult Management(int? id)
         {
-
+         
             var model = db.Buckets.Where(x => x.PlanID == id);
             return View(model);
          
@@ -46,7 +46,6 @@ namespace WebApplication.Controllers
         // GET: Buckets/Create
         public ActionResult Create()
         {
-         
             ViewBag.Reporter = new SelectList(db.AspNetUsers, "Id", "Email");
             ViewBag.Assignee = new SelectList(db.AspNetUsers, "Id", "Email");
             ViewBag.PlanID = new SelectList(db.Plans, "IDPlan", "Title");
@@ -61,11 +60,12 @@ namespace WebApplication.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "BucketID,PlanID,StatusID,Assignee,Reporter,Title,Description,StartDate,DueDate")] Bucket bucket)
         {
+          
             if (ModelState.IsValid)
             {
                 db.Buckets.Add(bucket);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Management", "Buckets", new { id = bucket.PlanID });
             }
 
             ViewBag.Reporter = new SelectList(db.AspNetUsers, "Id", "Email", bucket.Reporter);
@@ -137,7 +137,7 @@ namespace WebApplication.Controllers
             Bucket bucket = db.Buckets.Find(id);
             db.Buckets.Remove(bucket);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Management", "Buckets", new { id = bucket.PlanID });
         }
 
         protected override void Dispose(bool disposing)
