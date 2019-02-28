@@ -7652,7 +7652,6 @@
     <Content Include="Views\Plans\Details.cshtml" />
     <Content Include="Views\Plans\Edit.cshtml" />
     <Content Include="Views\Plans\Index.cshtml" />
-    <Content Include="Views\Buckets\Delete.cshtml" />
     <Content Include="Views\Buckets\Details.cshtml" />
     <Content Include="Views\Buckets\Edit.cshtml" />
     <Content Include="Views\Buckets\Index.cshtml" />
@@ -7665,6 +7664,8 @@
     <Content Include="Views\Buckets\Management.cshtml" />
     <Content Include="Views\Tasks\MyTask.cshtml" />
     <Content Include="Views\Buckets\Create.cshtml" />
+    <Content Include="Views\Buckets\Delete.cshtml" />
+    <Content Include="Views\Buckets\Test.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

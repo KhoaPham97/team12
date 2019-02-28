@@ -1,4 +1,5 @@
-﻿@model IEnumerable<WebApplication.Models.Bucket>
+﻿@using Microsoft.AspNet.Identity;
+@model IEnumerable<WebApplication.Models.Bucket>
 
 @{
     /**/
@@ -10,13 +11,143 @@
 }
 
 <section class="content">
-    <div class="col-md-2" style="margin-bottom:20px;margin-left:-12px">
+    @*<div class="col-md-2" style="margin-bottom:20px;margin-left:-12px">
         <a href="@Url.Action("Create", "Buckets")" class="btn btn-block btn-default btn-lg">Create Bucket</a>
 
-    </div>
+    </div>*@
     <hr>
     <div class="row">
+        <div class="col-md-12">
+            <div class="box box-default collapsed-box box-solid">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Create Bucket</h3>
+                    <div class="box-tools pull-right">
+                        <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                            <i class="fa fa-plus"></i>
+                        </button>
+                    </div>
+                    <!-- /.box-tools -->
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <section class="content">
+                        <div class="row">
+                            <form action="@Url.Action("Create", "Buckets")" method="post">
+                                @Html.AntiForgeryToken()
+                                <!-- left column -->
+                                <div class="col-md-12">
+                                    <!-- general form elements -->
 
+                                    <div class="box box-primary">
+
+                                        <div class="box-header with-border">
+                                            <div class="col-md-12">
+                                                <label>Plan</label>
+                                                <select class="form-control" id="PlanID" name="PlanID" readonly="true">
+                                                    @foreach (var data in ViewBag.Message)
+                                                    {
+                                                        <option value="@data.IDPlan">@data.Title</option>
+                                                    }
+                                                </select>
+
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label>Title</label>
+                                                    <input type="text" class="form-control" id="Title" name="Title" placeholder="Bucket Name">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label>Status</label>
+                                                    <select class="form-control" id="StatusID" name="StatusID">
+                                                        @foreach (var data in ViewBag.Status)
+                                                        {
+                                                            <option value="@data.ID">@data.StatusName</option>
+
+                                                        }
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label>Start Date</label>
+
+                                                    <div class="input-group date">
+                                                        <div class="input-group-addon">
+                                                            <i class="fa fa-calendar" onclick="StartDate()"></i>
+                                                        </div>
+                                                        <input type="datetime" class="form-control" id="StartDate" name="StartDate" readonly="true">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label>Due Date</label>
+                                                    <div class="input-group date">
+                                                        <div class="input-group-addon">
+                                                            <i class="fa fa-calendar" onclick="DueDate()"></i>
+                                                        </div>
+                                                        <input type="datetime" class="form-control" id="DueDate" name="DueDate" readonly="true">
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>Reporter</label>
+                                                    <select class="form-control" id="Reporter" name="Reporter" readonly="true">
+                                                      <option value="@User.Identity.GetUserId()">@User.Identity.GetUserName()</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>Assignee</label>
+                                                    <select class="form-control" id="Assignee" name="Assignee">
+                                                        <option value="" selected="selected">--Please Choose Assignee--</option>
+                                                        @foreach (var data in ViewBag.Assignee)
+                                                        {
+                                                            <option value="@data.Id">@data.Email</option>
+                                                        }
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            <div class="box-body pad">
+                                                <label>Description</label>
+
+                                                <textarea class="textarea" placeholder="Place some text here"
+                                                          style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;" id="Description" name="Description"></textarea>
+
+                                            </div>
+
+
+                                            <div class="form-group" style="float:right">
+                                                <div class="col-md-offset-2 col-md-10">
+                                                    <input type="submit" value="Create" class="btn btn-default" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- /.box-header -->
+                                        <!-- form start -->
+
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
+
+
+                        <!-- /.row -->
+                    </section>
+                </div>
+                <!-- /.box-body -->
+            </div>
+            <!-- /.box -->
+        </div>
         <div class="col-md-12">
             <div class="box box-warning box-solid">
                 <div class="box-header with-border">
@@ -30,24 +161,20 @@
                     <!-- /.box-tools -->
                 </div>
                 <!-- /.box-header -->
-                <div class="box-body" style="">
-                    @foreach (var item in Model)
+                <div class="box-body" style="" id="showid">
+                    @foreach (var data in ViewBag.Message)
                     {
-                        @item.Plan.Title
-                        break;
+                        <h5 class="box-title"><b>Name</b></h5>
+                        @data.Title
+                        <h5 class="box-title"><b>Due Date</b></h5>
+                        @data.Duedate
                     }
-                    @foreach (var item in Model)
-                    {
-
-
-                    }
-
                 </div>
                 <!-- /.box-body -->
             </div>
             <!-- /.box -->
         </div>
-     
+
         <div class="col-md-4">
             <div class="box box">
                 <div class="box-header with-border">
@@ -106,9 +233,21 @@
                                         <a href=" @Url.Action("Delete", "Buckets",new {id = @item.BucketID }) " style="color:black">
                                             <i class="fa fa-trash" aria-hidden="true"></i>
                                         </a>
+
+                                        @*@Html.ActionLink("Delete", "Buckets", new { id = @item.BucketID }, new { onclick = "return confirm('Are you sure you wish to delete this article?');" })*@
+                                        @using (Html.BeginForm("Delete", "Buckets", new { id = @item.BucketID }, FormMethod.Post))
+                                        {
+                                            @Html.AntiForgeryToken()
+
+                                            <input type="submit" value="Delete" />
+
+                                        }
+
                                     </td>
 
                                 </tr>
+
+
                             }
 
                         }
@@ -255,7 +394,41 @@
             </div>
         </div>
     </div>
-    </div>
+
 
 </section>
 
+@section scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+    <script>
+        function StartDate() {
+            $("#StartDate").focus();
+        }
+        function DueDate() {
+            $("#DueDate").focus();
+        }
+        $(function () {
+            $("#StartDate").datepicker({
+                numberOfMonths: 2,
+                onSelect: function (selected) {
+                    var dt = new Date(selected);
+                    dt.setDate(dt.getDate() + 1);
+                    $("#DueDate").datepicker("option", "minDate", dt);
+                }
+            });
+            $("#DueDate").datepicker({
+                numberOfMonths: 2,
+                onSelect: function (selected) {
+                    var dt = new Date(selected);
+                    dt.setDate(dt.getDate() - 1);
+                    $("#StartDate").datepicker("option", "maxDate", dt);
+                }
+            });
+        });
+    </script>
+}

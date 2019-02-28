@@ -24,7 +24,15 @@ namespace WebApplication.Controllers
         }
         public ActionResult Management(int? id)
         {
-            var model = db.Tasks.Where(x => x.BucketID == id);
+
+
+            var a = db.Buckets.Where(x => x.BucketID == id);
+          
+            ViewBag.Message = a;
+           
+            ViewBag.Assignee = db.AspNetUsers;
+            ViewBag.Status = db.Status;
+            var model = db.Tasks.ToList().Where(x => x.BucketID == id);
             return View(model);
         }
         public ActionResult MyTask()

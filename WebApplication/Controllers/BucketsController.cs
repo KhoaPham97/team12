@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
 using WebApplication.Models;
 
 namespace WebApplication.Controllers
@@ -18,15 +19,24 @@ namespace WebApplication.Controllers
                public ActionResult Index()
         {
             var buckets = db.Buckets.Include(b => b.AspNetUser).Include(b => b.AspNetUser1).Include(b => b.Plan).Include(b => b.Status);
-            return View(buckets.ToList());
+             return View(buckets.ToList());
         }
      
         public ActionResult Management(int? id)
         {
-         
+            var a = db.Plans.Where(x => x.IDPlan == id);
+            ViewBag.Message = a;        
             var model = db.Buckets.Where(x => x.PlanID == id);
+            ViewBag.Assignee = db.AspNetUsers;
+            ViewBag.Status = db.Status;
             return View(model);
-         
+
+
+        }
+        public ActionResult Test()
+        {
+            return View();
+
         }
         // GET: Buckets/Details/5
         public ActionResult Details(int? id)
@@ -139,7 +149,7 @@ namespace WebApplication.Controllers
             db.SaveChanges();
             return RedirectToAction("Management", "Buckets", new { id = bucket.PlanID });
         }
-
+       
         protected override void Dispose(bool disposing)
         {
             if (disposing)

@@ -28,11 +28,10 @@ namespace WebApplication.Models
         public string Reporter { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
+        public IEnumerable<Plan> Plans { get; set; }
         public Nullable<System.DateTime> StartDate { get; set; }
         public Nullable<System.DateTime> DueDate { get; set; }
-        public string StudentId { get; set; }
-        public string StudentName { get; set; }
-        public List<Students> GetStudentsList { get; set; }
+       
         public virtual AspNetUser AspNetUser { get; set; }
         public virtual AspNetUser AspNetUser1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -42,5 +41,4 @@ namespace WebApplication.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Tasks> Tasks { get; set; }
     }
- 
 }
