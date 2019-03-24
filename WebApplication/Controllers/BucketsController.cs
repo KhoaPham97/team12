@@ -18,14 +18,17 @@ namespace WebApplication.Controllers
         // GET: Buckets
                public ActionResult Index()
         {
-            var buckets = db.Buckets.Include(b => b.AspNetUser).Include(b => b.AspNetUser1).Include(b => b.Plan).Include(b => b.Status);
+            var buckets = db.Buckets.Include(b => b.Plan);
              return View(buckets.ToList());
         }
      
         public ActionResult Management(int? id)
         {
             var a = db.Plans.Where(x => x.IDPlan == id);
-            ViewBag.Message = a;        
+     
+            ViewBag.Message = a;
+            ViewBag.b = db.Tasks.Where(x => x.BucketID == id);
+            ViewBag.Task = db.Tasks;      
             var model = db.Buckets.Where(x => x.PlanID == id);
             ViewBag.Assignee = db.AspNetUsers;
             ViewBag.Status = db.Status;
@@ -56,10 +59,9 @@ namespace WebApplication.Controllers
         // GET: Buckets/Create
         public ActionResult Create()
         {
-            ViewBag.Reporter = new SelectList(db.AspNetUsers, "Id", "Email");
-            ViewBag.Assignee = new SelectList(db.AspNetUsers, "Id", "Email");
+ 
             ViewBag.PlanID = new SelectList(db.Plans, "IDPlan", "Title");
-            ViewBag.StatusID = new SelectList(db.Status, "ID", "StatusName");
+     
             return View();
         }
 
@@ -68,7 +70,7 @@ namespace WebApplication.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "BucketID,PlanID,StatusID,Assignee,Reporter,Title,Description,StartDate,DueDate")] Bucket bucket)
+        public ActionResult Create([Bind(Include = "BucketID,PlanID,Title")] Bucket bucket)
         {
           
             if (ModelState.IsValid)
@@ -78,10 +80,9 @@ namespace WebApplication.Controllers
                 return RedirectToAction("Management", "Buckets", new { id = bucket.PlanID });
             }
 
-            ViewBag.Reporter = new SelectList(db.AspNetUsers, "Id", "Email", bucket.Reporter);
-            ViewBag.Assignee = new SelectList(db.AspNetUsers, "Id", "Email", bucket.Assignee);
+            ViewBag.User = new MultiSelectList(db.AspNetUsers, "Id", "Email");
             ViewBag.PlanID = new SelectList(db.Plans, "IDPlan", "Title", bucket.PlanID);
-            ViewBag.StatusID = new SelectList(db.Status, "ID", "StatusName", bucket.StatusID);
+ 
             return View(bucket);
         }
 
@@ -97,10 +98,9 @@ namespace WebApplication.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.Reporter = new SelectList(db.AspNetUsers, "Id", "Email", bucket.Reporter);
-            ViewBag.Assignee = new SelectList(db.AspNetUsers, "Id", "Email", bucket.Assignee);
+           
             ViewBag.PlanID = new SelectList(db.Plans, "IDPlan", "Title", bucket.PlanID);
-            ViewBag.StatusID = new SelectList(db.Status, "ID", "StatusName", bucket.StatusID);
+            ViewBag.Assignee = db.AspNetUsers;
             return View(bucket);
         }
 
@@ -109,7 +109,7 @@ namespace WebApplication.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "BucketID,PlanID,StatusID,Assignee,Reporter,Title,Description,StartDate,DueDate")] Bucket bucket)
+        public ActionResult Edit([Bind(Include = "BucketID,PlanID,Title")] Bucket bucket)
         {
             if (ModelState.IsValid)
             {
@@ -117,10 +117,9 @@ namespace WebApplication.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.Reporter = new SelectList(db.AspNetUsers, "Id", "Email", bucket.Reporter);
-            ViewBag.Assignee = new SelectList(db.AspNetUsers, "Id", "Email", bucket.Assignee);
+          
             ViewBag.PlanID = new SelectList(db.Plans, "IDPlan", "Title", bucket.PlanID);
-            ViewBag.StatusID = new SelectList(db.Status, "ID", "StatusName", bucket.StatusID);
+  
             return View(bucket);
         }
 
@@ -147,7 +146,7 @@ namespace WebApplication.Controllers
             Bucket bucket = db.Buckets.Find(id);
             db.Buckets.Remove(bucket);
             db.SaveChanges();
-            return RedirectToAction("Management", "Buckets", new { id = bucket.PlanID });
+            return Redirect(Request.UrlReferrer.ToString());
         }
        
         protected override void Dispose(bool disposing)

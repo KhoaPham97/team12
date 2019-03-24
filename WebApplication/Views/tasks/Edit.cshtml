@@ -1,94 +1,166 @@
-﻿@model WebApplication.Models.Tasks
+﻿@model WebApplication.Models.Task
 
 @{
     ViewBag.Title = "Edit";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = null;
 }
-
-<h2>Edit</h2>
-
+<style>
+    .select#StatusID option[value="1"] {
+     color: red;
+    }
+</style>
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>Tasks</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.TaskID)
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.BucketID, "BucketID", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("BucketID", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.BucketID, "", new { @class = "text-danger" })
+
+
+
+
+
+    <section class="content">
+        <div class="row">
+
+            <!-- left column -->
+
+            <div class="col-md-12">
+                <!-- general form elements -->
+
+                <div class="box box-primary">
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    @Html.HiddenFor(model => model.TaskID)
+
+                    <div class="box-header with-border">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <h2>
+                                    @Html.TextAreaFor(model => model.Title, 1, 20, htmlAttributes: new { style = "width: 100%; max-width: 100%;border: 1px solid #dddddd;" })
+                                    @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+                                </h2>
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <label>Bucket</label>
+                                @Html.DropDownList("BucketID", null, htmlAttributes: new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.BucketID, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Status</label>
+
+                                @Html.DropDownList("StatusID", null, htmlAttributes: new { @class = "form-control StatusID" })
+
+                                @Html.ValidationMessageFor(model => model.StatusID, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Start Date</label>
+                                @Html.EditorFor(model => model.Startdate, new { htmlAttributes = new { @class = "form-control  datepicker " } })
+                                @Html.ValidationMessageFor(model => model.Startdate, "", new { @class = "text-danger" })
+
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Due Date</label>
+                                @Html.EditorFor(model => model.Duedate, new { htmlAttributes = new { @class = "form-control datepicker " } })
+                                @Html.ValidationMessageFor(model => model.Duedate, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Reporter</label>
+                                @Html.DropDownList("ReporterID", null, htmlAttributes: new { @class = "form-control Reporter " })
+                                @Html.ValidationMessageFor(model => model.ReporterID, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Assignee</label>
+
+                                @Html.DropDownList("AssigneeID", null, " - Please select Assignee - ", htmlAttributes: new { @class = "form-control Assignee"  })
+                                @Html.ValidationMessageFor(model => model.AssigneeID, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>Description</label>
+                                @Html.TextAreaFor(model => model.Description, 10, 20, htmlAttributes: new { style = "width: 100%; max-width: 100%;border: 1px solid #dddddd;" })
+                                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group" style="float:right">
+                            <div class="col-md-offset-2 col-md-10">
+                                <button type="submit" value="Save">Save</button>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
             </div>
+
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.StatusID, "StatusID", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("StatusID", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.StatusID, "", new { @class = "text-danger" })
-            </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.AssigneeID, "AssigneeID", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("AssigneeID", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.AssigneeID, "", new { @class = "text-danger" })
-            </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.ReporterID, "ReporterID", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("ReporterID", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.ReporterID, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Startdate, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Startdate, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Startdate, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Duedate, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Duedate, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Duedate, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
-            </div>
-        </div>
-    </div>
+        <!-- /.row -->
+    </section>
 }
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="/resources/demos/style.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
+<script>
+    $("#Assignee").select2({ width: '100%' });
+    //$(function () {
+    //    $("#Startdate").datepicker({
+    //        numberOfMonths: 2,
+    //        onSelect: function (selected) {
+    //            var dt = new Date(selected);
+    //            dt.setDate(dt.getDate() + 1);
+    //            $("#Duedate").datepicker("option", "minDate", dt);
+    //        }
+    //    });
+    //    $("#Duedate").datepicker({
+    //        numberOfMonths: 2,
+    //        onSelect: function (selected) {
+    //            var dt = new Date(selected);
+    //            dt.setDate(dt.getDate() - 1);
+    //            $("#Startdate").datepicker("option", "maxDate", dt);
+    //        }
+    //    });
+    //});
+
+</script>
+
+@section scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @RenderSection("scripts", required: false)
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+
+    <script>$("#Assignee").select2({ width: '100%' });</script>
+
+
+}

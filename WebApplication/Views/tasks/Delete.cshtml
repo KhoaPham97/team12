@@ -1,4 +1,4 @@
-﻿@model WebApplication.Models.Tasks
+﻿@model WebApplication.Models.Task
 
 @{
     ViewBag.Title = "Delete";
@@ -60,14 +60,9 @@
             @Html.DisplayFor(model => model.AspNetUser1.Email)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Bucket.Assignee)
-        </dt>
+  
 
-        <dd>
-            @Html.DisplayFor(model => model.Bucket.Assignee)
-        </dd>
-
+       
         <dt>
             @Html.DisplayNameFor(model => model.Status.StatusName)
         </dt>

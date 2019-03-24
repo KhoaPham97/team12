@@ -18,27 +18,17 @@ namespace WebApplication.Models
         public Bucket()
         {
             this.Attachments = new HashSet<Attachment>();
-            this.Tasks = new HashSet<Tasks>();
+            this.Tasks = new HashSet<Task>();
         }
     
         public int BucketID { get; set; }
         public int PlanID { get; set; }
-        public int StatusID { get; set; }
-        public string Assignee { get; set; }
-        public string Reporter { get; set; }
         public string Title { get; set; }
-        public string Description { get; set; }
-        public IEnumerable<Plan> Plans { get; set; }
-        public Nullable<System.DateTime> StartDate { get; set; }
-        public Nullable<System.DateTime> DueDate { get; set; }
-       
-        public virtual AspNetUser AspNetUser { get; set; }
-        public virtual AspNetUser AspNetUser1 { get; set; }
+    
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Attachment> Attachments { get; set; }
         public virtual Plan Plan { get; set; }
-        public virtual Status Status { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Tasks> Tasks { get; set; }
+        public virtual ICollection<Task> Tasks { get; set; }
     }
 }

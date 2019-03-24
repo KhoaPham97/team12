@@ -26,10 +26,11 @@ namespace WebApplication.Controllers
         {
 
 
-            var a = db.Buckets.Where(x => x.BucketID == id);
-          
+            var a = db.Plans.Where(x => x.IDPlan == id);
+            var b = db.Tasks.Where(x => x.BucketID == id);
+            ViewBag.Test = db.Tasks.ToList().Where(x => x.BucketID == id);
             ViewBag.Message = a;
-           
+            ViewBag.Bucket = db.Buckets;
             ViewBag.Assignee = db.AspNetUsers;
             ViewBag.Status = db.Status;
             var model = db.Tasks.ToList().Where(x => x.BucketID == id);
@@ -47,7 +48,7 @@ namespace WebApplication.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Tasks tasks = db.Tasks.Find(id);
+            Task tasks = db.Tasks.Find(id);
             if (tasks == null)
             {
                 return HttpNotFound();
@@ -56,7 +57,7 @@ namespace WebApplication.Controllers
         }
 
         // GET: Tasks/Create
-        public ActionResult Create()
+        public ActionResult Create(int? id)
         {
          
             ViewBag.AssigneeID = new SelectList(db.AspNetUsers, "Id", "Email");
@@ -71,13 +72,13 @@ namespace WebApplication.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "TaskID,BucketID,StatusID,AssigneeID,ReporterID,Title,Description,Startdate,Duedate")] Tasks tasks)
+        public ActionResult Create([Bind(Include = "TaskID,BucketID,StatusID,AssigneeID,ReporterID,Title,Description,Startdate,Duedate")] Task tasks)
         {
             if (ModelState.IsValid)
             {
                 db.Tasks.Add(tasks);
                 db.SaveChanges();
-                return RedirectToAction("Management", "Tasks", new { id = tasks.BucketID });
+                return Redirect(Request.UrlReferrer.ToString());
             }
 
             ViewBag.AssigneeID = new SelectList(db.AspNetUsers, "Id", "Email", tasks.AssigneeID);
@@ -94,11 +95,12 @@ namespace WebApplication.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Tasks tasks = db.Tasks.Find(id);
+            Task tasks = db.Tasks.Find(id);
             if (tasks == null)
             {
                 return HttpNotFound();
             }
+            ViewBag.Assignee = db.AspNetUsers;
             ViewBag.AssigneeID = new SelectList(db.AspNetUsers, "Id", "Email", tasks.AssigneeID);
             ViewBag.ReporterID = new SelectList(db.AspNetUsers, "Id", "Email", tasks.ReporterID);
             ViewBag.BucketID = new SelectList(db.Buckets, "BucketID", "Title", tasks.BucketID);
@@ -111,13 +113,15 @@ namespace WebApplication.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "TaskID,BucketID,StatusID,AssigneeID,ReporterID,Title,Description,Startdate,Duedate")] Tasks tasks)
+     
+        public ActionResult Edit([Bind(Include = "TaskID,BucketID,StatusID,AssigneeID,ReporterID,Title,Description,Startdate,Duedate")] Task tasks)
         {
             if (ModelState.IsValid)
             {
+               
                 db.Entry(tasks).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Management", "Tasks", new { id = tasks.BucketID });
+                return Redirect(Request.UrlReferrer.ToString());
             }
             ViewBag.AssigneeID = new SelectList(db.AspNetUsers, "Id", "Email", tasks.AssigneeID);
             ViewBag.ReporterID = new SelectList(db.AspNetUsers, "Id", "Email", tasks.ReporterID);
@@ -133,7 +137,7 @@ namespace WebApplication.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Tasks tasks = db.Tasks.Find(id);
+            Task tasks = db.Tasks.Find(id);
             if (tasks == null)
             {
                 return HttpNotFound();
@@ -146,10 +150,10 @@ namespace WebApplication.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Tasks tasks = db.Tasks.Find(id);
+            Task tasks = db.Tasks.Find(id);
             db.Tasks.Remove(tasks);
             db.SaveChanges();
-            return RedirectToAction("Management", "Tasks", new { id = tasks.BucketID });
+            return Redirect(Request.UrlReferrer.ToString());
         }
 
         protected override void Dispose(bool disposing)

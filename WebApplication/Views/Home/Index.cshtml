@@ -118,7 +118,7 @@
                 <!-- mini logo for sidebar mini 50x50 pixels -->
                 <span class="logo-mini"><b>VLU</b></span>
                 <!-- logo for regular state and mobile devices -->
-                <span class="logo-lg">  <img src="../area/dist/img/logo.png" width="25"> &nbsp; <b style="font-size: 15px">ĐẠI HỌC VĂN LANG</b></span>
+                <span class="logo-lg">  <img src="@Url.Content("~/area/dist/img/logo.png")" width="25"> &nbsp; <b style="font-size: 15px">ĐẠI HỌC VĂN LANG</b></span>
             </a>
             <!-- Header Navbar: style can be found in header.less -->
             <nav class="navbar navbar-static-top">
@@ -336,14 +336,14 @@
 
                         <li class="dropdown user user-menu">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <img src="../area/dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
+                                <img src="@Url.Content("~/area/dist/img/user2-160x160.jpg")" class="user-image" alt="User Image">
                                 <span class="hidden-xs">@User.Identity.GetUserName()</span>
                             </a>
 
                             <ul class="dropdown-menu">
                                 <!-- User image -->
                                 <li class="user-header">
-                                    <img src="../area/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                                    <img src="@Url.Content("~/area/dist/img/user2-160x160.jpg")" class="img-circle" alt="User Image">
                                     <p style="text-align:center">
                                         @User.Identity.GetUserName()
 
@@ -481,276 +481,118 @@
 
         </div>*@
                 <hr>
-            
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="box box-default collapsed-box box-solid">
-                            <div class="box-header with-border">
-                                <h3 class="box-title">Create Plan</h3>
-                                <div class="box-tools pull-right">
-                                    <button type="button" class="btn btn-box-tool" data-widget="collapse">
-                                        <i class="fa fa-plus"></i>
-                                    </button>
-                                </div>
-                                <!-- /.box-tools -->
+
+
+                <div class="col-md-12">
+                    <div class="box box-default collapsed-box box-solid">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">New Plan</h3>
+                            <div class="box-tools pull-right">
+                                <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                                    <i class="fa fa-plus"></i>
+                                </button>
                             </div>
-                            <!-- /.box-header -->
-                            <div class="box-body">
-                                <section class="content">
-                                    <div class="row">
-                                        <form action="@Url.Action("Create", "Plans")" method="post">
-                                            @Html.AntiForgeryToken()
-                                            <!-- left column -->
-                                            <div class="col-md-12">
-                                                <!-- general form elements -->
+                            <!-- /.box-tools -->
+                        </div>
+                        <!-- /.box-header -->
+                        <div class="box-body">
 
-                                                <div class="box box-primary">
+                            <div class="row">
+                                <form action="@Url.Action("Create", "Plans")" method="post">
+                                    @Html.AntiForgeryToken()
+                                    <!-- left column -->
+                                    <div class="col-md-12">
+                                        <!-- general form elements -->
 
-                                                    <div class="box-header with-border">
+                                        <div class="box box-primary">
 
-                                                        <div class="col-md-12">
-                                                            <div class="form-group">
-                                                                <label>Title</label>
-                                                                <input type="text" class="form-control" id="Title" name="Title"  placeholder="Plan Name">
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-4">
-                                                            <div class="form-group">
-                                                                <label>Status</label>
-                                                                <select class="form-control" id="StatusID" name="StatusID">
-                                                                    <option value="1">Private</option>
-                                                                    <option value="2">Public</option>
-                                                                </select>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-4">
-                                                            <div class="form-group">
-                                                                <label>Start Date</label>
+                                            <div class="box-header with-border">
 
-                                                                <div class="input-group date">
-                                                                    <div class="input-group-addon">
-                                                                        <i class="fa fa-calendar" onclick="Startdate()"></i>
-                                                                    </div>
-                                                                    <input type="datetime" class="form-control" id="Startdate" name="Startdate" readonly="true">
-                                                                </div>
-                                                            </div>
-                                                        </div>
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
 
-
-                                                        <div class="col-md-4">
-                                                            <div class="form-group">
-                                                                <label>Due Date</label>
-                                                                <div class="input-group date">
-                                                                    <div class="input-group-addon">
-                                                                        <i class="fa fa-calendar" onclick="Duedate()"></i>
-                                                                    </div>
-                                                                    <input type="datetime" class="form-control" id="Duedate" name="Duedate" readonly="true">
-
-                                                                </div>
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="box-body pad">
-                                                            <label>Description</label>
-
-                                                            <textarea class="textarea" placeholder="Place some text here"
-                                                                      style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;" id="Description" name="Description"></textarea>
-
-                                                        </div>
-
-
-
-                                                        <div class="form-group" style="float:right">
-                                                            <div class="col-md-offset-2 col-md-10">
-                                                                <input type="submit" value="Create" class="btn btn-default" />
-                                                            </div>
-                                                        </div>
+                                                        <input type="text" class="form-control" id="Title" name="Title" placeholder="Plan Name">
                                                     </div>
-                                                    <!-- /.box-header -->
-                                                    <!-- form start -->
+                                                </div>
+                                  
 
+
+                                                <div class="form-group" style="float:right">
+                                                    <div class="col-md-offset-2 col-md-10">
+                                                        <input type="submit" value="Create" class="btn btn-default" />
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </form>
-                                    </div>
+                                            <!-- /.box-header -->
+                                            <!-- form start -->
 
-
-
-                                    <!-- /.row -->
-                                </section>
-                            </div>
-                            <!-- /.box-body -->
-                        </div>
-                        <!-- /.box -->
-                    </div>
-                    <div class="col-md-12">
-
-                        @*Custom Tabs
-              <div class="nav-tabs-custom" style="padding-top:0">
-        <ul class="nav nav-tabs" style="font-size:16px">
-            <li class="active"><a href="#tab_1" data-toggle="tab" aria-expanded="true"><strong>All Plans</strong></a></li>*@
-                        @*<li class=""><a href="#tab_2" data-toggle="tab" aria-expanded="false"><strong>Public Plans</strong></a></li>
-        <li class=""><a href="#tab_3" data-toggle="tab" aria-expanded="false"><strong>Private Plans</strong></a></li>*@
-
-
-                        @*</ul>*@
-                        @*<div class="tab-content">
-        <div class="tab-pane active" id="tab_1">*@
-                        <div class="box-body table-responsive no-padding" style="text-align:center">
-
-                            <div class="col-md-6">
-                                <div class="box box-success">
-                                    <div class="box-header with-border">
-                                        <h3 class="box-title">Public</h3>
-
-                                        <div class="box-tools pull-right">
-                                            <button type="button" class="btn btn-box-tool" data-widget="collapse">
-                                                <i class="fa fa-minus"></i>
-                                            </button>
                                         </div>
-                                        <!-- /.box-tools -->
                                     </div>
-                                    <!-- /.box-header -->
-                                    <div class="box-body" style="">
-                                        <table class="table table-hover" id="main">
-                                            <tr>
-                                                <th style="text-align:center">ID</th>
-                                                <th style="text-align:center">Title</th>
-                                                <th style="text-align:center">Description</th>
-                                                <th style="text-align:center">Due Date</th>
-                                                <th style="text-align:center">Options</th>
-
-                                            </tr>
-                                            @foreach (var item in Model)
-                                            {
-
-                                                if (@item.StatusID == 2)
-                                                {
-
-                                                    <tr>
-                                                        <td>
-                                                            <a href=" @Url.Action("Management", "Buckets",new {id = @item.IDPlan }) " style="color:black">
-                                                                @item.IDPlan
-                                                            </a>
-                                                        </td>
-                                                        <td style="text-align:left">
-                                                            <a href=" @Url.Action("Management", "Buckets",new {id = @item.IDPlan }) " style="color:black">
-                                                                @item.Title.Substring(0, Math.Min(@item.Title.Length, 40))..
-                                                            </a>
-                                                        </td>
-
-
-
-                                                        <td style="text-align:left">
-                                                            <a href=" @Url.Action("Management", "Buckets",new {id = @item.IDPlan }) " style="color:black">
-                                                                @item.Description.Substring(0, Math.Min(@item.Description.Length, 30))..
-                                                            </a>
-                                                        </td>
-                                                        <td>
-                                                            <a href=" @Url.Action("Management", "Buckets",new {id = @item.IDPlan }) " style="color:black">
-                                                                @item.Duedate
-                                                            </a>
-                                                        </td>
-                                                        <td>
-                                                            <a href=" @Url.Action("Edit", "Plans",new {id = @item.IDPlan }) " style="color:black">
-                                                                <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                                                            </a>
-                                                            &nbsp;
-                                                            <a href=" @Url.Action("Delete", "Plans",new {id = @item.IDPlan }) " style="color:black">
-                                                                <i class="fa fa-trash" aria-hidden="true"></i>
-                                                            </a>
-                                                        </td>
-                                                    </tr>
-                                                }
-                                            }
-                                        </table>
-                                    </div>
-                                    <!-- /.box-body -->
-                                </div>
-                                <!-- /.box -->
+                                </form>
                             </div>
-                            <div class="col-md-6">
-                                <div class="box box-warning">
-                                    <div class="box-header with-border">
-                                        <h3 class="box-title">Private</h3>
-
-                                        <div class="box-tools pull-right">
-                                            <button type="button" class="btn btn-box-tool" data-widget="collapse">
-                                                <i class="fa fa-minus"></i>
-                                            </button>
-                                        </div>
-                                        <!-- /.box-tools -->
-                                    </div>
-                                    <!-- /.box-header -->
-                                    <div class="box-body" style="">
-                                        <table class="table table-hover">
-                                            <tr>
-                                                <th style="text-align:center">ID</th>
-                                                <th style="text-align:center">Title</th>
-                                                <th style="text-align:center">Description</th>
-                                                <th style="text-align:center">Due Date</th>
-                                                <th style="text-align:center">Options</th>
-
-                                            </tr>
-                                            @foreach (var item in Model)
-                                            {
-
-                                                if (@item.StatusID == 1)
-                                                {
-                                                    <tr>
-                                                        <td>
-                                                            <a href=" @Url.Action("Management", "Buckets",new {id = @item.IDPlan }) " style="color:black">
-                                                                @item.IDPlan
-                                                            </a>
-                                                        </td>
-                                                        <td style="text-align:left">
-                                                            <a href=" @Url.Action("Management", "Buckets",new {id = @item.IDPlan }) " style="color:black">
-                                                                @item.Title.Substring(0, Math.Min(@item.Title.Length, 40))..
-                                                            </a>
-                                                        </td>
 
 
 
-                                                        <td style="text-align:left">
-                                                            <a href=" @Url.Action("Management", "Buckets",new {id = @item.IDPlan }) " style="color:black">
-                                                                @item.Description.Substring(0, Math.Min(@item.Description.Length, 30))..
-                                                            </a>
-                                                        </td>
-                                                        <td>  <a href=" @Url.Action("Management", "Buckets",new {id = @item.IDPlan }) " style="color:black">@item.Duedate</a></td>
+                            <!-- /.row -->
 
-                                                        <td>
-                                                            <a href=" @Url.Action("Edit", "Plans",new {id = @item.IDPlan }) " style="color:black">
-                                                                <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                                                            </a>
-                                                            &nbsp;
-                                                            <a href=" @Url.Action("Delete", "Plans",new {id = @item.IDPlan }) " style="color:black">
-                                                                <i class="fa fa-trash" aria-hidden="true"></i>
-                                                            </a>
-                                                        </td>
-                                                    </tr>
-                                                }
-                                            }
-                                        </table>
-                                    </div>
-                                    <!-- /.box-body -->
-                                </div>
-                                <!-- /.box -->
-                            </div>
                         </div>
+                        <!-- /.box-body -->
                     </div>
-
-
+                    <!-- /.box -->
                 </div>
 
+                <div class="col-xs-12">
+                    <div class="box">
+                        <div class="box-header">
+                            <h3 class="box-title">List Plan</h3>
 
+                            <div class="box-tools">
+                                <div class="input-group input-group-sm" style="width: 150px;">
+                                    <input type="text" name="table_search" class="form-control pull-right" placeholder="Search">
 
-                <!-- /.row (main row) -->
+                                    <div class="input-group-btn">
+                                        <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.box-header -->
+                        <div class="box-body table-responsive no-padding">
+                            <table class="table table-hover">
+                                <tbody>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Title</th>
+
+                                    </tr>
+                                    @foreach (var item in Model)
+                                    {
+                                    <tr>
+                                     
+                                        <td>   <a href=" @Url.Action("Management", "Buckets",new {id = @item.IDPlan }) " style="color:black">@item.IDPlan     </a></td>
+                                        <td>   <a href=" @Url.Action("Management", "Buckets",new {id = @item.IDPlan }) " style="color:black">@item.Title     </a></td>
+                                   
+                                    </tr>
+                                        } 
+                                    </tbody>
+                            </table>
+                        </div>
+                        <!-- /.box-body -->
+                    </div>
+                    <!-- /.box -->
+                </div>
+          
+
 
             </section>
-            <!-- /.content -->
-        </div>
-        <!-- /.content-wrapper -->
-        <footer class="main-footer">
+        
+                    <!-- /.content -->
+        
+                </div>
+        
+                <!-- /.content-wrapper -->
+        
+                <footer class="main-footer">
             <div class="pull-right hidden-xs">
                 <b>Version</b> 2.4.0
             </div>

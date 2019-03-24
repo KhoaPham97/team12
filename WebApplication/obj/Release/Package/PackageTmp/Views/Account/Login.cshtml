@@ -12,26 +12,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!--===============================================================================================-->
-    <link rel="icon" type="../area/login/image/png" href="images/icons/favicon.ico" />
+    <link rel="icon" type="../area/login/image/png" href="@Url.Content("~/images/icons/favicon.ico")" />
     <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="../area/login/vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/area/login/vendor/bootstrap/css/bootstrap.min.css")">
     <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="../area/login/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/area/login/fonts/font-awesome-4.7.0/css/font-awesome.min.css")">
     <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="../area/login/fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/area/login/fonts/Linearicons-Free-v1.0.0/icon-font.min.css")">
     <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="../area/login/vendor/animate/animate.css">
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/area/login/vendor/animate/animate.css")">
     <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="../area/login/vendor/css-hamburgers/hamburgers.min.css">
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/area/login/vendor/css-hamburgers/hamburgers.min.css")">
     <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="../area/login/vendor/animsition/css/animsition.min.css">
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/area/login/vendor/animsition/css/animsition.min.css")">
     <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="../area/login/vendor/select2/select2.min.css">
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/area/login/vendor/select2/select2.min.css")">
     <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="../area/login/vendor/daterangepicker/daterangepicker.css">
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/area/login/vendor/daterangepicker/daterangepicker.css")">
     <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="../area/login/css/util.css">
-    <link rel="stylesheet" type="text/css" href="../area/login/css/main.css">
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/area/login/css/util.css")">
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/area/login/css/main.css")">
     <!--===============================================================================================-->
 
 </head>
@@ -42,7 +42,7 @@
         <div class="container-login100">
 
             <div class="wrap-login100 p-b-160 p-t-50">
-                <div><img src="../area/login/images/vlu.png" width="20%" style="display: block;margin-left: auto;margin-right: auto;margin-bottom: 20px"> </div>
+                <div><img src="@Url.Content("~/area/login/images/vlu.png")" width="20%" style="display: block;margin-left: auto;margin-right: auto;margin-bottom: 20px"> </div>
 
 
 
@@ -81,38 +81,38 @@
 
                                 <div class="text-center w-full p-t-23">
 
-                                    <a href="/Account/Register" style="color:white">Register as a new user?</a>
+                                    <a href="@Url.Content("~/Account/Register")" style="color:white">Register as a new user?</a>
 
                                 </div>
 
 
                                 @*<div class="wrap-input100 rs1 validate-input">
-                        <span class="label-input100">Email</span>
-                        <div>
-                            @Html.TextBoxFor(m => m.Email, new { @class = "input100" })
-                            @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-                    <div class="wrap-input100 rs2 validate-input">
-                        <span class="label-input100">Password</span>
+                                        <span class="label-input100">Email</span>
+                                        <div>
+                                            @Html.TextBoxFor(m => m.Email, new { @class = "input100" })
+                                            @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="wrap-input100 rs2 validate-input">
+                                        <span class="label-input100">Password</span>
 
-                            @Html.PasswordFor(m => m.Password, new { @class = "input100" })
-                            @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                                            @Html.PasswordFor(m => m.Password, new { @class = "input100" })
+                                            @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
 
-                    </div>*@
+                                    </div>*@
 
                                 @*<div class="form-group">
-                        <div class="col-md-offset-2 col-md-10">
-                            <input type="submit" value="Log in" class="btn btn-default" />
-                        </div>
-                    </div>*@
+                                        <div class="col-md-offset-2 col-md-10">
+                                            <input type="submit" value="Log in" class="btn btn-default" />
+                                        </div>
+                                    </div>*@
                                 <p>
 
                                 </p>
                                 @*Enable this once you have account confirmation enabled for password reset functionality
-                    <p>
-                        @Html.ActionLink("Forgot your password?", "ForgotPassword")
-                    </p>*@
+                                    <p>
+                                        @Html.ActionLink("Forgot your password?", "ForgotPassword")
+                                    </p>*@
                             }
                         </section>
                     </div>
@@ -122,7 +122,7 @@
 
                     <br>
                     <div>
-                    
+
                         <section id="socialLoginForm">
                             @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
                         </section>
@@ -144,29 +144,29 @@
 
 
     <!--===============================================================================================-->
-    <script src="../area/login/vendor/jquery/jquery-3.2.1.min.js"></script>
+    <script src="@Url.Content("~/area/login/vendor/jquery/jquery-3.2.1.min.js")"></script>
     <!--===============================================================================================-->
-    <script src="../area/login/vendor/animsition/js/animsition.min.js"></script>
+    <script src="@Url.Content("~/area/login/vendor/animsition/js/animsition.min.js")"></script>
     <!--===============================================================================================-->
-    <script src="../area/login/vendor/bootstrap/js/popper.js"></script>
-    <script src="../area/login/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="@Url.Content("~/area/login/vendor/bootstrap/js/popper.js")"></script>
+    <script src="@Url.Content("~/area/login/vendor/bootstrap/js/bootstrap.min.js")"></script>
     <!--===============================================================================================-->
-    <script src="../area/login/vendor/select2/select2.min.js"></script>
+    <script src="@Url.Content("~/area/login/vendor/select2/select2.min.js")"></script>
     <!--===============================================================================================-->
-    <script src="../area/login/vendor/daterangepicker/moment.min.js"></script>
-    <script src="../area/login/vendor/daterangepicker/daterangepicker.js"></script>
+    <script src="@Url.Content("~/area/login/vendor/daterangepicker/moment.min.js")"></script>
+    <script src="@Url.Content("~/area/login/vendor/daterangepicker/daterangepicker.js")"></script>
     <!--===============================================================================================-->
-    <script src="../area/login/vendor/countdowntime/countdowntime.js"></script>
+    <script src="@Url.Content("~/area/login/vendor/countdowntime/countdowntime.js")"></script>
     <!--===============================================================================================-->
-    <script src="../area/login/js/main.js"></script>
+    <script src="@Url.Content("~/area/login/js/main.js")"></script>
 
 </body>
 </html>
 
 
 
-    
 
-    @section Scripts {
-        @Scripts.Render("~/bundles/jqueryval")
-    }
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

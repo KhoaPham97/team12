@@ -73,6 +73,7 @@
     <Property Name="Reporter" Type="nvarchar" MaxLength="128" Nullable="false" />
     <Property Name="Attachment" Type="varchar" MaxLength="255" Nullable="false" />
     <Property Name="Date" Type="datetime" Nullable="false" />
+    <Property Name="ChecklistID" Type="int" />
   </EntityType>
   <EntityType Name="Buckets">
     <Key>
@@ -80,13 +81,16 @@
     </Key>
     <Property Name="BucketID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="PlanID" Type="int" Nullable="false" />
-    <Property Name="StatusID" Type="int" Nullable="false" />
-    <Property Name="Assignee" Type="nvarchar" MaxLength="128" />
-    <Property Name="Reporter" Type="nvarchar" MaxLength="128" Nullable="false" />
     <Property Name="Title" Type="nvarchar" MaxLength="100" Nullable="false" />
-    <Property Name="Description" Type="nvarchar" MaxLength="200" />
-    <Property Name="StartDate" Type="datetime" />
-    <Property Name="DueDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Checklist">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="TaskID" Type="int" Nullable="false" />
+    <Property Name="AttachmentsID" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Comments">
     <Key>
@@ -114,11 +118,7 @@
       <PropertyRef Name="IDPlan" />
     </Key>
     <Property Name="IDPlan" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="StatusID" Type="int" Nullable="false" />
     <Property Name="Title" Type="nvarchar" MaxLength="100" Nullable="false" />
-    <Property Name="Description" Type="nvarchar" MaxLength="200" />
-    <Property Name="Startdate" Type="datetime" Nullable="false" />
-    <Property Name="Duedate" Type="datetime" Nullable="false" />
   </EntityType>
   <EntityType Name="Status">
     <Key>
@@ -127,13 +127,6 @@
     <Property Name="ID" Type="int" Nullable="false" />
     <Property Name="StatusName" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="Description" Type="nvarchar" MaxLength="200" />
-  </EntityType>
-  <EntityType Name="StatusPlan">
-    <Key>
-      <PropertyRef Name="ID" />
-    </Key>
-    <Property Name="ID" Type="int" Nullable="false" />
-    <Property Name="StatusName" Type="nvarchar" MaxLength="20" Nullable="false" />
   </EntityType>
   <EntityType Name="sysdiagrams">
     <Key>
@@ -152,12 +145,12 @@
     <Property Name="TaskID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="BucketID" Type="int" Nullable="false" />
     <Property Name="StatusID" Type="int" Nullable="false" />
-    <Property Name="AssigneeID" Type="nvarchar" MaxLength="128" Nullable="false" />
-    <Property Name="ReporterID" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="AssigneeID" Type="nvarchar" MaxLength="128" />
+    <Property Name="ReporterID" Type="nvarchar" MaxLength="128" />
     <Property Name="Title" Type="nvarchar" MaxLength="100" Nullable="false" />
     <Property Name="Description" Type="nvarchar" MaxLength="200" />
-    <Property Name="Startdate" Type="datetime" Nullable="false" />
-    <Property Name="Duedate" Type="datetime" Nullable="false" />
+    <Property Name="Startdate" Type="datetime" />
+    <Property Name="Duedate" Type="datetime" />
   </EntityType>
   <Association Name="FK_Attachment_AspNetUsers">
     <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
@@ -219,30 +212,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Bucket_AspNetUsers">
-    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
-    <End Role="Buckets" Type="Self.Buckets" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="AspNetUsers">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Buckets">
-        <PropertyRef Name="Reporter" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Bucket_AspNetUsers1">
-    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1" />
-    <End Role="Buckets" Type="Self.Buckets" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="AspNetUsers">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Buckets">
-        <PropertyRef Name="Assignee" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_Bucket_Plan">
     <End Role="Plans" Type="Self.Plans" Multiplicity="1" />
     <End Role="Buckets" Type="Self.Buckets" Multiplicity="*" />
@@ -255,15 +224,27 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Bucket_Status">
-    <End Role="Status" Type="Self.Status" Multiplicity="1" />
-    <End Role="Buckets" Type="Self.Buckets" Multiplicity="*" />
+  <Association Name="FK_Checklist_Attachments">
+    <End Role="Attachments" Type="Self.Attachments" Multiplicity="1" />
+    <End Role="Checklist" Type="Self.Checklist" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="Status">
+      <Principal Role="Attachments">
         <PropertyRef Name="ID" />
       </Principal>
-      <Dependent Role="Buckets">
-        <PropertyRef Name="StatusID" />
+      <Dependent Role="Checklist">
+        <PropertyRef Name="AttachmentsID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Checklist_Tasks">
+    <End Role="Tasks" Type="Self.Tasks" Multiplicity="1" />
+    <End Role="Checklist" Type="Self.Checklist" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tasks">
+        <PropertyRef Name="TaskID" />
+      </Principal>
+      <Dependent Role="Checklist">
+        <PropertyRef Name="TaskID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -371,20 +352,8 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Plan_StatusPlan">
-    <End Role="StatusPlan" Type="Self.StatusPlan" Multiplicity="1" />
-    <End Role="Plans" Type="Self.Plans" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="StatusPlan">
-        <PropertyRef Name="ID" />
-      </Principal>
-      <Dependent Role="Plans">
-        <PropertyRef Name="StatusID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_Task_AspNetUsers">
-    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1" />
     <End Role="Tasks" Type="Self.Tasks" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="AspNetUsers">
@@ -396,7 +365,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Task_AspNetUsers1">
-    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1" />
     <End Role="Tasks" Type="Self.Tasks" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="AspNetUsers">
@@ -471,11 +440,11 @@
     <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Attachments" EntityType="Self.Attachments" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Buckets" EntityType="Self.Buckets" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Checklist" EntityType="Self.Checklist" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Comments" EntityType="Self.Comments" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ListMember" EntityType="Self.ListMember" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Plans" EntityType="Self.Plans" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Status" EntityType="Self.Status" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="StatusPlan" EntityType="Self.StatusPlan" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Tasks" EntityType="Self.Tasks" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK_Attachment_AspNetUsers" Association="Self.FK_Attachment_AspNetUsers">
@@ -498,21 +467,17 @@
       <End Role="Tasks" EntitySet="Tasks" />
       <End Role="Attachments" EntitySet="Attachments" />
     </AssociationSet>
-    <AssociationSet Name="FK_Bucket_AspNetUsers" Association="Self.FK_Bucket_AspNetUsers">
-      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
-      <End Role="Buckets" EntitySet="Buckets" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Bucket_AspNetUsers1" Association="Self.FK_Bucket_AspNetUsers1">
-      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
-      <End Role="Buckets" EntitySet="Buckets" />
-    </AssociationSet>
     <AssociationSet Name="FK_Bucket_Plan" Association="Self.FK_Bucket_Plan">
       <End Role="Plans" EntitySet="Plans" />
       <End Role="Buckets" EntitySet="Buckets" />
     </AssociationSet>
-    <AssociationSet Name="FK_Bucket_Status" Association="Self.FK_Bucket_Status">
-      <End Role="Status" EntitySet="Status" />
-      <End Role="Buckets" EntitySet="Buckets" />
+    <AssociationSet Name="FK_Checklist_Attachments" Association="Self.FK_Checklist_Attachments">
+      <End Role="Attachments" EntitySet="Attachments" />
+      <End Role="Checklist" EntitySet="Checklist" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Checklist_Tasks" Association="Self.FK_Checklist_Tasks">
+      <End Role="Tasks" EntitySet="Tasks" />
+      <End Role="Checklist" EntitySet="Checklist" />
     </AssociationSet>
     <AssociationSet Name="FK_Comment_AspNetUsers" Association="Self.FK_Comment_AspNetUsers">
       <End Role="AspNetUsers" EntitySet="AspNetUsers" />
@@ -545,10 +510,6 @@
     <AssociationSet Name="FK_ListMember_Plan" Association="Self.FK_ListMember_Plan">
       <End Role="Plans" EntitySet="Plans" />
       <End Role="ListMember" EntitySet="ListMember" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Plan_StatusPlan" Association="Self.FK_Plan_StatusPlan">
-      <End Role="StatusPlan" EntitySet="StatusPlan" />
-      <End Role="Plans" EntitySet="Plans" />
     </AssociationSet>
     <AssociationSet Name="FK_Task_AspNetUsers" Association="Self.FK_Task_AspNetUsers">
       <End Role="AspNetUsers" EntitySet="AspNetUsers" />

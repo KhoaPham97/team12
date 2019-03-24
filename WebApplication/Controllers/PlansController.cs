@@ -18,7 +18,7 @@ namespace WebApplication.Controllers
         // GET: Plans
         public ActionResult Index()
         {
-            var plans = db.Plans.Include(p => p.StatusPlan);
+            var plans = db.Plans.Include(p => p.Title);
             return View(plans.ToList());
         }
 
@@ -40,7 +40,7 @@ namespace WebApplication.Controllers
         // GET: Plans/Create
         public ActionResult Create()
         {
-            ViewBag.StatusID = new SelectList(db.StatusPlans, "ID", "StatusName");
+           
             return View();
         }
 
@@ -49,7 +49,7 @@ namespace WebApplication.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "IDPlan,StatusID,Title,Description,Startdate,Duedate")] Plan plan)
+        public ActionResult Create([Bind(Include = "IDPlan,Title")] Plan plan)
         {
             if (ModelState.IsValid)
             {
@@ -58,7 +58,7 @@ namespace WebApplication.Controllers
                 return RedirectToAction("Index","Home");
             }
 
-            ViewBag.StatusID = new SelectList(db.StatusPlans, "ID", "StatusName", plan.StatusID);
+
             return View(plan);
         }
 
@@ -74,7 +74,7 @@ namespace WebApplication.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.StatusID = new SelectList(db.StatusPlans, "ID", "StatusName", plan.StatusID);
+
             return View(plan);
         }
 
@@ -83,7 +83,7 @@ namespace WebApplication.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "IDPlan,StatusID,Title,Description,Startdate,Duedate")] Plan plan)
+        public ActionResult Edit([Bind(Include = "IDPlan,Title")] Plan plan)
         {
             if (ModelState.IsValid)
             {
@@ -91,7 +91,7 @@ namespace WebApplication.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.StatusID = new SelectList(db.StatusPlans, "ID", "StatusName", plan.StatusID);
+        
             return View(plan);
         }
 

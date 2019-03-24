@@ -23,11 +23,7 @@ namespace WebApplication.Models
         }
     
         public int IDPlan { get; set; }
-        public int StatusID { get; set; }
         public string Title { get; set; }
-        public string Description { get; set; }
-        public System.DateTime Startdate { get; set; }
-        public System.DateTime Duedate { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Attachment> Attachments { get; set; }
@@ -35,6 +31,5 @@ namespace WebApplication.Models
         public virtual ICollection<Bucket> Buckets { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ListMember> ListMembers { get; set; }
-        public virtual StatusPlan StatusPlan { get; set; }
     }
 }

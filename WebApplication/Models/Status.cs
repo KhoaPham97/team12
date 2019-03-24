@@ -17,8 +17,7 @@ namespace WebApplication.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Status()
         {
-            this.Buckets = new HashSet<Bucket>();
-            this.Tasks = new HashSet<Tasks>();
+            this.Tasks = new HashSet<Task>();
         }
     
         public int ID { get; set; }
@@ -26,8 +25,6 @@ namespace WebApplication.Models
         public string Description { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Bucket> Buckets { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Tasks> Tasks { get; set; }
+        public virtual ICollection<Task> Tasks { get; set; }
     }
 }

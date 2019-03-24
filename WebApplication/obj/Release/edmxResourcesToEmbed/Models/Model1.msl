@@ -83,6 +83,7 @@
     <EntitySetMapping Name="Attachments">
       <EntityTypeMapping TypeName="cap21t12Model.Attachment">
         <MappingFragment StoreEntitySet="Attachments">
+          <ScalarProperty Name="ChecklistID" ColumnName="ChecklistID" />
           <ScalarProperty Name="Date" ColumnName="Date" />
           <ScalarProperty Name="Attachment1" ColumnName="Attachment" />
           <ScalarProperty Name="Reporter" ColumnName="Reporter" />
@@ -97,15 +98,19 @@
     <EntitySetMapping Name="Buckets">
       <EntityTypeMapping TypeName="cap21t12Model.Bucket">
         <MappingFragment StoreEntitySet="Buckets">
-          <ScalarProperty Name="DueDate" ColumnName="DueDate" />
-          <ScalarProperty Name="StartDate" ColumnName="StartDate" />
-          <ScalarProperty Name="Description" ColumnName="Description" />
           <ScalarProperty Name="Title" ColumnName="Title" />
-          <ScalarProperty Name="Reporter" ColumnName="Reporter" />
-          <ScalarProperty Name="Assignee" ColumnName="Assignee" />
-          <ScalarProperty Name="StatusID" ColumnName="StatusID" />
           <ScalarProperty Name="PlanID" ColumnName="PlanID" />
           <ScalarProperty Name="BucketID" ColumnName="BucketID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Checklists">
+      <EntityTypeMapping TypeName="cap21t12Model.Checklist">
+        <MappingFragment StoreEntitySet="Checklist">
+          <ScalarProperty Name="AttachmentsID" ColumnName="AttachmentsID" />
+          <ScalarProperty Name="TaskID" ColumnName="TaskID" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -135,11 +140,7 @@
     <EntitySetMapping Name="Plans">
       <EntityTypeMapping TypeName="cap21t12Model.Plan">
         <MappingFragment StoreEntitySet="Plans">
-          <ScalarProperty Name="Duedate" ColumnName="Duedate" />
-          <ScalarProperty Name="Startdate" ColumnName="Startdate" />
-          <ScalarProperty Name="Description" ColumnName="Description" />
           <ScalarProperty Name="Title" ColumnName="Title" />
-          <ScalarProperty Name="StatusID" ColumnName="StatusID" />
           <ScalarProperty Name="IDPlan" ColumnName="IDPlan" />
         </MappingFragment>
       </EntityTypeMapping>
@@ -148,14 +149,6 @@
       <EntityTypeMapping TypeName="cap21t12Model.Status">
         <MappingFragment StoreEntitySet="Status">
           <ScalarProperty Name="Description" ColumnName="Description" />
-          <ScalarProperty Name="StatusName" ColumnName="StatusName" />
-          <ScalarProperty Name="ID" ColumnName="ID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="StatusPlans">
-      <EntityTypeMapping TypeName="cap21t12Model.StatusPlan">
-        <MappingFragment StoreEntitySet="StatusPlan">
           <ScalarProperty Name="StatusName" ColumnName="StatusName" />
           <ScalarProperty Name="ID" ColumnName="ID" />
         </MappingFragment>
@@ -172,8 +165,16 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Tasks1">
-      <EntityTypeMapping TypeName="cap21t12Model.Tasks">
+    <AssociationSetMapping Name="AspNetUserRoles" TypeName="cap21t12Model.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
+      <EndProperty Name="AspNetUser">
+        <ScalarProperty Name="Id" ColumnName="UserId" />
+      </EndProperty>
+      <EndProperty Name="AspNetRole">
+        <ScalarProperty Name="Id" ColumnName="RoleId" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <EntitySetMapping Name="Tasks">
+      <EntityTypeMapping TypeName="cap21t12Model.Task">
         <MappingFragment StoreEntitySet="Tasks">
           <ScalarProperty Name="Duedate" ColumnName="Duedate" />
           <ScalarProperty Name="Startdate" ColumnName="Startdate" />
@@ -187,13 +188,5 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <AssociationSetMapping Name="AspNetUserRoles" TypeName="cap21t12Model.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
-      <EndProperty Name="AspNetUser">
-        <ScalarProperty Name="Id" ColumnName="UserId" />
-      </EndProperty>
-      <EndProperty Name="AspNetRole">
-        <ScalarProperty Name="Id" ColumnName="RoleId" />
-      </EndProperty>
-    </AssociationSetMapping>
   </EntityContainerMapping>
 </Mapping>

@@ -14,6 +14,12 @@ namespace WebApplication.Models
     
     public partial class Attachment
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Attachment()
+        {
+            this.Checklists = new HashSet<Checklist>();
+        }
+    
         public int ID { get; set; }
         public int PlanID { get; set; }
         public Nullable<int> BucketID { get; set; }
@@ -22,11 +28,14 @@ namespace WebApplication.Models
         public string Reporter { get; set; }
         public string Attachment1 { get; set; }
         public System.DateTime Date { get; set; }
+        public Nullable<int> ChecklistID { get; set; }
     
         public virtual AspNetUser AspNetUser { get; set; }
         public virtual Bucket Bucket { get; set; }
         public virtual Comment Comment { get; set; }
         public virtual Plan Plan { get; set; }
-        public virtual Tasks Task { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Checklist> Checklists { get; set; }
+        public virtual Task Task { get; set; }
     }
 }

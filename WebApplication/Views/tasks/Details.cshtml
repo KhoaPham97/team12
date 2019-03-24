@@ -1,4 +1,4 @@
-﻿@model WebApplication.Models.Tasks
+﻿@model WebApplication.Models.Task
 
 @{
     ViewBag.Title = "Details";
@@ -8,7 +8,7 @@
 <h2>Details</h2>
 
 <div>
-    <h4>Tasks</h4>
+    <h4>Task</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -60,11 +60,11 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Bucket.Assignee)
+            @Html.DisplayNameFor(model => model.Bucket.Title)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Bucket.Assignee)
+            @Html.DisplayFor(model => model.Bucket.Title)
         </dd>
 
         <dt>
