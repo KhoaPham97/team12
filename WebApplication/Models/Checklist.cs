@@ -19,7 +19,7 @@ namespace WebApplication.Models
         public int TaskID { get; set; }
         public int AttachmentsID { get; set; }
     
-        public virtual Attachment Attachment { get; set; }
         public virtual Task Task { get; set; }
+        public virtual Attachment Attachment { get; set; }
     }
 }

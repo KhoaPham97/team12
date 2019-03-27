@@ -28,7 +28,8 @@ namespace WebApplication.Controllers
      
             ViewBag.Message = a;
             ViewBag.b = db.Tasks.Where(x => x.BucketID == id);
-            ViewBag.Task = db.Tasks;      
+            ViewBag.Task = db.Tasks;
+            ViewBag.Attachments = db.Attachments;
             var model = db.Buckets.Where(x => x.PlanID == id);
             ViewBag.Assignee = db.AspNetUsers;
             ViewBag.Status = db.Status;

@@ -50,6 +50,9 @@
 
 
     <style type="text/css">
+        .select#StatusID option[value="1"] {
+            background-color: red;
+        }
         .datepicker {
             z-index: 1600 !important; /* has to be larger than 1050 */
         }
@@ -791,27 +794,65 @@
                                             <div class="modal fade" id=@("myModal" + data.TaskID) tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                                                 <div class="modal-dialog" role="document">
                                                     <div class="modal-content">
-                                                        @using (Html.BeginForm("Edit", "Tasks", new { id = @data.TaskID }, FormMethod.Post))
-                                                        {
-                                                            <div class="modal-body">
+                                                      
+                                                        <div class="modal-body">
+                                                            @using (Html.BeginForm("Edit", "Tasks", new { id = @data.TaskID }, FormMethod.Post))
+                                                            {
+                                                                { Html.RenderAction("Edit", "Tasks", new { id = @data.TaskID }); }
+                                                            }
+                                                            <!-- Button trigger modal -->
+                                                            @using (Html.BeginForm("Index", "Tasks", new { id = @data.TaskID }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+                                                            {
+                                                                <input type="file" name="postedFile" />
+                                                                <br>
+                                                                <input type="submit" id="btnUpload" value="Upload" />
+                                                            }
+                                                            @using (Html.BeginForm("DownloadFile", "Tasks", FormMethod.Post))
+                                                            {
+                                                                <input type="hidden" id="hfFileId" name="FileId" />
+                                                                <input type="submit" id="btnDownload" value="Download" style="display:none" />
+                                                            }
+                                                            <hr />
+                                                            <table cellpadding="0" cellspacing="0">                                                               <tr>
+                                                              
+                                                                    <th style="width:120px">File Name</th>
+                                                                    <th style="width:80px">Download</th>
+                                                                </tr>
 
-                                                                @{Html.RenderAction("Edit", "Tasks", new { id = @data.TaskID });}
+                                                                @foreach (var file in ViewBag.Attachments)
+                                                                {
+                                                                  
+                                                                <tr>
+                                                                   @if (file.TaskID == data.TaskID)
+                                                                    {                                                           
+                                                                    <td>@file.Name</td>
+                                                                    <td><a href="javascript:;" onclick="DownloadFile(@file.ID)">Download</a></td>
+                                                                    }
+                                                                </tr>
+                                                                 
+                                                                
 
-                                                                <!-- Button trigger modal -->
+                                                                }
+
+                                                            </table>
+                                            
+
+                                                                                                    </div>
+                                            
 
 
-                                                            </div>
-                                                        }
+                                                                                                </div>
+                                            
 
-                                                    </div>
+                                                                                            </div>
+                                            
 
-                                                </div>
-
-                                            </div>
-
+                                                                                        </div>
+                                            
 
 
-                                        </li>
+
+                                                                                    </li>
 
                                     }
                                 }
@@ -1074,8 +1115,11 @@
 
 <script>
 
-   
-    $(document).ready(function () { $(".Assignee").select2({ multiple: true, width: '100%' }); }); 
+    function DownloadFile(fileId) {
+        $("#hfFileId").val(fileId);
+        $("#btnDownload")[0].click();
+    };  
+    $(document).ready(function () { $(".Assignee").select2({ multiple: true, width: '100%', maximumSelectionSize: 1, placeholder: "Start typing" }); }); 
     
     $('mymodal-task').on('show.bs.modal', function (f) {
         if (f.relatedTarget === undefined) return;
@@ -1090,6 +1134,13 @@
     });
     $(document).ready(function () {
         $('[data-toggle="popover"]').popover();
+    });
+    $(document).ready(function () {
+        var a = $("#StatusID").val();
+        if (a == 3) {
+        
+        } 
+      
     });
     //$(document).ready(function () {
     //    $('.input-group.date').datepicker({

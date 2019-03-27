@@ -80,21 +80,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Attachments">
-      <EntityTypeMapping TypeName="cap21t12Model.Attachment">
-        <MappingFragment StoreEntitySet="Attachments">
-          <ScalarProperty Name="ChecklistID" ColumnName="ChecklistID" />
-          <ScalarProperty Name="Date" ColumnName="Date" />
-          <ScalarProperty Name="Attachment1" ColumnName="Attachment" />
-          <ScalarProperty Name="Reporter" ColumnName="Reporter" />
-          <ScalarProperty Name="CommentID" ColumnName="CommentID" />
-          <ScalarProperty Name="TaskID" ColumnName="TaskID" />
-          <ScalarProperty Name="BucketID" ColumnName="BucketID" />
-          <ScalarProperty Name="PlanID" ColumnName="PlanID" />
-          <ScalarProperty Name="ID" ColumnName="ID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="Buckets">
       <EntityTypeMapping TypeName="cap21t12Model.Bucket">
         <MappingFragment StoreEntitySet="Buckets">
@@ -185,6 +170,21 @@
           <ScalarProperty Name="StatusID" ColumnName="StatusID" />
           <ScalarProperty Name="BucketID" ColumnName="BucketID" />
           <ScalarProperty Name="TaskID" ColumnName="TaskID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Attachments">
+      <EntityTypeMapping TypeName="cap21t12Model.Attachment">
+        <MappingFragment StoreEntitySet="Attachments">
+          <ScalarProperty Name="Data" ColumnName="Data" />
+          <ScalarProperty Name="ContentType" ColumnName="ContentType" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ChecklistID" ColumnName="ChecklistID" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="Reporter" ColumnName="Reporter" />
+          <ScalarProperty Name="CommentID" ColumnName="CommentID" />
+          <ScalarProperty Name="TaskID" ColumnName="TaskID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
