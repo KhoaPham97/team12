@@ -38,7 +38,6 @@
     <EntitySet Name="AspNetUsers" EntityType="cap21t12Model.AspNetUser" />
     <EntitySet Name="Buckets" EntityType="cap21t12Model.Bucket" />
     <EntitySet Name="Checklists" EntityType="cap21t12Model.Checklist" />
-    <EntitySet Name="Comments" EntityType="cap21t12Model.Comment" />
     <EntitySet Name="ListMembers" EntityType="cap21t12Model.ListMember" />
     <EntitySet Name="Plans" EntityType="cap21t12Model.Plan" />
     <EntitySet Name="Status" EntityType="cap21t12Model.Status" />
@@ -50,10 +49,6 @@
     <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="cap21t12Model.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
       <End Role="AspNetUser" EntitySet="AspNetUsers" />
       <End Role="AspNetUserLogin" EntitySet="AspNetUserLogins" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Comment_AspNetUsers" Association="cap21t12Model.FK_Comment_AspNetUsers">
-      <End Role="AspNetUser" EntitySet="AspNetUsers" />
-      <End Role="Comment" EntitySet="Comments" />
     </AssociationSet>
     <AssociationSet Name="FK_ListMember_AspNetUsers" Association="cap21t12Model.FK_ListMember_AspNetUsers">
       <End Role="AspNetUser" EntitySet="AspNetUsers" />
@@ -88,10 +83,6 @@
       <End Role="Task" EntitySet="Tasks" />
       <End Role="Checklist" EntitySet="Checklists" />
     </AssociationSet>
-    <AssociationSet Name="FK_Comment_Task" Association="cap21t12Model.FK_Comment_Task">
-      <End Role="Task" EntitySet="Tasks" />
-      <End Role="Comment" EntitySet="Comments" />
-    </AssociationSet>
     <AssociationSet Name="FK_Task_Status" Association="cap21t12Model.FK_Task_Status">
       <End Role="Status" EntitySet="Status" />
       <End Role="Task" EntitySet="Tasks" />
@@ -101,10 +92,6 @@
       <End Role="AspNetUser" EntitySet="AspNetUsers" />
       <End Role="Attachment" EntitySet="Attachments" />
     </AssociationSet>
-    <AssociationSet Name="FK_Attachment_Comment" Association="cap21t12Model.FK_Attachment_Comment">
-      <End Role="Comment" EntitySet="Comments" />
-      <End Role="Attachment" EntitySet="Attachments" />
-    </AssociationSet>
     <AssociationSet Name="FK_Attachment_Task" Association="cap21t12Model.FK_Attachment_Task">
       <End Role="Task" EntitySet="Tasks" />
       <End Role="Attachment" EntitySet="Attachments" />
@@ -112,6 +99,19 @@
     <AssociationSet Name="FK_Checklist_Attachments" Association="cap21t12Model.FK_Checklist_Attachments">
       <End Role="Attachment" EntitySet="Attachments" />
       <End Role="Checklist" EntitySet="Checklists" />
+    </AssociationSet>
+    <EntitySet Name="Comments" EntityType="cap21t12Model.Comment" />
+    <AssociationSet Name="FK_Comment_AspNetUsers" Association="cap21t12Model.FK_Comment_AspNetUsers">
+      <End Role="AspNetUser" EntitySet="AspNetUsers" />
+      <End Role="Comment" EntitySet="Comments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Attachment_Comment" Association="cap21t12Model.FK_Attachment_Comment">
+      <End Role="Comment" EntitySet="Comments" />
+      <End Role="Attachment" EntitySet="Attachments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Comment_Task" Association="cap21t12Model.FK_Comment_Task">
+      <End Role="Task" EntitySet="Tasks" />
+      <End Role="Comment" EntitySet="Comments" />
     </AssociationSet>
   </EntityContainer>
   <ComplexType Name="sp_helpdiagramdefinition_Result">
@@ -182,12 +182,12 @@
     <Property Name="UserName" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="AspNetUserClaims" Relationship="cap21t12Model.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUser" ToRole="AspNetUserClaim" />
     <NavigationProperty Name="AspNetUserLogins" Relationship="cap21t12Model.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUser" ToRole="AspNetUserLogin" />
-    <NavigationProperty Name="Comments" Relationship="cap21t12Model.FK_Comment_AspNetUsers" FromRole="AspNetUser" ToRole="Comment" />
     <NavigationProperty Name="ListMembers" Relationship="cap21t12Model.FK_ListMember_AspNetUsers" FromRole="AspNetUser" ToRole="ListMember" />
     <NavigationProperty Name="AspNetRoles" Relationship="cap21t12Model.AspNetUserRoles" FromRole="AspNetUser" ToRole="AspNetRole" />
     <NavigationProperty Name="Tasks" Relationship="cap21t12Model.FK_Task_AspNetUsers" FromRole="AspNetUser" ToRole="Task" />
     <NavigationProperty Name="Tasks1" Relationship="cap21t12Model.FK_Task_AspNetUsers1" FromRole="AspNetUser" ToRole="Task" />
     <NavigationProperty Name="Attachments" Relationship="cap21t12Model.FK_Attachment_AspNetUsers" FromRole="AspNetUser" ToRole="Attachment" />
+    <NavigationProperty Name="Comments" Relationship="cap21t12Model.FK_Comment_AspNetUsers" FromRole="AspNetUser" ToRole="Comment" />
   </EntityType>
   <EntityType Name="Bucket">
     <Key>
@@ -209,19 +209,6 @@
     <Property Name="AttachmentsID" Type="Int32" Nullable="false" />
     <NavigationProperty Name="Task" Relationship="cap21t12Model.FK_Checklist_Tasks" FromRole="Checklist" ToRole="Task" />
     <NavigationProperty Name="Attachment" Relationship="cap21t12Model.FK_Checklist_Attachments" FromRole="Checklist" ToRole="Attachment" />
-  </EntityType>
-  <EntityType Name="Comment">
-    <Key>
-      <PropertyRef Name="ID" />
-    </Key>
-    <Property Name="ID" Type="Int32" Nullable="false" />
-    <Property Name="AccountID" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-    <Property Name="TaskID" Type="Int32" Nullable="false" />
-    <Property Name="LastUpdate" Type="DateTime" Nullable="false" Precision="3" />
-    <Property Name="Comment1" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="AspNetUser" Relationship="cap21t12Model.FK_Comment_AspNetUsers" FromRole="Comment" ToRole="AspNetUser" />
-    <NavigationProperty Name="Task" Relationship="cap21t12Model.FK_Comment_Task" FromRole="Comment" ToRole="Task" />
-    <NavigationProperty Name="Attachments" Relationship="cap21t12Model.FK_Attachment_Comment" FromRole="Comment" ToRole="Attachment" />
   </EntityType>
   <EntityType Name="ListMember">
     <Key>
@@ -292,18 +279,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Comment_AspNetUsers">
-    <End Type="cap21t12Model.AspNetUser" Role="AspNetUser" Multiplicity="1" />
-    <End Type="cap21t12Model.Comment" Role="Comment" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="AspNetUser">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Comment">
-        <PropertyRef Name="AccountID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_ListMember_AspNetUsers">
     <End Type="cap21t12Model.AspNetUser" Role="AspNetUser" Multiplicity="1" />
     <End Type="cap21t12Model.ListMember" Role="ListMember" Multiplicity="*" />
@@ -361,9 +336,9 @@
     <NavigationProperty Name="AspNetUser1" Relationship="cap21t12Model.FK_Task_AspNetUsers1" FromRole="Task" ToRole="AspNetUser" />
     <NavigationProperty Name="Bucket" Relationship="cap21t12Model.FK_Task_Bucket" FromRole="Task" ToRole="Bucket" />
     <NavigationProperty Name="Checklists" Relationship="cap21t12Model.FK_Checklist_Tasks" FromRole="Task" ToRole="Checklist" />
-    <NavigationProperty Name="Comments" Relationship="cap21t12Model.FK_Comment_Task" FromRole="Task" ToRole="Comment" />
     <NavigationProperty Name="Status" Relationship="cap21t12Model.FK_Task_Status" FromRole="Task" ToRole="Status" />
     <NavigationProperty Name="Attachments" Relationship="cap21t12Model.FK_Attachment_Task" FromRole="Task" ToRole="Attachment" />
+    <NavigationProperty Name="Comments" Relationship="cap21t12Model.FK_Comment_Task" FromRole="Task" ToRole="Comment" />
   </EntityType>
   <Association Name="FK_Task_AspNetUsers">
     <End Type="cap21t12Model.AspNetUser" Role="AspNetUser" Multiplicity="0..1" />
@@ -413,18 +388,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Comment_Task">
-    <End Type="cap21t12Model.Task" Role="Task" Multiplicity="1" />
-    <End Type="cap21t12Model.Comment" Role="Comment" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Task">
-        <PropertyRef Name="TaskID" />
-      </Principal>
-      <Dependent Role="Comment">
-        <PropertyRef Name="TaskID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_Task_Status">
     <End Type="cap21t12Model.Status" Role="Status" Multiplicity="1" />
     <End Type="cap21t12Model.Task" Role="Task" Multiplicity="*" />
@@ -446,14 +409,14 @@
     <Property Name="CommentID" Type="Int32" />
     <Property Name="Reporter" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
     <Property Name="Date" Type="DateTime" Precision="3" />
-    <Property Name="ChecklistID" Type="Int32" Nullable="false" />
+    <Property Name="ChecklistID" Type="Int32" />
     <Property Name="Name" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
     <Property Name="ContentType" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
     <Property Name="Data" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
     <NavigationProperty Name="AspNetUser" Relationship="cap21t12Model.FK_Attachment_AspNetUsers" FromRole="Attachment" ToRole="AspNetUser" />
-    <NavigationProperty Name="Comment" Relationship="cap21t12Model.FK_Attachment_Comment" FromRole="Attachment" ToRole="Comment" />
     <NavigationProperty Name="Task" Relationship="cap21t12Model.FK_Attachment_Task" FromRole="Attachment" ToRole="Task" />
     <NavigationProperty Name="Checklists" Relationship="cap21t12Model.FK_Checklist_Attachments" FromRole="Attachment" ToRole="Checklist" />
+    <NavigationProperty Name="Comment" Relationship="cap21t12Model.FK_Attachment_Comment" FromRole="Attachment" ToRole="Comment" />
   </EntityType>
   <Association Name="FK_Attachment_AspNetUsers">
     <End Type="cap21t12Model.AspNetUser" Role="AspNetUser" Multiplicity="0..1" />
@@ -464,18 +427,6 @@
       </Principal>
       <Dependent Role="Attachment">
         <PropertyRef Name="Reporter" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Attachment_Comment">
-    <End Type="cap21t12Model.Comment" Role="Comment" Multiplicity="0..1" />
-    <End Type="cap21t12Model.Attachment" Role="Attachment" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Comment">
-        <PropertyRef Name="ID" />
-      </Principal>
-      <Dependent Role="Attachment">
-        <PropertyRef Name="CommentID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -500,6 +451,55 @@
       </Principal>
       <Dependent Role="Checklist">
         <PropertyRef Name="AttachmentsID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Comment">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="AccountID" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="TaskID" Type="Int32" Nullable="false" />
+    <Property Name="LastUpdate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Comment1" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AspNetUser" Relationship="cap21t12Model.FK_Comment_AspNetUsers" FromRole="Comment" ToRole="AspNetUser" />
+    <NavigationProperty Name="Attachments" Relationship="cap21t12Model.FK_Attachment_Comment" FromRole="Comment" ToRole="Attachment" />
+    <NavigationProperty Name="Task" Relationship="cap21t12Model.FK_Comment_Task" FromRole="Comment" ToRole="Task" />
+  </EntityType>
+  <Association Name="FK_Comment_AspNetUsers">
+    <End Type="cap21t12Model.AspNetUser" Role="AspNetUser" Multiplicity="1" />
+    <End Type="cap21t12Model.Comment" Role="Comment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUser">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Comment">
+        <PropertyRef Name="AccountID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Attachment_Comment">
+    <End Type="cap21t12Model.Comment" Role="Comment" Multiplicity="0..1" />
+    <End Type="cap21t12Model.Attachment" Role="Attachment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Comment">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Attachment">
+        <PropertyRef Name="CommentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Comment_Task">
+    <End Type="cap21t12Model.Task" Role="Task" Multiplicity="1" />
+    <End Type="cap21t12Model.Comment" Role="Comment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Task">
+        <PropertyRef Name="TaskID" />
+      </Principal>
+      <Dependent Role="Comment">
+        <PropertyRef Name="TaskID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

@@ -794,16 +794,109 @@
                                             <div class="modal fade" id=@("myModal" + data.TaskID) tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                                                 <div class="modal-dialog" role="document">
                                                     <div class="modal-content">
-                                                      
+
                                                         <div class="modal-body">
                                                             @using (Html.BeginForm("Edit", "Tasks", new { id = @data.TaskID }, FormMethod.Post))
                                                             {
                                                                 { Html.RenderAction("Edit", "Tasks", new { id = @data.TaskID }); }
                                                             }
+                                                          
+
+                                                            <div class="box box-success">
+                                                                <div class="box-header">
+                                                                    <i class="fa fa-comments-o"></i>
+
+                                                                    <h3 class="box-title">Comments</h3>
+
+                                                                </div>
+                                                                @foreach (var cmt in ViewBag.Comments)
+                                                                {
+
+
+                                                                    if (cmt.TaskID == data.TaskID)
+                                                                    {
+                                                                        <div class="box-body chat" id="chat-box">
+                                                                            <!-- chat item -->
+                                                                            <!-- /.item -->
+                                                                            <!-- chat item -->
+                                                                            <div class="item">
+                                                                                <img src="@Url.Content("~/area/dist/img/user2-160x160.jpg")" alt="user image" class="offline">
+
+                                                                                <p class="message">
+                                                                                    <a href="#" class="name" style="color:#3c8dbc">
+                                                                                        <small class="text-muted pull-right"><i class="fa fa-clock-o"></i>@cmt.LastUpdate</small>
+                                                                                        @foreach (var us in ViewBag.Assignee)
+                                                                                        {
+                                                                                            if (cmt.AccountID == us.Id)
+                                                                                            {
+                                                                                                @us.Email
+                                                                                            }
+                                                                                        }
+                                                                                    </a>
+                                                                                    @cmt.Comment1
+                                                                                </p>
+                                                                            </div>
+
+                                                                            <!-- /.item -->
+                                                                            <!-- /.item -->
+                                                                        </div>
+
+                                                                    }
+
+                                                                }
+                                                                <!-- /.chat -->
+                                                                @using (Html.BeginForm("Create", "Comments", FormMethod.Post))
+                                                                {
+                                                                    @Html.AntiForgeryToken()
+                                                                    <div class="form-group" style="display: none;">
+                                                                        <label class="control-label col-md-2" for="AccountID">AccountID</label>
+                                                                        <div class="col-md-10">
+                                                                            <select class="form-control" id="AccountID" name="AccountID">
+                                                                                <option value="@User.Identity.GetUserId()">@User.Identity.GetUserName()</option>
+                                                                            </select>
+                                                                            <span class="field-validation-valid text-danger" data-valmsg-for="AccountID" data-valmsg-replace="true"></span>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="form-group" style="display: none;">
+                                                                        <label class="control-label col-md-2" for="TaskID">TaskID</label>
+                                                                        <div class="col-md-10">
+                                                                            <select class="form-control" id="TaskID" name="TaskID">
+                                                                                <option value="@data.TaskID">@data.Title</option>
+                                                                            </select>
+                                                                            <span class="field-validation-valid text-danger" data-valmsg-for="TaskID" data-valmsg-replace="true"></span>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="form-group" style="display: none;">
+                                                                        <label class="control-label col-md-2" for="LastUpdate">LastUpdate</label>
+                                                                        <div class="col-md-10">
+                                                                            <input class="form-control text-box single-line" data-val="true" data-val-date="The field LastUpdate must be a date." data-val-required="The LastUpdate field is required." id="LastUpdate" name="LastUpdate" type="datetime" value="@DateTime.Now">
+                                                                            <span class="field-validation-valid text-danger" data-valmsg-for="LastUpdate" data-valmsg-replace="true"></span>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-12">
+                                                                        <div class="form-group">
+                                                                            
+                                                                            <textarea cols="5" id="Comment1" name="Comment1" rows="5" style="width: 100%; max-width: 100%;border: 1px solid #dddddd;" placeholder="Type message..."></textarea>
+
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="form-group" style="float:right">
+                                                                        <div class="col-md-offset-2 col-md-10">
+                                                                            <input type="submit" value="Save" class="btn btn-success" />
+                                                                        </div>
+                                                                    </div>
+                                                                 }
+                                                            </div>
+
+
                                                             <!-- Button trigger modal -->
                                                             @using (Html.BeginForm("Index", "Tasks", new { id = @data.TaskID }, FormMethod.Post, new { enctype = "multipart/form-data" }))
                                                             {
-                                                                <input type="file" name="postedFile" />
+
+                                                                <input type="file" name="postedFile" style="padding-top:80px" />
                                                                 <br>
                                                                 <input type="submit" id="btnUpload" value="Upload" />
                                                             }
@@ -813,46 +906,47 @@
                                                                 <input type="submit" id="btnDownload" value="Download" style="display:none" />
                                                             }
                                                             <hr />
-                                                            <table cellpadding="0" cellspacing="0">                                                               <tr>
-                                                              
+                                                            <table cellpadding="0" cellspacing="0">
+                                                                <tr>
+
                                                                     <th style="width:120px">File Name</th>
                                                                     <th style="width:80px">Download</th>
                                                                 </tr>
 
                                                                 @foreach (var file in ViewBag.Attachments)
                                                                 {
-                                                                  
-                                                                <tr>
-                                                                   @if (file.TaskID == data.TaskID)
-                                                                    {                                                           
-                                                                    <td>@file.Name</td>
-                                                                    <td><a href="javascript:;" onclick="DownloadFile(@file.ID)">Download</a></td>
-                                                                    }
-                                                                </tr>
-                                                                 
-                                                                
+
+                                                                    <tr>
+                                                                        @if (file.TaskID == data.TaskID)
+                                                                        {
+                                                                            <td>@file.Name</td>
+                                                                            <td><a href="javascript:;" onclick="DownloadFile(@file.ID)">Download</a></td>
+                                                                        }
+                                                                    </tr>
+
+
 
                                                                 }
 
                                                             </table>
-                                            
-
-                                                                                                    </div>
-                                            
 
 
-                                                                                                </div>
-                                            
-
-                                                                                            </div>
-                                            
-
-                                                                                        </div>
-                                            
+                                                        </div>
 
 
 
-                                                                                    </li>
+                                                    </div>
+
+
+                                                </div>
+
+
+                                            </div>
+
+
+
+
+                                        </li>
 
                                     }
                                 }

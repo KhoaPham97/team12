@@ -23,17 +23,17 @@ namespace WebApplication.Models
         public int ID { get; set; }
         public Nullable<int> TaskID { get; set; }
         public Nullable<int> CommentID { get; set; }
-        public  string Reporter { get; set; }
+        public string Reporter { get; set; }
         public Nullable<System.DateTime> Date { get; set; }
-        public Nullable <int> ChecklistID { get; set; }
+        public Nullable<int> ChecklistID { get; set; }
         public string Name { get; set; }
         public string ContentType { get; set; }
         public byte[] Data { get; set; }
     
         public virtual AspNetUser AspNetUser { get; set; }
-        public virtual Comment Comment { get; set; }
         public virtual Task Task { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Checklist> Checklists { get; set; }
+        public virtual Comment Comment { get; set; }
     }
 }
