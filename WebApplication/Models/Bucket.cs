@@ -24,8 +24,8 @@ namespace WebApplication.Models
         public int PlanID { get; set; }
         public string Title { get; set; }
     
-        public virtual Plan Plan { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Task> Tasks { get; set; }
+        public virtual Plan Plan { get; set; }
     }
 }

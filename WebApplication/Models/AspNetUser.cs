@@ -19,12 +19,13 @@ namespace WebApplication.Models
         {
             this.AspNetUserClaims = new HashSet<AspNetUserClaim>();
             this.AspNetUserLogins = new HashSet<AspNetUserLogin>();
-            this.ListMembers = new HashSet<ListMember>();
             this.AspNetRoles = new HashSet<AspNetRole>();
             this.Tasks = new HashSet<Task>();
             this.Tasks1 = new HashSet<Task>();
             this.Attachments = new HashSet<Attachment>();
             this.Comments = new HashSet<Comment>();
+            this.ListMembers = new HashSet<ListMember>();
+            this.Plans = new HashSet<Plan>();
         }
     
         public string Id { get; set; }
@@ -45,8 +46,6 @@ namespace WebApplication.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AspNetUserLogin> AspNetUserLogins { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ListMember> ListMembers { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AspNetRole> AspNetRoles { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Task> Tasks { get; set; }
@@ -56,5 +55,9 @@ namespace WebApplication.Models
         public virtual ICollection<Attachment> Attachments { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Comment> Comments { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ListMember> ListMembers { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Plan> Plans { get; set; }
     }
 }

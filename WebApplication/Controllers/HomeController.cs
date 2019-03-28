@@ -20,7 +20,8 @@ namespace WebApplication.Controllers
         public PartialViewResult Index()
         {
             cap21t12Entities db = new cap21t12Entities();
-            var product = db.Plans.ToList();
+            var product = db.Plans;
+            ViewBag.Listmembers = db.ListMembers;
         return PartialView(product);
         } 
 

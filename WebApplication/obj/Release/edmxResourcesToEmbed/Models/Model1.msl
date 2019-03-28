@@ -99,26 +99,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="ListMembers">
-      <EntityTypeMapping TypeName="cap21t12Model.ListMember">
-        <MappingFragment StoreEntitySet="ListMember">
-          <ScalarProperty Name="DateLeft" ColumnName="DateLeft" />
-          <ScalarProperty Name="DateJoined" ColumnName="DateJoined" />
-          <ScalarProperty Name="RoleProject" ColumnName="RoleProject" />
-          <ScalarProperty Name="PlanID" ColumnName="PlanID" />
-          <ScalarProperty Name="AccountID" ColumnName="AccountID" />
-          <ScalarProperty Name="ID" ColumnName="ID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Plans">
-      <EntityTypeMapping TypeName="cap21t12Model.Plan">
-        <MappingFragment StoreEntitySet="Plans">
-          <ScalarProperty Name="Title" ColumnName="Title" />
-          <ScalarProperty Name="IDPlan" ColumnName="IDPlan" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="Status">
       <EntityTypeMapping TypeName="cap21t12Model.Status">
         <MappingFragment StoreEntitySet="Status">
@@ -185,6 +165,27 @@
           <ScalarProperty Name="TaskID" ColumnName="TaskID" />
           <ScalarProperty Name="AccountID" ColumnName="AccountID" />
           <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ListMembers">
+      <EntityTypeMapping TypeName="cap21t12Model.ListMember">
+        <MappingFragment StoreEntitySet="ListMember">
+          <ScalarProperty Name="DateLeft" ColumnName="DateLeft" />
+          <ScalarProperty Name="DateJoined" ColumnName="DateJoined" />
+          <ScalarProperty Name="RoleProject" ColumnName="RoleProject" />
+          <ScalarProperty Name="PlanID" ColumnName="PlanID" />
+          <ScalarProperty Name="AccountID" ColumnName="AccountID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Plans">
+      <EntityTypeMapping TypeName="cap21t12Model.Plan">
+        <MappingFragment StoreEntitySet="Plans">
+          <ScalarProperty Name="AccountID" ColumnName="AccountID" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="IDPlan" ColumnName="IDPlan" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

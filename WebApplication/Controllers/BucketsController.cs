@@ -31,9 +31,10 @@ namespace WebApplication.Controllers
             ViewBag.Task = db.Tasks;
              ViewBag.Comments = db.Comments;
             ViewBag.Attachments = db.Attachments;
-            var model = db.Buckets.Where(x => x.PlanID == id);
+            ViewBag.Listmembers = db.ListMembers.Where(x => x.PlanID == id);
             ViewBag.Assignee = db.AspNetUsers;
             ViewBag.Status = db.Status;
+            var model = db.Buckets.Where(x => x.PlanID == id);
             return View(model);
 
 

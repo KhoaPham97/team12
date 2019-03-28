@@ -23,7 +23,9 @@ namespace WebApplication.Models
     
         public int IDPlan { get; set; }
         public string Title { get; set; }
+        public string AccountID { get; set; }
     
+        public virtual AspNetUser AspNetUser { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Bucket> Buckets { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

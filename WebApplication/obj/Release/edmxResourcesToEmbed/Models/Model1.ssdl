@@ -111,7 +111,7 @@
     <Property Name="PlanID" Type="int" Nullable="false" />
     <Property Name="RoleProject" Type="bit" Nullable="false" />
     <Property Name="DateJoined" Type="datetime" Nullable="false" />
-    <Property Name="DateLeft" Type="datetime" Nullable="false" />
+    <Property Name="DateLeft" Type="datetime" />
   </EntityType>
   <EntityType Name="Plans">
     <Key>
@@ -119,6 +119,7 @@
     </Key>
     <Property Name="IDPlan" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Title" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="AccountID" Type="nvarchar" MaxLength="128" Nullable="false" />
   </EntityType>
   <EntityType Name="Status">
     <Key>
@@ -328,6 +329,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Plans_AspNetUsers">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+    <End Role="Plans" Type="Self.Plans" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Plans">
+        <PropertyRef Name="AccountID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Task_AspNetUsers">
     <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1" />
     <End Role="Tasks" Type="Self.Tasks" Multiplicity="*" />
@@ -478,6 +491,10 @@
     <AssociationSet Name="FK_ListMember_Plan" Association="Self.FK_ListMember_Plan">
       <End Role="Plans" EntitySet="Plans" />
       <End Role="ListMember" EntitySet="ListMember" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Plans_AspNetUsers" Association="Self.FK_Plans_AspNetUsers">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="Plans" EntitySet="Plans" />
     </AssociationSet>
     <AssociationSet Name="FK_Task_AspNetUsers" Association="Self.FK_Task_AspNetUsers">
       <End Role="AspNetUsers" EntitySet="AspNetUsers" />

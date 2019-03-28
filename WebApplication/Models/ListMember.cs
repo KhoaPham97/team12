@@ -19,7 +19,7 @@ namespace WebApplication.Models
         public int PlanID { get; set; }
         public bool RoleProject { get; set; }
         public System.DateTime DateJoined { get; set; }
-        public System.DateTime DateLeft { get; set; }
+        public Nullable<System.DateTime> DateLeft { get; set; }
     
         public virtual AspNetUser AspNetUser { get; set; }
         public virtual Plan Plan { get; set; }

@@ -79,8 +79,8 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>Reporter</label>
-                                @Html.DropDownList("ReporterID", null, htmlAttributes: new { @class = "form-control Reporter " })
+                                <label>Assignor</label>
+                                @Html.DropDownList("ReporterID", null, htmlAttributes: new { @class = "form-control  disabled  " })
                                 @Html.ValidationMessageFor(model => model.ReporterID, "", new { @class = "text-danger" })
                             </div>
                         </div>
@@ -88,7 +88,7 @@
                             <div class="form-group">
                                 <label>Assignee</label>
 
-                                @Html.DropDownList("AssigneeID", null, htmlAttributes: new { @class = "form-control Assignee" })
+                                @Html.DropDownList("AssigneeID", null, htmlAttributes: new { @class = "form-control  disabled  " })
                                 @Html.ValidationMessageFor(model => model.AssigneeID, "", new { @class = "text-danger" })
                             </div>
                         </div>
@@ -104,7 +104,7 @@
                      
                         <div class="form-group" style="float:right">
                             <div class="col-md-offset-2 col-md-10">
-                                <button type="submit" value="Save">Save</button>
+                                <button type="submit" value="Save" class="myButton">Save</button>
 
                             </div>
                         </div>

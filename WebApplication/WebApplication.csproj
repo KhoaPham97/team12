@@ -184,6 +184,7 @@
     <Compile Include="Controllers\BucketsController.cs" />
     <Compile Include="Controllers\CommentsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ListMembersController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PlansController.cs" />
     <Compile Include="Controllers\TasksController.cs" />
@@ -5909,6 +5910,8 @@
     <Content Include="area\documentation\index.html" />
     <Content Include="area\documentation\style.css" />
     <Content Include="area\Gruntfile.js" />
+    <Content Include="area\js\index.js" />
+    <Content Include="area\css\style.css" />
     <Content Include="area\login\css\main.css" />
     <Content Include="area\login\css\util.css" />
     <Content Include="area\login\fonts\font-awesome-4.7.0\css\font-awesome.css" />
@@ -7612,6 +7615,7 @@
     <Content Include="Content\bootstrap-datepicker3.css.map" />
     <Content Include="Content\bootstrap-datepicker.standalone.css.map" />
     <Content Include="Content\bootstrap-datepicker.css.map" />
+    <Content Include="area\scss\style.scss" />
     <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
     <None Include="Properties\PublishProfiles\teamfighter - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\teamfighter - Web Deploy.pubxml" />
@@ -7771,6 +7775,11 @@
     <Content Include="Views\Comments\Details.cshtml" />
     <Content Include="Views\Comments\Edit.cshtml" />
     <Content Include="Views\Comments\Index.cshtml" />
+    <Content Include="Views\ListMembers\Create.cshtml" />
+    <Content Include="Views\ListMembers\Delete.cshtml" />
+    <Content Include="Views\ListMembers\Details.cshtml" />
+    <Content Include="Views\ListMembers\Edit.cshtml" />
+    <Content Include="Views\ListMembers\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\uploads\" />
