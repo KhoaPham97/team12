@@ -100,11 +100,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ModuleManagement\CreatePlan.cs" />
     <Compile Include="ModuleAccount\LoginTest.cs" />
     <Compile Include="ModuleAccount\LogoutTest.cs" />
     <Compile Include="ModuleAccount\RegisterTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ModuleAccount\Report.cs" />
     <Compile Include="TestBase.cs" />
   </ItemGroup>
   <ItemGroup>
