@@ -11,7 +11,7 @@ namespace Testing
 {
     [TestFixture]
     [Parallelizable]
-    public class LoginTest : TestBase
+    public class LoginTest : ResultTest
     {
        
         [Test]

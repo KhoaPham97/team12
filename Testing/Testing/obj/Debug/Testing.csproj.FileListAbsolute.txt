@@ -26,7 +26,6 @@ C:\Users\pc\Documents\GitHub\team12\Testing\Testing\bin\Debug\nunit.engine.api.d
 C:\Users\pc\Documents\GitHub\team12\Testing\Testing\bin\Debug\Testing.exe
 C:\Users\pc\Documents\GitHub\team12\Testing\Testing\bin\Debug\Testing.pdb
 C:\Users\pc\Documents\GitHub\team12\Testing\Testing\bin\Debug\DnsClient.dll
-C:\Users\pc\Documents\GitHub\team12\Testing\Testing\bin\Debug\ExtentReports.dll
 C:\Users\pc\Documents\GitHub\team12\Testing\Testing\bin\Debug\MongoDB.Bson.dll
 C:\Users\pc\Documents\GitHub\team12\Testing\Testing\bin\Debug\MongoDB.Driver.Core.dll
 C:\Users\pc\Documents\GitHub\team12\Testing\Testing\bin\Debug\MongoDB.Driver.dll
@@ -50,3 +49,4 @@ C:\Users\pc\Documents\GitHub\team12\Testing\Testing\bin\Debug\RazorEngine.xml
 C:\Users\pc\Documents\GitHub\team12\Testing\Testing\bin\Debug\System.Web.Razor.xml
 C:\Users\pc\Documents\GitHub\team12\Testing\Testing\bin\Debug\WebDriver.xml
 C:\Users\pc\Documents\GitHub\team12\Testing\Testing\bin\Debug\WebDriver.Support.xml
+C:\Users\pc\Documents\GitHub\team12\Testing\Testing\bin\Debug\RelevantCodes.ExtentReports.dll
