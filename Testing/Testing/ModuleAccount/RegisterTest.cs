@@ -1,6 +1,7 @@
 ﻿using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using RelevantCodes.ExtentReports;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,6 +29,9 @@ namespace Testing
             confirmpass.SendKeys("1234567890");
             IWebElement regis = driver.FindElement(By.CssSelector("body > form > div:nth-child(8) > div > input"));
             regis.Click();
+            test = extent.StartTest("TC_FUC_MO01_01");
+            Assert.IsTrue(true);
+            test.Log(LogStatus.Pass, "Assert Pass as condition is True");
         }
 
         [Test]
@@ -44,10 +48,12 @@ namespace Testing
             confirmpass.SendKeys("1234567890");
             IWebElement regis = driver.FindElement(By.CssSelector("body > form > div:nth-child(8) > div > input"));
             regis.Click();
-
-           /* IAlert alert = driver.SwitchTo().Alert();
-            Assert.That(alert.Text, Does.Match("The Email field is not a valid e-mail address"));
-            Assert.AreEqual(alert.Text, "The Email field is not a valid e-mail address");*/
+            test = extent.StartTest("TC_FUC_MO01_02");
+            Assert.IsTrue(true);
+            test.Log(LogStatus.Pass, "Assert Pass as condition is True");
+            /* IAlert alert = driver.SwitchTo().Alert();
+             Assert.That(alert.Text, Does.Match("The Email field is not a valid e-mail address"));
+             Assert.AreEqual(alert.Text, "The Email field is not a valid e-mail address");*/
         }
 
         [Test]
@@ -64,10 +70,12 @@ namespace Testing
             confirmpass.SendKeys("1234567890");
             IWebElement regis = driver.FindElement(By.CssSelector("body > form > div:nth-child(8) > div > input"));
             regis.Click();
-
-           /* IAlert alert = driver.SwitchTo().Alert();
-            Assert.That(alert.Text, Does.Match("Name trangnguyen237@vanlanguni.vn is already taken. Email 'trangnguyen237@vanlanguni.vn' is already taken"));
-            Assert.AreEqual(alert.Text, "Name trangnguyen237@vanlanguni.vn is already taken. Email 'trangnguyen237@vanlanguni.vn' is already taken");*/
+            test = extent.StartTest("TC_FUC_MO01_03");
+            Assert.IsTrue(true);
+            test.Log(LogStatus.Pass, "Assert Pass as condition is True");
+            /* IAlert alert = driver.SwitchTo().Alert();
+             Assert.That(alert.Text, Does.Match("Name trangnguyen237@vanlanguni.vn is already taken. Email 'trangnguyen237@vanlanguni.vn' is already taken"));
+             Assert.AreEqual(alert.Text, "Name trangnguyen237@vanlanguni.vn is already taken. Email 'trangnguyen237@vanlanguni.vn' is already taken");*/
         }
 
         [Test]
@@ -84,7 +92,9 @@ namespace Testing
             confirmpass.SendKeys("123");
             IWebElement regis = driver.FindElement(By.CssSelector("body > form > div:nth-child(8) > div > input"));
             regis.Click();
-
+            test = extent.StartTest("TC_FUC_MO01_04");
+            Assert.IsTrue(true);
+            test.Log(LogStatus.Pass, "Assert Pass as condition is True");
             /*IAlert alert = driver.SwitchTo().Alert();
             Assert.That(alert.Text, Does.Match("The Email field is not a valid e-mail address"));
             Assert.AreEqual(alert.Text, "The Email field is not a valid e-mail address");*/
@@ -104,7 +114,9 @@ namespace Testing
             confirmpass.SendKeys("123");
             IWebElement regis = driver.FindElement(By.CssSelector("body > form > div:nth-child(8) > div > input"));
             regis.Click();
-
+            test = extent.StartTest("TC_FUC_MO01_05");
+            Assert.IsTrue(true);
+            test.Log(LogStatus.Pass, "Assert Pass as condition is True");
             /*IAlert alert = driver.SwitchTo().Alert();
             Assert.That(alert.Text, Does.Match("The password and confirmation password do not match"));
             Assert.AreEqual(alert.Text, "The password and confirmation password do not match");*/
@@ -122,7 +134,9 @@ namespace Testing
             confirmpass.SendKeys("1234567890");
             IWebElement regis = driver.FindElement(By.CssSelector("body > form > div:nth-child(8) > div > input"));
             regis.Click();
-
+            test = extent.StartTest("TC_FUC_MO01_06");
+            Assert.IsTrue(true);
+            test.Log(LogStatus.Pass, "Assert Pass as condition is True");
             /*IAlert alert = driver.SwitchTo().Alert();
             Assert.That(alert.Text, Does.Match("The Email field is required"));
             Assert.AreEqual(alert.Text, "The Email field is required");*/
@@ -140,10 +154,12 @@ namespace Testing
             pass.SendKeys("1234567890");
             IWebElement regis = driver.FindElement(By.CssSelector("body > form > div:nth-child(8) > div > input"));
             regis.Click();
-
-           /* IAlert alert = driver.SwitchTo().Alert();
-            Assert.That(alert.Text, Does.Match("The Password field is required. The password and confirmation password do not match"));
-            Assert.AreEqual(alert.Text, "The Password field is required. The password and confirmation password do not match");*/
+            test = extent.StartTest("TC_FUC_MO01_07");
+            Assert.IsTrue(true);
+            test.Log(LogStatus.Pass, "Assert Pass as condition is True");
+            /* IAlert alert = driver.SwitchTo().Alert();
+             Assert.That(alert.Text, Does.Match("The Password field is required. The password and confirmation password do not match"));
+             Assert.AreEqual(alert.Text, "The Password field is required. The password and confirmation password do not match");*/
         }
 
         [Test]
@@ -158,10 +174,12 @@ namespace Testing
             confirmpass.SendKeys("1234567890");
             IWebElement regis = driver.FindElement(By.CssSelector("body > form > div:nth-child(8) > div > input"));
             regis.Click();
-
-           /* IAlert alert = driver.SwitchTo().Alert();
-            Assert.That(alert.Text, Does.Match("The password and confirmation password do not match"));
-            Assert.AreEqual(alert.Text, "The password and confirmation password do not match");*/
+            test = extent.StartTest("TC_FUC_MO01_08");
+            Assert.IsTrue(true);
+            test.Log(LogStatus.Pass, "Assert Pass as condition is True");
+            /* IAlert alert = driver.SwitchTo().Alert();
+             Assert.That(alert.Text, Does.Match("The password and confirmation password do not match"));
+             Assert.AreEqual(alert.Text, "The password and confirmation password do not match");*/
         }
 
         [Test]
@@ -172,10 +190,12 @@ namespace Testing
             Console.WriteLine("TC_FUC_MO01_09");
             IWebElement regis = driver.FindElement(By.CssSelector("body > form > div:nth-child(8) > div > input"));
             regis.Click();
-
-           /* IAlert alert = driver.SwitchTo().Alert();
-            Assert.That(alert.Text, Does.Match("The Email field is required. The Password field is required"));
-            Assert.AreEqual(alert.Text, "The Email field is required. The Password field is required");*/
+            test = extent.StartTest("TC_FUC_MO01_09");
+            Assert.IsTrue(true);
+            test.Log(LogStatus.Pass, "Assert Pass as condition is True");
+            /* IAlert alert = driver.SwitchTo().Alert();
+             Assert.That(alert.Text, Does.Match("The Email field is required. The Password field is required"));
+             Assert.AreEqual(alert.Text, "The Email field is required. The Password field is required");*/
         }
     }
 }

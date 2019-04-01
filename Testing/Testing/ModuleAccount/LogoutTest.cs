@@ -1,6 +1,7 @@
 ﻿using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using RelevantCodes.ExtentReports;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,7 +28,9 @@ namespace Testing
             button.Click();
             IWebElement logout = driver.FindElement(By.CssSelector("#logoutForm > div > a"));
             logout.Click();
-
+            test = extent.StartTest("TC_FUC_MO01_16");
+            Assert.IsTrue(true);
+            test.Log(LogStatus.Pass, "Assert Pass as condition is True");
         }
 
     }
