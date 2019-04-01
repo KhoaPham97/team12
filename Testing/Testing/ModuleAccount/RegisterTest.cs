@@ -51,9 +51,9 @@ namespace Testing
             test = extent.StartTest("TC_FUC_MO01_02");
             Assert.IsTrue(true);
             test.Log(LogStatus.Pass, "Assert Pass as condition is True");
-            /* IAlert alert = driver.SwitchTo().Alert();
-             Assert.That(alert.Text, Does.Match("The Email field is not a valid e-mail address"));
-             Assert.AreEqual(alert.Text, "The Email field is not a valid e-mail address");*/
+            IAlert alert = driver.SwitchTo().Alert();
+            Assert.That(alert.Text, Does.Match("The Email field is not a valid e-mail address"));
+            Assert.AreEqual(alert.Text, "The Email field is not a valid e-mail address");
         }
 
         [Test]

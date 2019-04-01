@@ -11,10 +11,10 @@ namespace Testing
 {
     [TestFixture]
     [Parallelizable]
-    public class CreatePlan : TestBase
+    class CreateBucket : TestBase
     {
         [Test]
-        public void plan()
+        public void bucket()
         {
             IWebElement email = driver.FindElement(By.CssSelector("#loginForm > form > div.wrap-input100.rs1.validate-input > input"));
             email.SendKeys("trangnguyen237@vanlanguni.vn");
@@ -22,13 +22,14 @@ namespace Testing
             pass.SendKeys("1234567890");
             IWebElement login = driver.FindElement(By.CssSelector("#loginForm > form > div.container-login100-form-btn > button"));
             login.Click();
-            IWebElement plan = driver.FindElement(By.CssSelector("body > div > div.content-wrapper > section.content > div.col-md-12 > div > div.box-header.with-border > div > button > i"));
+            IWebElement plan = driver.FindElement(By.CssSelector("body > div > div.content-wrapper > section.content > div:nth-child(4) > div > div.box-body.table-responsive.no-padding > table > tbody > tr:nth-child(3) > td:nth-child(2) > a"));
             plan.Click();
-            IWebElement newplan = driver.FindElement(By.CssSelector("#Title"));
-            newplan.SendKeys("test create plan");
-            IWebElement create = driver.FindElement(By.CssSelector("body > div > div.content-wrapper > section.content > div.col-md-12 > div > div.box-body > div > form > div > div > div > div.form-group > div > input"));
+            IWebElement newbucket = driver.FindElement(By.CssSelector("body > section.lists-container > button"));
+            newbucket.Click();
+            newbucket.SendKeys("test create bucket");
+            IWebElement create = driver.FindElement(By.CssSelector("#myModal > div > div > div.modal-body > form > div.modal-footer > input"));
             create.Click();
-            test = extent.StartTest("TC_FUC_MO01_10");
+            test = extent.StartTest("TC_FUC_MO02_");
             Assert.IsTrue(true);
             test.Log(LogStatus.Pass, "Assert Pass as condition is True");
         }
