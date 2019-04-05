@@ -14,6 +14,7 @@ namespace Testing.ModuleManagement
     public class SearchPlanTest : TestBase
     {
         [Test]
+        [TestCaseSource(typeof(TestBase), "BrowserToRunWith")]
         public void TC_FUC_MO02_05()
         {
             Console.WriteLine("At Member In Plan");
@@ -34,6 +35,7 @@ namespace Testing.ModuleManagement
         }
 
         [Test]
+        [TestCaseSource(typeof(TestBase), "BrowserToRunWith")]
         public void TC_FUC_MO02_06()
         {
             Console.WriteLine("At Member In Plan");
@@ -54,6 +56,7 @@ namespace Testing.ModuleManagement
         }
 
         [Test]
+        [TestCaseSource(typeof(TestBase), "BrowserToRunWith")]
         public void TC_FUC_MO02_07()
         {
             Console.WriteLine("At My Plan");
@@ -74,8 +77,12 @@ namespace Testing.ModuleManagement
         }
 
         [Test]
-        public void TC_FUC_MO02_08()
+        [TestCaseSource(typeof(TestBase), "BrowserToRunWith")]
+        public void TC_FUC_MO02_08(String browserName)
         {
+            SetUp(browserName);
+            throw new NotFiniteNumberException();
+
             Console.WriteLine("At My Plan");
             Console.WriteLine("TC_FUC_MO02_08");
             IWebElement email = driver.FindElement(By.CssSelector("#loginForm > form > div.wrap-input100.rs1.validate-input > input"));

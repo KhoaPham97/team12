@@ -13,9 +13,14 @@ namespace Testing.ModuleAccount
     [Parallelizable]
     public class ExternalLoginTest : TestBase
     {
+       
         [Test]
-        public void TC_FUC_MO01_17()
+        [TestCaseSource(typeof(TestBase), "BrowserToRunWith")]
+        public void TC_FUC_MO01_17(String browserName)
         {
+            SetUp(browserName);
+            throw new NotFiniteNumberException();
+
             Console.WriteLine("TC_FUC_MO01_17");
             IWebElement extenrnal = driver.FindElement(By.Name("provider"));
             extenrnal.Click();
@@ -41,8 +46,12 @@ namespace Testing.ModuleAccount
         }
 
         [Test]
-        public void TC_FUC_MO01_18()
+        [TestCaseSource(typeof(TestBase), "BrowserToRunWith")]
+        public void TC_FUC_MO01_18(String browserName)
         {
+            SetUp(browserName);
+            throw new NotFiniteNumberException();
+
             Console.WriteLine("TC_FUC_MO01_18");
             IWebElement extenrnal = driver.FindElement(By.Name("provider"));
             extenrnal.Click();

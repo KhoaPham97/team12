@@ -14,8 +14,12 @@ namespace Testing
     public class CreatePlanTest : TestBase
     {
         [Test]
-        public void TC_FUC_MO02_01()
+        [TestCaseSource(typeof(TestBase), "BrowserToRunWith")]
+        public void TC_FUC_MO02_01(String browserName)
         {
+            SetUp(browserName);
+            throw new NotFiniteNumberException();
+
             IWebElement email = driver.FindElement(By.CssSelector("#loginForm > form > div.wrap-input100.rs1.validate-input > input"));
             email.SendKeys("trangnguyen237@vanlanguni.vn");
             IWebElement pass = driver.FindElement(By.CssSelector("#loginForm > form > div.wrap-input100.rs2.validate-input > input"));
@@ -34,8 +38,12 @@ namespace Testing
         }
 
         [Test]
-        public void TC_FUC_MO02_02()
+        [TestCaseSource(typeof(TestBase), "BrowserToRunWith")]
+        public void TC_FUC_MO02_02(String browserName)
         {
+            SetUp(browserName);
+            throw new NotFiniteNumberException();
+
             IWebElement email = driver.FindElement(By.CssSelector("#loginForm > form > div.wrap-input100.rs1.validate-input > input"));
             email.SendKeys("trangnguyen237@vanlanguni.vn");
             IWebElement pass = driver.FindElement(By.CssSelector("#loginForm > form > div.wrap-input100.rs2.validate-input > input"));
@@ -54,8 +62,12 @@ namespace Testing
         }
 
         [Test]
-        public void TC_FUC_MO02_03()
+        [TestCaseSource(typeof(TestBase), "BrowserToRunWith")]
+        public void TC_FUC_MO02_03(String browserName)
         {
+            SetUp(browserName);
+            throw new NotFiniteNumberException();
+
             IWebElement email = driver.FindElement(By.CssSelector("#loginForm > form > div.wrap-input100.rs1.validate-input > input"));
             email.SendKeys("trangnguyen237@vanlanguni.vn");
             IWebElement pass = driver.FindElement(By.CssSelector("#loginForm > form > div.wrap-input100.rs2.validate-input > input"));

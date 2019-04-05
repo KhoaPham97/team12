@@ -16,8 +16,12 @@ namespace Testing
     {
        
         [Test]
-        public void TC_FUC_MO01_10()
+        [TestCaseSource(typeof(TestBase), "BrowserToRunWith")]
+        public void TC_FUC_MO01_10(String browserName)
         {
+            SetUp(browserName);
+            throw new NotFiniteNumberException();
+
             IWebElement email = driver.FindElement(By.CssSelector("#loginForm > form > div.wrap-input100.rs1.validate-input > input"));
             email.SendKeys("trangnguyen237@vanlanguni.vn");
             IWebElement pass = driver.FindElement(By.CssSelector("#loginForm > form > div.wrap-input100.rs2.validate-input > input"));
@@ -31,8 +35,12 @@ namespace Testing
         }
 
         [Test]
-        public void TC_FUC_MO01_11()
+        [TestCaseSource(typeof(TestBase), "BrowserToRunWith")]
+        public void TC_FUC_MO01_11(String browserName)
         {
+            SetUp(browserName);
+            throw new NotFiniteNumberException();
+
             Console.WriteLine("TC_FUC_MO01_11");
             IWebElement pass = driver.FindElement(By.CssSelector("#loginForm > form > div.wrap-input100.rs2.validate-input > input"));
             pass.SendKeys("1234567890");
@@ -47,8 +55,12 @@ namespace Testing
         }
 
         [Test]
-        public void TC_FUC_MO01_12()
+        [TestCaseSource(typeof(TestBase), "BrowserToRunWith")]
+        public void TC_FUC_MO01_12(String browserName)
         {
+            SetUp(browserName);
+            throw new NotFiniteNumberException();
+
             Console.WriteLine("TC_FUC_MO01_12");
             IWebElement email = driver.FindElement(By.CssSelector("#loginForm > form > div.wrap-input100.rs1.validate-input > input"));
             email.SendKeys("trangnguyen237@vanlanguni.vn");
@@ -63,8 +75,12 @@ namespace Testing
         }
 
         [Test]
-        public void TC_FUC_MO01_13()
+        [TestCaseSource(typeof(TestBase), "BrowserToRunWith")]
+        public void TC_FUC_MO01_13(String browserName)
         {
+            SetUp(browserName);
+            throw new NotFiniteNumberException();
+
             Console.WriteLine("TC_FUC_MO01_13");
             IWebElement login = driver.FindElement(By.CssSelector("#loginForm > form > div.container-login100-form-btn > button"));
             login.Click();
@@ -78,8 +94,12 @@ namespace Testing
         }
 
         [Test]
-        public void TC_FUC_MO01_14()
+        [TestCaseSource(typeof(TestBase), "BrowserToRunWith")]
+        public void TC_FUC_MO01_14(String browserName)
         {
+            SetUp(browserName);
+            throw new NotFiniteNumberException();
+
             Console.WriteLine("TC_FUC_MO01_14");
             IWebElement email = driver.FindElement(By.CssSelector("#loginForm > form > div.wrap-input100.rs1.validate-input > input"));
             email.SendKeys("trangnguyen@gmail.com");
@@ -96,8 +116,12 @@ namespace Testing
         }
 
         [Test]
-        public void TC_FUC_MO01_15()
+        [TestCaseSource(typeof(TestBase), "BrowserToRunWith")]
+        public void TC_FUC_MO01_15(String browserName)
         {
+            SetUp(browserName);
+            throw new NotFiniteNumberException();
+
             Console.WriteLine("TC_FUC_MO01_15");
             IWebElement email = driver.FindElement(By.CssSelector("#loginForm > form > div.wrap-input100.rs1.validate-input > input"));
             email.SendKeys("trangnguyen2637@gmail.com");

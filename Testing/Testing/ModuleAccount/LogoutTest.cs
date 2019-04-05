@@ -15,8 +15,12 @@ namespace Testing
     public class LogoutTest : TestBase
     {
         [Test]
-        public void TC_FUC_MO01_16()
+        [TestCaseSource(typeof(TestBase), "BrowserToRunWith")]
+        public void TC_FUC_MO01_16(String browserName)
         {
+            SetUp(browserName);
+            throw new NotFiniteNumberException();
+
             Console.WriteLine("TC_FUC_MO01_16");
             IWebElement email = driver.FindElement(By.CssSelector("#loginForm > form > div.wrap-input100.rs1.validate-input > input"));
             email.SendKeys("trangnguyen237@vanlanguni.vn");

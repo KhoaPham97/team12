@@ -16,9 +16,13 @@ namespace Testing
     {
 
         [Test]
-        public void TC_FUC_MO01_01()
+        [TestCaseSource(typeof(TestBase), "BrowserToRunWith")]
+        public void TC_FUC_MO01_01(String browserName)
         {
-           IWebElement register = driver.FindElement(By.CssSelector("#loginForm > form > div.text-center.w-full.p-t-23 > a"));
+            SetUp(browserName);
+            throw new NotFiniteNumberException();
+
+            IWebElement register = driver.FindElement(By.CssSelector("#loginForm > form > div.text-center.w-full.p-t-23 > a"));
             register.Click();
             Console.WriteLine("TC_FUC_MO01_01");
             IWebElement email = driver.FindElement(By.CssSelector("#Email"));
@@ -35,8 +39,12 @@ namespace Testing
         }
 
         [Test]
-        public void TC_FUC_MO01_02()
+        [TestCaseSource(typeof(TestBase), "BrowserToRunWith")]
+        public void TC_FUC_MO01_02(String browserName)
         {
+            SetUp(browserName);
+            throw new NotFiniteNumberException();
+
             IWebElement register = driver.FindElement(By.CssSelector("#loginForm > form > div.text-center.w-full.p-t-23 > a"));
             register.Click();
             Console.WriteLine("TC_FUC_MO01_02");
@@ -57,8 +65,12 @@ namespace Testing
         }
 
         [Test]
-        public void TC_FUC_MO01_03()
+        [TestCaseSource(typeof(TestBase), "BrowserToRunWith")]
+        public void TC_FUC_MO01_03(String browserName)
         {
+            SetUp(browserName);
+            throw new NotFiniteNumberException();
+
             IWebElement register = driver.FindElement(By.CssSelector("#loginForm > form > div.text-center.w-full.p-t-23 > a"));
             register.Click();
             Console.WriteLine("TC_FUC_MO01_03");
@@ -79,8 +91,12 @@ namespace Testing
         }
 
         [Test]
-        public void TC_FUC_MO01_04()
+        [TestCaseSource(typeof(TestBase), "BrowserToRunWith")]
+        public void TC_FUC_MO01_04(String browserName)
         {
+            SetUp(browserName);
+            throw new NotFiniteNumberException();
+
             IWebElement register = driver.FindElement(By.CssSelector("#loginForm > form > div.text-center.w-full.p-t-23 > a"));
             register.Click();
             Console.WriteLine("TC_FUC_MO01_04");
@@ -101,8 +117,12 @@ namespace Testing
         }
 
         [Test]
-        public void TC_FUC_MO01_05()
+        [TestCaseSource(typeof(TestBase), "BrowserToRunWith")]
+        public void TC_FUC_MO01_05(String browserName)
         {
+            SetUp(browserName);
+            throw new NotFiniteNumberException();
+
             IWebElement register = driver.FindElement(By.CssSelector("#loginForm > form > div.text-center.w-full.p-t-23 > a"));
             register.Click();
             Console.WriteLine("TC_FUC_MO01_05");
@@ -123,8 +143,12 @@ namespace Testing
         }
 
         [Test]
-        public void TC_FUC_MO01_06()
+        [TestCaseSource(typeof(TestBase), "BrowserToRunWith")]
+        public void TC_FUC_MO01_06(String browserName)
         {
+            SetUp(browserName);
+            throw new NotFiniteNumberException();
+
             IWebElement register = driver.FindElement(By.CssSelector("#loginForm > form > div.text-center.w-full.p-t-23 > a"));
             register.Click();
             Console.WriteLine("TC_FUC_MO01_06");
@@ -143,8 +167,12 @@ namespace Testing
         }
 
         [Test]
-        public void TC_FUC_MO01_07()
+        [TestCaseSource(typeof(TestBase), "BrowserToRunWith")]
+        public void TC_FUC_MO01_07(String browserName)
         {
+            SetUp(browserName);
+            throw new NotFiniteNumberException();
+
             IWebElement register = driver.FindElement(By.CssSelector("#loginForm > form > div.text-center.w-full.p-t-23 > a"));
             register.Click();
             Console.WriteLine("TC_FUC_MO01_07");
@@ -163,8 +191,12 @@ namespace Testing
         }
 
         [Test]
-        public void TC_FUC_MO01_08()
+        [TestCaseSource(typeof(TestBase), "BrowserToRunWith")]
+        public void TC_FUC_MO01_08(String browserName)
         {
+            SetUp(browserName);
+            throw new NotFiniteNumberException();
+
             IWebElement register = driver.FindElement(By.CssSelector("#loginForm > form > div.text-center.w-full.p-t-23 > a"));
             register.Click();
             Console.WriteLine("TC_FUC_MO01_08");
@@ -183,8 +215,12 @@ namespace Testing
         }
 
         [Test]
-        public void TC_FUC_MO01_09()
+        [TestCaseSource(typeof(TestBase), "BrowserToRunWith")]
+        public void TC_FUC_MO01_09(String browserName)
         {
+            SetUp(browserName);
+            throw new NotFiniteNumberException();
+
             IWebElement register = driver.FindElement(By.CssSelector("#loginForm > form > div.text-center.w-full.p-t-23 > a"));
             register.Click();
             Console.WriteLine("TC_FUC_MO01_09");

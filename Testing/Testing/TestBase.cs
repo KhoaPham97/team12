@@ -1,6 +1,9 @@
 ﻿using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Firefox;
+using OpenQA.Selenium.IE;
+using OpenQA.Selenium.Opera;
 using RelevantCodes.ExtentReports;
 using System;
 using System.Collections.Generic;
@@ -21,11 +24,20 @@ namespace Testing
         protected IWebDriver driver;
 
         [SetUp]
-        public void SetUp()
+        public void SetUp(String browserName)
         {
-            driver = new ChromeDriver();
+            if (browserName.Equals("ie"))
+                driver = new InternetExplorerDriver();
+            else if (browserName.Equals("chrome"))
+                driver = new ChromeDriver();
+            else if (browserName.Equals("firefox"))
+                driver = new FirefoxDriver();
+            else if (browserName.Equals("opera"))
+                driver = new OperaDriver();
+
             driver.Navigate().GoToUrl("https://teamfighter.azurewebsites.net");
             Console.WriteLine("Open URL");
+
         }
 
         [OneTimeSetUp]
@@ -69,6 +81,17 @@ namespace Testing
             driver.Close();
             Console.WriteLine("Close in browser");
         }
-       
+
+        public static IEnumerable<String> BrowserToRunWith()
+        {
+            String[] browsers = AutomationSetting.BrowserToRunWith.Split(',');
+
+            foreach (String b in browsers)
+            {
+                yield return b;
+            }
+
+        }
+
     }
 }
