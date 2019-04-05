@@ -19,7 +19,7 @@ namespace Testing.ModuleAccount
         public void TC_FUC_MO01_17(String browserName)
         {
             SetUp(browserName);
-            throw new NotFiniteNumberException();
+            //throw new NotFiniteNumberException();
 
             Console.WriteLine("TC_FUC_MO01_17");
             IWebElement extenrnal = driver.FindElement(By.Name("provider"));
@@ -50,7 +50,7 @@ namespace Testing.ModuleAccount
         public void TC_FUC_MO01_18(String browserName)
         {
             SetUp(browserName);
-            throw new NotFiniteNumberException();
+            //throw new NotFiniteNumberException();
 
             Console.WriteLine("TC_FUC_MO01_18");
             IWebElement extenrnal = driver.FindElement(By.Name("provider"));

@@ -18,7 +18,7 @@ namespace Testing.ModuleAssignee
         public void TC_FUC_MO03_01(String browserName)
         {
             SetUp(browserName);
-            throw new NotFiniteNumberException();
+           //throw new NotFiniteNumberException();
 
             Console.WriteLine("TC_FUC_MO03_01");
             IWebElement email = driver.FindElement(By.CssSelector("#loginForm > form > div.wrap-input100.rs1.validate-input > input"));
@@ -37,7 +37,7 @@ namespace Testing.ModuleAssignee
         public void TC_FUC_MO03_02(String browserName)
         {
             SetUp(browserName);
-            throw new NotFiniteNumberException();
+            //throw new NotFiniteNumberException();
 
             Console.WriteLine("TC_FUC_MO03_02");
             IWebElement email = driver.FindElement(By.CssSelector("#loginForm > form > div.wrap-input100.rs1.validate-input > input"));

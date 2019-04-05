@@ -19,7 +19,7 @@ namespace Testing
         public void TC_FUC_MO01_16(String browserName)
         {
             SetUp(browserName);
-            throw new NotFiniteNumberException();
+            //throw new NotImplementedException();
 
             Console.WriteLine("TC_FUC_MO01_16");
             IWebElement email = driver.FindElement(By.CssSelector("#loginForm > form > div.wrap-input100.rs1.validate-input > input"));
@@ -32,9 +32,9 @@ namespace Testing
             button.Click();
             IWebElement logout = driver.FindElement(By.CssSelector("#logoutForm > div > a"));
             logout.Click();
-            test = extent.StartTest("TC_FUC_MO01_16");
+            /*test = extent.StartTest("TC_FUC_MO01_16");
             Assert.IsTrue(true);
-            test.Log(LogStatus.Pass, "Assert Pass as condition is True");
+            test.Log(LogStatus.Pass, "Assert Pass as condition is True");*/
         }
 
     }

@@ -21,18 +21,19 @@ namespace Testing
 
         public ExtentReports extent;
         public ExtentTest test;
+
         protected IWebDriver driver;
 
-        [SetUp]
+        
         public void SetUp(String browserName)
         {
-            if (browserName.Equals("ie"))
+           if (browserName.Equals("ie"))
                 driver = new InternetExplorerDriver();
             else if (browserName.Equals("chrome"))
                 driver = new ChromeDriver();
             else if (browserName.Equals("firefox"))
                 driver = new FirefoxDriver();
-            else if (browserName.Equals("opera"))
+            else
                 driver = new OperaDriver();
 
             driver.Navigate().GoToUrl("https://teamfighter.azurewebsites.net");
@@ -78,7 +79,7 @@ namespace Testing
         [TearDown]
         public void ClearUp()
         {
-            driver.Close();
+            driver.Quit();
             Console.WriteLine("Close in browser");
         }
 
@@ -92,6 +93,7 @@ namespace Testing
             }
 
         }
+
 
     }
 }

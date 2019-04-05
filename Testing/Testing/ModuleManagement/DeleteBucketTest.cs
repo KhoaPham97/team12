@@ -19,7 +19,7 @@ namespace Testing.ModuleManagement
         public void TC_FUC_MO02_12(String browserName)
         {
             SetUp(browserName);
-            throw new NotFiniteNumberException();
+            //throw new NotFiniteNumberException();
 
             IWebElement email = driver.FindElement(By.CssSelector("#loginForm > form > div.wrap-input100.rs1.validate-input > input"));
             email.SendKeys("trangnguyen237@vanlanguni.vn");

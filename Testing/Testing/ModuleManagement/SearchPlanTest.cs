@@ -15,8 +15,11 @@ namespace Testing.ModuleManagement
     {
         [Test]
         [TestCaseSource(typeof(TestBase), "BrowserToRunWith")]
-        public void TC_FUC_MO02_05()
+        public void TC_FUC_MO02_05(String browserName)
         {
+            SetUp(browserName);
+            //throw new NotFiniteNumberException();
+
             Console.WriteLine("At Member In Plan");
             Console.WriteLine("TC_FUC_MO02_05");
             IWebElement email = driver.FindElement(By.CssSelector("#loginForm > form > div.wrap-input100.rs1.validate-input > input"));
@@ -36,8 +39,11 @@ namespace Testing.ModuleManagement
 
         [Test]
         [TestCaseSource(typeof(TestBase), "BrowserToRunWith")]
-        public void TC_FUC_MO02_06()
+        public void TC_FUC_MO02_06(String browserName)
         {
+            SetUp(browserName);
+            //throw new NotFiniteNumberException();
+
             Console.WriteLine("At Member In Plan");
             Console.WriteLine("TC_FUC_MO02_05");
             IWebElement email = driver.FindElement(By.CssSelector("#loginForm > form > div.wrap-input100.rs1.validate-input > input"));
@@ -57,8 +63,11 @@ namespace Testing.ModuleManagement
 
         [Test]
         [TestCaseSource(typeof(TestBase), "BrowserToRunWith")]
-        public void TC_FUC_MO02_07()
+        public void TC_FUC_MO02_07(String browserName)
         {
+            SetUp(browserName);
+            //throw new NotFiniteNumberException();
+
             Console.WriteLine("At My Plan");
             Console.WriteLine("TC_FUC_MO02_07");
             IWebElement email = driver.FindElement(By.CssSelector("#loginForm > form > div.wrap-input100.rs1.validate-input > input"));
@@ -81,7 +90,7 @@ namespace Testing.ModuleManagement
         public void TC_FUC_MO02_08(String browserName)
         {
             SetUp(browserName);
-            throw new NotFiniteNumberException();
+            //throw new NotFiniteNumberException();
 
             Console.WriteLine("At My Plan");
             Console.WriteLine("TC_FUC_MO02_08");
