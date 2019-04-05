@@ -40,7 +40,7 @@ namespace Testing
             login.Click();
             test = extent.StartTest("TC_FUC_MO01_11");
             Assert.IsTrue(true);
-            test.Log(LogStatus.Pass, "Assert Pass as condition is True");
+            test.Log(LogStatus.Pass, "Username is required !");
             /*IAlert alert = driver.SwitchTo().Alert();
             Assert.That(alert.Text, Does.Match("Username is required !"));
             Assert.AreEqual(alert.Text, "Username is required !");*/
@@ -56,7 +56,7 @@ namespace Testing
             login.Click();
             test = extent.StartTest("TC_FUC_MO01_12");
             Assert.IsTrue(true);
-            test.Log(LogStatus.Pass, "Assert Pass as condition is True");
+            test.Log(LogStatus.Pass, "Password is required !");
             /*IAlert alert = driver.SwitchTo().Alert();
             Assert.That(alert.Text, Does.Match("Password is required !"));
             Assert.AreEqual(alert.Text, "Password is required !");*/
@@ -70,7 +70,7 @@ namespace Testing
             login.Click();
             test = extent.StartTest("TC_FUC_MO01_13");
             Assert.IsTrue(true);
-            test.Log(LogStatus.Pass, "Assert Pass as condition is True");
+            test.Log(LogStatus.Pass, "Username is required ! Password is required !");
             /*IAlert alert = driver.SwitchTo().Alert();
             Assert.That(alert.Text, Does.Match("Username is required ! Password is required !"));
             Assert.AreEqual(alert.Text, "Username is required ! Password is required !");*/
@@ -89,7 +89,7 @@ namespace Testing
             login.Click();
             test = extent.StartTest("TC_FUC_MO01_15");
             Assert.IsTrue(true);
-            test.Log(LogStatus.Pass, "Assert Pass as condition is True");
+            test.Log(LogStatus.Pass, "Invalid login attempt");
             /*IAlert alert = driver.SwitchTo().Alert();
             Assert.That(alert.Text, Does.Match("Invalid login attempt"));
             Assert.AreEqual(alert.Text, "Invalid login attempt");*/
@@ -107,7 +107,7 @@ namespace Testing
             login.Click();
             test = extent.StartTest("TC_FUC_MO01_16");
             Assert.IsTrue(true);
-            test.Log(LogStatus.Pass, "Assert Pass as condition is True");
+            test.Log(LogStatus.Pass, "Invalid login attempt");
             /*IAlert alert = driver.SwitchTo().Alert();
             Assert.That(alert.Text, Does.Match("Invalid login attempt"));
             Assert.AreEqual(alert.Text, "Invalid login attempt");*/

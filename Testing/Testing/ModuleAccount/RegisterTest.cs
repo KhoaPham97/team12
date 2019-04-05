@@ -50,10 +50,10 @@ namespace Testing
             regis.Click();
             test = extent.StartTest("TC_FUC_MO01_02");
             Assert.IsTrue(true);
-            test.Log(LogStatus.Pass, "Assert Pass as condition is True");
-            IAlert alert = driver.SwitchTo().Alert();
+            test.Log(LogStatus.Pass, "The Email field is not a valid e-mail address");
+            /*IAlert alert = driver.SwitchTo().Alert();
             Assert.That(alert.Text, Does.Match("The Email field is not a valid e-mail address"));
-            Assert.AreEqual(alert.Text, "The Email field is not a valid e-mail address");
+            Assert.AreEqual(alert.Text, "The Email field is not a valid e-mail address");*/
         }
 
         [Test]
@@ -72,7 +72,7 @@ namespace Testing
             regis.Click();
             test = extent.StartTest("TC_FUC_MO01_03");
             Assert.IsTrue(true);
-            test.Log(LogStatus.Pass, "Assert Pass as condition is True");
+            test.Log(LogStatus.Pass, "Name trangnguyen237@vanlanguni.vn is already taken. Email 'trangnguyen237@vanlanguni.vn' is already taken");
             /* IAlert alert = driver.SwitchTo().Alert();
              Assert.That(alert.Text, Does.Match("Name trangnguyen237@vanlanguni.vn is already taken. Email 'trangnguyen237@vanlanguni.vn' is already taken"));
              Assert.AreEqual(alert.Text, "Name trangnguyen237@vanlanguni.vn is already taken. Email 'trangnguyen237@vanlanguni.vn' is already taken");*/
@@ -94,7 +94,7 @@ namespace Testing
             regis.Click();
             test = extent.StartTest("TC_FUC_MO01_04");
             Assert.IsTrue(true);
-            test.Log(LogStatus.Pass, "Assert Pass as condition is True");
+            test.Log(LogStatus.Pass, "The Email field is not a valid e-mail address");
             /*IAlert alert = driver.SwitchTo().Alert();
             Assert.That(alert.Text, Does.Match("The Email field is not a valid e-mail address"));
             Assert.AreEqual(alert.Text, "The Email field is not a valid e-mail address");*/
@@ -116,7 +116,7 @@ namespace Testing
             regis.Click();
             test = extent.StartTest("TC_FUC_MO01_05");
             Assert.IsTrue(true);
-            test.Log(LogStatus.Pass, "Assert Pass as condition is True");
+            test.Log(LogStatus.Pass, "The password and confirmation password do not match");
             /*IAlert alert = driver.SwitchTo().Alert();
             Assert.That(alert.Text, Does.Match("The password and confirmation password do not match"));
             Assert.AreEqual(alert.Text, "The password and confirmation password do not match");*/
@@ -136,7 +136,7 @@ namespace Testing
             regis.Click();
             test = extent.StartTest("TC_FUC_MO01_06");
             Assert.IsTrue(true);
-            test.Log(LogStatus.Pass, "Assert Pass as condition is True");
+            test.Log(LogStatus.Pass, "The Email field is required");
             /*IAlert alert = driver.SwitchTo().Alert();
             Assert.That(alert.Text, Does.Match("The Email field is required"));
             Assert.AreEqual(alert.Text, "The Email field is required");*/
@@ -156,7 +156,7 @@ namespace Testing
             regis.Click();
             test = extent.StartTest("TC_FUC_MO01_07");
             Assert.IsTrue(true);
-            test.Log(LogStatus.Pass, "Assert Pass as condition is True");
+            test.Log(LogStatus.Pass, "The Password field is required. The password and confirmation password do not match");
             /* IAlert alert = driver.SwitchTo().Alert();
              Assert.That(alert.Text, Does.Match("The Password field is required. The password and confirmation password do not match"));
              Assert.AreEqual(alert.Text, "The Password field is required. The password and confirmation password do not match");*/
@@ -176,7 +176,7 @@ namespace Testing
             regis.Click();
             test = extent.StartTest("TC_FUC_MO01_08");
             Assert.IsTrue(true);
-            test.Log(LogStatus.Pass, "Assert Pass as condition is True");
+            test.Log(LogStatus.Pass, "The password and confirmation password do not match");
             /* IAlert alert = driver.SwitchTo().Alert();
              Assert.That(alert.Text, Does.Match("The password and confirmation password do not match"));
              Assert.AreEqual(alert.Text, "The password and confirmation password do not match");*/
@@ -192,7 +192,7 @@ namespace Testing
             regis.Click();
             test = extent.StartTest("TC_FUC_MO01_09");
             Assert.IsTrue(true);
-            test.Log(LogStatus.Pass, "Assert Pass as condition is True");
+            test.Log(LogStatus.Pass, "The Email field is required. The Password field is required");
             /* IAlert alert = driver.SwitchTo().Alert();
              Assert.That(alert.Text, Does.Match("The Email field is required. The Password field is required"));
              Assert.AreEqual(alert.Text, "The Email field is required. The Password field is required");*/

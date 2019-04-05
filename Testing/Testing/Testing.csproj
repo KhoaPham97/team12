@@ -107,6 +107,7 @@
     <Compile Include="ModuleAccount\LogoutTest.cs" />
     <Compile Include="ModuleAccount\RegisterTest.cs" />
     <Compile Include="ModuleManagement\CreateTask.cs" />
+    <Compile Include="ModuleManagement\SearchPlan.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestBase.cs" />
   </ItemGroup>
