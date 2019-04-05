@@ -11,7 +11,7 @@ namespace Testing.ModuleManagement
 {
     [TestFixture]
     [Parallelizable]
-    public class CreateTask : TestBase
+    public class CreateTaskTest : TestBase
     {
         [Test]
         public void TC_FUC_MO02_13()

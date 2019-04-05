@@ -19,11 +19,13 @@ namespace Testing.ModuleAccount
             Console.WriteLine("TC_FUC_MO01_17");
             IWebElement extenrnal = driver.FindElement(By.Name("provider"));
             extenrnal.Click();
+            //input email
             IWebElement skype = driver.FindElement(By.Name("loginfmt"));
             skype.SendKeys("trangnguyen237@vanlanguni.vn");
             IWebElement next = driver.FindElement(By.Id("idSIButton9"));
             next.Click();
-            IWebElement pass = driver.FindElement(By.CssSelector("#i0118"));
+            //input pass
+            IWebElement pass = driver.FindElement(By.Name("passwd"));
             pass.SendKeys("VLUt153930");
             IWebElement login = driver.FindElement(By.Id("idSIButton9"));
             login.Click();

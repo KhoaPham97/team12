@@ -11,7 +11,7 @@ namespace Testing.ModuleManagement
 {
     [TestFixture]
     [Parallelizable]
-    public class SearchPlan : TestBase
+    public class SearchPlanTest : TestBase
     {
         [Test]
         public void TC_FUC_MO02_05()

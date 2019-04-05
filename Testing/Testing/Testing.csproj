@@ -101,13 +101,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ModuleAccount\ExternalLoginTest.cs" />
-    <Compile Include="ModuleManagement\CreateBucket.cs" />
-    <Compile Include="ModuleManagement\CreatePlan.cs" />
+    <Compile Include="ModuleAssignee\ViewMemberInPlan.cs" />
+    <Compile Include="ModuleAssignee\ViewMyPlan.cs" />
+    <Compile Include="ModuleManagement\CreateBucketTest.cs" />
+    <Compile Include="ModuleManagement\CreatePlanTest.cs" />
     <Compile Include="ModuleAccount\LoginTest.cs" />
     <Compile Include="ModuleAccount\LogoutTest.cs" />
     <Compile Include="ModuleAccount\RegisterTest.cs" />
-    <Compile Include="ModuleManagement\CreateTask.cs" />
-    <Compile Include="ModuleManagement\SearchPlan.cs" />
+    <Compile Include="ModuleManagement\CreateTaskTest.cs" />
+    <Compile Include="ModuleManagement\SearchPlanTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestBase.cs" />
   </ItemGroup>
