@@ -100,7 +100,7 @@
     <Property Name="AccountID" Type="nvarchar" MaxLength="128" Nullable="false" />
     <Property Name="TaskID" Type="int" Nullable="false" />
     <Property Name="LastUpdate" Type="datetime" Nullable="false" />
-    <Property Name="Comment" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="250" Nullable="false" />
   </EntityType>
   <EntityType Name="ListMember">
     <Key>

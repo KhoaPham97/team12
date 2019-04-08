@@ -23,9 +23,9 @@ namespace WebApplication.Models
             this.Tasks = new HashSet<Task>();
             this.Tasks1 = new HashSet<Task>();
             this.Attachments = new HashSet<Attachment>();
-            this.Comments = new HashSet<Comment>();
             this.ListMembers = new HashSet<ListMember>();
             this.Plans = new HashSet<Plan>();
+            this.Comments = new HashSet<Comment>();
         }
     
         public string Id { get; set; }
@@ -54,10 +54,10 @@ namespace WebApplication.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Attachment> Attachments { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Comment> Comments { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ListMember> ListMembers { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Plan> Plans { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Comment> Comments { get; set; }
     }
 }

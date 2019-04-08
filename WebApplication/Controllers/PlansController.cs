@@ -55,7 +55,7 @@ namespace WebApplication.Controllers
             {
                 db.Plans.Add(plan);
                 db.SaveChanges();
-                return RedirectToAction("Index","Home");
+               return RedirectToAction("Index","Home");
             }
 
 

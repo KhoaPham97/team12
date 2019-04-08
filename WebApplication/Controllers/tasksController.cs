@@ -205,6 +205,9 @@ namespace WebApplication.Controllers
             ViewBag.BucketID = new SelectList(db.Buckets, "BucketID", "Title", tasks.BucketID);
             ViewBag.StatusID = new SelectList(db.Status, "ID", "StatusName", tasks.StatusID);
             ViewBag.Attachments = db.Attachments;
+            ViewBag.Plan = db.Plans;
+            ViewBag.Bucket = db.Buckets;
+            ViewBag.Task = db.Tasks;
             return View(tasks);
         }
 
@@ -231,6 +234,9 @@ namespace WebApplication.Controllers
             ViewBag.BucketID = new SelectList(db.Buckets, "BucketID", "Title", tasks.BucketID);
             ViewBag.StatusID = new SelectList(db.Status, "ID", "StatusName", tasks.StatusID);
             ViewBag.Attachments = db.Attachments;
+            ViewBag.Plan = db.Plans;
+            ViewBag.Bucket = db.Buckets;
+            ViewBag.Task = db.Tasks;
             return View(tasks);
         }
 

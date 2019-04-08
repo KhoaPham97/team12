@@ -7,6 +7,8 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using WebApplication.Models;
+using System.Configuration;
+using System.Data.SqlClient;
 
 namespace WebApplication.Controllers
 {
@@ -49,7 +51,7 @@ namespace WebApplication.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,AccountID,TaskID,LastUpdate,Comment1")] Comment comment)
+        public ActionResult Create([Bind(Include = "ID,AccountID,TaskID,LastUpdate,Name")] Comment comment)
         {
             if (ModelState.IsValid)
             {
@@ -62,6 +64,31 @@ namespace WebApplication.Controllers
             ViewBag.TaskID = new SelectList(db.Tasks, "TaskID", "AssigneeID", comment.TaskID);
             return View(comment);
         }
+        [HttpPost]
+        public ActionResult AjaxPostCall(string AccountID, int TaskID, DateTime LastUpdate, string Name)
+        {
+            string constr = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+            using (SqlConnection con = new SqlConnection(constr))
+            {
+                string query = "INSERT INTO Comments VALUES (@AccountID,@TaskID,@LastUpdate,@Name)";
+                using (SqlCommand cmd = new SqlCommand(query))
+                {
+                    cmd.Connection = con;                  
+
+                    cmd.Parameters.AddWithValue("@AccountID", AccountID);
+                    cmd.Parameters.AddWithValue("@TaskID", TaskID);
+                    cmd.Parameters.AddWithValue("@LastUpdate", LastUpdate);
+                    cmd.Parameters.AddWithValue("@Name", Name);
+                    con.Open();
+                    cmd.ExecuteNonQuery();
+                    con.Close();
+                }
+            }
+
+            ViewBag.Records = "AccountID : " + AccountID + " TaskID:  " + TaskID + " LastUpdate: " + LastUpdate + " Name: " + Name;
+            return Redirect(Request.UrlReferrer.ToString());
+        }
+
 
         // GET: Comments/Edit/5
         public ActionResult Edit(int? id)
@@ -85,7 +112,7 @@ namespace WebApplication.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,AccountID,TaskID,LastUpdate,Comment1")] Comment comment)
+        public ActionResult Edit([Bind(Include = "ID,AccountID,TaskID,LastUpdate,Name")] Comment comment)
         {
             if (ModelState.IsValid)
             {

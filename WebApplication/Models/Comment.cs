@@ -24,7 +24,7 @@ namespace WebApplication.Models
         public string AccountID { get; set; }
         public int TaskID { get; set; }
         public System.DateTime LastUpdate { get; set; }
-        public string Comment1 { get; set; }
+        public string Name { get; set; }
     
         public virtual AspNetUser AspNetUser { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

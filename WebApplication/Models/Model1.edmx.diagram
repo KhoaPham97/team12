@@ -27,16 +27,16 @@
         <AssociationConnector Association="cap21t12Model.FK_Attachment_AspNetUsers" />
         <AssociationConnector Association="cap21t12Model.FK_Attachment_Task" />
         <AssociationConnector Association="cap21t12Model.FK_Checklist_Attachments" />
-        <EntityTypeShape EntityType="cap21t12Model.Comment" Width="1.5" PointX="7.5" PointY="9" />
-        <AssociationConnector Association="cap21t12Model.FK_Comment_AspNetUsers" />
-        <AssociationConnector Association="cap21t12Model.FK_Attachment_Comment" />
-        <AssociationConnector Association="cap21t12Model.FK_Comment_Task" />
         <EntityTypeShape EntityType="cap21t12Model.ListMember" Width="1.5" PointX="8.25" PointY="4.75" />
         <AssociationConnector Association="cap21t12Model.FK_ListMember_AspNetUsers" />
         <EntityTypeShape EntityType="cap21t12Model.Plan" Width="1.5" PointX="5.25" PointY="11.25" />
         <AssociationConnector Association="cap21t12Model.FK_Plans_AspNetUsers" />
         <AssociationConnector Association="cap21t12Model.FK_Bucket_Plan" />
         <AssociationConnector Association="cap21t12Model.FK_ListMember_Plan" />
+        <EntityTypeShape EntityType="cap21t12Model.Comment" Width="1.5" PointX="7.5" PointY="9.125" />
+        <AssociationConnector Association="cap21t12Model.FK_Comment_AspNetUsers" />
+        <AssociationConnector Association="cap21t12Model.FK_Attachment_Comment" />
+        <AssociationConnector Association="cap21t12Model.FK_Comment_Task" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

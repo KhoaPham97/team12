@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity;
 using WebApplication.Models;
 using Newtonsoft.Json;
 using System.Text;
+using System.Data;
 
 namespace WebApplication.Controllers
 {
@@ -21,8 +22,10 @@ namespace WebApplication.Controllers
         {
             cap21t12Entities db = new cap21t12Entities();
             var product = db.Plans;
+
             ViewBag.Listmembers = db.ListMembers;
-        return PartialView(product);
+           
+            return PartialView(product);
         } 
 
         public ActionResult About()

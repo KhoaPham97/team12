@@ -25,16 +25,19 @@ namespace WebApplication.Controllers
         public ActionResult Management(int? id)
         {
             var a = db.Plans.Where(x => x.IDPlan == id);
-     
+            ViewBag.B = db.Buckets.Where(x => x.PlanID == id);
             ViewBag.Message = a;
             ViewBag.b = db.Tasks.Where(x => x.BucketID == id);
             ViewBag.Task = db.Tasks;
-             ViewBag.Comments = db.Comments;
+            ViewBag.Comments = db.Comments;
             ViewBag.Attachments = db.Attachments;
-            ViewBag.Listmembers = db.ListMembers.Where(x => x.PlanID == id);
-            ViewBag.Assignee = db.AspNetUsers;
+            ViewBag.Listmembers = db.ListMembers.Where(x => x.PlanID == id);    
+            ViewBag.Assignee = db.AspNetUsers;   
             ViewBag.Status = db.Status;
             var model = db.Buckets.Where(x => x.PlanID == id);
+         
+
+        
             return View(model);
 
 

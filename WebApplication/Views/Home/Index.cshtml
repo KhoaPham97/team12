@@ -30,6 +30,7 @@
     <link rel="stylesheet" href="@Url.Content("~/area/bower_components/bootstrap-daterangepicker/daterangepicker.css")">
     <!-- bootstrap wysihtml5 - text editor -->
     <link rel="stylesheet" href="@Url.Content("~/area/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css")">
+    <link href="@Url.Content("~/area/dist/img/logo.png")" rel="shortcut icon" type="image/x-icon" />
 
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -544,13 +545,11 @@
                     </div>
                     <!-- /.box -->
                 </div>
-
-
-
-                <div class="col-xs-6">
+             
+                <div class="col-xs-12">
                     <div class="box">
                         <div class="box-header">
-                            <h3 class="box-title">Member In Plan</h3>
+                            <h3 class="box-title">Plan</h3>
 
                             <div class="box-tools">
                                 <div class="input-group input-group-sm" style="width: 150px;">
@@ -576,17 +575,20 @@
                                     {
                                         foreach (var mem in ViewBag.Listmembers)
                                         {
-                                            if (User.Identity.GetUserId() == mem.AccountID && item.IDPlan == mem.PlanID)
+                                            if (User.Identity.GetUserId() == mem.AccountID && item.IDPlan == mem.PlanID || User.Identity.GetUserId() == item.AccountID)
                                             {
                                                 <tr>
 
                                                     <td><a href=" @Url.Action("Management", "Buckets",new {id = @item.IDPlan }) " style="color:black">@item.IDPlan</a></td>
                                                     <td><a href=" @Url.Action("Management", "Buckets",new {id = @item.IDPlan }) " style="color:black">@item.Title</a></td>
-                                                  
+
                                                 </tr>
+                                                break;
                                             }
                                         }
                                     }
+
+                            
                                 </tbody>
 
                             </table>
@@ -601,58 +603,44 @@
 
                 </div>
 
-                <div class="col-xs-6">
-                    <div class="box">
-                        <div class="box-header">
-                            <h3 class="box-title">My Plan</h3>
+                @*<div class="col-xs-6">
+            <div class="box">
+                <div class="box-header">
+                    <h3 class="box-title">My Plan</h3>
 
-                            <div class="box-tools">
-                                <div class="input-group input-group-sm" style="width: 150px;">
-                                    <input type="text" name="table_search" class="form-control pull-right" placeholder="Search">
+                    <div class="box-tools">
+                        <div class="input-group input-group-sm" style="width: 150px;">
+                            <input type="text" name="table_search" class="form-control pull-right" placeholder="Search">
 
-                                    <div class="input-group-btn">
-                                        <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
-                                    </div>
-                                </div>
+                            <div class="input-group-btn">
+                                <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
                             </div>
                         </div>
-                        <!-- /.box-header -->
-                        <div class="box-body table-responsive no-padding">
-                            <table class="table table-hover">
-                                <tbody>
-                                    <tr>
-                                        <th>ID </th>
-                                        <th>Title</th>
-
-                                    </tr>
-
-                                    @foreach (var item in Model)
-                                    {
-                                        
-                                            if ( User.Identity.GetUserId() == item.AccountID)
-                                            {
-                                                <tr>
-
-                                                    <td><a href=" @Url.Action("Management", "Buckets",new {id = @item.IDPlan }) " style="color:black">@item.IDPlan</a></td>
-                                                    <td><a href=" @Url.Action("Management", "Buckets",new {id = @item.IDPlan }) " style="color:black">@item.Title</a></td>
-                                                
-                                                </tr>
-                                            
-                                        }
-                                    }
-                                </tbody>
-
-                            </table>
-
-                        </div>
-
-                        <!-- /.box-body -->
-
                     </div>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body table-responsive no-padding">
+                    <table class="table table-hover">
+                        <tbody>
+                            <tr>
+                                <th>ID </th>
+                                <th>Title</th>
 
-                    <!-- /.box -->
+                            </tr>
+
+                        </tbody>
+
+                    </table>
 
                 </div>
+
+                <!-- /.box-body -->
+
+            </div>
+
+            <!-- /.box -->
+
+        </div>*@
 
 
 
@@ -917,7 +905,6 @@
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
     <script>
-     
         function Startdate() {
             $("#Startdate").focus();
         }
