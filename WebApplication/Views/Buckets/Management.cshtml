@@ -1296,46 +1296,11 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
 
 <script>
-    @*function SaveDemo() {{
- var url = "@this.Url.Action(actionName: "Create", controllerName: "ListMembers")";
-        $.ajax({
-            url: url,
-            type: 'POST',
-            cache: false,
-            data: jQuery('#AutoAdd').serialize(),
-            success: function (data) {
-                alert( data);
-            }
-        });
-    }*@
-
-    $('select#AccountID').find('option').each(function () {
-        var b = ($(this).val());
+  
+    $('select#AccountID').change(function () {     
+        alert($(this).val());
+        
     });
-    $('select#AccountID').change(function () {
-        var bb = $('#test span').text();;
-        if ($(this).val() == bb) {
-            $(this).val('');
-            alert('The member was in the plan!')
-        }
-    });
-
-    @*$(function () {
-        $('#FormCmt').on('submit', function (e) {
-
-        var url = "@this.Url.Action(actionName: "AjaxPostCall", controllerName:"Comments")";
-            $.ajax({
-                type: 'post',
-                url: url,
-                data: $('#FormCmt').serialize(),
-                success: function () {
-                    alert("Email has been sent!");
-                }
-            });
-            e.preventDefault();
-        });
-    });*@
-
     $(document).ready(function () {
 
         var a = ($('#ID').val());
@@ -1351,23 +1316,7 @@
                 location.reload();
             }
         });
-       }
-
-        @*$('select#myselect').find('option').each(function () {
-            alert($(this).val());
-            if (!$(this).val() != a) {
-                var url = "@this.Url.Action(actionName: "Create", controllerName: "ListMembers")";
-        $.ajax({
-            url: url,
-            type: 'POST',
-            cache: false,
-            data: jQuery('#AutoAdd').serialize(),
-            success: function (data) {
-                alert( data);
-            }
-        });
-       }
-    });*@
+       }  
   });
 
 
@@ -1381,7 +1330,10 @@
         $("#hfFileId").val(fileId);
         $("#btnDownload")[0].click();
     };
-    $(document).ready(function () { $(".Assignee").select2({ width: '100%', maximumSelectionSize: 1, placeholder: "Start typing" }); });
+    $(document).ready(function () {
+        $(".Assignee").select2({  width: '100%', maximumSelectionSize:0, placeholder: "Start typing" });
+      
+    });
 
     $('mymodal-task').on('show.bs.modal', function (f) {
         if (f.relatedTarget === undefined) return;

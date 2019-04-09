@@ -137,6 +137,11 @@ namespace WebApplication.Controllers
         public ActionResult MyTask()
         {
             var product = db.Tasks.ToList().Where(p => p.AssigneeID == User.Identity.GetUserId());
+            ViewBag.Comments = db.Comments;
+            ViewBag.Attachments = db.Attachments;
+  
+            ViewBag.Assignee = db.AspNetUsers;
+            ViewBag.Status = db.Status;
             return View(product);
         }
         // GET: Tasks/Details/5

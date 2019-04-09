@@ -30,6 +30,7 @@
     <link rel="stylesheet" href="@Url.Content("~/area/bower_components/bootstrap-daterangepicker/daterangepicker.css")">
     <!-- bootstrap wysihtml5 - text editor -->
     <link rel="stylesheet" href="@Url.Content("~/area/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css")">
+    <link href="@Url.Content("~/area/dist/img/logo.png")" rel="shortcut icon" type="image/x-icon" />
 
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -572,22 +573,26 @@
 
                                     @foreach (var item in Model)
                                     {
+                             
                                         foreach (var mem in ViewBag.Listmembers)
                                         {
-                                            if (User.Identity.GetUserId() == mem.AccountID && item.IDPlan == mem.PlanID || User.Identity.GetUserId() == item.AccountID)
+                                            if ((User.Identity.GetUserId() == mem.AccountID && item.IDPlan == mem.PlanID))
                                             {
-                                                <tr>
+                                             
+                                                    <tr>
 
-                                                    <td><a href=" @Url.Action("Management", "Buckets",new {id = @item.IDPlan }) " style="color:black">@item.IDPlan</a></td>
-                                                    <td><a href=" @Url.Action("Management", "Buckets",new {id = @item.IDPlan }) " style="color:black">@item.Title</a></td>
+                                                        <td><a href=" @Url.Action("Management", "Buckets", new { id = @item.IDPlan }) " style="color:black">@item.IDPlan</a></td>
+                                                        <td><a href=" @Url.Action("Management", "Buckets", new { id = @item.IDPlan }) " style="color:black">@item.Title</a></td>
 
-                                                </tr>
-                                                break;
-                                            }
+                                                    </tr>
+                                            
+                                                }
+
+                                               
+
                                         }
                                     }
 
-                            
                                 </tbody>
 
                             </table>

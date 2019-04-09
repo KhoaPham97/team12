@@ -37,6 +37,7 @@
     <link rel="stylesheet" href="@Url.Content("~/area/bower_components/bootstrap-daterangepicker/daterangepicker.css")">
     <!-- bootstrap wysihtml5 - text editor -->
     <link rel="stylesheet" href="@Url.Content("~/area/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css")">
+    <link href="@Url.Content("~/area/dist/img/logo.png")" rel="shortcut icon" type="image/x-icon" />
     <style>
         .box {
             position: relative;
@@ -1380,7 +1381,7 @@
         $("#hfFileId").val(fileId);
         $("#btnDownload")[0].click();
     };
-    $(document).ready(function () { $(".Assignee").select2({ width: '100%', maximumSelectionSize: 1, placeholder: "Start typing" }); });
+    $(document).ready(function () { $(".Assignee").select2({ /*multiple:true,*/ width: '100%', maximumSelectionSize: 1, placeholder: "Start typing" }); });
 
     $('mymodal-task').on('show.bs.modal', function (f) {
         if (f.relatedTarget === undefined) return;

@@ -53,9 +53,10 @@ namespace WebApplication.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Plans.Add(plan);
+                db.Plans.Add(plan);                
                 db.SaveChanges();
-               return RedirectToAction("Index","Home");
+
+                return RedirectToAction("Management", "Buckets", new { id = plan.IDPlan });
             }
 
 
