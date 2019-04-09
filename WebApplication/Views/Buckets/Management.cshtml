@@ -645,19 +645,21 @@
                                         {
                                             <input type="hidden" class="form-control" id="PlanID" name="PlanID" value="@data.IDPlan" hidden>
                                         }
-                                        <div class="form-group">
-                                            <label style="font-size:18px; color:black">Member</label>
-                                            <select class="form-control Assignee " id="AccountID" name="AccountID" style="font-size:20px">
+                                            <div class="form-group">
+                                                <label style="font-size:18px; color:black">Member</label>
+                                                <select class="form-control Assignee " id="AccountID" name="AccountID" style="font-size:20px">
 
-                                                @foreach (var ass in ViewBag.Assignee)
-                                                {
+                                                    @foreach (var ass in ViewBag.Assignee)
+                                                    {
 
-                                                    <option value="@ass.Id">@ass.Email </option>
+                                                        <option value="@ass.Id">@ass.Email </option>
 
 
-                                                }
-                                            </select>
-                                        </div>
+                                                    }
+                                                </select>
+                                               
+                                               
+                                            </div>
 
                                         <br />   <br />   <br />
                                         <div class="form-group">
@@ -694,7 +696,8 @@
 
                                         <div class="form-group" style="float:right">
                                             <div class="col-md-offset-2 col-md-10">
-                                                <input type="submit" value="Create" class="btn btn-default myButton" />
+                                                <input type="submit" value="Create"   onclick="myFunction()" class="btn btn-default myButton" />
+          
                                             </div>
                                         </div>
                                         <br><br><br><br><br><br><br><br><br><br>
@@ -869,19 +872,18 @@
                                                                             <label>Assignee</label>
 
                                                                             <select class="form-control  disabled  " id="AssigneeID" name="AssigneeID">
-                                                                                @if (data.AssigneeID != null)
-                                                                                {
-                                                                                    <option selected="selected" value="@data.AssigneeID">@data.AspNetUser.Email</option>
-                                                                                }
-                                                                                else
+
+                                                                                <option selected="selected" value="@data.AssigneeID">@data.AspNetUser.Email</option>
+                                                                                @if(data.ReporterID == User.Identity.GetUserId())
                                                                                 {
                                                                                     foreach (var mem in ViewBag.Listmembers)
                                                                                     {
                                                                                         if (mem.AccountID != @data.AssigneeID)
                                                                                         {
-                                                                                            <option value="@mem.AccountID">@mem.AspNetUser.Email</option>
-                                                                                        }
-                                                                                    }
+                                                                                <option value="@mem.AccountID">@mem.AspNetUser.Email</option>
+
+                                                                                }
+                                                                                }
                                                                                 }
                                                                             </select>
                                                                             <span class="field-validation-valid text-danger" data-valmsg-for="AssigneeID" data-valmsg-replace="true"></span>
@@ -1296,15 +1298,15 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
 
 <script>
-  
-    $('select#AccountID').change(function () {     
-        alert($(this).val());
-        
-    });
+
+    //$('select#AccountID').change(function () {
+    //    alert($(this).val());
+
+    //});
     $(document).ready(function () {
 
         var a = ($('#ID').val());
-        var txt = $('#test span').text();      
+        var txt = $('#test span').text();
         if (txt.length == 0) {
                 var url = "@this.Url.Action(actionName: "Create", controllerName: "ListMembers")";
         $.ajax({
@@ -1316,11 +1318,28 @@
                 location.reload();
             }
         });
-       }  
+       }
   });
 
 
-
+    function myFunction() {
+        //alert($('.Assignee').find("option:selected").text());
+        var name = $('.Assignee').find("option:selected").text();       
+        var sendInfo = {
+            email : name          
+        };      
+    
+        $.ajax({
+            url: 'https://prod-27.southeastasia.logic.azure.com:443/workflows/9a238a5f88be49f9bdc42ea2c76d91b1/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=naSctSEt7-yUNRqPxm7G4eWirB-oMToKssqOM4Qf2OE',
+            type: 'post',
+            dataType: 'json',
+            contentType: 'application/json',
+            success: function (data) {
+                alert(data);
+            },
+            data: JSON.stringify(sendInfo)
+        });
+    }
 
 
     $(document).ready(function () {
@@ -1329,10 +1348,20 @@
     function DownloadFile(fileId) {
         $("#hfFileId").val(fileId);
         $("#btnDownload")[0].click();
-    };
+    };  
     $(document).ready(function () {
-        $(".Assignee").select2({  width: '100%', maximumSelectionSize:0, placeholder: "Start typing" });
-      
+
+        $(".Assignee").select2({ width: '100%', maximumSelectionSize: 1, placeholder: "Start typing"});
+        $('.Assignee').val('1'); // Select the option with a value of '1'
+        $('.Assignee').trigger('change');
+
+        //var data = {
+        //    id: 1,
+        //    text: 'Barn owl'
+        //};
+
+        //var newOption = new Option(data.text, data.id, false, false);
+        //$('.Assignee').append(newOption).trigger('change');
     });
 
     $('mymodal-task').on('show.bs.modal', function (f) {
