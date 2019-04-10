@@ -28,7 +28,7 @@ namespace Testing.ModuleManagement
             IWebElement login = driver.FindElement(By.CssSelector("#loginForm > form > div.container-login100-form-btn > button"));
             login.Click();
             //Select plan
-            IWebElement plan = driver.FindElement(By.CssSelector("body > div > div.content-wrapper > section.content > div:nth-child(4) > div > div.box-body.table-responsive.no-padding > table > tbody > tr:nth-child(2) > td:nth-child(2) > a"));
+            IWebElement plan = driver.FindElement(By.CssSelector("body > div > div.content-wrapper > section.content > div.col-xs-12 > div > div.box-body.table-responsive.no-padding > table > tbody > tr:nth-child(7) > td:nth-child(2) > a"));
             plan.Click();
             //Delete
             IWebElement delete = driver.FindElement(By.CssSelector("body > section.lists-container > div:nth-child(1) > form > button > i"));

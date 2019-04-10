@@ -24,10 +24,10 @@ namespace Testing
 
         protected IWebDriver driver;
 
-        
+
         public void SetUp(String browserName)
         {
-           if (browserName.Equals("ie"))
+            if (browserName.Equals("ie"))
                 driver = new InternetExplorerDriver();
             else if (browserName.Equals("chrome"))
                 driver = new ChromeDriver();
@@ -66,6 +66,10 @@ namespace Testing
             if (status == NUnit.Framework.Interfaces.TestStatus.Failed)
             {
                 test.Log(LogStatus.Fail, status + errorMessage);
+            }
+            else
+            {
+                test.Log(LogStatus.Pass, status + errorMessage);
             }
             extent.EndTest(test);
         }

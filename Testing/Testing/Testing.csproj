@@ -105,18 +105,18 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>AutomationSetting.resx</DependentUpon>
     </Compile>
-    <Compile Include="ModuleAccount\ExternalLoginTest.cs" />
-    <Compile Include="ModuleAssignee\ViewMemberInPlanTest.cs" />
-    <Compile Include="ModuleAssignee\ViewMyPlanTest.cs" />
-    <Compile Include="ModuleAssignee\ViewMyTasksTest.cs" />
-    <Compile Include="ModuleManagement\CreateBucketTest.cs" />
-    <Compile Include="ModuleManagement\CreatePlanTest.cs" />
-    <Compile Include="ModuleAccount\LoginTest.cs" />
-    <Compile Include="ModuleAccount\LogoutTest.cs" />
-    <Compile Include="ModuleAccount\RegisterTest.cs" />
-    <Compile Include="ModuleManagement\CreateTaskTest.cs" />
-    <Compile Include="ModuleManagement\DeleteBucketTest.cs" />
-    <Compile Include="ModuleManagement\SearchPlanTest.cs" />
+    <Compile Include="ModerAccount\ExternalLoginTest.cs" />
+    <Compile Include="ModerAssignee\ViewPlanTest.cs" />
+    <Compile Include="ModerAssignee\ViewMyTasksTest.cs" />
+    <Compile Include="ModerManagement\CreateBucketTest.cs" />
+    <Compile Include="ModerManagement\CreatePlanTest.cs" />
+    <Compile Include="ModerAccount\LoginTest.cs" />
+    <Compile Include="ModerAccount\LogoutTest.cs" />
+    <Compile Include="ModerAccount\RegisterTest.cs" />
+    <Compile Include="ModerManagement\CreateTaskTest.cs" />
+    <Compile Include="ModerManagement\DeleteBucketTest.cs" />
+    <Compile Include="ModerManagement\DeleteTaskTest.cs" />
+    <Compile Include="ModerManagement\SearchPlanTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestBase.cs" />
   </ItemGroup>
@@ -128,7 +128,9 @@
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="extebt-config.xml" />
+    <Content Include="extebt-config.xml">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Reports\" />

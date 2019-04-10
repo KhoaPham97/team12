@@ -14,7 +14,7 @@
     <protocol>https</protocol>
 
     <!-- title of the document -->
-    <documentTitle>Result Test</documentTitle>
+    <documentTitle>ExtentReports</documentTitle>
 
     <!-- report name - displayed at top-nav -->
     <reportName>Automation Report</reportName>
