@@ -199,7 +199,7 @@ namespace Testing
             register.Click();
             test.Log(LogStatus.Pass, "Choose Register as a new user?");
 
-            test.Log(LogStatus.Pass, "Leave blank 'Email'");
+            test.Log(LogStatus.Skip, "Leave blank 'Email'");
             IWebElement pass = driver.FindElement(By.CssSelector("#Password"));
             pass.SendKeys("1234567890");
             test.Log(LogStatus.Pass, "Enter valid value into 'Password' sendkey: 1234567890");
@@ -235,7 +235,7 @@ namespace Testing
             email.SendKeys("trangnguyen113@gmail.com");
             test.Log(LogStatus.Pass, "Enter valid value into 'Email' sendkey: trangnguyen113@vanlanguni.vn");
 
-            test.Log(LogStatus.Pass, "Leave blank 'Password");
+            test.Log(LogStatus.Skip, "Leave blank 'Password");
 
             IWebElement pass = driver.FindElement(By.CssSelector("#Password"));
             pass.SendKeys("1234567890");

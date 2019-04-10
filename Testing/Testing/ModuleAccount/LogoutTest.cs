@@ -16,12 +16,12 @@ namespace Testing.Steps
     {
         [Test]
         [TestCaseSource(typeof(TestBase), "BrowserToRunWith")]
-        public void TC_FUC_MO01_16(String browserName)
+        public void TC_FUC_MO01_17(String browserName)
         {
             SetUp(browserName);
             //throw new NotImplementedException();
-            test = extent.StartTest("LOGOUT TC_FUC_MO01_16");
-            Console.WriteLine("LOGOUT TC_FUC_MO01_16");
+            test = extent.StartTest("LOGOUT TC_FUC_MO01_17");
+            Console.WriteLine("LOGOUT TC_FUC_MO01_17");
 
             IWebElement email = driver.FindElement(By.CssSelector("#loginForm > form > div.wrap-input100.rs1.validate-input > input"));
             email.SendKeys("trangnguyen237@vanlanguni.vn");
