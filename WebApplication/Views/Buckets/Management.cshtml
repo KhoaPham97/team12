@@ -19,9 +19,10 @@
     <title>Trello Board Layout with CSS Grid & Flexbox</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css" rel="stylesheet" />
 
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
 
     <link rel="stylesheet" href="@Url.Content("~/area/css/style.css")">
@@ -38,7 +39,219 @@
     <!-- bootstrap wysihtml5 - text editor -->
     <link rel="stylesheet" href="@Url.Content("~/area/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css")">
     <link href="@Url.Content("~/area/dist/img/logo.png")" rel="shortcut icon" type="image/x-icon" />
+  
     <style>
+        .tab {
+            overflow: hidden;
+            border: 1px solid #ccc;
+            background-color: #f1f1f1;
+        }
+
+            /* Style the buttons inside the tab */
+            .tab button {
+                background-color: inherit;
+                float: left;
+                border: none;
+                outline: none;
+                cursor: pointer;
+                padding: 14px 16px;
+                transition: 0.3s;
+                font-size: 17px;
+            }
+
+                /* Change background color of buttons on hover */
+                .tab button:hover {
+                    background-color: #ddd;
+                }
+
+                /* Create an active/current tablink class */
+                .tab button.active {
+                    background-color: #ccc;
+                }
+
+        /* Style the tab content */
+        .tabcontent {
+            display: none;
+            padding: 6px 12px;
+            border: 1px solid #ccc;
+            border-top: none;
+        }
+        #customers {
+            font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+            #customers td, #customers th {
+                border: 1px solid #ddd;
+                padding: 8px;
+            }
+
+            #customers tr:nth-child(even) {
+                background-color: #f2f2f2;
+            }
+
+            #customers tr:hover {
+                background-color: #ddd;
+            }
+
+            #customers th {
+                padding-top: 12px;
+                padding-bottom: 12px;
+                text-align: left;
+                background-color: #4CAF50;
+                color: white;
+            }
+        .Download {
+            background-color: DodgerBlue;
+            border: none;
+            color: white;
+            padding: 4px 20px;
+            cursor: pointer;
+            font-size: 15px;
+        }
+
+            /* Darker background on mouse-over */
+            .Download:hover {
+                background-color: RoyalBlue;
+            }
+
+        .Button1 {
+            -moz-box-shadow: inset 0px 1px 0px 0px #ffffff;
+            -webkit-box-shadow: inset 0px 1px 0px 0px #ffffff;
+            box-shadow: inset 0px 1px 0px 0px #ffffff;
+            background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #ededed), color-stop(1, #dfdfdf));
+            background: -moz-linear-gradient(top, #ededed 5%, #dfdfdf 100%);
+            background: -webkit-linear-gradient(top, #ededed 5%, #dfdfdf 100%);
+            background: -o-linear-gradient(top, #ededed 5%, #dfdfdf 100%);
+            background: -ms-linear-gradient(top, #ededed 5%, #dfdfdf 100%);
+            background: linear-gradient(to bottom, #ededed 5%, #dfdfdf 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ededed', endColorstr='#dfdfdf',GradientType=0);
+            background-color: #ededed;
+            -moz-border-radius: 6px;
+            -webkit-border-radius: 6px;
+            border-radius: 6px;
+            border: 1px solid #dcdcdc;
+            display: inline-block;
+            cursor: pointer;
+            color: #777777;
+            font-family: Arial;
+            font-size: 15px;
+            font-weight: bold;
+            padding: 6px 24px;
+            text-decoration: none;
+            text-shadow: 0px 1px 0px #ffffff;
+        }
+
+            .Button1:hover {
+                background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #dfdfdf), color-stop(1, #ededed));
+                background: -moz-linear-gradient(top, #dfdfdf 5%, #ededed 100%);
+                background: -webkit-linear-gradient(top, #dfdfdf 5%, #ededed 100%);
+                background: -o-linear-gradient(top, #dfdfdf 5%, #ededed 100%);
+                background: -ms-linear-gradient(top, #dfdfdf 5%, #ededed 100%);
+                background: linear-gradient(to bottom, #dfdfdf 5%, #ededed 100%);
+                filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#dfdfdf', endColorstr='#ededed',GradientType=0);
+                background-color: #dfdfdf;
+            }
+
+            .Button1:active {
+                position: relative;
+                top: 1px;
+            }
+
+        .Button2 {
+            -moz-box-shadow: inset 0px 1px 0px 0px #fce2c1;
+            -webkit-box-shadow: inset 0px 1px 0px 0px #fce2c1;
+            box-shadow: inset 0px 1px 0px 0px #fce2c1;
+            background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #ffc477), color-stop(1, #fb9e25));
+            background: -moz-linear-gradient(top, #ffc477 5%, #fb9e25 100%);
+            background: -webkit-linear-gradient(top, #ffc477 5%, #fb9e25 100%);
+            background: -o-linear-gradient(top, #ffc477 5%, #fb9e25 100%);
+            background: -ms-linear-gradient(top, #ffc477 5%, #fb9e25 100%);
+            background: linear-gradient(to bottom, #ffc477 5%, #fb9e25 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffc477', endColorstr='#fb9e25',GradientType=0);
+            background-color: #ffc477;
+            -moz-border-radius: 6px;
+            -webkit-border-radius: 6px;
+            border-radius: 6px;
+            border: 1px solid #eeb44f;
+            display: inline-block;
+            cursor: pointer;
+            color: #ffffff;
+            font-family: Arial;
+            font-size: 15px;
+            font-weight: bold;
+            padding: 6px 24px;
+            text-decoration: none;
+            text-shadow: 0px 1px 0px #cc9f52;
+        }
+
+            .Button2:hover {
+                background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #fb9e25), color-stop(1, #ffc477));
+                background: -moz-linear-gradient(top, #fb9e25 5%, #ffc477 100%);
+                background: -webkit-linear-gradient(top, #fb9e25 5%, #ffc477 100%);
+                background: -o-linear-gradient(top, #fb9e25 5%, #ffc477 100%);
+                background: -ms-linear-gradient(top, #fb9e25 5%, #ffc477 100%);
+                background: linear-gradient(to bottom, #fb9e25 5%, #ffc477 100%);
+                filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fb9e25', endColorstr='#ffc477',GradientType=0);
+                background-color: #fb9e25;
+            }
+
+            .Button2:active {
+                position: relative;
+                top: 1px;
+            }
+
+
+        .Button3 {
+            -moz-box-shadow: inset 0px 1px 0px 0px #f5978e;
+            -webkit-box-shadow: inset 0px 1px 0px 0px #f5978e;
+            box-shadow: inset 0px 1px 0px 0px #f5978e;
+            background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #f24537), color-stop(1, #c62d1f));
+            background: -moz-linear-gradient(top, #f24537 5%, #c62d1f 100%);
+            background: -webkit-linear-gradient(top, #f24537 5%, #c62d1f 100%);
+            background: -o-linear-gradient(top, #f24537 5%, #c62d1f 100%);
+            background: -ms-linear-gradient(top, #f24537 5%, #c62d1f 100%);
+            background: linear-gradient(to bottom, #f24537 5%, #c62d1f 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f24537', endColorstr='#c62d1f',GradientType=0);
+            background-color: #f24537;
+            -moz-border-radius: 6px;
+            -webkit-border-radius: 6px;
+            border-radius: 6px;
+            border: 1px solid #d02718;
+            display: inline-block;
+            cursor: pointer;
+            color: #ffffff;
+            font-family: Arial;
+            font-size: 15px;
+            font-weight: bold;
+            padding: 6px 24px;
+            text-decoration: none;
+            text-shadow: 0px 1px 0px #810e05;
+        }
+
+            .Button3:hover {
+                background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #c62d1f), color-stop(1, #f24537));
+                background: -moz-linear-gradient(top, #c62d1f 5%, #f24537 100%);
+                background: -webkit-linear-gradient(top, #c62d1f 5%, #f24537 100%);
+                background: -o-linear-gradient(top, #c62d1f 5%, #f24537 100%);
+                background: -ms-linear-gradient(top, #c62d1f 5%, #f24537 100%);
+                background: linear-gradient(to bottom, #c62d1f 5%, #f24537 100%);
+                filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#c62d1f', endColorstr='#f24537',GradientType=0);
+                background-color: #c62d1f;
+            }
+
+            .Button3:active {
+                position: relative;
+                top: 1px;
+            }
+
+
+        select {
+            font-family: 'FontAwesome', 'Second Font name'
+        }
+
+
         .box {
             position: relative;
             border-radius: 3px;
@@ -528,7 +741,7 @@
     </style>
 </head>
 <body>
-
+  
     <!-- Masthead -->
     <header class="masthead">
 
@@ -563,12 +776,166 @@
                 <i class="fas fa-bell" aria-hidden="true"></i>
             </button>
 
-            <button class="user-settings-btn btn" aria-label="User Settings">
+            @*<button class="user-settings-btn btn" aria-label="User Settings">
                 <i class="fas fa-user-circle" aria-hidden="true"></i>
-            </button>
+            </button>*@
+            <button class="user-settings-btn btn" data-toggle="modal" data-target="#profile">  <i class="fas fa-user-circle" aria-hidden="true"></i></button>
+            <div class="modal fade" id="profile" role="dialog">
+                <div class="modal-dialog">   
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            @using (Html.BeginForm("Create", "Profiles", FormMethod.Post, new { id = "Add", enctype = "multipart/form-data" }))
+                            {
 
+                                @Html.AntiForgeryToken()
+
+                                <select class="form-control " id="AccountID" name="AccountID" style="font-size:18px;display:none">
+                                    <option value="@User.Identity.GetUserId()">@User.Identity.GetUserName()</option>
+                                </select>
+
+
+                            }
+
+                            @foreach (var ab in ViewBag.Profile)
+                            {
+                                if (ab.AccountID == User.Identity.GetUserId())
+                                {
+                                    <img src="@Url.Content("~/area/login/images/vlu.png")" style="height:50px;width:50px; display: block;  margin-left: auto;  margin-right: auto;" alt="user image" class="offline">
+
+                                    <img src="~/Content/Images/@ab.Avatar" style="height:160px;width:160px; display: block;  margin-left: auto;  margin-right: auto;" alt="user image" class="offline">
+                                    <hr />
+                                    <h1 style="font-size:25px; color:black;text-align:center"><b>@ab.Full_Name</b></h1>
+                                    <a href="javascript:document.getElementById('logoutForm').submit()" style="font-size:15px;align-content:center">Log Off</a>
+                                    <br />
+
+
+
+                                    <div class="tab">
+                                        <button class="tablinks" style="color:black" onclick="openCity(event, 'London')">Information</button>
+                                        <button class="tablinks" style="color:black" onclick="openCity(event, 'Paris')">Edit Informations</button>
+
+                                        @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+                                        {
+                                            @Html.AntiForgeryToken()
+
+
+
+                                        }
+
+                                    </div>
+
+                                    <div id="London" class="tabcontent">
+                                        <table id="customers">
+
+                                            <tr>
+                                                <td> <h1 style="font-size:18px; color:black;text-align:left"><i class="fa fa-user" aria-hidden="true"></i> Email</h1></td>
+                                                <td> <h1 style="font-size:18px; color:black;text-align:left"> @User.Identity.GetUserName()</h1></td>
+
+                                            </tr>
+                                            <tr>
+                                                <td>                                         <h1 style="font-size:18px; color:black;text-align:left"><i class="fa fa-birthday-cake" aria-hidden="true"></i> Birthday</h1></td>
+                                                <td>                                         <h1 style="font-size:18px; color:black;text-align:left">@ab.Birthday</h1></td>
+
+                                            </tr>
+                                            <tr>
+                                                <td>                                 <h1 style="font-size:18px; color:black;text-align:left"><i class="fa fa-mobile" aria-hidden="true"></i> Phone Number</h1></td>
+                                                <td>                                 <h1 style="font-size:18px; color:black;text-align:left"> @ab.PhoneNumber</h1></td>
+
+                                            </tr>
+                                            <tr>
+                                                <td>       <h1 style="font-size:18px; color:black;text-align:left"><i class="fa fa-map-marker" aria-hidden="true"></i> Address</h1></td>
+                                                <td>       <h1 style="font-size:18px; color:black;text-align:left"> @ab.Address</h1></td>
+
+                                            </tr>
+                                        </table>
+
+
+
+                                    </div>
+
+                                    <div id="Paris" class="tabcontent">
+                                        @using (Html.BeginForm("Edit", "Profiles", FormMethod.Post, new { id = @User.Identity.GetUserId(), enctype = "multipart/form-data" }))
+                                        {
+                                            foreach (var a in ViewBag.Profile)
+                                            {
+                                                if (a.AccountID == User.Identity.GetUserId())
+                                                {
+                                                    @Html.AntiForgeryToken()
+                                                    <label style="font-size:18px; color:black;float:left">Account</label>
+
+                                                    <select class="form-control " id="AccountID" name="AccountID" style="font-size:18px">
+                                                        <option value="@User.Identity.GetUserId()">@User.Identity.GetUserName()</option>
+                                                    </select>
+                                                    <label style="font-size:18px; color:black;float:left">Full Name</label>
+                                                    <input class="form-control text-box single-line" id="Full_Name" name="Full_Name" type="text" value="@a.Full_Name">
+                                                    <label style="font-size:18px; color:black;float:left">Birthday</label>
+                                                    <input class="form-control text-box single-line datepicker" data-val="true" data-val-date="The field Birthday must be a date." id="Birthday" name="Birthday" type="datetime" value="@a.Birthday">
+                                                    <label style="font-size:18px; color:black;float:left">Phone Number</label>
+                                                    <input class="form-control text-box single-line" id="PhoneNumber" name="PhoneNumber" type="text" value="@a.PhoneNumber">
+                                                    <label style="font-size:18px; color:black;float:left">Address</label>
+                                                    <input class="form-control text-box single-line" id="Address" name="Address" type="text" value="@a.Address">
+                                                    <input class="form-control text-box single-line" style="display:none" id="Avatar" name="Avatar" type="text" value="@a.Avatar">
+                                                    <div class="form-group" style="float:right">
+                                                        <div class="col-md-offset-2 col-md-10">
+                                                            <input type="submit" value="Save" class="btn btn-default myButton" />
+
+                                                        </div>
+                                                    </div>
+                                                }
+                                            }
+                                        }
+                                        <br /> <br /><hr>
+                                        @using (Html.BeginForm("Edit", "Profiles", FormMethod.Post, new { id = @User.Identity.GetUserId(), enctype = "multipart/form-data" }))
+                                        {
+                                            foreach (var a in ViewBag.Profile)
+                                            {
+                                                if (a.AccountID == User.Identity.GetUserId())
+                                                {
+                                                    @Html.AntiForgeryToken()
+
+                                                    <select class="form-control " id="AccountID" name="AccountID" style="font-size:18px;display:none">
+                                                        <option value="@User.Identity.GetUserId()">@User.Identity.GetUserName()</option>
+                                                    </select>
+                                                    <div style=" display:none">
+                                                        <label style="font-size:18px; color:black;float:left">Full Name</label>
+                                                        <input class="form-control text-box single-line" id="Full_Name" name="Full_Name" type="text" value="@a.Full_Name">
+                                                        <label style="font-size:18px; color:black;float:left">Birthday</label>
+                                                        <input class="form-control text-box single-line datepicker" data-val="true" data-val-date="The field Birthday must be a date." id="Birthday" name="Birthday" type="datetime" value="@a.Birthday">
+                                                        <label style="font-size:18px; color:black;float:left">Phone Number</label>
+                                                        <input class="form-control text-box single-line" id="PhoneNumber" name="PhoneNumber" type="text" value="@a.PhoneNumber">
+                                                        <label style="font-size:18px; color:black;float:left">Address</label>
+                                                        <input class="form-control text-box single-line" id="Address" name="Address" type="text" value="@a.Address">
+                                                        <input class="form-control text-box single-line" id="Avatar" name="Avatar" type="text" value="@a.Avatar">
+                                                    </div>
+                                                    <label for="file" style="font-size:15px; color:black;float:left"> Upload Avatar:</label>
+                                                    <input type="file" name="file" id="Avatar" style="width: 100%;font-size:20px" />
+
+                                                    <div class="form-group" style="float:right">
+                                                        <div class="col-md-offset-2 col-md-10">
+                                                            <input type="submit" value="Save Avatar" class="btn btn-default myButton" />
+
+                                                        </div>
+                                                    </div>
+                                                }
+                                            }
+                                        }
+                                    </div>
+
+
+
+                                }
+                            }
+
+
+
+
+                            <br />   <br />   <br />
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-
     </header>
 
     <!-- End of masthead -->
@@ -577,20 +944,18 @@
 
         <div class="board-controls">
 
+ 
+         
+         
             <button class="board-title btn">
                 @foreach (var data in ViewBag.Message)
                 {
                     <h2>@data.Title</h2>
-
+                    <div id="Plan" style="display:none">@data.Title</div>
                 }
-
+                <div id="MyEmail" style="display:none">@User.Identity.GetUserName()</div>
             </button>
-
-            <button class="star-btn btn" aria-label="Star Board">
-                <i class="far fa-star" aria-hidden="true"></i>
-            </button>
-
-            <button class="personal-btn btn" data-toggle="modal" data-target="#myModall">Personal</button>
+            <button class="personal-btn btn" data-toggle="modal" data-target="#myModall"> <i class="fa fa-users private-btn-icon" aria-hidden="true"></i> Personal</button>
             <div class="modal fade" id="myModall" role="dialog">
                 <div class="modal-dialog">
 
@@ -626,94 +991,312 @@
                             foreach (var data in ViewBag.Message)
 
                             {
-                        <div style="display:none">
-                            <input type="text" class="form-control" id="PlanID" name="PlanID" value="@data.IDPlan">
-                        </div>
-                            } 
-                                    <div style="display:none">
-                                        <input type="text" id="AccountID" name="AccountID" value="@User.Identity.GetUserId()" />
-                                        <input type="text" class="form-control datepicker" id="DateJoined" name="DateJoined" readonly="true" value="@DateTime.Now">
-                                        <input type="submit" class="myButton" value="Send" onclick="SaveDemo();" />
-                                    </div>
-                                }
-                                @using (Html.BeginForm("Create", "Listmembers", FormMethod.Post))
-                                {
-                                    @Html.AntiForgeryToken()
-                                    <div class="modal-body">
-
-                                        @foreach (var data in ViewBag.Message)
-                                        {
-                                            <input type="hidden" class="form-control" id="PlanID" name="PlanID" value="@data.IDPlan" hidden>
-                                        }
-                                            <div class="form-group">
-                                                <label style="font-size:18px; color:black">Member</label>
-                                                <select class="form-control Assignee " id="AccountID" name="AccountID" style="font-size:20px">
-
-                                                    @foreach (var ass in ViewBag.Assignee)
-                                                    {
-
-                                                        <option value="@ass.Id">@ass.Email </option>
-
-
-                                                    }
-                                                </select>
-                                               
-                                               
-                                            </div>
-
-                                        <br />   <br />   <br />
-                                        <div class="form-group">
-                                            <label style="font-size:18px; color:black;float:left">
-                                                Role In Project : <input class="check-box" data-val="true" data-val-required="The RoleProject field is required." id="RoleProject" name="RoleProject" type="checkbox" value="true"><input name="RoleProject" type="hidden" value="false">
-                                                <span class="field-validation-valid text-danger" data-valmsg-for="RoleProject" data-valmsg-replace="true"></span>
-                                            </label>
-                                        </div>
-                                        <br> <br> <br> <br>
-                                        <div class="col-md-6" style="float:left">
-                                            <div class="form-group">
-                                                <label style="font-size:18px; color:black;"> Date Joined  </label>
-                                                <div class="input-group date">
-                                                    <div class="input-group-addon">
-                                                        <i class="fa fa-calendar" onclick="Startdate()"></i>
-                                                    </div>
-                                                    <input type="datetime" class="form-control datepicker" id="DateJoined" name="DateJoined" readonly="true" value="@DateTime.Now">
-                                                </div>
-                                            </div>
-                                        </div>
-
-
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label style="font-size:18px; color:black;"> Date Left  </label>
-                                                <div class="input-group date">
-                                                    <div class="input-group-addon">
-                                                        <i class="fa fa-calendar" onclick="Startdate()"></i>
-                                                    </div>
-                                                    <input type="datetime" class="form-control datepicker" id="DateLeft" name="DateLeft" readonly="true" value="">
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group" style="float:right">
-                                            <div class="col-md-offset-2 col-md-10">
-                                                <input type="submit" value="Create"   onclick="myFunction()" class="btn btn-default myButton" />
-          
-                                            </div>
-                                        </div>
-                                        <br><br><br><br><br><br><br><br><br><br>
-                                    </div>
-                                }
-
+                                <div style="display:none">
+                                    <input type="text" class="form-control" id="PlanID" name="PlanID" value="@data.IDPlan">
+                                </div>
+                            }
+                            <div style="display:none">
+                                <input type="text" id="AccountID" name="AccountID" value="@User.Identity.GetUserId()" />
+                                <input type="text" class="form-control datepicker" id="DateJoined" name="DateJoined" readonly="true" value="@DateTime.Now">
+                                <input type="submit" class="myButton" value="Send" onclick="SaveDemo();" />
                             </div>
-                        </div>
+                        }
+                        @using (Html.BeginForm("Create", "Listmembers", FormMethod.Post))
+                        {
+                            @Html.AntiForgeryToken()
+                            <div class="modal-body">
+
+                                @foreach (var data in ViewBag.Message)
+                                {
+                                    <input type="hidden" class="form-control" id="PlanID" name="PlanID" value="@data.IDPlan" hidden>
+                                }
+                                <div class="form-group">
+                                    <label style="font-size:18px; color:black">Member</label>
+                                    <select class="form-control Assignee " id="AccountID" name="AccountID" style="font-size:20px">
+
+                                        @foreach (var ass in ViewBag.Assignee)
+                                        {
+
+                                            <option value="@ass.Id">@ass.Email </option>
+
+
+                                        }
+                                    </select>
+
+
+                                </div>
+
+                                <br />   <br />   <br />
+                                <div class="form-group">
+                                    <label style="font-size:18px; color:black;float:left">
+                                        Role In Project : <input class="check-box" data-val="true" data-val-required="The RoleProject field is required." id="RoleProject" name="RoleProject" type="checkbox" value="true"><input name="RoleProject" type="hidden" value="false">
+                                        <span class="field-validation-valid text-danger" data-valmsg-for="RoleProject" data-valmsg-replace="true"></span>
+                                    </label>
+                                </div>
+                                <br> <br> <br> <br>
+                                <div class="col-md-6" style="float:left">
+                                    <div class="form-group">
+                                        <label style="font-size:18px; color:black;"> Date Joined  </label>
+                                        <div class="input-group date">
+                                            <div class="input-group-addon">
+                                                <i class="fa fa-calendar" onclick="Startdate()"></i>
+                                            </div>
+                                            <input type="datetime" class="form-control datepicker" id="DateJoined" name="DateJoined" readonly="true" value="@DateTime.Now">
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label style="font-size:18px; color:black;"> Date Left  </label>
+                                        <div class="input-group date">
+                                            <div class="input-group-addon">
+                                                <i class="fa fa-calendar" onclick="Startdate()"></i>
+                                            </div>
+                                            <input type="datetime" class="form-control datepicker" id="DateLeft" name="DateLeft" readonly="true" value="">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group" style="float:right">
+                                    <div class="col-md-offset-2 col-md-10">
+                                        <input type="submit" value="Create" onclick="myFunction()" class="btn btn-default myButton" />
+
+                                    </div>
+                                </div>
+                                <br><br><br><br><br><br><br><br><br><br>
+                            </div>
+                        }
+
+                    </div>
+                </div>
             </div>
+
+            <button class="personal-btn btn" data-toggle="modal" data-target="#chart"> <i class="fa fa-chart-bar private-btn-icon" aria-hidden="true"></i> Statistic</button>
+            <div class="modal fade" id="chart" role="dialog">
+                <div class="modal-dialog modal-lg">
+
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h1 style="font-size:20px;color:black">All Tasks In Plan</h1>
+                            <table id="customers" style="font-size:15px">
+                                <tr>
+                                    <th>Not Started Tasks</th>
+                                    <th>In Progess Task</th>
+                                    <th>Completed Tasks</th>
+                                </tr>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        @{ int o = 0;}
+
+                                        @foreach (var data in ViewBag.Task)
+                                        {
+                                            foreach (var A in ViewBag.Message)
+                                            {
+                                                if (item.PlanID == A.IDPlan && item.BucketID == data.BucketID && data.StatusID == 1)
+                                                {
+
+                                                    o++;
+                                                }
+                                            }
+
+                                        }
+                                        <td class="countable" style="display:none">@o</td>
+                                        @{ int k = 0;}
+
+                                        @foreach (var data in ViewBag.Task)
+                                        {
+                                            foreach (var A in ViewBag.Message)
+                                            {
+                                                if (item.PlanID == A.IDPlan && item.BucketID == data.BucketID && data.StatusID == 2)
+                                                {
+
+                                                    k++;
+                                                }
+                                            }
+
+                                        }
+                                        <td class="countable2" style="display:none">@k</td>
+                                        @{ int h = 0;}
+
+                                        @foreach (var data in ViewBag.Task)
+                                        {
+                                            foreach (var A in ViewBag.Message)
+                                            {
+                                                if (item.PlanID == A.IDPlan && item.BucketID == data.BucketID && data.StatusID == 3)
+                                                {
+
+                                                    h++;
+                                                }
+                                            }
+
+                                        }
+                                        <td class="countable3" style="display:none">@h</td>
+
+                                    </tr>
+                                }
+                                <tr>
+                                    <td id="detailInfo"></td>
+                                    <td id="detailInfo2"></td>
+                                    <td id="detailInfo3"></td>
+                                </tr>
+
+                                }
+                            </table>
+                            <br />
+                            <h1 style="font-size:20px;color:black">All Tasks In Buckets</h1>
+                            <table id="customers" style="font-size:15px">
+                                <tr>
+                                    <th>Bucket</th>
+                                    <th>Not Started Tasks</th>
+                                    <th>In Progess Task</th>
+                                    <th>Completed Tasks</th>
+                                </tr>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>@item.Title</td>
+                                        @{int j = 0;}
+
+                                        @foreach (var data in ViewBag.Task)
+                                        {
+                                            if (item.BucketID == data.BucketID && data.StatusID == 1)
+                                            {
+
+
+                                                j++;
+
+
+                                            }
+
+                                        }
+                                        <td>@j</td>
+
+                                        @{int i = 0;}
+
+                                        @foreach (var data in ViewBag.Task)
+                                        {
+                                            if (item.BucketID == data.BucketID && data.StatusID == 2)
+                                            {
+
+
+                                                i++;
+
+
+                                            }
+
+                                        }
+                                        <td>@i</td>
+
+                                        @{int k = 0;}
+
+                                        @foreach (var data in ViewBag.Task)
+                                        {
+                                            if (item.BucketID == data.BucketID && data.StatusID == 3)
+                                            {
+
+
+                                                k++;
+
+
+                                            }
+
+                                        }
+                                        <td>@k</td>
+                                    </tr>
+                                    <tr></tr>
+                                }
+                            </table>
+                            <br />
+                            <h1 style="font-size:20px;color:black">Members In Plan</h1>
+                            <table id="customers" style="font-size:15px">
+                                <tr>
+                                    <th>Members</th>
+                                    <th>Not Started Tasks</th>
+                                    <th>In Progess Task</th>
+                                    <th>Completed Tasks</th>
+                                </tr>
+
+                                @foreach (var member in ViewBag.Listmembers)
+                                {
+                                    <tr>
+                                        @foreach (var ass in ViewBag.Assignee)
+                                        {
+                                            if (member.AccountID == ass.Id)
+                                            {
+                                                <td>@ass.Email</td>
+                                            }
+
+
+                                        }
+                                        @{int z = 0;}
+                                        @foreach (var item in Model)
+                                        {
+                                            foreach (var data in ViewBag.Task)
+                                            {
+                                                if (member.AccountID == data.AssigneeID && item.BucketID == data.BucketID && data.StatusID == 1)
+                                                {
+                                                    z++;
+
+                                                }
+                                            }
+
+                                        }
+                                        <td>@z</td>
+                                        @{int x = 0;}
+                                        @foreach (var item in Model)
+                                        {
+                                            foreach (var data in ViewBag.Task)
+                                            {
+                                                if (member.AccountID == data.AssigneeID && item.BucketID == data.BucketID && data.StatusID == 2)
+                                                {
+                                                    x++;
+
+                                                }
+                                            }
+
+                                        }
+                                        <td>@x</td>
+                                        @{int y = 0;}
+                                        @foreach (var item in Model)
+                                        {
+                                            foreach (var data in ViewBag.Task)
+                                            {
+                                                if (member.AccountID == data.AssigneeID && item.BucketID == data.BucketID && data.StatusID == 3)
+                                                {
+                                                    y++;
+
+                                                }
+                                            }
+
+                                        }
+                                        <td>@y</td>
+                                    </tr>
+                                }
+
+
+                                <tr></tr>
+
+                            </table>
+                            <br />  <br />  <br />  <br />  <br />    <br />  <br />  <br />  <br />  <br />    <br />  <br />  <br />  <br />  <br />
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
             <button class="private-btn btn"><i class="fas fa-briefcase private-btn-icon" aria-hidden="true"></i>Private</button>
-
+            @*<button class="menu-btn btn"><i class="fas fa-ellipsis-h menu-btn-icon" aria-hidden="true"></i>Show Menu</button>*@
         </div>
-
-        <button class="menu-btn btn"><i class="fas fa-ellipsis-h menu-btn-icon" aria-hidden="true"></i>Show Menu</button>
-
     </section>
+
     <!-- End of board info bar -->
     <!-- Lists container -->
     <section class="lists-container">
@@ -727,7 +1310,7 @@
                     <button class="btn btn-box-tool" data-widget="remove" type="submit" value="Delete" style="float:right;margin-right:10px;margin-top:10px;"> <i class="fa fa-times"></i></button>
 
                 }
-                <h3 class="list-title">@item.Title.Substring(0, Math.Min(@item.Title.Length, 20)) </h3>
+                <h3 class="list-title" style="padding-top:inherit;">@item.Title.Substring(0, Math.Min(@item.Title.Length, 20)) </h3>
 
                 <ul class="list-items">
 
@@ -745,12 +1328,28 @@
                                     </div>
                                 }
 
-                                <button type="button" class="btn" data-toggle="modal" data-target="@("#myModal" + data.TaskID)" style="max-width:100%">@data.Title</button>
+                                <button type="button" class="btn" data-toggle="modal" data-target="@("#myModal" + data.TaskID)" style="max-width:100%">
+                                    @if (data.StatusID == 1)
+                                    {
+                                        <span class="label label-default" style="font-size:10px;float:left;color: #777">AAA</span>
+                                    }
+                                    @if (data.StatusID == 2)
+                                    {
+                                        <span class="label label-warning" style="font-size:10px;float:left;color: #f0ad4e">AAA</span>
+                                    }
+                                    @if (data.StatusID == 3)
+                                    {
+                                        <span class="label label-danger" style="font-size:10px;float:left;color: #d9534f">AAA</span>
+                                    }&nbsp;
+                                    @data.Title.Substring(0, Math.Min(@data.Title.Length, 22)) ...
+                                </button>
 
                                 <div class="modal fade" id=@("myModal" + data.TaskID) tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                                     <div class="modal-dialog" role="document">
                                         <div class="modal-content">
-                                            <div class="modal-body">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+
                                                 @*@using (Html.BeginForm("Edit", "Tasks", new { id = @data.TaskID }, FormMethod.Post))
                                                 {
                                                     { Html.RenderAction("Edit", "Tasks", new { id = @data.TaskID }); }
@@ -770,11 +1369,24 @@
                                                         <!-- left column -->
 
                                                         <div class="col-md-12">
-                                                            <!-- general form elements -->
-
+                                                            @if (@data.StatusID == 1)
+                                                            {
+                                                                <a href="#" class="Button1">Not Started</a>
+                                                                <!-- general form elements -->
+                                                            }
+                                                            @if (@data.StatusID == 2)
+                                                            {
+                                                                <a href="#" class="Button2">In Progess</a>
+                                                                <!-- general form elements -->
+                                                            }
+                                                            @if (@data.StatusID == 3)
+                                                            {
+                                                                <a href="#" class="Button3">Completed</a>
+                                                                <!-- general form elements -->
+                                                            }
                                                             <div class="box box-primary">
 
-                                                                <input data-val="true" data-val-number="The field TaskID must be a number." data-val-required="The TaskID field is required." id="TaskID" name="TaskID" type="hidden" value="@data.TaskID">
+                                                                <input data-val="true" data-val-number="The field TaskID must be a number." data-val-required="The TaskID field is required." id="TaskID" name="TaskID" type="hidden" value="@data.TaskID ">
 
                                                                 <div class="box-header with-border">
                                                                     <div class="col-md-12">
@@ -803,28 +1415,30 @@
                                                                             <span class="field-validation-valid text-danger" data-valmsg-for="BucketID" data-valmsg-replace="true"></span>
                                                                         </div>
                                                                     </div>
+
                                                                     <div class="col-md-4">
                                                                         <div class="form-group">
-                                                                            <label>Status</label>
+                                                                            <label> Status</label>
 
                                                                             <select class="form-control StatusID" id="StatusID" name="StatusID">
                                                                                 @if (@data.StatusID == 1)
                                                                                 {
-                                                                                    <option selected="selected" value="@data.StatusID">@data.Status.StatusName</option>
-                                                                                    <option value="2">In Progess</option>
-                                                                                    <option value="3">Completed</option>
+                                                                                    <option selected="selected" value="@data.StatusID">	&#xf1db; @data.Status.StatusName </option>
+                                                                                    <option value="2">	&#xf042; In Progess</option>
+                                                                                    <option value="3">&#xf00c; Completed</option>
                                                                                 }
                                                                                 else if (@data.StatusID == 2)
                                                                                 {
-                                                                                    <option value="1">Not started</option>
-                                                                                    <option selected="selected" value="@data.StatusID">@data.Status.StatusName</option>
-                                                                                    <option value="3">Completed</option>
+
+                                                                                    <option value="1">	&#xf1db; Not started</option>
+                                                                                    <option selected="selected" value="@data.StatusID">	&#xf042;  @data.Status.StatusName</option>
+                                                                                    <option value="3">&#xf00c;Completed</option>
                                                                                 }
                                                                                 else if (@data.StatusID == 3)
                                                                                 {
-                                                                                    <option value="1">Not started</option>
-                                                                                    <option value="2">In Progess</option>
-                                                                                    <option selected="selected" value="@data.StatusID">@data.Status.StatusName</option>
+                                                                                    <option value="1">	&#xf1db; Not started</option>
+                                                                                    <option value="2">	&#xf042; In Progess</option>
+                                                                                    <option selected="selected" value="@data.StatusID">&#xf00c; @data.Status.StatusName</option>
 
                                                                                 }
 
@@ -833,6 +1447,7 @@
                                                                             <span class="field-validation-valid text-danger" data-valmsg-for="StatusID" data-valmsg-replace="true"></span>
                                                                         </div>
                                                                     </div>
+
 
                                                                     <div class="col-md-4">
                                                                         <div class="form-group">
@@ -873,17 +1488,23 @@
 
                                                                             <select class="form-control  disabled  " id="AssigneeID" name="AssigneeID">
 
-                                                                                <option selected="selected" value="@data.AssigneeID">@data.AspNetUser.Email</option>
-                                                                                @if(data.ReporterID == User.Identity.GetUserId())
+                                                                                @foreach (var C in ViewBag.Assignee)
+                                                                                {
+                                                                                    if (data.AssigneeID == C.Id)
+                                                                                    {
+                                                                                        <option selected="selected" value="@C.Id">@C.Email</option>
+                                                                                    }
+                                                                                }
+                                                                                @if (data.ReporterID == User.Identity.GetUserId())
                                                                                 {
                                                                                     foreach (var mem in ViewBag.Listmembers)
                                                                                     {
                                                                                         if (mem.AccountID != @data.AssigneeID)
                                                                                         {
-                                                                                <option value="@mem.AccountID">@mem.AspNetUser.Email</option>
+                                                                                            <option value="@mem.AccountID">@mem.AspNetUser.Email</option>
 
-                                                                                }
-                                                                                }
+                                                                                        }
+                                                                                    }
                                                                                 }
                                                                             </select>
                                                                             <span class="field-validation-valid text-danger" data-valmsg-for="AssigneeID" data-valmsg-replace="true"></span>
@@ -920,7 +1541,7 @@
 
                                                 <div class="box box-success">
                                                     <div class="box-header">
-                                                        <i class="fa fa-comments-o"></i>
+                                                        <i class="fa fa-eercast"></i>
 
                                                         <h3 class="box-title">Comments</h3>
 
@@ -1058,7 +1679,7 @@
                                                     <tr>
 
                                                         <th style="width:120px">File Name</th>
-                                                        <th style="width:80px">Download</th>
+                                                        <th style="width:80px"></th>
                                                     </tr>
 
                                                     @foreach (var file in ViewBag.Attachments)
@@ -1068,7 +1689,10 @@
                                                             @if (file.TaskID == data.TaskID)
                                                             {
                                                                 <td>@file.Name</td>
-                                                                <td><a href="javascript:;" onclick="DownloadFile(@file.ID)">Download</a></td>
+
+                                                                <td>
+                                                                    <a href="javascript:;" onclick="DownloadFile(@file.ID)" class="Download"><i class="fa fa-download"></i> Download</a>
+                                                                </td>
                                                             }
                                                         </tr>
 
@@ -1083,7 +1707,6 @@
                                         </div>
 
                                     </div>
-
                                 </div>
 
 
@@ -1215,7 +1838,7 @@
 
             </div>
         }
-        <input type="hidden" id="ID" value="@User.Identity.GetUserName()"/>
+        
         <button type="button" class="add-list-btn btn" data-toggle="modal" data-target="#myModal">Add a bucket</button>
 
         <!-- Modal -->
@@ -1255,6 +1878,7 @@
                 </div>
             </div>
         </div>
+
 
     </section>
     <!-- End of lists container -->
@@ -1298,14 +1922,59 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
 
 <script>
+    function openCity(evt, cityName) {
+        var i, tabcontent, tablinks;
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+        }
+        tablinks = document.getElementsByClassName("tablinks");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+        document.getElementById(cityName).style.display = "block";
+        evt.currentTarget.className += " active";
+    }
 
-    //$('select#AccountID').change(function () {
-    //    alert($(this).val());
-
-    //});
+    var cls = document.getElementById("customers").getElementsByTagName("td");
+    var sum = 0;
+    for (var i = 0; i < cls.length; i++) {
+        if (cls[i].className == "countable") {
+            sum += isNaN(cls[i].innerHTML) ? 0 : parseInt(cls[i].innerHTML);
+        }
+    }
+    $('#detailInfo').html(sum);
+    var sum = 0;
+    for (var i = 0; i < cls.length; i++) {
+        if (cls[i].className == "countable2") {
+            sum += isNaN(cls[i].innerHTML) ? 0 : parseInt(cls[i].innerHTML);
+        }
+    }
+    $('#detailInfo2').html(sum);
+    var sum = 0;
+    for (var i = 0; i < cls.length; i++) {
+        if (cls[i].className == "countable3") {
+            sum += isNaN(cls[i].innerHTML) ? 0 : parseInt(cls[i].innerHTML);
+        }
+    }
+    $('#detailInfo3').html(sum);
+    //alert('sum is ' + sum);
     $(document).ready(function () {
 
-        var a = ($('#ID').val());
+       var url = "@this.Url.Action(actionName: "Create", controllerName: "Profiles")";
+        $.ajax({
+            url: url,
+            type: 'POST',
+            cache: false,
+            data: jQuery('#Add').serialize(),
+            success: function (data) {
+                location.reload();
+            }
+        });
+      
+  });
+    $(document).ready(function () {
+    
         var txt = $('#test span').text();
         if (txt.length == 0) {
                 var url = "@this.Url.Action(actionName: "Create", controllerName: "ListMembers")";
@@ -1321,12 +1990,16 @@
        }
   });
 
-
     function myFunction() {
-        //alert($('.Assignee').find("option:selected").text());
+        var plan = $('#Plan').text();  
+        var myemail = $('#MyEmail').text();     
+        var url = window.location.href; 
         var name = $('.Assignee').find("option:selected").text();       
         var sendInfo = {
-            email : name          
+            receiver_email: name,
+            plan_title: plan,
+            sender_email: myemail,
+            plan_url: url
         };      
     
         $.ajax({
@@ -1355,13 +2028,6 @@
         $('.Assignee').val('1'); // Select the option with a value of '1'
         $('.Assignee').trigger('change');
 
-        //var data = {
-        //    id: 1,
-        //    text: 'Barn owl'
-        //};
-
-        //var newOption = new Option(data.text, data.id, false, false);
-        //$('.Assignee').append(newOption).trigger('change');
     });
 
     $('mymodal-task').on('show.bs.modal', function (f) {
@@ -1385,38 +2051,7 @@
         }
 
     });
-    //$(document).ready(function () {
-    //    $('.input-group.date').datepicker({
-
-    //        format: "dd/mm/yyyy",
-    //        changeMonth: true,
-    //        changeYear: true,
-    //        changeDay: true,
-    //        todayBtn: "linked",
-    //        autoclose: true,
-    //        todayHighlight: true,
-    //        container: 'modal-body'
-    //    });
-    //});
-
-    //$(function () {
-    //    $("#Startdate").datepicker({
-    //        numberOfMonths: 2,
-    //        onSelect: function (selected) {
-    //            var dt = new Date(selected);
-    //            dt.setDate(dt.getDate() + 1);
-    //            $("#Duedate").datepicker("option", "minDate", dt);
-    //        }
-    //    });
-    //    $("#Duedate").datepicker({
-    //        numberOfMonths: 2,
-    //        onSelect: function (selected) {
-    //            var dt = new Date(selected);
-    //            dt.setDate(dt.getDate() - 1);
-    //            $("#Startdate").datepicker("option", "maxDate", dt);
-    //        }
-    //    });
-    //});
+    
 </script>
 
 

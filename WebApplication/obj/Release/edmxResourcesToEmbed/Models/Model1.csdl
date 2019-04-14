@@ -117,6 +117,11 @@
       <End Role="Task" EntitySet="Tasks" />
       <End Role="Comment" EntitySet="Comments" />
     </AssociationSet>
+    <EntitySet Name="Profiles" EntityType="cap21t12Model.Profile" />
+    <AssociationSet Name="FK_Profile_AspNetUsers" Association="cap21t12Model.FK_Profile_AspNetUsers">
+      <End Role="AspNetUser" EntitySet="AspNetUsers" />
+      <End Role="Profile" EntitySet="Profiles" />
+    </AssociationSet>
   </EntityContainer>
   <ComplexType Name="sp_helpdiagramdefinition_Result">
     <Property Type="Int32" Name="version" Nullable="true" />
@@ -193,6 +198,7 @@
     <NavigationProperty Name="ListMembers" Relationship="cap21t12Model.FK_ListMember_AspNetUsers" FromRole="AspNetUser" ToRole="ListMember" />
     <NavigationProperty Name="Plans" Relationship="cap21t12Model.FK_Plans_AspNetUsers" FromRole="AspNetUser" ToRole="Plan" />
     <NavigationProperty Name="Comments" Relationship="cap21t12Model.FK_Comment_AspNetUsers" FromRole="AspNetUser" ToRole="Comment" />
+    <NavigationProperty Name="Profile" Relationship="cap21t12Model.FK_Profile_AspNetUsers" FromRole="AspNetUser" ToRole="Profile" />
   </EntityType>
   <EntityType Name="Bucket">
     <Key>
@@ -519,6 +525,30 @@
       </Principal>
       <Dependent Role="Comment">
         <PropertyRef Name="TaskID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Profile">
+    <Key>
+      <PropertyRef Name="AccountID" />
+    </Key>
+    <Property Name="AccountID" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="Full_Name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="Birthday" Type="DateTime" Precision="3" />
+    <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Address" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="Avatar" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AspNetUser" Relationship="cap21t12Model.FK_Profile_AspNetUsers" FromRole="Profile" ToRole="AspNetUser" />
+  </EntityType>
+  <Association Name="FK_Profile_AspNetUsers">
+    <End Type="cap21t12Model.AspNetUser" Role="AspNetUser" Multiplicity="1" />
+    <End Type="cap21t12Model.Profile" Role="Profile" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUser">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Profile">
+        <PropertyRef Name="AccountID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

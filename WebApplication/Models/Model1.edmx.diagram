@@ -37,6 +37,8 @@
         <AssociationConnector Association="cap21t12Model.FK_Comment_AspNetUsers" />
         <AssociationConnector Association="cap21t12Model.FK_Attachment_Comment" />
         <AssociationConnector Association="cap21t12Model.FK_Comment_Task" />
+        <EntityTypeShape EntityType="cap21t12Model.Profile" Width="1.5" PointX="5.25" PointY="14.25" />
+        <AssociationConnector Association="cap21t12Model.FK_Profile_AspNetUsers" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

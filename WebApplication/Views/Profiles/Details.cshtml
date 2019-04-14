@@ -1,0 +1,74 @@
+﻿@model WebApplication.Models.Profile
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+</head>
+<body>
+    <div>
+        <h4>Profile</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Full_Name)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Full_Name)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Birthday)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Birthday)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.PhoneNumber)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.PhoneNumber)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Address)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Address)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Avatar)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Avatar)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.AspNetUser.Email)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.AspNetUser.Email)
+            </dd>
+    
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.IDProfile }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</body>
+</html>

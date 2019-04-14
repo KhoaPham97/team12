@@ -59,5 +59,6 @@ namespace WebApplication.Models
         public virtual ICollection<Plan> Plans { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Comment> Comments { get; set; }
+        public virtual Profile Profile { get; set; }
     }
 }

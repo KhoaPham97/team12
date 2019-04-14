@@ -126,6 +126,17 @@
           <Property Name="Title" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="AccountID" Type="nvarchar" MaxLength="128" Nullable="false" />
         </EntityType>
+        <EntityType Name="Profile">
+          <Key>
+            <PropertyRef Name="AccountID" />
+          </Key>
+          <Property Name="AccountID" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Full Name" Type="nvarchar" MaxLength="128" />
+          <Property Name="Birthday" Type="datetime" />
+          <Property Name="PhoneNumber" Type="nvarchar(max)" />
+          <Property Name="Address" Type="nvarchar" MaxLength="128" />
+          <Property Name="Avatar" Type="nvarchar" MaxLength="255" />
+        </EntityType>
         <EntityType Name="Status">
           <Key>
             <PropertyRef Name="ID" />
@@ -346,6 +357,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Profile_AspNetUsers">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+          <End Role="Profile" Type="Self.Profile" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Profile">
+              <PropertyRef Name="AccountID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Task_AspNetUsers">
           <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1" />
           <End Role="Tasks" Type="Self.Tasks" Multiplicity="*" />
@@ -438,6 +461,7 @@
           <EntitySet Name="Comments" EntityType="Self.Comments" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ListMember" EntityType="Self.ListMember" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Plans" EntityType="Self.Plans" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Profile" EntityType="Self.Profile" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Status" EntityType="Self.Status" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Tasks" EntityType="Self.Tasks" Schema="dbo" store:Type="Tables" />
@@ -500,6 +524,10 @@
           <AssociationSet Name="FK_Plans_AspNetUsers" Association="Self.FK_Plans_AspNetUsers">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="Plans" EntitySet="Plans" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Profile_AspNetUsers" Association="Self.FK_Profile_AspNetUsers">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="Profile" EntitySet="Profile" />
           </AssociationSet>
           <AssociationSet Name="FK_Task_AspNetUsers" Association="Self.FK_Task_AspNetUsers">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
@@ -639,6 +667,11 @@
             <End Role="Task" EntitySet="Tasks" />
             <End Role="Comment" EntitySet="Comments" />
           </AssociationSet>
+          <EntitySet Name="Profiles" EntityType="cap21t12Model.Profile" />
+          <AssociationSet Name="FK_Profile_AspNetUsers" Association="cap21t12Model.FK_Profile_AspNetUsers">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="Profile" EntitySet="Profiles" />
+          </AssociationSet>
           </EntityContainer>
         <ComplexType Name="sp_helpdiagramdefinition_Result">
           <Property Type="Int32" Name="version" Nullable="true" />
@@ -715,6 +748,7 @@
           <NavigationProperty Name="ListMembers" Relationship="cap21t12Model.FK_ListMember_AspNetUsers" FromRole="AspNetUser" ToRole="ListMember" />
           <NavigationProperty Name="Plans" Relationship="cap21t12Model.FK_Plans_AspNetUsers" FromRole="AspNetUser" ToRole="Plan" />
           <NavigationProperty Name="Comments" Relationship="cap21t12Model.FK_Comment_AspNetUsers" FromRole="AspNetUser" ToRole="Comment" />
+          <NavigationProperty Name="Profile" Relationship="cap21t12Model.FK_Profile_AspNetUsers" FromRole="AspNetUser" ToRole="Profile" />
         </EntityType>
         <EntityType Name="Bucket">
           <Key>
@@ -1044,6 +1078,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Profile">
+          <Key>
+            <PropertyRef Name="AccountID" />
+          </Key>
+          <Property Name="AccountID" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Full_Name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Birthday" Type="DateTime" Precision="3" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Avatar" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUser" Relationship="cap21t12Model.FK_Profile_AspNetUsers" FromRole="Profile" ToRole="AspNetUser" />
+        </EntityType>
+        <Association Name="FK_Profile_AspNetUsers">
+          <End Type="cap21t12Model.AspNetUser" Role="AspNetUser" Multiplicity="1" />
+          <End Type="cap21t12Model.Profile" Role="Profile" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Profile">
+              <PropertyRef Name="AccountID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1235,6 +1293,18 @@
                 <ScalarProperty Name="TaskID" ColumnName="TaskID" />
                 <ScalarProperty Name="AccountID" ColumnName="AccountID" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Profiles">
+            <EntityTypeMapping TypeName="cap21t12Model.Profile">
+              <MappingFragment StoreEntitySet="Profile">
+                <ScalarProperty Name="Avatar" ColumnName="Avatar" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="Birthday" ColumnName="Birthday" />
+                <ScalarProperty Name="Full_Name" ColumnName="Full Name" />
+                <ScalarProperty Name="AccountID" ColumnName="AccountID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
