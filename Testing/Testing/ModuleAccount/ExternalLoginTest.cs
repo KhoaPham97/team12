@@ -13,7 +13,7 @@ namespace Testing.ModuleAccount
     [Parallelizable]
     public class ExternalLoginTest : TestBase
     {
-       
+
         [Test]
         [TestCaseSource(typeof(TestBase), "BrowserToRunWith")]
         public void TC_FUC_MO01_18(String browserName)

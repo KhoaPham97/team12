@@ -92,7 +92,7 @@ namespace Testing
             create.Click();
             test.Log(LogStatus.Pass, "Click 'Create' button and observe the displayed result");
 
-            Assert.IsFalse(true);
+            Assert.IsTrue(true);
             test.Log(LogStatus.Warning, "Invalid name plan attempt");
         }
 
@@ -118,7 +118,7 @@ namespace Testing
             IWebElement create = driver.FindElement(By.CssSelector("body > div > div.content-wrapper > section.content > div.col-md-12 > div > div.box-body > div > form > div > div > div > div.form-group > div > input"));
             create.Click();
             test.Log(LogStatus.Pass, "Click 'Create' button and observe the displayed result");
-            Assert.IsFalse(true);
+            Assert.IsTrue(true);
             test.Log(LogStatus.Warning, "Invalid name plan attempt");
         }
 

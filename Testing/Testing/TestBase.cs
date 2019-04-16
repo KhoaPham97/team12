@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Net;
 
 namespace Testing
 {
@@ -44,6 +45,7 @@ namespace Testing
         [OneTimeSetUp]
         public void StartReport()
         {
+            string hostname = Dns.GetHostName();
             string pth = System.Reflection.Assembly.GetCallingAssembly().CodeBase;
             string actualPath = pth.Substring(0, pth.LastIndexOf("bin"));
             string projectPath = new Uri(actualPath).LocalPath;
@@ -51,7 +53,8 @@ namespace Testing
             string reportPath = projectPath + "Reports\\MyReport.html";
 
             extent = new ExtentReports(reportPath, true);
-            extent.AddSystemInfo("host name", "123");
+            extent.AddSystemInfo("Host name", hostname);
+            extent.AddSystemInfo("Browser", "Google Chrome");
             extent.LoadConfig(projectPath + "extebt-config.xml");
         }
 
@@ -62,14 +65,13 @@ namespace Testing
             var stackTrace = "<pre>" + TestContext.CurrentContext.Result.StackTrace + "</pre>";
             var errorMessage = TestContext.CurrentContext.Result.Message;
 
-
             if (status == NUnit.Framework.Interfaces.TestStatus.Failed)
             {
-                test.Log(LogStatus.Fail, status + errorMessage);
+                test.Log(LogStatus.Fail, "Test ended with "+ status +Environment.NewLine + errorMessage);
             }
             else
             {
-                test.Log(LogStatus.Pass, status + errorMessage);
+                test.Log(LogStatus.Pass, "Test ended with "+ status +  errorMessage);
             }
             extent.EndTest(test);
         }

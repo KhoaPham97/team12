@@ -32,7 +32,7 @@ namespace Testing.ModuleManagement
             search.SendKeys("1");
             IWebElement show = driver.FindElement(By.ClassName("btn btn-default"));
             show.Click();
-            test = extent.StartTest("TC_FUC_MO01_16");
+            test = extent.StartTest("SEARCH PLAN TC_FUC_MO01_16");
             Assert.IsTrue(true);
             test.Log(LogStatus.Pass, "Assert Pass as condition is True");
         }
@@ -56,7 +56,7 @@ namespace Testing.ModuleManagement
             search.SendKeys("%%%");
             IWebElement show = driver.FindElement(By.ClassName("btn btn-default"));
             show.Click();
-            test = extent.StartTest("TC_FUC_MO01_16");
+            test = extent.StartTest("SEARCH PLAN TC_FUC_MO01_16");
             Assert.IsTrue(true);
             test.Log(LogStatus.Pass, "Invalid name plan attempt");
         }
@@ -80,7 +80,7 @@ namespace Testing.ModuleManagement
             search.SendKeys("1");
             IWebElement show = driver.FindElement(By.ClassName("btn btn-default"));
             show.Click();
-            test = extent.StartTest("TC_FUC_MO01_16");
+            test = extent.StartTest("SEARCH PLAN TC_FUC_MO01_16");
             Assert.IsTrue(true);
             test.Log(LogStatus.Pass, "Assert Pass as condition is True");
         }
@@ -104,7 +104,7 @@ namespace Testing.ModuleManagement
             search.SendKeys("1");
             IWebElement show = driver.FindElement(By.ClassName("btn btn-default"));
             show.Click();
-            test = extent.StartTest("TC_FUC_MO01_16");
+            test = extent.StartTest("SEARCH PLAN TC_FUC_MO01_16");
             Assert.IsTrue(true);
             test.Log(LogStatus.Pass, "Invalid name plan attempt");
         }

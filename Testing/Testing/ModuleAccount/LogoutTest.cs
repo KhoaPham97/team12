@@ -30,7 +30,7 @@ namespace Testing.Steps
 
             IWebElement login = driver.FindElement(By.CssSelector("#loginForm > form > div.container-login100-form-btn > button"));
             login.Click();
-            test.Log(LogStatus.Skip, "User successfully logged into the system");
+            test.Log(LogStatus.Pass, "User successfully logged into the system");
 
             IWebElement button = driver.FindElement(By.CssSelector("body > div.wrapper > header > nav > div > ul > li.dropdown.user.user-menu > a > span"));
             button.Click();
