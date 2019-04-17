@@ -151,6 +151,15 @@ namespace WebApplication.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Bucket bucket = db.Buckets.Find(id);
+        
+            var task = db.Tasks.Where(b => b.BucketID == id).AsEnumerable();        
+            foreach (var bk in task)
+            {
+                int b = bk.TaskID;
+                db.Comments.RemoveRange(db.Comments.Where(x => x.TaskID == b));
+                db.Attachments.RemoveRange(db.Attachments.Where(x => x.TaskID == b));
+            }
+            db.Tasks.RemoveRange(db.Tasks.Where(x => x.BucketID == id));
             db.Buckets.Remove(bucket);
             db.SaveChanges();
             return Redirect(Request.UrlReferrer.ToString());

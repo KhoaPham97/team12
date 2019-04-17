@@ -117,6 +117,25 @@ namespace WebApplication.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Plan plan = db.Plans.Find(id);
+            var bucket = db.Buckets.Where(b => b.PlanID == id).AsEnumerable();
+      
+            foreach (var bk in bucket)
+            {
+                int bb = bk.BucketID;
+                var tasks = db.Tasks.Where(b => b.BucketID == bb).AsEnumerable();
+                foreach (var bkk in tasks)
+                {
+                    int c = bkk.TaskID;
+                    db.Comments.RemoveRange(db.Comments.Where(x => x.TaskID == c));
+                    db.Attachments.RemoveRange(db.Attachments.Where(x => x.TaskID == c));
+                
+                }
+                db.Tasks.RemoveRange(db.Tasks.Where(x => x.BucketID == bb));
+            }
+
+
+            db.Buckets.RemoveRange(db.Buckets.Where(x => x.PlanID == id));
+            db.ListMembers.RemoveRange(db.ListMembers.Where(x => x.PlanID == id));
             db.Plans.Remove(plan);
             db.SaveChanges();
             return RedirectToAction("Index", "Home");

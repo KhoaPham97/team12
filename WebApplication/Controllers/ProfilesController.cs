@@ -95,7 +95,7 @@ namespace WebApplication.Controllers
             {
                 if (file != null)
                 {
-                    file.SaveAs(HttpContext.Server.MapPath("~/Content/Images/")
+                    file.SaveAs(HttpContext.Server.MapPath("~/Content/")
                                                                   + file.FileName);
                     profile.Avatar = file.FileName;
                 }

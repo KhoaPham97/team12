@@ -265,7 +265,9 @@ namespace WebApplication.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Task tasks = db.Tasks.Find(id);
+            Task tasks = db.Tasks.Find(id);          
+            db.Comments.RemoveRange(db.Comments.Where(x => x.TaskID == id));
+            db.Attachments.RemoveRange(db.Attachments.Where(x => x.TaskID == id));
             db.Tasks.Remove(tasks);
             db.SaveChanges();
             return Redirect(Request.UrlReferrer.ToString());
