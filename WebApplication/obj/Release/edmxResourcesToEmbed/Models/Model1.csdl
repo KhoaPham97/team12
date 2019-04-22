@@ -122,6 +122,20 @@
       <End Role="AspNetUser" EntitySet="AspNetUsers" />
       <End Role="Profile" EntitySet="Profiles" />
     </AssociationSet>
+    <EntitySet Name="Meetings" EntityType="cap21t12Model.Meeting" />
+    <EntitySet Name="People" EntityType="cap21t12Model.Person" />
+    <AssociationSet Name="FK_Meeting_AspNetUsers" Association="cap21t12Model.FK_Meeting_AspNetUsers">
+      <End Role="AspNetUser" EntitySet="AspNetUsers" />
+      <End Role="Meeting" EntitySet="Meetings" />
+    </AssociationSet>
+    <AssociationSet Name="FK_People_AspNetUsers" Association="cap21t12Model.FK_People_AspNetUsers">
+      <End Role="AspNetUser" EntitySet="AspNetUsers" />
+      <End Role="Person" EntitySet="People" />
+    </AssociationSet>
+    <AssociationSet Name="FK_People_Meeting" Association="cap21t12Model.FK_People_Meeting">
+      <End Role="Meeting" EntitySet="Meetings" />
+      <End Role="Person" EntitySet="People" />
+    </AssociationSet>
   </EntityContainer>
   <ComplexType Name="sp_helpdiagramdefinition_Result">
     <Property Type="Int32" Name="version" Nullable="true" />
@@ -199,6 +213,8 @@
     <NavigationProperty Name="Plans" Relationship="cap21t12Model.FK_Plans_AspNetUsers" FromRole="AspNetUser" ToRole="Plan" />
     <NavigationProperty Name="Comments" Relationship="cap21t12Model.FK_Comment_AspNetUsers" FromRole="AspNetUser" ToRole="Comment" />
     <NavigationProperty Name="Profile" Relationship="cap21t12Model.FK_Profile_AspNetUsers" FromRole="AspNetUser" ToRole="Profile" />
+    <NavigationProperty Name="Meetings" Relationship="cap21t12Model.FK_Meeting_AspNetUsers" FromRole="AspNetUser" ToRole="Meeting" />
+    <NavigationProperty Name="People" Relationship="cap21t12Model.FK_People_AspNetUsers" FromRole="AspNetUser" ToRole="Person" />
   </EntityType>
   <EntityType Name="Bucket">
     <Key>
@@ -549,6 +565,68 @@
       </Principal>
       <Dependent Role="Profile">
         <PropertyRef Name="AccountID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Meeting">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Title" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="StartTime" Type="Time" Nullable="false" Precision="7" />
+    <Property Name="EndTime" Type="Time" Nullable="false" Precision="7" />
+    <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Owner" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="Location" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AspNetUser" Relationship="cap21t12Model.FK_Meeting_AspNetUsers" FromRole="Meeting" ToRole="AspNetUser" />
+    <NavigationProperty Name="People" Relationship="cap21t12Model.FK_People_Meeting" FromRole="Meeting" ToRole="Person" />
+  </EntityType>
+  <EntityType Name="Person">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Guest" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="IDMeeting" Type="Int32" Nullable="false" />
+    <Property Name="Apply" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="AspNetUser" Relationship="cap21t12Model.FK_People_AspNetUsers" FromRole="Person" ToRole="AspNetUser" />
+    <NavigationProperty Name="Meeting" Relationship="cap21t12Model.FK_People_Meeting" FromRole="Person" ToRole="Meeting" />
+  </EntityType>
+  <Association Name="FK_Meeting_AspNetUsers">
+    <End Type="cap21t12Model.AspNetUser" Role="AspNetUser" Multiplicity="1" />
+    <End Type="cap21t12Model.Meeting" Role="Meeting" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUser">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Meeting">
+        <PropertyRef Name="Owner" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_People_AspNetUsers">
+    <End Type="cap21t12Model.AspNetUser" Role="AspNetUser" Multiplicity="1" />
+    <End Type="cap21t12Model.Person" Role="Person" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUser">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Person">
+        <PropertyRef Name="Guest" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_People_Meeting">
+    <End Type="cap21t12Model.Meeting" Role="Meeting" Multiplicity="1" />
+    <End Type="cap21t12Model.Person" Role="Person" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Meeting">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Person">
+        <PropertyRef Name="IDMeeting" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

@@ -5,6 +5,7 @@
     Layout = null;
 }
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -33,7 +34,7 @@
     <link rel="stylesheet" type="text/css" href="@Url.Content("~/area/login/css/util.css")">
     <link rel="stylesheet" type="text/css" href="@Url.Content("~/area/login/css/main.css")">
     <!--===============================================================================================-->
-
+    <link href="@Url.Content("~/area/dist/img/logo.png")" rel="shortcut icon" type="image/x-icon" />
 </head>
 <body>
 
@@ -78,49 +79,10 @@
                                         Login
                                     </button>
                                 </div>
-
-                                <div class="text-center w-full p-t-23">
-
-                                    <a href="@Url.Content("~/Account/Register")" style="color:white">Register as a new user?</a>
-
-                                </div>
-
-
-                                @*<div class="wrap-input100 rs1 validate-input">
-                                        <span class="label-input100">Email</span>
-                                        <div>
-                                            @Html.TextBoxFor(m => m.Email, new { @class = "input100" })
-                                            @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
-                                        </div>
-                                    </div>
-                                    <div class="wrap-input100 rs2 validate-input">
-                                        <span class="label-input100">Password</span>
-
-                                            @Html.PasswordFor(m => m.Password, new { @class = "input100" })
-                                            @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
-
-                                    </div>*@
-
-                                @*<div class="form-group">
-                                        <div class="col-md-offset-2 col-md-10">
-                                            <input type="submit" value="Log in" class="btn btn-default" />
-                                        </div>
-                                    </div>*@
-                                <p>
-
-                                </p>
-                                @*Enable this once you have account confirmation enabled for password reset functionality
-                                    <p>
-                                        @Html.ActionLink("Forgot your password?", "ForgotPassword")
-                                    </p>*@
+                         
                             }
                         </section>
                     </div>
-
-
-
-
-                    <br>
                     <div>
 
                         <section id="socialLoginForm">
@@ -162,6 +124,7 @@
 
 </body>
 </html>
+
 
 
 

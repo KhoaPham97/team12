@@ -1,9 +1,7 @@
 ﻿@model WebApplication.Models.ExternalLoginListViewModel
 @using Microsoft.Owin.Security
-<br><br>
-<span class="login100-form-title">
-    External Login
-</span>
+
+
 <hr />
 @{
     var loginProviders = Context.GetOwinContext().Authentication.GetExternalAuthenticationTypes();

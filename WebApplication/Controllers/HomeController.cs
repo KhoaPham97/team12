@@ -17,19 +17,21 @@ namespace WebApplication.Controllers
     public class HomeController : Controller
     {
 
-     
+        cap21t12Entities db = new cap21t12Entities();
         public PartialViewResult Index()
         {
+        
             cap21t12Entities db = new cap21t12Entities();
             var product = db.Plans;
 
             ViewBag.Listmembers = db.ListMembers;
-           
+            ViewBag.Profile = db.Profiles;
             return PartialView(product);
         } 
 
-        public ActionResult About()
+        public ActionResult Calendar()
         {
+            ViewBag.Meeting = db.Meetings;
             ViewBag.Message = "Your application description page.";
 
             return View();

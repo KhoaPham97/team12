@@ -113,6 +113,28 @@
     <Property Name="DateJoined" Type="datetime" Nullable="false" />
     <Property Name="DateLeft" Type="datetime" />
   </EntityType>
+  <EntityType Name="Meeting">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="StartTime" Type="time" Precision="7" Nullable="false" />
+    <Property Name="EndTime" Type="time" Precision="7" Nullable="false" />
+    <Property Name="Date" Type="datetime" Nullable="false" />
+    <Property Name="Owner" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="Location" Type="nvarchar" MaxLength="255" />
+    <Property Name="Description" Type="nvarchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="People">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Guest" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="IDMeeting" Type="int" Nullable="false" />
+    <Property Name="Apply" Type="bit" Nullable="false" />
+  </EntityType>
   <EntityType Name="Plans">
     <Key>
       <PropertyRef Name="IDPlan" />
@@ -340,6 +362,42 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Meeting_AspNetUsers">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+    <End Role="Meeting" Type="Self.Meeting" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Meeting">
+        <PropertyRef Name="Owner" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_People_AspNetUsers">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+    <End Role="People" Type="Self.People" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="People">
+        <PropertyRef Name="Guest" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_People_Meeting">
+    <End Role="Meeting" Type="Self.Meeting" Multiplicity="1" />
+    <End Role="People" Type="Self.People" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Meeting">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="People">
+        <PropertyRef Name="IDMeeting" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Plans_AspNetUsers">
     <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
     <End Role="Plans" Type="Self.Plans" Multiplicity="*" />
@@ -455,6 +513,8 @@
     <EntitySet Name="Checklist" EntityType="Self.Checklist" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Comments" EntityType="Self.Comments" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ListMember" EntityType="Self.ListMember" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Meeting" EntityType="Self.Meeting" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="People" EntityType="Self.People" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Plans" EntityType="Self.Plans" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Profile" EntityType="Self.Profile" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Status" EntityType="Self.Status" Schema="dbo" store:Type="Tables" />
@@ -515,6 +575,18 @@
     <AssociationSet Name="FK_ListMember_Plan" Association="Self.FK_ListMember_Plan">
       <End Role="Plans" EntitySet="Plans" />
       <End Role="ListMember" EntitySet="ListMember" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Meeting_AspNetUsers" Association="Self.FK_Meeting_AspNetUsers">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="Meeting" EntitySet="Meeting" />
+    </AssociationSet>
+    <AssociationSet Name="FK_People_AspNetUsers" Association="Self.FK_People_AspNetUsers">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="People" EntitySet="People" />
+    </AssociationSet>
+    <AssociationSet Name="FK_People_Meeting" Association="Self.FK_People_Meeting">
+      <End Role="Meeting" EntitySet="Meeting" />
+      <End Role="People" EntitySet="People" />
     </AssociationSet>
     <AssociationSet Name="FK_Plans_AspNetUsers" Association="Self.FK_Plans_AspNetUsers">
       <End Role="AspNetUsers" EntitySet="AspNetUsers" />

@@ -58,8 +58,6 @@ namespace WebApplication.Controllers
 
                 return RedirectToAction("Management", "Buckets", new { id = plan.IDPlan });
             }
-
-
             return View(plan);
         }
 

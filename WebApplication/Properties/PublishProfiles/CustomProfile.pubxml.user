@@ -22115,10 +22115,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>03/06/2019 17:45:51</publishTime>
     </File>
     <File Include="bin/WebApplication.dll">
-      <publishTime>04/17/2019 18:35:42</publishTime>
+      <publishTime>04/22/2019 23:48:58</publishTime>
     </File>
     <File Include="bin/WebApplication.pdb">
-      <publishTime>04/17/2019 18:35:42</publishTime>
+      <publishTime>04/22/2019 23:48:58</publishTime>
     </File>
     <File Include="bin/WebGrease.dll">
       <publishTime>03/06/2019 17:45:51</publishTime>
@@ -22210,8 +22210,317 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="libman.json">
       <publishTime>03/06/2019 17:45:36</publishTime>
     </File>
+    <File Include="login/css/main.css">
+      <publishTime>04/22/2019 23:37:22</publishTime>
+    </File>
+    <File Include="login/css/util.css">
+      <publishTime>04/22/2019 23:37:22</publishTime>
+    </File>
+    <File Include="login/fonts/font-awesome-4.7.0/css/font-awesome.css">
+      <publishTime>04/22/2019 23:37:22</publishTime>
+    </File>
+    <File Include="login/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+      <publishTime>04/22/2019 23:37:22</publishTime>
+    </File>
+    <File Include="login/fonts/font-awesome-4.7.0/fonts/fontawesome-webfont.eot">
+      <publishTime>04/22/2019 23:37:22</publishTime>
+    </File>
+    <File Include="login/fonts/font-awesome-4.7.0/fonts/fontawesome-webfont.svg">
+      <publishTime>04/22/2019 23:37:22</publishTime>
+    </File>
+    <File Include="login/fonts/font-awesome-4.7.0/fonts/fontawesome-webfont.ttf">
+      <publishTime>04/22/2019 23:37:22</publishTime>
+    </File>
+    <File Include="login/fonts/font-awesome-4.7.0/fonts/fontawesome-webfont.woff">
+      <publishTime>04/22/2019 23:37:22</publishTime>
+    </File>
+    <File Include="login/fonts/font-awesome-4.7.0/fonts/fontawesome-webfont.woff2">
+      <publishTime>04/22/2019 23:37:22</publishTime>
+    </File>
+    <File Include="login/fonts/font-awesome-4.7.0/fonts/FontAwesome.otf">
+      <publishTime>04/22/2019 23:37:22</publishTime>
+    </File>
+    <File Include="login/fonts/font-awesome-4.7.0/HELP-US-OUT.txt">
+      <publishTime>04/22/2019 23:37:22</publishTime>
+    </File>
+    <File Include="login/fonts/font-awesome-4.7.0/less/animated.less">
+      <publishTime>04/22/2019 23:37:22</publishTime>
+    </File>
+    <File Include="login/fonts/font-awesome-4.7.0/less/bordered-pulled.less">
+      <publishTime>04/22/2019 23:37:22</publishTime>
+    </File>
+    <File Include="login/fonts/font-awesome-4.7.0/less/core.less">
+      <publishTime>04/22/2019 23:37:22</publishTime>
+    </File>
+    <File Include="login/fonts/font-awesome-4.7.0/less/fixed-width.less">
+      <publishTime>04/22/2019 23:37:22</publishTime>
+    </File>
+    <File Include="login/fonts/font-awesome-4.7.0/less/font-awesome.less">
+      <publishTime>04/22/2019 23:37:22</publishTime>
+    </File>
+    <File Include="login/fonts/font-awesome-4.7.0/less/icons.less">
+      <publishTime>04/22/2019 23:37:22</publishTime>
+    </File>
+    <File Include="login/fonts/font-awesome-4.7.0/less/larger.less">
+      <publishTime>04/22/2019 23:37:22</publishTime>
+    </File>
+    <File Include="login/fonts/font-awesome-4.7.0/less/list.less">
+      <publishTime>04/22/2019 23:37:22</publishTime>
+    </File>
+    <File Include="login/fonts/font-awesome-4.7.0/less/mixins.less">
+      <publishTime>04/22/2019 23:37:22</publishTime>
+    </File>
+    <File Include="login/fonts/font-awesome-4.7.0/less/path.less">
+      <publishTime>04/22/2019 23:37:22</publishTime>
+    </File>
+    <File Include="login/fonts/font-awesome-4.7.0/less/rotated-flipped.less">
+      <publishTime>04/22/2019 23:37:22</publishTime>
+    </File>
+    <File Include="login/fonts/font-awesome-4.7.0/less/screen-reader.less">
+      <publishTime>04/22/2019 23:37:22</publishTime>
+    </File>
+    <File Include="login/fonts/font-awesome-4.7.0/less/stacked.less">
+      <publishTime>04/22/2019 23:37:22</publishTime>
+    </File>
+    <File Include="login/fonts/font-awesome-4.7.0/less/variables.less">
+      <publishTime>04/22/2019 23:37:22</publishTime>
+    </File>
+    <File Include="login/fonts/font-awesome-4.7.0/scss/font-awesome.scss">
+      <publishTime>04/22/2019 23:37:22</publishTime>
+    </File>
+    <File Include="login/fonts/font-awesome-4.7.0/scss/_animated.scss">
+      <publishTime>04/22/2019 23:37:22</publishTime>
+    </File>
+    <File Include="login/fonts/font-awesome-4.7.0/scss/_bordered-pulled.scss">
+      <publishTime>04/22/2019 23:37:22</publishTime>
+    </File>
+    <File Include="login/fonts/font-awesome-4.7.0/scss/_core.scss">
+      <publishTime>04/22/2019 23:37:22</publishTime>
+    </File>
+    <File Include="login/fonts/font-awesome-4.7.0/scss/_fixed-width.scss">
+      <publishTime>04/22/2019 23:37:22</publishTime>
+    </File>
+    <File Include="login/fonts/font-awesome-4.7.0/scss/_icons.scss">
+      <publishTime>04/22/2019 23:37:22</publishTime>
+    </File>
+    <File Include="login/fonts/font-awesome-4.7.0/scss/_larger.scss">
+      <publishTime>04/22/2019 23:37:22</publishTime>
+    </File>
+    <File Include="login/fonts/font-awesome-4.7.0/scss/_list.scss">
+      <publishTime>04/22/2019 23:37:22</publishTime>
+    </File>
+    <File Include="login/fonts/font-awesome-4.7.0/scss/_mixins.scss">
+      <publishTime>04/22/2019 23:37:22</publishTime>
+    </File>
+    <File Include="login/fonts/font-awesome-4.7.0/scss/_path.scss">
+      <publishTime>04/22/2019 23:37:22</publishTime>
+    </File>
+    <File Include="login/fonts/font-awesome-4.7.0/scss/_rotated-flipped.scss">
+      <publishTime>04/22/2019 23:37:22</publishTime>
+    </File>
+    <File Include="login/fonts/font-awesome-4.7.0/scss/_screen-reader.scss">
+      <publishTime>04/22/2019 23:37:22</publishTime>
+    </File>
+    <File Include="login/fonts/font-awesome-4.7.0/scss/_stacked.scss">
+      <publishTime>04/22/2019 23:37:22</publishTime>
+    </File>
+    <File Include="login/fonts/font-awesome-4.7.0/scss/_variables.scss">
+      <publishTime>04/22/2019 23:37:22</publishTime>
+    </File>
+    <File Include="login/fonts/iconic/css/material-design-iconic-font.css">
+      <publishTime>04/22/2019 23:37:22</publishTime>
+    </File>
+    <File Include="login/fonts/iconic/css/material-design-iconic-font.min.css">
+      <publishTime>04/22/2019 23:37:22</publishTime>
+    </File>
+    <File Include="login/fonts/iconic/fonts/Material-Design-Iconic-Font.eot">
+      <publishTime>04/22/2019 23:37:22</publishTime>
+    </File>
+    <File Include="login/fonts/iconic/fonts/Material-Design-Iconic-Font.svg">
+      <publishTime>04/22/2019 23:37:22</publishTime>
+    </File>
+    <File Include="login/fonts/iconic/fonts/Material-Design-Iconic-Font.ttf">
+      <publishTime>04/22/2019 23:37:22</publishTime>
+    </File>
+    <File Include="login/fonts/iconic/fonts/Material-Design-Iconic-Font.woff">
+      <publishTime>04/22/2019 23:37:22</publishTime>
+    </File>
+    <File Include="login/fonts/iconic/fonts/Material-Design-Iconic-Font.woff2">
+      <publishTime>04/22/2019 23:37:22</publishTime>
+    </File>
+    <File Include="login/fonts/poppins/Poppins-Black.ttf">
+      <publishTime>04/22/2019 23:37:22</publishTime>
+    </File>
+    <File Include="login/fonts/poppins/Poppins-BlackItalic.ttf">
+      <publishTime>04/22/2019 23:37:22</publishTime>
+    </File>
+    <File Include="login/fonts/poppins/Poppins-Bold.ttf">
+      <publishTime>04/22/2019 23:37:22</publishTime>
+    </File>
+    <File Include="login/fonts/poppins/Poppins-BoldItalic.ttf">
+      <publishTime>04/22/2019 23:37:22</publishTime>
+    </File>
+    <File Include="login/fonts/poppins/Poppins-ExtraBold.ttf">
+      <publishTime>04/22/2019 23:37:22</publishTime>
+    </File>
+    <File Include="login/fonts/poppins/Poppins-ExtraBoldItalic.ttf">
+      <publishTime>04/22/2019 23:37:22</publishTime>
+    </File>
+    <File Include="login/fonts/poppins/Poppins-ExtraLight.ttf">
+      <publishTime>04/22/2019 23:37:22</publishTime>
+    </File>
+    <File Include="login/fonts/poppins/Poppins-ExtraLightItalic.ttf">
+      <publishTime>04/22/2019 23:37:22</publishTime>
+    </File>
+    <File Include="login/fonts/poppins/Poppins-Italic.ttf">
+      <publishTime>04/22/2019 23:37:22</publishTime>
+    </File>
+    <File Include="login/fonts/poppins/Poppins-Light.ttf">
+      <publishTime>04/22/2019 23:37:22</publishTime>
+    </File>
+    <File Include="login/fonts/poppins/Poppins-LightItalic.ttf">
+      <publishTime>04/22/2019 23:37:22</publishTime>
+    </File>
+    <File Include="login/fonts/poppins/Poppins-Medium.ttf">
+      <publishTime>04/22/2019 23:37:22</publishTime>
+    </File>
+    <File Include="login/fonts/poppins/Poppins-MediumItalic.ttf">
+      <publishTime>04/22/2019 23:37:22</publishTime>
+    </File>
+    <File Include="login/fonts/poppins/Poppins-Regular.ttf">
+      <publishTime>04/22/2019 23:37:22</publishTime>
+    </File>
+    <File Include="login/fonts/poppins/Poppins-SemiBold.ttf">
+      <publishTime>04/22/2019 23:37:22</publishTime>
+    </File>
+    <File Include="login/fonts/poppins/Poppins-SemiBoldItalic.ttf">
+      <publishTime>04/22/2019 23:37:22</publishTime>
+    </File>
+    <File Include="login/fonts/poppins/Poppins-Thin.ttf">
+      <publishTime>04/22/2019 23:37:22</publishTime>
+    </File>
+    <File Include="login/fonts/poppins/Poppins-ThinItalic.ttf">
+      <publishTime>04/22/2019 23:37:22</publishTime>
+    </File>
+    <File Include="login/images/bg-01.jpg">
+      <publishTime>04/22/2019 23:37:22</publishTime>
+    </File>
+    <File Include="login/images/icons/favicon.ico">
+      <publishTime>04/22/2019 23:37:22</publishTime>
+    </File>
+    <File Include="login/js/main.js">
+      <publishTime>04/22/2019 23:37:22</publishTime>
+    </File>
+    <File Include="login/vendor/animate/animate.css">
+      <publishTime>04/22/2019 23:37:22</publishTime>
+    </File>
+    <File Include="login/vendor/animsition/css/animsition.css">
+      <publishTime>04/22/2019 23:37:22</publishTime>
+    </File>
+    <File Include="login/vendor/animsition/css/animsition.min.css">
+      <publishTime>04/22/2019 23:37:22</publishTime>
+    </File>
+    <File Include="login/vendor/animsition/js/animsition.js">
+      <publishTime>04/22/2019 23:37:22</publishTime>
+    </File>
+    <File Include="login/vendor/animsition/js/animsition.min.js">
+      <publishTime>04/22/2019 23:37:22</publishTime>
+    </File>
+    <File Include="login/vendor/bootstrap/css/bootstrap-grid.css">
+      <publishTime>04/22/2019 23:37:22</publishTime>
+    </File>
+    <File Include="login/vendor/bootstrap/css/bootstrap-grid.css.map">
+      <publishTime>04/22/2019 23:37:22</publishTime>
+    </File>
+    <File Include="login/vendor/bootstrap/css/bootstrap-grid.min.css">
+      <publishTime>04/22/2019 23:37:22</publishTime>
+    </File>
+    <File Include="login/vendor/bootstrap/css/bootstrap-grid.min.css.map">
+      <publishTime>04/22/2019 23:37:22</publishTime>
+    </File>
+    <File Include="login/vendor/bootstrap/css/bootstrap-reboot.css">
+      <publishTime>04/22/2019 23:37:22</publishTime>
+    </File>
+    <File Include="login/vendor/bootstrap/css/bootstrap-reboot.css.map">
+      <publishTime>04/22/2019 23:37:22</publishTime>
+    </File>
+    <File Include="login/vendor/bootstrap/css/bootstrap-reboot.min.css">
+      <publishTime>04/22/2019 23:37:22</publishTime>
+    </File>
+    <File Include="login/vendor/bootstrap/css/bootstrap-reboot.min.css.map">
+      <publishTime>04/22/2019 23:37:22</publishTime>
+    </File>
+    <File Include="login/vendor/bootstrap/css/bootstrap.css">
+      <publishTime>04/22/2019 23:37:22</publishTime>
+    </File>
+    <File Include="login/vendor/bootstrap/css/bootstrap.css.map">
+      <publishTime>04/22/2019 23:37:22</publishTime>
+    </File>
+    <File Include="login/vendor/bootstrap/css/bootstrap.min.css">
+      <publishTime>04/22/2019 23:37:22</publishTime>
+    </File>
+    <File Include="login/vendor/bootstrap/css/bootstrap.min.css.map">
+      <publishTime>04/22/2019 23:37:22</publishTime>
+    </File>
+    <File Include="login/vendor/bootstrap/js/bootstrap.js">
+      <publishTime>04/22/2019 23:37:22</publishTime>
+    </File>
+    <File Include="login/vendor/bootstrap/js/bootstrap.min.js">
+      <publishTime>04/22/2019 23:37:22</publishTime>
+    </File>
+    <File Include="login/vendor/bootstrap/js/popper.js">
+      <publishTime>04/22/2019 23:37:22</publishTime>
+    </File>
+    <File Include="login/vendor/bootstrap/js/popper.min.js">
+      <publishTime>04/22/2019 23:37:22</publishTime>
+    </File>
+    <File Include="login/vendor/bootstrap/js/tooltip.js">
+      <publishTime>04/22/2019 23:37:22</publishTime>
+    </File>
+    <File Include="login/vendor/countdowntime/countdowntime.js">
+      <publishTime>04/22/2019 23:37:22</publishTime>
+    </File>
+    <File Include="login/vendor/css-hamburgers/hamburgers.css">
+      <publishTime>04/22/2019 23:37:22</publishTime>
+    </File>
+    <File Include="login/vendor/css-hamburgers/hamburgers.min.css">
+      <publishTime>04/22/2019 23:37:22</publishTime>
+    </File>
+    <File Include="login/vendor/daterangepicker/daterangepicker.css">
+      <publishTime>04/22/2019 23:37:22</publishTime>
+    </File>
+    <File Include="login/vendor/daterangepicker/daterangepicker.js">
+      <publishTime>04/22/2019 23:37:22</publishTime>
+    </File>
+    <File Include="login/vendor/daterangepicker/moment.js">
+      <publishTime>04/22/2019 23:37:22</publishTime>
+    </File>
+    <File Include="login/vendor/daterangepicker/moment.min.js">
+      <publishTime>04/22/2019 23:37:22</publishTime>
+    </File>
+    <File Include="login/vendor/jquery/jquery-3.2.1.min.js">
+      <publishTime>04/22/2019 23:37:22</publishTime>
+    </File>
+    <File Include="login/vendor/perfect-scrollbar/perfect-scrollbar.css">
+      <publishTime>04/22/2019 23:37:22</publishTime>
+    </File>
+    <File Include="login/vendor/perfect-scrollbar/perfect-scrollbar.min.js">
+      <publishTime>04/22/2019 23:37:22</publishTime>
+    </File>
+    <File Include="login/vendor/select2/select2.css">
+      <publishTime>04/22/2019 23:37:22</publishTime>
+    </File>
+    <File Include="login/vendor/select2/select2.js">
+      <publishTime>04/22/2019 23:37:22</publishTime>
+    </File>
+    <File Include="login/vendor/select2/select2.min.css">
+      <publishTime>04/22/2019 23:37:22</publishTime>
+    </File>
+    <File Include="login/vendor/select2/select2.min.js">
+      <publishTime>04/22/2019 23:37:22</publishTime>
+    </File>
     <File Include="Models/Model1.edmx.diagram">
-      <publishTime>04/13/2019 13:49:12</publishTime>
+      <publishTime>04/18/2019 21:56:40</publishTime>
     </File>
     <File Include="Scripts/bootstrap-datepicker.js">
       <publishTime>03/12/2019 11:40:02</publishTime>
@@ -22520,7 +22829,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>03/06/2019 17:45:33</publishTime>
     </File>
     <File Include="Views/Account/Login.cshtml">
-      <publishTime>03/10/2019 12:04:50</publishTime>
+      <publishTime>04/22/2019 23:58:58</publishTime>
     </File>
     <File Include="Views/Account/Register.cshtml">
       <publishTime>03/06/2019 17:45:33</publishTime>
@@ -22538,7 +22847,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>03/06/2019 17:45:33</publishTime>
     </File>
     <File Include="Views/Account/_ExternalLoginsListPartial.cshtml">
-      <publishTime>03/06/2019 17:45:33</publishTime>
+      <publishTime>04/23/2019 00:01:54</publishTime>
     </File>
     <File Include="Views/Buckets/Create.cshtml">
       <publishTime>03/06/2019 17:45:33</publishTime>
@@ -22556,7 +22865,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>03/06/2019 17:45:33</publishTime>
     </File>
     <File Include="Views/Buckets/Management.cshtml">
-      <publishTime>04/17/2019 18:35:29</publishTime>
+      <publishTime>04/20/2019 22:13:18</publishTime>
     </File>
     <File Include="Views/Buckets/Test.cshtml">
       <publishTime>03/06/2019 17:45:33</publishTime>
@@ -22579,11 +22888,14 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Views/Home/About.cshtml">
       <publishTime>03/06/2019 17:45:33</publishTime>
     </File>
+    <File Include="Views/Home/Calendar.cshtml">
+      <publishTime>04/19/2019 11:10:36</publishTime>
+    </File>
     <File Include="Views/Home/Contact.cshtml">
       <publishTime>03/06/2019 17:45:33</publishTime>
     </File>
     <File Include="Views/Home/Index.cshtml">
-      <publishTime>04/17/2019 18:24:32</publishTime>
+      <publishTime>04/22/2019 23:25:29</publishTime>
     </File>
     <File Include="Views/ListMembers/Create.cshtml">
       <publishTime>03/28/2019 11:26:39</publishTime>
@@ -22617,6 +22929,36 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     </File>
     <File Include="Views/Manage/VerifyPhoneNumber.cshtml">
       <publishTime>03/06/2019 17:45:33</publishTime>
+    </File>
+    <File Include="Views/Meetings/Create.cshtml">
+      <publishTime>04/18/2019 21:57:33</publishTime>
+    </File>
+    <File Include="Views/Meetings/Delete.cshtml">
+      <publishTime>04/18/2019 21:57:36</publishTime>
+    </File>
+    <File Include="Views/Meetings/Details.cshtml">
+      <publishTime>04/18/2019 21:57:38</publishTime>
+    </File>
+    <File Include="Views/Meetings/Edit.cshtml">
+      <publishTime>04/18/2019 21:57:40</publishTime>
+    </File>
+    <File Include="Views/Meetings/Index.cshtml">
+      <publishTime>04/18/2019 21:57:42</publishTime>
+    </File>
+    <File Include="Views/People/Create.cshtml">
+      <publishTime>04/18/2019 21:58:18</publishTime>
+    </File>
+    <File Include="Views/People/Delete.cshtml">
+      <publishTime>04/18/2019 21:58:20</publishTime>
+    </File>
+    <File Include="Views/People/Details.cshtml">
+      <publishTime>04/18/2019 21:58:21</publishTime>
+    </File>
+    <File Include="Views/People/Edit.cshtml">
+      <publishTime>04/18/2019 21:58:24</publishTime>
+    </File>
+    <File Include="Views/People/Index.cshtml">
+      <publishTime>04/18/2019 21:58:25</publishTime>
     </File>
     <File Include="Views/Plans/Create.cshtml">
       <publishTime>03/06/2019 17:45:33</publishTime>
@@ -22691,7 +23033,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>03/06/2019 17:45:33</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>04/14/2019 22:38:47</publishTime>
+      <publishTime>04/19/2019 11:12:30</publishTime>
     </File>
   </ItemGroup>
 </Project>

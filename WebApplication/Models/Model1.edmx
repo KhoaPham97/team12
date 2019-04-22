@@ -118,6 +118,28 @@
           <Property Name="DateJoined" Type="datetime" Nullable="false" />
           <Property Name="DateLeft" Type="datetime" />
         </EntityType>
+        <EntityType Name="Meeting">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="StartTime" Type="time" Precision="7" Nullable="false" />
+          <Property Name="EndTime" Type="time" Precision="7" Nullable="false" />
+          <Property Name="Date" Type="datetime" Nullable="false" />
+          <Property Name="Owner" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Location" Type="nvarchar" MaxLength="255" />
+          <Property Name="Description" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="People">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Guest" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="IDMeeting" Type="int" Nullable="false" />
+          <Property Name="Apply" Type="bit" Nullable="false" />
+        </EntityType>
         <EntityType Name="Plans">
           <Key>
             <PropertyRef Name="IDPlan" />
@@ -345,6 +367,42 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Meeting_AspNetUsers">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+          <End Role="Meeting" Type="Self.Meeting" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Meeting">
+              <PropertyRef Name="Owner" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_People_AspNetUsers">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+          <End Role="People" Type="Self.People" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="People">
+              <PropertyRef Name="Guest" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_People_Meeting">
+          <End Role="Meeting" Type="Self.Meeting" Multiplicity="1" />
+          <End Role="People" Type="Self.People" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Meeting">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="People">
+              <PropertyRef Name="IDMeeting" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Plans_AspNetUsers">
           <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
           <End Role="Plans" Type="Self.Plans" Multiplicity="*" />
@@ -460,6 +518,8 @@
           <EntitySet Name="Checklist" EntityType="Self.Checklist" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Comments" EntityType="Self.Comments" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ListMember" EntityType="Self.ListMember" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Meeting" EntityType="Self.Meeting" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="People" EntityType="Self.People" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Plans" EntityType="Self.Plans" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Profile" EntityType="Self.Profile" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Status" EntityType="Self.Status" Schema="dbo" store:Type="Tables" />
@@ -520,6 +580,18 @@
           <AssociationSet Name="FK_ListMember_Plan" Association="Self.FK_ListMember_Plan">
             <End Role="Plans" EntitySet="Plans" />
             <End Role="ListMember" EntitySet="ListMember" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Meeting_AspNetUsers" Association="Self.FK_Meeting_AspNetUsers">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="Meeting" EntitySet="Meeting" />
+          </AssociationSet>
+          <AssociationSet Name="FK_People_AspNetUsers" Association="Self.FK_People_AspNetUsers">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="People" EntitySet="People" />
+          </AssociationSet>
+          <AssociationSet Name="FK_People_Meeting" Association="Self.FK_People_Meeting">
+            <End Role="Meeting" EntitySet="Meeting" />
+            <End Role="People" EntitySet="People" />
           </AssociationSet>
           <AssociationSet Name="FK_Plans_AspNetUsers" Association="Self.FK_Plans_AspNetUsers">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
@@ -672,6 +744,20 @@
             <End Role="AspNetUser" EntitySet="AspNetUsers" />
             <End Role="Profile" EntitySet="Profiles" />
           </AssociationSet>
+          <EntitySet Name="Meetings" EntityType="cap21t12Model.Meeting" />
+          <EntitySet Name="People" EntityType="cap21t12Model.Person" />
+          <AssociationSet Name="FK_Meeting_AspNetUsers" Association="cap21t12Model.FK_Meeting_AspNetUsers">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="Meeting" EntitySet="Meetings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_People_AspNetUsers" Association="cap21t12Model.FK_People_AspNetUsers">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="Person" EntitySet="People" />
+          </AssociationSet>
+          <AssociationSet Name="FK_People_Meeting" Association="cap21t12Model.FK_People_Meeting">
+            <End Role="Meeting" EntitySet="Meetings" />
+            <End Role="Person" EntitySet="People" />
+          </AssociationSet>
           </EntityContainer>
         <ComplexType Name="sp_helpdiagramdefinition_Result">
           <Property Type="Int32" Name="version" Nullable="true" />
@@ -749,6 +835,8 @@
           <NavigationProperty Name="Plans" Relationship="cap21t12Model.FK_Plans_AspNetUsers" FromRole="AspNetUser" ToRole="Plan" />
           <NavigationProperty Name="Comments" Relationship="cap21t12Model.FK_Comment_AspNetUsers" FromRole="AspNetUser" ToRole="Comment" />
           <NavigationProperty Name="Profile" Relationship="cap21t12Model.FK_Profile_AspNetUsers" FromRole="AspNetUser" ToRole="Profile" />
+          <NavigationProperty Name="Meetings" Relationship="cap21t12Model.FK_Meeting_AspNetUsers" FromRole="AspNetUser" ToRole="Meeting" />
+          <NavigationProperty Name="People" Relationship="cap21t12Model.FK_People_AspNetUsers" FromRole="AspNetUser" ToRole="Person" />
         </EntityType>
         <EntityType Name="Bucket">
           <Key>
@@ -1102,6 +1190,68 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Meeting">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="StartTime" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="EndTime" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Owner" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Location" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUser" Relationship="cap21t12Model.FK_Meeting_AspNetUsers" FromRole="Meeting" ToRole="AspNetUser" />
+          <NavigationProperty Name="People" Relationship="cap21t12Model.FK_People_Meeting" FromRole="Meeting" ToRole="Person" />
+        </EntityType>
+        <EntityType Name="Person">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Guest" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="IDMeeting" Type="Int32" Nullable="false" />
+          <Property Name="Apply" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="AspNetUser" Relationship="cap21t12Model.FK_People_AspNetUsers" FromRole="Person" ToRole="AspNetUser" />
+          <NavigationProperty Name="Meeting" Relationship="cap21t12Model.FK_People_Meeting" FromRole="Person" ToRole="Meeting" />
+        </EntityType>
+        <Association Name="FK_Meeting_AspNetUsers">
+          <End Type="cap21t12Model.AspNetUser" Role="AspNetUser" Multiplicity="1" />
+          <End Type="cap21t12Model.Meeting" Role="Meeting" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Meeting">
+              <PropertyRef Name="Owner" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_People_AspNetUsers">
+          <End Type="cap21t12Model.AspNetUser" Role="AspNetUser" Multiplicity="1" />
+          <End Type="cap21t12Model.Person" Role="Person" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Person">
+              <PropertyRef Name="Guest" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_People_Meeting">
+          <End Type="cap21t12Model.Meeting" Role="Meeting" Multiplicity="1" />
+          <End Type="cap21t12Model.Person" Role="Person" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Meeting">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Person">
+              <PropertyRef Name="IDMeeting" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1305,6 +1455,30 @@
                 <ScalarProperty Name="Birthday" ColumnName="Birthday" />
                 <ScalarProperty Name="Full_Name" ColumnName="Full Name" />
                 <ScalarProperty Name="AccountID" ColumnName="AccountID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Meetings">
+            <EntityTypeMapping TypeName="cap21t12Model.Meeting">
+              <MappingFragment StoreEntitySet="Meeting">
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Location" ColumnName="Location" />
+                <ScalarProperty Name="Owner" ColumnName="Owner" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="EndTime" ColumnName="EndTime" />
+                <ScalarProperty Name="StartTime" ColumnName="StartTime" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="People">
+            <EntityTypeMapping TypeName="cap21t12Model.Person">
+              <MappingFragment StoreEntitySet="People">
+                <ScalarProperty Name="Apply" ColumnName="Apply" />
+                <ScalarProperty Name="IDMeeting" ColumnName="IDMeeting" />
+                <ScalarProperty Name="Guest" ColumnName="Guest" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -26,6 +26,8 @@ namespace WebApplication.Models
             this.ListMembers = new HashSet<ListMember>();
             this.Plans = new HashSet<Plan>();
             this.Comments = new HashSet<Comment>();
+            this.Meetings = new HashSet<Meeting>();
+            this.People = new HashSet<Person>();
         }
     
         public string Id { get; set; }
@@ -60,5 +62,9 @@ namespace WebApplication.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Comment> Comments { get; set; }
         public virtual Profile Profile { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Meeting> Meetings { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Person> People { get; set; }
     }
 }

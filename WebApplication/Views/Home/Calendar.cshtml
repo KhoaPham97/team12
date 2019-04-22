@@ -1,0 +1,91 @@
+﻿
+<!DOCTYPE html>
+@{
+    /**/
+
+    /**/
+
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<body class="hold-transition skin-blue sidebar-mini">
+ 
+
+     
+      
+            <!-- Content Header (Page header) -->
+        
+            <!-- Main content -->
+            <section class="content">
+
+                <!-- row -->
+                <div class="row">
+                    <div class="col-md-12">
+                        <!-- The time line -->
+                        <ul class="timeline">
+                            <!-- timeline time label -->
+                            @foreach (var ab in ViewBag.Meeting)
+                            {
+                                <li class="time-label">
+                                    <span class="bg-red">
+
+                                        @ab.Date.ToString("dd MMM yyyy")
+
+                                    </span>
+                                </li>
+                                <!-- /.timeline-label -->
+                                <!-- timeline item -->
+                                <li>
+                                    <i class="fa fa-calendar bg-blue"></i>
+
+                                    <div class="timeline-item">
+                                        <span class="time"><i class="fa fa-clock-o"></i>@ab.StartTime to @ab.EndTime</span>
+
+                                        <h3 class="timeline-header"><a href="#">@ab.Title</a> (<b>Owner</b>: @ab.AspNetUser.Email)</h3>
+                                        <h3 class="timeline-header"><b>Location</b>: @ab.Location</h3>
+                                        <div class="timeline-body">
+                                            @ab.Description
+                                        </div>
+                                        <div class="timeline-footer">
+                                            <a class="btn btn-primary btn-xs">Information</a>
+                                        </div>
+                                    </div>
+                                </li>
+                            }
+                            <!-- END timeline item -->
+                            <!-- timeline item -->
+                            <!-- END timeline item -->
+                            <!-- timeline time label -->
+                            @*<li class="time-label">
+                                <span class="bg-green">
+                                    3 Jan. 2014
+                                </span>
+                            </li>
+                            <!-- /.timeline-label -->
+                            <!-- timeline item -->
+                            <li>
+                                <i class="fa fa-camera bg-purple"></i>
+
+                                <div class="timeline-item">
+                                    <span class="time"><i class="fa fa-clock-o"></i> 2 days ago</span>
+
+                                    <h3 class="timeline-header"><a href="#">Mina Lee</a> uploaded new photos</h3>
+
+                                    <div class="timeline-body">
+                                        <img src="http://placehold.it/150x100" alt="..." class="margin">
+                                        <img src="http://placehold.it/150x100" alt="..." class="margin">
+                                        <img src="http://placehold.it/150x100" alt="..." class="margin">
+                                        <img src="http://placehold.it/150x100" alt="..." class="margin">
+                                    </div>
+                                </div>
+                            </li>*@
+                        </ul>
+                        </div>
+                    </div>
+
+            </section>
+
+        <!-- /.content-wrapper -->
+
+
+</body>
