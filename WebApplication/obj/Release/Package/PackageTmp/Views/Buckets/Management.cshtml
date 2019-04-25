@@ -39,7 +39,7 @@
     <!-- bootstrap wysihtml5 - text editor -->
     <link rel="stylesheet" href="@Url.Content("~/area/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css")">
     <link href="@Url.Content("~/area/dist/img/logo.png")" rel="shortcut icon" type="image/x-icon" />
-  
+
     <style>
         .tab {
             overflow: hidden;
@@ -76,58 +76,61 @@
             border: 1px solid #ccc;
             border-top: none;
         }
-        #customers {
+
+        .customers {
             font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
             border-collapse: collapse;
             width: 100%;
         }
 
-            #customers td, #customers th {
+            .customers td, .customers th {
                 border: 1px solid #ddd;
                 padding: 8px;
             }
 
-            #customers tr:nth-child(even) {
+            .customers tr:nth-child(even) {
                 background-color: #f2f2f2;
             }
 
-            #customers tr:hover {
+            .customers tr:hover {
                 background-color: #ddd;
             }
 
-            #customers th {
+            .customers th {
                 padding-top: 12px;
                 padding-bottom: 12px;
                 text-align: left;
                 background-color: #4CAF50;
                 color: white;
             }
-        #customerss {
+
+        .customerss {
             font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
             border-collapse: collapse;
             width: 100%;
         }
 
-            #customerss td, #customerss th {
+            .customerss td, .customerss th {
                 border: 1px solid #ddd;
                 padding: 8px;
             }
 
-            #customerss tr:nth-child(even) {
+            .customerss tr:nth-child(even) {
                 background-color: #f2f2f2;
             }
 
-            #customerss tr:hover {
+            .customerss tr:hover {
                 background-color: #ddd;
             }
 
-            #customerss th {
+            .customerss th {
                 padding-top: 12px;
                 padding-bottom: 12px;
                 text-align: left;
                 background-color: #4CAF50;
                 color: white;
             }
+
         .Download {
             background-color: DodgerBlue;
             border: none;
@@ -766,8 +769,8 @@
             }
     </style>
 </head>
-<body>
-  
+<body >
+
     <!-- Masthead -->
     <header class="masthead">
 
@@ -803,11 +806,11 @@
             </button>
 
             @*<button class="user-settings-btn btn" aria-label="User Settings">
-                <i class="fas fa-user-circle" aria-hidden="true"></i>
-            </button>*@
+                    <i class="fas fa-user-circle" aria-hidden="true"></i>
+                </button>*@
             <button class="user-settings-btn btn" data-toggle="modal" data-target="#profile">  <i class="fas fa-user-circle" aria-hidden="true"></i></button>
             <div class="modal fade" id="profile" role="dialog">
-                <div class="modal-dialog">   
+                <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -822,7 +825,7 @@
 
 
                             }
-                           
+
                             @foreach (var ab in ViewBag.Profile)
                             {
                                 if (ab.AccountID == User.Identity.GetUserId())
@@ -852,7 +855,7 @@
                                     </div>
 
                                     <div id="London" class="tabcontent">
-                                        <table id="customerss">
+                                        <table id="customerss" class="customer">
 
                                             <tr>
                                                 <td> <h1 style="font-size:18px; color:black;text-align:left"><i class="fa fa-user" aria-hidden="true"></i> Email</h1></td>
@@ -970,9 +973,9 @@
 
         <div class="board-controls">
 
- 
-         
-         
+
+
+
             <button class="board-title btn">
                 @foreach (var data in ViewBag.Message)
                 {
@@ -1107,207 +1110,228 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            <h1 style="font-size:20px;color:black">All Tasks In Plan</h1>
-                            <table id="customers" style="font-size:15px">
-                                <tr>
-                                    <th>Not Started Tasks</th>
-                                    <th>In Progess Task</th>
-                                    <th>Completed Tasks</th>
-                                </tr>
-                                @foreach (var item in Model)
-                                {
+
+
+                            <div class="tab">
+                                <button class="tablinks" style="color:black" onclick="openCity(event, 'a')" id="defaultOpen">Chart</button>
+                                <button class="tablinks" style="color:black" onclick="openCity(event, 'b')">Table</button>
+
+                            </div>
+
+                            <div id="a" class="tabcontent">
+
+                                <div id="container1" style="width: 550px; height: 400px; margin: 0 auto"></div>
+                                <div id="container2" style="width: 550px; height: 400px; margin: 0 auto"></div>
+                                <div id="container3" style="width: 550px; height: 400px; margin: 0 auto"></div>
+                            </div>
+
+                            <div id="b" class="tabcontent">
+
+                                <h1 style="font-size:20px;color:black">All Tasks In Plan</h1>
+                                <table id="customers1" style="font-size:15px" class="customers">
                                     <tr>
-                                        @{ int o = 0;}
+                                        <th>Not Started Tasks</th>
+                                        <th>In Progess Task</th>
+                                        <th>Completed Tasks</th>
+                                    </tr>
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            @{ int o = 0;}
 
-                                        @foreach (var data in ViewBag.Task)
-                                        {
-                                            foreach (var A in ViewBag.Message)
+                                            @foreach (var data in ViewBag.Task)
                                             {
-                                                if (item.PlanID == A.IDPlan && item.BucketID == data.BucketID && data.StatusID == 1)
+                                                foreach (var A in ViewBag.Message)
                                                 {
+                                                    if (item.PlanID == A.IDPlan && item.BucketID == data.BucketID && data.StatusID == 1)
+                                                    {
 
-                                                    o++;
+                                                        o++;
+                                                    }
                                                 }
+
                                             }
+                                            <td class="countable" style="display:none">@o</td>
+                                            @{ int k = 0;}
 
-                                        }
-                                        <td class="countable" style="display:none">@o</td>
-                                        @{ int k = 0;}
-
-                                        @foreach (var data in ViewBag.Task)
-                                        {
-                                            foreach (var A in ViewBag.Message)
+                                            @foreach (var data in ViewBag.Task)
                                             {
-                                                if (item.PlanID == A.IDPlan && item.BucketID == data.BucketID && data.StatusID == 2)
+                                                foreach (var A in ViewBag.Message)
                                                 {
+                                                    if (item.PlanID == A.IDPlan && item.BucketID == data.BucketID && data.StatusID == 2)
+                                                    {
+
+                                                        k++;
+                                                    }
+                                                }
+
+                                            }
+                                            <td class="countable2" style="display:none">@k</td>
+                                            @{ int h = 0;}
+
+                                            @foreach (var data in ViewBag.Task)
+                                            {
+                                                foreach (var A in ViewBag.Message)
+                                                {
+                                                    if (item.PlanID == A.IDPlan && item.BucketID == data.BucketID && data.StatusID == 3)
+                                                    {
+
+                                                        h++;
+                                                    }
+                                                }
+
+                                            }
+                                            <td class="countable3" style="display:none">@h</td>
+
+                                        </tr>
+                                    }
+                                    <tr>
+                                        <td id="detailInfo"></td>
+                                        <td id="detailInfo2"></td>
+                                        <td id="detailInfo3"></td>
+                                    </tr>
+
+                                    }
+                                </table>
+                                <br />
+                                <h1 style="font-size:20px;color:black">All Tasks In Buckets</h1>
+                                <table id="customers2" style="font-size:15px" class="customers">
+                                    <tr>
+                                        <th>Bucket</th>
+                                        <th>Not Started Tasks</th>
+                                        <th>In Progess Task</th>
+                                        <th>Completed Tasks</th>
+                                    </tr>
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td id="A">@item.Title</td>
+                                            @{int j = 0;}
+
+                                            @foreach (var data in ViewBag.Task)
+                                            {
+                                                if (item.BucketID == data.BucketID && data.StatusID == 1)
+                                                {
+
+
+                                                    j++;
+
+
+                                                }
+
+                                            }
+                                            <td>@j</td>
+
+                                            @{int i = 0;}
+
+                                            @foreach (var data in ViewBag.Task)
+                                            {
+                                                if (item.BucketID == data.BucketID && data.StatusID == 2)
+                                                {
+
+
+                                                    i++;
+
+
+                                                }
+
+                                            }
+                                            <td>@i</td>
+
+                                            @{int k = 0;}
+
+                                            @foreach (var data in ViewBag.Task)
+                                            {
+                                                if (item.BucketID == data.BucketID && data.StatusID == 3)
+                                                {
+
 
                                                     k++;
+
+
                                                 }
+
                                             }
-
-                                        }
-                                        <td class="countable2" style="display:none">@k</td>
-                                        @{ int h = 0;}
-
-                                        @foreach (var data in ViewBag.Task)
-                                        {
-                                            foreach (var A in ViewBag.Message)
-                                            {
-                                                if (item.PlanID == A.IDPlan && item.BucketID == data.BucketID && data.StatusID == 3)
-                                                {
-
-                                                    h++;
-                                                }
-                                            }
-
-                                        }
-                                        <td class="countable3" style="display:none">@h</td>
-
-                                    </tr>
-                                }
-                                <tr>
-                                    <td id="detailInfo"></td>
-                                    <td id="detailInfo2"></td>
-                                    <td id="detailInfo3"></td>
-                                </tr>
-
-                                }
-                            </table>
-                            <br />
-                            <h1 style="font-size:20px;color:black">All Tasks In Buckets</h1>
-                            <table id="customers" style="font-size:15px">
-                                <tr>
-                                    <th>Bucket</th>
-                                    <th>Not Started Tasks</th>
-                                    <th>In Progess Task</th>
-                                    <th>Completed Tasks</th>
-                                </tr>
-                                @foreach (var item in Model)
-                                {
+                                            <td>@k</td>
+                                        </tr>
+                                    
+                                    }
+                                </table>
+                                <br />
+                                <h1 style="font-size:20px;color:black">Members In Plan</h1>
+                                <table id="customers3" style="font-size:15px" class="customers">
                                     <tr>
-                                        <td>@item.Title</td>
-                                        @{int j = 0;}
-
-                                        @foreach (var data in ViewBag.Task)
-                                        {
-                                            if (item.BucketID == data.BucketID && data.StatusID == 1)
-                                            {
-
-
-                                                j++;
-
-
-                                            }
-
-                                        }
-                                        <td>@j</td>
-
-                                        @{int i = 0;}
-
-                                        @foreach (var data in ViewBag.Task)
-                                        {
-                                            if (item.BucketID == data.BucketID && data.StatusID == 2)
-                                            {
-
-
-                                                i++;
-
-
-                                            }
-
-                                        }
-                                        <td>@i</td>
-
-                                        @{int k = 0;}
-
-                                        @foreach (var data in ViewBag.Task)
-                                        {
-                                            if (item.BucketID == data.BucketID && data.StatusID == 3)
-                                            {
-
-
-                                                k++;
-
-
-                                            }
-
-                                        }
-                                        <td>@k</td>
+                                        <th>Members</th>
+                                        <th>Not Started Tasks</th>
+                                        <th>In Progess Task</th>
+                                        <th>Completed Tasks</th>
                                     </tr>
+
+                                    @foreach (var member in ViewBag.Listmembers)
+                                    {
+                                        <tr>
+                                            @foreach (var ass in ViewBag.Assignee)
+                                            {
+                                                if (member.AccountID == ass.Id)
+                                                {
+                                                    <td>@ass.Email</td>
+                                                }
+
+
+                                            }
+                                            @{int z = 0;}
+                                            @foreach (var item in Model)
+                                            {
+                                                foreach (var data in ViewBag.Task)
+                                                {
+                                                    if (member.AccountID == data.AssigneeID && item.BucketID == data.BucketID && data.StatusID == 1)
+                                                    {
+                                                        z++;
+
+                                                    }
+                                                }
+
+                                            }
+                                            <td>@z</td>
+                                            @{int x = 0;}
+                                            @foreach (var item in Model)
+                                            {
+                                                foreach (var data in ViewBag.Task)
+                                                {
+                                                    if (member.AccountID == data.AssigneeID && item.BucketID == data.BucketID && data.StatusID == 2)
+                                                    {
+                                                        x++;
+
+                                                    }
+                                                }
+
+                                            }
+                                            <td>@x</td>
+                                            @{int y = 0;}
+                                            @foreach (var item in Model)
+                                            {
+                                                foreach (var data in ViewBag.Task)
+                                                {
+                                                    if (member.AccountID == data.AssigneeID && item.BucketID == data.BucketID && data.StatusID == 3)
+                                                    {
+                                                        y++;
+
+                                                    }
+                                                }
+
+                                            }
+                                            <td>@y</td>
+                                        </tr>
+                                    }
+
+
                                     <tr></tr>
-                                }
-                            </table>
-                            <br />
-                            <h1 style="font-size:20px;color:black">Members In Plan</h1>
-                            <table id="customers" style="font-size:15px">
-                                <tr>
-                                    <th>Members</th>
-                                    <th>Not Started Tasks</th>
-                                    <th>In Progess Task</th>
-                                    <th>Completed Tasks</th>
-                                </tr>
 
-                                @foreach (var member in ViewBag.Listmembers)
-                                {
-                                    <tr>
-                                        @foreach (var ass in ViewBag.Assignee)
-                                        {
-                                            if (member.AccountID == ass.Id)
-                                            {
-                                                <td>@ass.Email</td>
-                                            }
+                                </table>
+                            </div>
 
 
-                                        }
-                                        @{int z = 0;}
-                                        @foreach (var item in Model)
-                                        {
-                                            foreach (var data in ViewBag.Task)
-                                            {
-                                                if (member.AccountID == data.AssigneeID && item.BucketID == data.BucketID && data.StatusID == 1)
-                                                {
-                                                    z++;
 
-                                                }
-                                            }
-
-                                        }
-                                        <td>@z</td>
-                                        @{int x = 0;}
-                                        @foreach (var item in Model)
-                                        {
-                                            foreach (var data in ViewBag.Task)
-                                            {
-                                                if (member.AccountID == data.AssigneeID && item.BucketID == data.BucketID && data.StatusID == 2)
-                                                {
-                                                    x++;
-
-                                                }
-                                            }
-
-                                        }
-                                        <td>@x</td>
-                                        @{int y = 0;}
-                                        @foreach (var item in Model)
-                                        {
-                                            foreach (var data in ViewBag.Task)
-                                            {
-                                                if (member.AccountID == data.AssigneeID && item.BucketID == data.BucketID && data.StatusID == 3)
-                                                {
-                                                    y++;
-
-                                                }
-                                            }
-
-                                        }
-                                        <td>@y</td>
-                                    </tr>
-                                }
-
-
-                                <tr></tr>
-
-                            </table>
                             <br />  <br />  <br />  <br />  <br />    <br />  <br />  <br />  <br />  <br />    <br />  <br />  <br />  <br />  <br />
 
                         </div>
@@ -1340,21 +1364,14 @@
 
                 <ul class="list-items">
 
+
                     @foreach (var data in ViewBag.Task)
                     {
                         if (item.BucketID == data.BucketID)
                         {
-
                             <li>
-                                @using (Html.BeginForm("Delete", "Tasks", new { id = @data.TaskID }, FormMethod.Post))
-                                {
-                                    @Html.AntiForgeryToken()
-                                    <div class="box-tools pull-right" data-is-focusable="false" tabindex="-1">
-                                        <button class="btn btn-box-tool" data-widget="remove" type="submit" value="Delete"> <i class="fa fa-times"></i></button>
-                                    </div>
-                                }
 
-                                <button type="button" class="btn" data-toggle="modal" data-target="@("#myModal" + data.TaskID)" style="max-width:100%">
+                                <a href="#" data-toggle="modal" data-target="@("#myModal" + data.TaskID)" style="color:black">
                                     @if (data.StatusID == 1)
                                     {
                                         <span class="label label-default" style="font-size:10px;float:left;color: #777">AAA</span>
@@ -1366,20 +1383,24 @@
                                     @if (data.StatusID == 3)
                                     {
                                         <span class="label label-danger" style="font-size:10px;float:left;color: #d9534f">AAA</span>
-                                    }&nbsp;
-                                    @data.Title.Substring(0, Math.Min(@data.Title.Length, 22)) ...
-                                </button>
+                                    }&nbsp; @data.Title
+                                    @using (Html.BeginForm("Delete", "Tasks", new { id = @data.TaskID }, FormMethod.Post))
+                                    {
+                                        @Html.AntiForgeryToken()
+                                        <div class="box-tools pull-right" data-is-focusable="false" tabindex="-1">
+                                            <button class="btn btn-box-tool" data-widget="remove" type="submit" value="Delete"> <i class="fa fa-times"></i></button>
+                                        </div>
+                                    }
+                                </a> 
+                            
 
                                 <div class="modal fade" id=@("myModal" + data.TaskID) tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                                     <div class="modal-dialog" role="document">
                                         <div class="modal-content">
                                             <div class="modal-header">
+
                                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
 
-                                                @*@using (Html.BeginForm("Edit", "Tasks", new { id = @data.TaskID }, FormMethod.Post))
-                                                {
-                                                    { Html.RenderAction("Edit", "Tasks", new { id = @data.TaskID }); }
-                                                }*@
                                                 @using (Html.BeginForm("Edit", "Tasks", new { id = @data.TaskID }, FormMethod.Post))
                                                 {
 
@@ -1492,7 +1513,7 @@
                                                                             <span class="field-validation-valid text-danger" data-valmsg-for="Duedate" data-valmsg-replace="true"></span>
                                                                         </div>
                                                                     </div>
-                                                                  
+
                                                                     <div class="col-md-6">
                                                                         <div class="form-group">
                                                                             <label>Assignor</label>
@@ -1566,146 +1587,146 @@
 
                                                 }
 
-                                                    <div class="box box-success">
-                                                        <div class="box-header">
-                                                            <i class="fa fa-eercast"></i>
+                                                <div class="box box-success">
+                                                    <div class="box-header">
+                                                        <i class="fa fa-eercast"></i>
 
-                                                            <h3 class="box-title">Comments</h3>
+                                                        <h3 class="box-title">Comments</h3>
 
-                                                        </div>
-                                                        @foreach (var cmt in ViewBag.Comments)
+                                                    </div>
+                                                    @foreach (var cmt in ViewBag.Comments)
+                                                    {
+
+
+                                                        if (cmt.TaskID == data.TaskID)
                                                         {
-
-
-                                                            if (cmt.TaskID == data.TaskID)
+                                                            using (Html.BeginForm("Delete", "Comments", new { id = cmt.ID }, FormMethod.Post))
                                                             {
-                                                                using (Html.BeginForm("Delete", "Comments", new { id = cmt.ID }, FormMethod.Post))
+                                                                if (cmt.AccountID == @User.Identity.GetUserId())
                                                                 {
-                                                                    if (cmt.AccountID == @User.Identity.GetUserId())
-                                                                    {
-                                                                        @Html.AntiForgeryToken()
+                                                                    @Html.AntiForgeryToken()
 
-                                                                        <button class="btn btn-box-tool"  type="submit" value="Delete" style="float:right;margin-right:10px;margin-top:10px;"> <i class="fa fa-times"></i></button>
-                                                                    }
+                                                                    <button class="btn btn-box-tool" type="submit" value="Delete" style="float:right;margin-right:10px;margin-top:10px;"> <i class="fa fa-times"></i></button>
                                                                 }
-
-                                                                <div class="box-body chat" id="chat-box">
-                                                                    <div class="item">
-                                                                        @foreach (var ab in ViewBag.Profile)
-                                                                        {
-                                                                            if (cmt.AccountID == ab.AccountID)
-                                                                            {
-
-                                                                                <img src="@Url.Content("~/Content/" + @ab.Avatar)" alt="user image" class="offline">
-                                                                            }
-
-                                                                        }
-
-                                                                        <p class="message">
-                                                                            <a href="#" class="name" style="color:#3c8dbc">
-                                                                                <small class="text-muted pull-right"><i class="fa fa-clock-o"></i>@cmt.LastUpdate</small>
-                                                                                @foreach (var us in ViewBag.Assignee)
-                                                                                {
-                                                                                    if (cmt.AccountID == us.Id)
-                                                                                    {
-                                                                                        @us.Email
-                                                                                    }
-                                                                                }
-                                                                            </a>
-                                                                            @cmt.Name
-                                                                        </p>
-                                                                    </div>
-
-                                                                    <!-- /.item -->
-                                                                    <!-- /.item -->
-                                                                </div>
-
                                                             }
 
-                                                        }
+                                                            <div class="box-body chat" id="chat-box">
+                                                                <div class="item">
+                                                                    @foreach (var ab in ViewBag.Profile)
+                                                                    {
+                                                                        if (cmt.AccountID == ab.AccountID)
+                                                                        {
 
-                                                        <div class="box-body chat" id="myDIV" style="display:none">
-                                                            <!-- chat item -->
-                                                            <!-- /.item -->
-                                                            <!-- chat item -->
-                                                            <div class="item">
-                                                                @foreach (var ab in ViewBag.Profile)
-                                                                {
+                                                                            <img src="@Url.Content("~/Content/" + @ab.Avatar)" alt="user image" class="offline">
+                                                                        }
 
-                                                                    <img src="@Url.Content("~/Content/"+@ab.Avatar)" alt="user image" class="offline">
-                                                                }
+                                                                    }
 
-                                                                <p class="message">
-                                                                    <a href="#" class="name" style="color:#3c8dbc">
-                                                                        <small class="text-muted pull-right"><i class="fa fa-clock-o"></i>@DateTime.Now</small>
-                                                                        @User.Identity.GetUserName()
-                                                                    </a>
-                                                                    <label id="1">
+                                                                    <p class="message">
+                                                                        <a href="#" class="name" style="color:#3c8dbc">
+                                                                            <small class="text-muted pull-right"><i class="fa fa-clock-o"></i>@cmt.LastUpdate</small>
+                                                                            @foreach (var us in ViewBag.Assignee)
+                                                                            {
+                                                                                if (cmt.AccountID == us.Id)
+                                                                                {
+                                                                                    @us.Email
+                                                                                }
+                                                                            }
+                                                                        </a>
+                                                                        @cmt.Name
+                                                                    </p>
+                                                                </div>
 
-                                                                    </label>
-                                                                    <label id="2">
-                                                                    </label>
-
-
-                                                                </p>
-
+                                                                <!-- /.item -->
+                                                                <!-- /.item -->
                                                             </div>
 
+                                                        }
+
+                                                    }
+
+                                                    <div class="box-body chat" id="myDIV" style="display:none">
+                                                        <!-- chat item -->
+                                                        <!-- /.item -->
+                                                        <!-- chat item -->
+                                                        <div class="item">
+                                                            @foreach (var ab in ViewBag.Profile)
+                                                            {
+
+                                                                <img src="@Url.Content("~/Content/"+@ab.Avatar)" alt="user image" class="offline">
+                                                            }
+
+                                                            <p class="message">
+                                                                <a href="#" class="name" style="color:#3c8dbc">
+                                                                    <small class="text-muted pull-right"><i class="fa fa-clock-o"></i>@DateTime.Now</small>
+                                                                    @User.Identity.GetUserName()
+                                                                </a>
+                                                                <label id="1">
+
+                                                                </label>
+                                                                <label id="2">
+                                                                </label>
+
+
+                                                            </p>
 
                                                         </div>
 
 
-
-                                                        @using (Html.BeginForm("Create", "Comments", FormMethod.Post, new { id = "FormCmt" }))
-                                                        {
-                                                            @Html.AntiForgeryToken()
-
-                                                            <div class="form-group" style="display: none;">
-                                                                <label class="control-label col-md-2" for="AccountIDD">AccountID</label>
-                                                                <div class="col-md-10">
-                                                                    <select class="form-control" id="AccountID " name="AccountID">
-                                                                        <option value="@User.Identity.GetUserId()">@User.Identity.GetUserName()</option>
-                                                                    </select>
-                                                                    <span class="field-validation-valid text-danger" data-valmsg-for="AccountID" data-valmsg-replace="true"></span>
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="form-group" style="display: none;">
-                                                                <label class="control-label col-md-2" for="TaskID">TaskID</label>
-                                                                <div class="col-md-10">
-                                                                    <select class="form-control" id="TaskID" name="TaskID">
-                                                                        <option value="@data.TaskID">@data.Title</option>
-                                                                    </select>
-                                                                    <span class="field-validation-valid text-danger" data-valmsg-for="TaskID" data-valmsg-replace="true"></span>
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="form-group" style="display: none;">
-                                                                <label class="control-label col-md-2" for="LastUpdate">LastUpdate</label>
-                                                                <div class="col-md-10">
-                                                                    <input class="form-control text-box single-line" data-val="true" data-val-date="The field LastUpdate must be a date." data-val-required="The LastUpdate field is required." id="LastUpdate" name="LastUpdate" type="datetime" value="@DateTime.Now">
-                                                                    <span class="field-validation-valid text-danger" data-valmsg-for="LastUpdate" data-valmsg-replace="true"></span>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-md-12">
-                                                                <div class="form-group">
-
-                                                                    <textarea cols="5" id="Name" name="Name" rows="5" style="width: 100%; max-width: 100%;border: 1px solid #dddddd;" placeholder="Type message..."></textarea>
-
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="form-group" style="float:right">
-                                                                <div class="col-md-offset-2 col-md-10">
-                                                                    <input type="submit" class="myButton" value="Send" @*onclick="SaveDemo();"*@ />
-                                                                    @*<input type="button" class="myButton" value="Test" onclick="SaveDemo();" />*@
-                                                                </div>
-                                                            </div>
-
-
-
-                                                        }
                                                     </div>
+
+
+
+                                                    @using (Html.BeginForm("Create", "Comments", FormMethod.Post, new { id = "FormCmt" }))
+                                                    {
+                                                        @Html.AntiForgeryToken()
+
+                                                        <div class="form-group" style="display: none;">
+                                                            <label class="control-label col-md-2" for="AccountIDD">AccountID</label>
+                                                            <div class="col-md-10">
+                                                                <select class="form-control" id="AccountID " name="AccountID">
+                                                                    <option value="@User.Identity.GetUserId()">@User.Identity.GetUserName()</option>
+                                                                </select>
+                                                                <span class="field-validation-valid text-danger" data-valmsg-for="AccountID" data-valmsg-replace="true"></span>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="form-group" style="display: none;">
+                                                            <label class="control-label col-md-2" for="TaskID">TaskID</label>
+                                                            <div class="col-md-10">
+                                                                <select class="form-control" id="TaskID" name="TaskID">
+                                                                    <option value="@data.TaskID">@data.Title</option>
+                                                                </select>
+                                                                <span class="field-validation-valid text-danger" data-valmsg-for="TaskID" data-valmsg-replace="true"></span>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="form-group" style="display: none;">
+                                                            <label class="control-label col-md-2" for="LastUpdate">LastUpdate</label>
+                                                            <div class="col-md-10">
+                                                                <input class="form-control text-box single-line" data-val="true" data-val-date="The field LastUpdate must be a date." data-val-required="The LastUpdate field is required." id="LastUpdate" name="LastUpdate" type="datetime" value="@DateTime.Now">
+                                                                <span class="field-validation-valid text-danger" data-valmsg-for="LastUpdate" data-valmsg-replace="true"></span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-12">
+                                                            <div class="form-group">
+
+                                                                <textarea cols="5" id="Name" name="Name" rows="5" style="width: 100%; max-width: 100%;border: 1px solid #dddddd;" placeholder="Type message..."></textarea>
+
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="form-group" style="float:right">
+                                                            <div class="col-md-offset-2 col-md-10">
+                                                                <input type="submit" class="myButton" value="Send" @*onclick="SaveDemo();"*@ />
+                                                                @*<input type="button" class="myButton" value="Test" onclick="SaveDemo();" />*@
+                                                            </div>
+                                                        </div>
+
+
+
+                                                    }
+                                                </div>
 
 
                                                 <!-- Button trigger modal -->
@@ -1885,7 +1906,7 @@
 
             </div>
         }
-        
+
         <button type="button" class="add-list-btn btn" data-toggle="modal" data-target="#myModal">Add a bucket</button>
 
         <!-- Modal -->
@@ -1968,7 +1989,14 @@
 <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
 
+<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js">
+</script>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/data.js"></script>
+
 <script>
+
     function openCity(evt, cityName) {
         var i, tabcontent, tablinks;
         tabcontent = document.getElementsByClassName("tabcontent");
@@ -1982,8 +2010,8 @@
         document.getElementById(cityName).style.display = "block";
         evt.currentTarget.className += " active";
     }
-
-    var cls = document.getElementById("customers").getElementsByTagName("td");
+    document.getElementById("defaultOpen").click();
+    var cls = document.getElementById("customers1").getElementsByTagName("td");
     var sum = 0;
     for (var i = 0; i < cls.length; i++) {
         if (cls[i].className == "countable") {
@@ -2007,6 +2035,126 @@
     $('#detailInfo3').html(sum);
     //alert('sum is ' + sum);
     $(document).ready(function () {
+              var r = $("#customers1 #detailInfo").text();
+        var rr = $("#customers1 #detailInfo2").text();
+       var rrr = $("#customers1 #detailInfo3").text();
+       var a = parseInt(r);
+       var aa = parseInt(rr);
+       var aaa = parseInt(rrr);
+        var chart = {
+            plotBackgroundColor: null,
+            plotBorderWidth: null,
+            plotShadow: false
+        };
+        var title = {
+            text: 'All Task In Plan'
+        };
+        var tooltip = {
+         
+        };
+        var plotOptions = {
+            pie: {
+                allowPointSelect: true,
+                cursor: 'pointer',
+
+                dataLabels: {
+                    enabled: true,
+               
+                    style: {
+                        color: (Highcharts.theme && Highcharts.theme.contrastTextColor) ||
+                            'black'
+                    }
+                }
+            }
+        };
+        var series = [{
+            type: 'pie',
+            name: 'Task',
+            data: [
+                ['Not Started Task', a],
+                ['In Progess Task', aa],
+                ['Completed Task',aaa]
+            ]
+        }];
+        var json = {};
+        json.chart = chart;
+        json.title = title;
+        json.tooltip = tooltip;
+        json.series = series;
+        json.plotOptions = plotOptions;
+        $('#container1').highcharts(json);
+
+
+    });
+    $(document).ready(function () {
+        var data = {
+            table: 'customers2'
+        };
+        var chart = {
+            type: 'column'
+        };
+        var title = {
+            text: 'Tasks In Bucket'
+        };
+        var yAxis = {
+            allowDecimals: false,
+            title: {
+                text: 'Task'
+            }
+        };
+        var tooltip = {
+            formatter: function () {
+                return '<b>' + this.series.name + '</b><br/>' +
+                    this.point.y + ' ' + this.point.name.toLowerCase();
+            }
+        };
+        var credits = {
+            enabled: false
+        };
+        var json = {};
+        json.chart = chart;
+        json.title = title;
+        json.data = data;
+        json.yAxis = yAxis;
+        json.credits = credits;
+        json.tooltip = tooltip;
+        $('#container2').highcharts(json);
+    });
+    $(document).ready(function () {
+        var data = {
+            table: 'customers3'
+        };
+        var chart = {
+            type: 'column'
+        };
+        var title = {
+            text: 'Members In Plan'
+        };
+        var yAxis = {
+            allowDecimals: false,
+            title: {
+                text: 'Task'
+            }
+        };
+        var tooltip = {
+            formatter: function () {
+                return '<b>' + this.series.name + '</b><br/>' +
+                    this.point.y + ' ' + this.point.name.toLowerCase();
+            }
+        };
+        var credits = {
+            enabled: false
+        };
+        var json = {};
+        json.chart = chart;
+        json.title = title;
+        json.data = data;
+        json.yAxis = yAxis;
+        json.credits = credits;
+        json.tooltip = tooltip;
+        $('#container3').highcharts(json);
+    });
+    $(document).ready(function () {
 
        var url = "@this.Url.Action(actionName: "Create", controllerName: "Profiles")";
         $.ajax({
@@ -2018,10 +2166,14 @@
                 location.reload();
             }
         });
-      
-  });
+
+    });
+  
+
+
+
     $(document).ready(function () {
-    
+
         var txt = $('#test span').text();
         if (txt.length == 0) {
                 var url = "@this.Url.Action(actionName: "Create", controllerName: "ListMembers")";
@@ -2038,17 +2190,17 @@
   });
 
     function myFunction() {
-        var plan = $('#Plan').text();  
-        var myemail = $('#MyEmail').text();     
-        var url = window.location.href; 
-        var name = $('.Assignee').find("option:selected").text();       
+        var plan = $('#Plan').text();
+        var myemail = $('#MyEmail').text();
+        var url = window.location.href;
+        var name = $('.Assignee').find("option:selected").text();
         var sendInfo = {
             receiver_email: name,
             plan_title: plan,
             sender_email: myemail,
             plan_url: url
-        };      
-    
+        };
+
         $.ajax({
             url: 'https://prod-27.southeastasia.logic.azure.com:443/workflows/9a238a5f88be49f9bdc42ea2c76d91b1/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=naSctSEt7-yUNRqPxm7G4eWirB-oMToKssqOM4Qf2OE',
             type: 'post',
@@ -2068,7 +2220,7 @@
     function DownloadFile(fileId) {
         $("#hfFileId").val(fileId);
         $("#btnDownload")[0].click();
-    };  
+    };
     $(document).ready(function () {
 
         $(".Assignee").select2({ width: '100%', maximumSelectionSize: 1, placeholder: "Start typing"});
@@ -2098,7 +2250,7 @@
         }
 
     });
-    
+
 </script>
 
 
