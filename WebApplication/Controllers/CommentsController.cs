@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using WebApplication.Models;
 using System.Configuration;
 using System.Data.SqlClient;
+using Newtonsoft.Json;
 
 namespace WebApplication.Controllers
 {
@@ -21,6 +22,21 @@ namespace WebApplication.Controllers
         {
             var comments = db.Comments.Include(c => c.AspNetUser).Include(c => c.Task);
             return View(comments.ToList());
+        }
+
+        public JsonResult getCommentById(int id)
+        {
+            var a = db.Comments.Where(x => x.TaskID == id);
+            var comment = a.OrderByDescending(o => o.ID).FirstOrDefault();
+            return Json(new
+            {
+                ID =comment.ID,
+                AccountID =comment.AccountID,
+                TaskID =comment.TaskID,
+                LastUpdate =comment.LastUpdate,
+                Name =comment.Name,
+
+            },JsonRequestBehavior.AllowGet);
         }
 
         // GET: Comments/Details/5

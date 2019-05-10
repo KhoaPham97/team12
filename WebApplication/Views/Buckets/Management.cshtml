@@ -1377,9 +1377,9 @@
                                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
 
                                                 @*@using (Html.BeginForm("Edit", "Tasks", new { id = @data.TaskID }, FormMethod.Post))
-                                                {
-                                                    { Html.RenderAction("Edit", "Tasks", new { id = @data.TaskID }); }
-                                                }*@
+        {
+            { Html.RenderAction("Edit", "Tasks", new { id = @data.TaskID }); }
+        }*@
                                                 @using (Html.BeginForm("Edit", "Tasks", new { id = @data.TaskID }, FormMethod.Post))
                                                 {
 
@@ -1492,7 +1492,7 @@
                                                                             <span class="field-validation-valid text-danger" data-valmsg-for="Duedate" data-valmsg-replace="true"></span>
                                                                         </div>
                                                                     </div>
-                                                                  
+
                                                                     <div class="col-md-6">
                                                                         <div class="form-group">
                                                                             <label>Assignor</label>
@@ -1566,148 +1566,149 @@
 
                                                 }
 
-                                                    <div class="box box-success">
-                                                        <div class="box-header">
-                                                            <i class="fa fa-eercast"></i>
+                                                <div class="box box-success" id="comments_area_@data.TaskID">
+                                                    <div class="box-header">
+                                                        <i class="fa fa-eercast"></i>
 
-                                                            <h3 class="box-title">Comments</h3>
+                                                        <h3 class="box-title">  </h3>
 
-                                                        </div>
-                                                        @foreach (var cmt in ViewBag.Comments)
+                                                    </div>
+                                                    @foreach (var cmt in ViewBag.Comments)
+                                                    {
+
+
+                                                        if (cmt.TaskID == data.TaskID)
                                                         {
-
-
-                                                            if (cmt.TaskID == data.TaskID)
+                                                            using (Html.BeginForm("Delete", "Comments", new { id = cmt.ID }, FormMethod.Post))
                                                             {
-                                                                using (Html.BeginForm("Delete", "Comments", new { id = cmt.ID }, FormMethod.Post))
+                                                                if (cmt.AccountID == @User.Identity.GetUserId())
                                                                 {
-                                                                    if (cmt.AccountID == @User.Identity.GetUserId())
-                                                                    {
-                                                                        @Html.AntiForgeryToken()
+                                                                    @Html.AntiForgeryToken()
 
-                                                                        <button class="btn btn-box-tool"  type="submit" value="Delete" style="float:right;margin-right:10px;margin-top:10px;"> <i class="fa fa-times"></i></button>
-                                                                    }
+                                                                    <button class="btn btn-box-tool" type="submit" value="Delete" style="float:right;margin-right:10px;margin-top:10px;"> <i class="fa fa-times"></i></button>
                                                                 }
-
-                                                                <div class="box-body chat" id="chat-box">
-                                                                    <div class="item">
-                                                                        @foreach (var ab in ViewBag.Profile)
-                                                                        {
-                                                                            if (cmt.AccountID == ab.AccountID)
-                                                                            {
-
-                                                                                <img src="@Url.Content("~/Content/" + @ab.Avatar)" alt="user image" class="offline">
-                                                                            }
-
-                                                                        }
-
-                                                                        <p class="message">
-                                                                            <a href="#" class="name" style="color:#3c8dbc">
-                                                                                <small class="text-muted pull-right"><i class="fa fa-clock-o"></i>@cmt.LastUpdate</small>
-                                                                                @foreach (var us in ViewBag.Assignee)
-                                                                                {
-                                                                                    if (cmt.AccountID == us.Id)
-                                                                                    {
-                                                                                        @us.Email
-                                                                                    }
-                                                                                }
-                                                                            </a>
-                                                                            @cmt.Name
-                                                                        </p>
-                                                                    </div>
-
-                                                                    <!-- /.item -->
-                                                                    <!-- /.item -->
-                                                                </div>
-
                                                             }
 
-                                                        }
+                                                            <div class="box-body chat" id="chat-box">
+                                                                <div class="item">
+                                                                    @foreach (var ab in ViewBag.Profile)
+                                                                    {
+                                                                        if (cmt.AccountID == ab.AccountID)
+                                                                        {
 
-                                                        <div class="box-body chat" id="myDIV" style="display:none">
-                                                            <!-- chat item -->
-                                                            <!-- /.item -->
-                                                            <!-- chat item -->
-                                                            <div class="item">
-                                                                @foreach (var ab in ViewBag.Profile)
-                                                                {
+                                                                            <img src="@Url.Content("~/Content/" + @ab.Avatar)" alt="user image" class="offline">
+                                                                        }
 
-                                                                    <img src="@Url.Content("~/Content/"+@ab.Avatar)" alt="user image" class="offline">
-                                                                }
+                                                                    }
 
-                                                                <p class="message">
-                                                                    <a href="#" class="name" style="color:#3c8dbc">
-                                                                        <small class="text-muted pull-right"><i class="fa fa-clock-o"></i>@DateTime.Now</small>
-                                                                        @User.Identity.GetUserName()
-                                                                    </a>
-                                                                    <label id="1">
+                                                                    <p class="message">
+                                                                        <a href="#" class="name" style="color:#3c8dbc">
+                                                                            <small class="text-muted pull-right"><i class="fa fa-clock-o"></i>@cmt.LastUpdate.ToString("MM/d/yyyy H:mm:s")</small>
+                                                                            @foreach (var us in ViewBag.Assignee)
+                                                                            {
+                                                                                if (cmt.AccountID == us.Id)
+                                                                                {
+                                                                                    @us.Email
+                                                                                }
+                                                                            }
+                                                                        </a>
+                                                                        <span class="comment">@cmt.Name</span>
 
-                                                                    </label>
-                                                                    <label id="2">
-                                                                    </label>
+                                                                    </p>
+                                                                </div>
 
-
-                                                                </p>
-
+                                                                <!-- /.item -->
+                                                                <!-- /.item -->
                                                             </div>
 
+                                                        }
+
+                                                    }
+
+                                                    <div class="box-body chat" id="myDIV" style="display:none">
+                                                        <!-- chat item -->
+                                                        <!-- /.item -->
+                                                        <!-- chat item -->
+                                                        <div class="item">
+                                                            @foreach (var ab in ViewBag.Profile)
+                                                            {
+
+                                                                <img src="@Url.Content("~/Content/"+@ab.Avatar)" alt="user image" class="offline">
+                                                            }
+
+                                                            <p class="message">
+                                                                <a href="#" class="name" style="color:#3c8dbc">
+                                                                    <small class="text-muted pull-right"><i class="fa fa-clock-o"></i>@DateTime.Now</small>
+                                                                    @User.Identity.GetUserName()
+                                                                </a>
+                                                                <label id="1">
+
+                                                                </label>
+                                                                <label id="2">
+                                                                </label>
+
+
+                                                            </p>
 
                                                         </div>
 
 
+                                                    </div>
 
-                                                        @using (Html.BeginForm("Create", "Comments", FormMethod.Post, new { id = "FormCmt" }))
-                                                        {
-                                                            @Html.AntiForgeryToken()
-
-                                                            <div class="form-group" style="display: none;">
-                                                                <label class="control-label col-md-2" for="AccountIDD">AccountID</label>
-                                                                <div class="col-md-10">
-                                                                    <select class="form-control" id="AccountID " name="AccountID">
-                                                                        <option value="@User.Identity.GetUserId()">@User.Identity.GetUserName()</option>
-                                                                    </select>
-                                                                    <span class="field-validation-valid text-danger" data-valmsg-for="AccountID" data-valmsg-replace="true"></span>
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="form-group" style="display: none;">
-                                                                <label class="control-label col-md-2" for="TaskID">TaskID</label>
-                                                                <div class="col-md-10">
-                                                                    <select class="form-control" id="TaskID" name="TaskID">
-                                                                        <option value="@data.TaskID">@data.Title</option>
-                                                                    </select>
-                                                                    <span class="field-validation-valid text-danger" data-valmsg-for="TaskID" data-valmsg-replace="true"></span>
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="form-group" style="display: none;">
-                                                                <label class="control-label col-md-2" for="LastUpdate">LastUpdate</label>
-                                                                <div class="col-md-10">
-                                                                    <input class="form-control text-box single-line" data-val="true" data-val-date="The field LastUpdate must be a date." data-val-required="The LastUpdate field is required." id="LastUpdate" name="LastUpdate" type="datetime" value="@DateTime.Now">
-                                                                    <span class="field-validation-valid text-danger" data-valmsg-for="LastUpdate" data-valmsg-replace="true"></span>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-md-12">
-                                                                <div class="form-group">
-
-                                                                    <textarea cols="5" id="Name" name="Name" rows="5" style="width: 100%; max-width: 100%;border: 1px solid #dddddd;" placeholder="Type message..."></textarea>
-
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="form-group" style="float:right">
-                                                                <div class="col-md-offset-2 col-md-10">
-                                                                    <input type="submit" class="myButton" value="Send" @*onclick="SaveDemo();"*@ />
-                                                                    @*<input type="button" class="myButton" value="Test" onclick="SaveDemo();" />*@
-                                                                </div>
-                                                            </div>
+                                                    @*@using(Html.BeginForm("Create","Comments", new { id = @data.TaskID }, FormMethod.Post, new { id = "FormCmt", @class = "FormCmt" })) { }*@
 
 
+                                                </div>
 
-                                                        }
+                                                @using (Html.BeginForm("Create", "Comments", FormMethod.Post, new { id = "FormCmt", @class = "FormCmt" }))
+                                                {
+                                                    @Html.AntiForgeryToken()
+                                                    <input type="hidden" name="TaskID" value="@data.TaskID" />
+
+                                                    <div class="form-group" style="display: none;">
+                                                        <label class="control-label col-md-2" for="AccountID">AccountID</label>
+                                                        <div class="col-md-10">
+                                                            <select class="form-control" id="AccountID " name="AccountID">
+                                                                <option value="@User.Identity.GetUserId()">@User.Identity.GetUserName()</option>
+                                                            </select>
+                                                            <span class="field-validation-valid text-danger" data-valmsg-for="AccountID" data-valmsg-replace="true"></span>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group" style="display: none;">
+                                                        <label class="control-label col-md-2" for="TaskID">TaskID</label>
+                                                        <div class="col-md-10">
+
+
+                                                            <span class="field-validation-valid text-danger" data-valmsg-for="TaskID" data-valmsg-replace="true"></span>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group" style="display: none;">
+                                                        <label class="control-label col-md-2" for="LastUpdate">LastUpdate</label>
+                                                        <div class="col-md-10">
+                                                            <input class="form-control text-box single-line" data-val="true" data-val-date="The field LastUpdate must be a date." data-val-required="The LastUpdate field is required." id="LastUpdate" name="LastUpdate" type="datetime" value="@DateTime.Now">
+                                                            <span class="field-validation-valid text-danger" data-valmsg-for="LastUpdate" data-valmsg-replace="true"></span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <div class="form-group">
+
+                                                            <textarea cols="5" id="Name" name="Name" rows="5" style="width: 100%; max-width: 100%;border: 1px solid #dddddd;" placeholder="Type message..."></textarea>
+
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group" style="float:right">
+                                                        <div class="col-md-offset-2 col-md-10">
+                                                            <button type="submit" class="myButton btn-send-cmt">Send</button>
+                                                            @*<input type="button" class="myButton" value="Test" onclick="SaveDemo();" />*@
+                                                        </div>
                                                     </div>
 
 
+
+                                                }
                                                 <!-- Button trigger modal -->
                                                 @using (Html.BeginForm("Index", "Tasks", new { id = @data.TaskID }, FormMethod.Post, new { enctype = "multipart/form-data" }))
                                                 {
@@ -1969,6 +1970,92 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
 
 <script>
+    //loadcomment
+    
+    $(".FormCmt").on('submit',function (e) {
+        //console.log($(this));
+        e.preventDefault(); // avoid to execute the actual submit of the form.
+        var form = $(this);
+        var taskID = $(this).children('input[name=TaskID]').val();
+        console.log(taskID);
+        var url = form.attr('action');
+        var type = form.attr('method');
+        var data = form.serialize();
+        var token = $(this).children('input[name=__RequestVerificationToken]').val();
+        var headers = {};
+        $.ajax({
+            type: type,
+            url: url,
+            cache: false,
+            data: data, // serializes the form's elements.
+            success: function (data) {
+                
+                $.ajax({
+                    type: 'GET',
+                    url: "/Comments/getCommentById/"+taskID,
+                    success: function (data) { 
+                        console.log(data["ID"]);
+                        var button_delete = $('<button class="btn btn-box-tool" type="submit" value="Delete" style="float:right;margin-right:10px;margin-top:10px;"> <i class="fa fa-times"></i></button>');
+                        var comment_area = $('#comments_area_' + taskID);
+                        var form = $('<form></form>');
+                        var chat = $('<div class="box-body chat" id="chat-box"></div>');
+
+                        var div_item = $('<div class="item"></div>');
+                        var p_message = $('<p class="message"></p>')
+                        var span_comment = $('<span class="comment"></span>');
+                        var img = $('<img alt="user image" class="offline">');
+                        var a_name = $('<a href="#" class="name" style="color:#3c8dbc"></a>');
+                        var small_name = $('<small class="text-muted pull-right"></small>');
+
+                        var lastupdate = new Date(parseInt(data["LastUpdate"].substr(6)))
+                        console.log(lastupdate);
+                        var datetime = (lastupdate.getMonth() + 1) + "/"
+                            + lastupdate.getDate() + "/"
+                            + lastupdate.getFullYear() + " "
+                            + lastupdate.getHours() + ":"
+                            + lastupdate.getMinutes() + ":"
+                            + lastupdate.getSeconds();
+                        small_name.append('<i class="fa fa-clock-o"></i>')
+                        small_name.append(datetime);
+                        a_name.append(small_name);
+                        a_name.append('Myname');
+
+                        img.attr('src', 'whereImageIn');
+                        span_comment.text(data["Name"]);
+                        p_message.append(a_name);
+                        p_message.append(span_comment);
+                        div_item.append(img);
+                        div_item.append(p_message);
+
+                        chat.append(div_item);
+                        form.attr('action', '/Comments/Delete/' + data["ID"]);
+                        form.attr('method', 'POST');
+                        form.append('@Html.AntiForgeryToken()');
+                        form.append(button_delete);
+                        console.log(div_item);
+                        console.log(chat);
+                        comment_area.append(form);
+                        comment_area.append(chat);
+                       
+                    }
+                });
+                
+            },
+            error: function (error) {
+                console.log('error');
+
+                console.log(error);
+            },
+            fail: function (fail) {
+                console.log('fail');
+
+                console.log(fail);
+            }
+        });
+
+
+    });
+    //
     function openCity(evt, cityName) {
         var i, tabcontent, tablinks;
         tabcontent = document.getElementsByClassName("tabcontent");

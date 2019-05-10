@@ -22,6 +22,8 @@ namespace WebApplication.Controllers
              return View(buckets.ToList());
         }
      
+    
+
         public ActionResult Management(int? id)
         {
             var a = db.Plans.Where(x => x.IDPlan == id);
@@ -48,6 +50,7 @@ namespace WebApplication.Controllers
             return View();
 
         }
+
         // GET: Buckets/Details/5
         public ActionResult Details(int? id)
         {
