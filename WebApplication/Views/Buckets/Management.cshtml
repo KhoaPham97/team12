@@ -41,6 +41,12 @@
     <link href="@Url.Content("~/area/dist/img/logo.png")" rel="shortcut icon" type="image/x-icon" />
 
     <style>
+        #container {
+            height: 300px;
+            min-width: 310px;
+            max-width: 800px;
+        }
+
         .tab {
             overflow: hidden;
             border: 1px solid #ccc;
@@ -769,7 +775,7 @@
             }
     </style>
 </head>
-<body >
+<body>
 
     <!-- Masthead -->
     <header class="masthead">
@@ -808,7 +814,7 @@
             @*<button class="user-settings-btn btn" aria-label="User Settings">
                     <i class="fas fa-user-circle" aria-hidden="true"></i>
                 </button>*@
-            <button class="user-settings-btn btn" data-toggle="modal" data-target="#profile">  <i class="fas fa-user-circle" aria-hidden="true"></i></button>
+           <button class="user-settings-btn btn" data-toggle="modal" data-target="#profile">  <i class="fas fa-user-circle" aria-hidden="true"></i></button>
             <div class="modal fade" id="profile" role="dialog">
                 <div class="modal-dialog">
                     <div class="modal-content">
@@ -864,7 +870,7 @@
                                             </tr>
                                             <tr>
                                                 <td>                                         <h1 style="font-size:18px; color:black;text-align:left"><i class="fa fa-birthday-cake" aria-hidden="true"></i> Birthday</h1></td>
-                                                <td>                                         <h1 style="font-size:18px; color:black;text-align:left">@ab.Birthday.ToString("dd MMM yyyy")</h1></td>
+                                                <td>                                         <h1 style="font-size:18px; color:black;text-align:left">@ab.Birthday</h1></td>
 
                                             </tr>
                                             <tr>
@@ -1120,15 +1126,15 @@
 
                             <div id="a" class="tabcontent">
 
-                                <div id="container1" style="width: 550px; height: 400px; margin: 0 auto"></div>
-                                <div id="container2" style="width: 550px; height: 400px; margin: 0 auto"></div>
-                                <div id="container3" style="width: 550px; height: 400px; margin: 0 auto"></div>
+                                <div id="container1" style="max-width: 550px; max-height: 400px; margin: 0 auto"></div>
+                                <div id="container2" style="max-width: 550px; max-height: 400px; margin: 0 auto"></div>
+                                <div id="container3" style="max-width: 550px; max-height: 400px; margin: 0 auto"></div>
                             </div>
 
                             <div id="b" class="tabcontent">
 
                                 <h1 style="font-size:20px;color:black">All Tasks In Plan</h1>
-                                <table id="customers1" style="font-size:15px" class="customers">
+                                <table id="customers1" style="font-size:15px;" class="customers">
                                     <tr>
                                         <th>Not Started Tasks</th>
                                         <th>In Progess Task</th>
@@ -1254,7 +1260,7 @@
                                             }
                                             <td>@k</td>
                                         </tr>
-                                    
+
                                     }
                                 </table>
                                 <br />
@@ -1384,16 +1390,16 @@
                                     {
                                         <span class="label label-danger" style="font-size:10px;float:left;color: #d9534f">AAA</span>
                                     }&nbsp; @data.Title
-                                    @using (Html.BeginForm("Delete", "Tasks", new { id = @data.TaskID }, FormMethod.Post))
-                                    {
-                                        @Html.AntiForgeryToken()
-                                        <div class="box-tools pull-right" data-is-focusable="false" tabindex="-1">
-                                            <button class="btn btn-box-tool" data-widget="remove" type="submit" value="Delete"> <i class="fa fa-times"></i></button>
-                                        </div>
-                                    }
-                                </a> 
-                            
 
+                                </a>
+
+                                @using (Html.BeginForm("Delete", "Tasks", new { id = @data.TaskID }, FormMethod.Post))
+                                {
+                                    @Html.AntiForgeryToken()
+                                    <div class="box-tools pull-right" data-is-focusable="false" tabindex="-1">
+                                        <button class="btn btn-box-tool" type="submit" value="Delete"> <i class="fa fa-times"></i></button>
+                                    </div>
+                                }
                                 <div class="modal fade" id=@("myModal" + data.TaskID) tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                                     <div class="modal-dialog" role="document">
                                         <div class="modal-content">
@@ -1431,6 +1437,24 @@
                                                                 <a href="#" class="Button3">Completed</a>
                                                                 <!-- general form elements -->
                                                             }
+                                                            @foreach (var C in ViewBag.Assignee)
+                                                            {
+                                                                
+                                                                    if (data.ReporterID == C.Id)
+                                                                    {
+                                                                        <p>Assignor:<span class="label label-success" style="font-size:10px;">@C.Email</span></p>
+                                                                    }
+                                                                    if (data.AssigneeID == C.Id)
+                                                                    {
+                                                                        <p>Assignee:<span class="label label-success" style="font-size:10px;">@C.Email</span></p>
+                                                                }
+                                                            }
+
+
+
+
+
+
                                                             <div class="box box-primary">
 
                                                                 <input data-val="true" data-val-number="The field TaskID must be a number." data-val-required="The TaskID field is required." id="TaskID" name="TaskID" type="hidden" value="@data.TaskID ">
@@ -1514,7 +1538,7 @@
                                                                         </div>
                                                                     </div>
 
-                                                                    <div class="col-md-6">
+                                                                    <div class="col-md-6" style="display:none">
                                                                         <div class="form-group">
                                                                             <label>Assignor</label>
                                                                             <select class="form-control  disabled  " id="ReporterID" name="ReporterID">
@@ -1530,22 +1554,17 @@
                                                                             <span class="field-validation-valid text-danger" data-valmsg-for="ReporterID" data-valmsg-replace="true"></span>
                                                                         </div>
                                                                     </div>
-                                                                    <div class="col-md-6">
-                                                                        <div class="form-group">
-                                                                            <label>Assignee</label>
+                                                                    @if (data.ReporterID == User.Identity.GetUserId())
+                                                                    {
+                                                                        <div class="col-md-6">
+                                                                            <div class="form-group">
+                                                                                <label>Assignee</label>
 
-                                                                            <select class="form-control  disabled  " id="AssigneeID" name="AssigneeID">
+                                                                                <select class="form-control  disabled  " id="AssigneeID" name="AssigneeID">
 
-                                                                                @foreach (var C in ViewBag.Assignee)
-                                                                                {
-                                                                                    if (data.AssigneeID == C.Id)
-                                                                                    {
-                                                                                        <option selected="selected" value="@C.Id">@C.Email</option>
-                                                                                    }
-                                                                                }
-                                                                                @if (data.ReporterID == User.Identity.GetUserId())
-                                                                                {
-                                                                                    foreach (var mem in ViewBag.Listmembers)
+
+                                                                                    <option selected="selected" value="@data.AssigneeID">@data.AspNetUser.Email</option>
+                                                                                    @foreach (var mem in ViewBag.Listmembers)
                                                                                     {
                                                                                         if (mem.AccountID != @data.AssigneeID)
                                                                                         {
@@ -1553,11 +1572,22 @@
 
                                                                                         }
                                                                                     }
-                                                                                }
-                                                                            </select>
-                                                                            <span class="field-validation-valid text-danger" data-valmsg-for="AssigneeID" data-valmsg-replace="true"></span>
+
+                                                                                </select>
+                                                                                <span class="field-validation-valid text-danger" data-valmsg-for="AssigneeID" data-valmsg-replace="true"></span>
+                                                                            </div>
                                                                         </div>
-                                                                    </div>
+                                                                    }
+                                                                    else
+                                                                    {
+
+                                                                        <select class="form-control  disabled  " id="AssigneeID" name="AssigneeID" style=" display:none">
+
+
+                                                                            <option selected="selected" value="@data.AssigneeID">@data.AspNetUser.Email</option>
+
+                                                                        </select>
+                                                                    }
 
 
                                                                     <div class="col-md-12">
@@ -1989,13 +2019,23 @@
 <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
 
+
 <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js">
-</script>
+
 <script src="https://code.highcharts.com/highcharts.js"></script>
 <script src="https://code.highcharts.com/modules/data.js"></script>
 
 <script>
+    $(document).ready(function () {
+
+        $('.datepicker').datepicker({
+  
+        });
+    });
+
+        //$('.datepicker').datetpicker({
+        //    format: 'dd/mm/yyyy'
+        //});
 
     function openCity(evt, cityName) {
         var i, tabcontent, tablinks;
@@ -2050,7 +2090,7 @@
             text: 'All Task In Plan'
         };
         var tooltip = {
-         
+
         };
         var plotOptions = {
             pie: {
@@ -2059,7 +2099,7 @@
 
                 dataLabels: {
                     enabled: true,
-               
+
                     style: {
                         color: (Highcharts.theme && Highcharts.theme.contrastTextColor) ||
                             'black'
@@ -2168,7 +2208,7 @@
         });
 
     });
-  
+
 
 
 
@@ -2232,9 +2272,6 @@
     $('mymodal-task').on('show.bs.modal', function (f) {
         if (f.relatedTarget === undefined) return;
         // Do other stuff here
-    });
-    $('.datepicker').datepicker({
-        dateFormat: "dd/mm/yyyy"
     });
 
     jQuery(function () {

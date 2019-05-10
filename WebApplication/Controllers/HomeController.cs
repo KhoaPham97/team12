@@ -31,6 +31,8 @@ namespace WebApplication.Controllers
 
         public ActionResult Calendar()
         {
+            ViewBag.Listmembers = db.ListMembers;
+            ViewBag.Profile = db.Profiles;
             ViewBag.Meeting = db.Meetings;
             ViewBag.Message = "Your application description page.";
 
