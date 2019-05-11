@@ -1620,14 +1620,14 @@
 
                                         }
 
-                                        <div class="box box-success">
+                                        <div class="box box-success" id="comments_area_@data.TaskID">
                                             <div class="box-header">
                                                 <i class="fa fa-eercast"></i>
 
-                                                <h3 class="box-title">Comments</h3>
+                                                <h3 class="box-title">  </h3>
 
                                             </div>
-                                            @foreach (var cmt in ViewBag.Comments)
+                                            @foreach (var cmt in ViewBag.Comments)  
                                             {
 
 
@@ -1710,12 +1710,13 @@
 
 
 
-                                            @using (Html.BeginForm("Create", "Comments", FormMethod.Post, new { id = "FormCmt" }))
+                                            @using (Html.BeginForm("Create", "Comments", FormMethod.Post, new { id = "FormCmt", @class = "FormCmt" }))
                                             {
                                                 @Html.AntiForgeryToken()
+                                                <input type="hidden" name="TaskID" value="@data.TaskID" />
 
                                                 <div class="form-group" style="display: none;">
-                                                    <label class="control-label col-md-2" for="AccountIDD">AccountID</label>
+                                                    <label class="control-label col-md-2" for="AccountID">AccountID</label>
                                                     <div class="col-md-10">
                                                         <select class="form-control" id="AccountID " name="AccountID">
                                                             <option value="@User.Identity.GetUserId()">@User.Identity.GetUserName()</option>
@@ -1727,9 +1728,8 @@
                                                 <div class="form-group" style="display: none;">
                                                     <label class="control-label col-md-2" for="TaskID">TaskID</label>
                                                     <div class="col-md-10">
-                                                        <select class="form-control" id="TaskID" name="TaskID">
-                                                            <option value="@data.TaskID">@data.Title</option>
-                                                        </select>
+
+
                                                         <span class="field-validation-valid text-danger" data-valmsg-for="TaskID" data-valmsg-replace="true"></span>
                                                     </div>
                                                 </div>
@@ -1751,7 +1751,7 @@
 
                                                 <div class="form-group" style="float:right">
                                                     <div class="col-md-offset-2 col-md-10">
-                                                        <input type="submit" class="myButton" value="Send" @*onclick="SaveDemo();"*@ />
+                                                        <button type="submit" class="myButton btn-send-cmt">Send</button>
                                                         @*<input type="button" class="myButton" value="Test" onclick="SaveDemo();" />*@
                                                     </div>
                                                 </div>
@@ -2029,6 +2029,91 @@
 <script src="https://code.highcharts.com/modules/data.js"></script>
 
 <script>
+       //loadcomment
+    
+    $(".FormCmt").on('submit',function (e) {
+        //console.log($(this));
+        e.preventDefault(); // avoid to execute the actual submit of the form.
+        var form = $(this);
+        var taskID = $(this).children('input[name=TaskID]').val();
+        console.log(taskID);
+        var url = form.attr('action');
+        var type = form.attr('method');
+        var data = form.serialize();
+        var token = $(this).children('input[name=__RequestVerificationToken]').val();
+        var headers = {};
+        $.ajax({
+            type: type,
+            url: url,
+            cache: false,
+            data: data, // serializes the form's elements.
+            success: function (data) {
+                
+                $.ajax({
+                    type: 'GET',
+                    url: "/Comments/getCommentById/"+taskID,
+                    success: function (data) { 
+                        console.log(data["ID"]);
+                        var button_delete = $('<button class="btn btn-box-tool" type="submit" value="Delete" style="float:right;margin-right:10px;margin-top:10px;"> <i class="fa fa-times"></i></button>');
+                        var comment_area = $('#comments_area_' + taskID);
+                        var form = $('<form></form>');
+                        var chat = $('<div class="box-body chat" id="chat-box"></div>');
+
+                        var div_item = $('<div class="item"></div>');
+                        var p_message = $('<p class="message"></p>')
+                        var span_comment = $('<span class="comment"></span>');
+                        var img = $('<img alt="user image" class="offline">');
+                        var a_name = $('<a href="#" class="name" style="color:#3c8dbc"></a>');
+                        var small_name = $('<small class="text-muted pull-right"></small>');
+
+                        var lastupdate = new Date(parseInt(data["LastUpdate"].substr(6)))
+                        console.log(lastupdate);
+                        var datetime = (lastupdate.getMonth() + 1) + "/"
+                            + lastupdate.getDate() + "/"
+                            + lastupdate.getFullYear() + " "
+                            + lastupdate.getHours() + ":"
+                            + lastupdate.getMinutes() + ":"
+                            + lastupdate.getSeconds();
+                        small_name.append('<i class="fa fa-clock-o"></i>')
+                        small_name.append(datetime);
+                        a_name.append(small_name);
+                        a_name.append('Myname');
+
+                        img.attr('src', 'whereImageIn');
+                        span_comment.text(data["Name"]);
+                        p_message.append(a_name);
+                        p_message.append(span_comment);
+                        div_item.append(img);
+                        div_item.append(p_message);
+
+                        chat.append(div_item);
+                        form.attr('action', '/Comments/Delete/' + data["ID"]);
+                        form.attr('method', 'POST');
+                        form.append('@Html.AntiForgeryToken()');
+                        form.append(button_delete);
+                        console.log(div_item);
+                        console.log(chat);
+                        comment_area.append(form);
+                        comment_area.append(chat);
+                       
+                    }
+                });
+                
+            },
+            error: function (error) {
+                console.log('error');
+
+                console.log(error);
+            },
+            fail: function (fail) {
+                console.log('fail');
+
+                console.log(fail);
+            }
+        });
+
+
+    });
     $(document).ready(function () {
 
         $('.datepicker').datepicker({
