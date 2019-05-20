@@ -42,7 +42,7 @@
     <!-- bootstrap wysihtml5 - text editor -->
     <link rel="stylesheet" href="@Url.Content("~/area/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css")">
     <link href="@Url.Content("~/area/dist/img/logo.png")" rel="shortcut icon" type="image/x-icon" />
-
+    <link rel="stylesheet" href="@Url.Content("~/area/plugins/timepicker/bootstrap-timepicker.min.css")">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -220,6 +220,7 @@
 
 
     </style>
+
 
 </head>
 @*<!DOCTYPE html>
@@ -699,42 +700,54 @@
 
                                                     <div class="col-md-12">
                                                         <div class="form-group">
-
+                                                            <label>Title</label>
                                                             <input type="text" class="form-control" id="Title" name="Title" placeholder="Title">
                                                         </div>
                                                     </div>
+
                                                     <div class="col-md-12">
                                                         <div class="form-group">
+                                                            <label>Date</label>
+                                                            <input class="form-control  datepicker  text-box single-line" data-val="true" data-val-date="The field Startdate must be a date." id="Date" name="Date" type="datetime">
+                                                            <span class="field-validation-valid text-danger" data-valmsg-for="Date" data-valmsg-replace="true"></span>
 
-                                                            <input type="text" class="form-control" id="StartTime" name="StartTime" placeholder="StartTime">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label>Start Time</label>
+                                                            <input class="form-control timepicker text-box single-line" data-val="true" data-val-date="The field Startdate must be a date." id="StartTime" name="StartTime" type="datetime" data-format="hh:mm:ss">
+                                                            <span class="field-validation-valid text-danger" data-valmsg-for="Date" data-valmsg-replace="true"></span>
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label>End Time</label>
+                                                            <input class="form-control timepicker text-box single-line" data-val="true" data-val-date="The field Startdate must be a date." id="Date" name="EndTime" type="EndTime" data-format="hh:mm:ss">
+                                                            <span class="field-validation-valid text-danger" data-valmsg-for="Date" data-valmsg-replace="true"></span>
+
                                                         </div>
                                                     </div>
                                                     <div class="col-md-12">
                                                         <div class="form-group">
+                                                            <label>Owner</label>
+                                                            <select class="form-control StatusID" id="Owner" name="Owner">
+                                                                <option value="@User.Identity.GetUserId()">@User.Identity.GetUserName()</option>
 
-                                                            <input type="text" class="form-control" id="EndTime" name="EndTime" placeholder="EndTime">
+                                                            </select>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-12">
-                                                        <div class="form-group">
 
-                                                            <input type="text" class="form-control" id="Date" name="Date" placeholder="Date">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-12" >
                                                         <div class="form-group">
-                                                            <input type="text" class="form-control" id="Owner" name="Owner" placeholder="Plan Name" value="@User.Identity.GetUserId()">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-12">
-                                                        <div class="form-group">
-
+                                                            <label>Location</label>
                                                             <input type="text" class="form-control" id="Location" name="Location" placeholder="Location">
                                                         </div>
                                                     </div>
                                                     <div class="col-md-12">
                                                         <div class="form-group">
-
+                                                            <label>Description</label>
                                                             <input type="text" class="form-control" id="Description" name="Description" placeholder="Description">
                                                         </div>
                                                     </div>
@@ -778,9 +791,9 @@
                                         <tr>
 
                                             <th>Title</th>
-                                            <th>Date </th>
-                                            <th>Location </th>
-                                            <th>Description </th>
+                                            @*<th>Date </th>
+                                                <th>Location </th>
+                                                <th>Description </th>*@
                                             <th>Option</th>
                                         </tr>
                                     </thead>
@@ -790,19 +803,174 @@
                                         {
 
 
-                                        <tr>
+                                            <tr>
 
-                                            <td><a href=" @Url.Action("Management", "Buckets", new { id = mem.Title }) " style="color:black">@mem.Title</a></td>
-                                            <td><a href=" @Url.Action("Management", "Buckets", new { id = @mem.Title }) " style="color:black">@mem.Date.Date.ToString("dd MMM yyyy") Start:@mem.StartTime.ToString("hh"):@mem.StartTime.ToString("mm") </a></td>
-                                            <td><a href=" @Url.Action("Management", "Buckets", new { id = mem.Title }) " style="color:black">@mem.Location</a></td>
-                                            <td><a href=" @Url.Action("Management", "Buckets", new { id = mem.Title }) " style="color:black">@mem.Description</a></td>
-                                            <td>
-                                                @using (Html.BeginForm("Delete", "Plans", new { id = @mem.Title }, FormMethod.Post))
-                                                {
+                                                <td>
+                                                    <a href="#" data-toggle="modal" data-target="@("#myModal" + mem.ID)" style="color:black"> @mem.Title</a>
 
-                                                }
-                                            </td>
-                                        </tr>
+
+                                                    <div class="modal fade" id=@("myModal" +  mem.ID) role="dialog" aria-labelledby="myModalLabel">
+                                                        <div class="modal-dialog" role="document">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+
+                                                                    @*@{Html.RenderAction("Edit", "Meetings", new { id = mem.ID });}*@
+                                                                    @using (Html.BeginForm("Edit", "Meetings", new { id = @mem.ID, enctype = "multipart/form-data" }, FormMethod.Post))
+                                                                    {
+                                                                        @Html.AntiForgeryToken()
+
+                                                                        <div class="row">
+
+                                                                            <!-- left column -->
+                                                                            <!-- general form elements -->
+
+                                                                            <div class="box box-primary">
+
+
+
+                                                                                <div class="box-header with-border">
+
+
+                                                                                    <div class="col-md-12">
+                                                                                        <div class="form-group">
+                                                                                            <label>Owner</label>
+                                                                                            <select class="form-control StatusID" id="Owner" name="Owner">
+                                                                                                @foreach (var aa in ViewBag.Assignee)
+                                                                                                {
+                                                                                                    if (mem.Owner == aa.Id)
+                                                                                                    {
+                                                                                                        <option value="@aa.Id">@aa.Email</option>
+                                                                                                    }
+                                                                                                }
+                                                                                            </select>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="col-md-12">
+
+
+                                                                                        <label>Title</label>
+                                                                                        <input style="width: 100%" type="text" class="form-control" id="Title" name="Title" value="@mem.Title">
+                                                                                        <span class="field-validation-valid text-danger" data-valmsg-for="Title" data-valmsg-replace="true"></span>
+
+
+                                                                                    </div>
+
+
+                                                                                    <div class="col-md-6">
+
+                                                                                        <label>Date</label>
+                                                                                        <br />
+                                                                                        <input class="form-control datepicker  text-box single-line" data-val="true" data-val-date="The field Duedate must be a date." id="Date" name="Date" type="datetime" value="@mem.Date.ToString("dd MM yyyy")">
+                                                                                        <span class="field-validation-valid text-danger" data-valmsg-for="Date" data-valmsg-replace="true"></span>
+
+                                                                                    </div>
+                                                                                    <div class="col-md-3">
+
+                                                                                        <label>Start Time</label>
+                                                                                        <input style="width: 80%" class="form-control timepicker  text-box single-line" data-val="true" data-val-date="The field Duedate must be a date." id="StartTime" name="StartTime" type="datetime" value="@mem.StartTime.ToString(@"hh\:mm")">
+                                                                                        <span class="field-validation-valid text-danger" data-valmsg-for="StartTime" data-valmsg-replace="true"></span>
+
+                                                                                    </div>
+                                                                                    <div class="col-md-3">
+
+                                                                                        <label>End Time</label>
+                                                                                        <input style="width: 80%" class="form-control timepicker  text-box single-line" data-val="true" data-val-date="The field Duedate must be a date." id="EndTime" name="EndTime" type="datetime" value="@mem.EndTime.ToString(@"hh\:mm")">
+                                                                                        <span class="field-validation-valid text-danger" data-valmsg-for="EndTime" data-valmsg-replace="true"></span>
+                                                                                    </div>
+
+                                                                                    <div class="col-md-12">
+
+                                                                                        <label>Location</label>
+                                                                                        <br />
+                                                                                        <input style="width: 100%" type="text" class="form-control" id="Location" name="Location" value="@mem.Location">
+
+                                                                                    </div>
+
+                                                                                    <div class="col-md-12">
+                                                                                        <label>Content</label>
+                                                                                        <textarea id="Description" name="Description" style="width: 100%; max-width: 100%;border: 1px solid #dddddd;">@mem.Description</textarea>
+                                                                                        <span class="field-validation-valid text-danger" data-valmsg-for="Description" data-valmsg-replace="true"></span>
+
+                                                                                    </div>
+
+
+                                                                                    <div class="form-group" style="float:right">
+                                                                                        <div class="col-md-offset-2 col-md-10">
+                                                                                            <input type="submit" value="Save" class="btn btn-info myButton" />
+
+                                                                                        </div>
+                                                                                    </div>
+
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+
+                                                                    }
+                                                                    <div class="col-md-12">
+                                                                        <div class="box box-default collapsed-box">
+                                                                            <div class="box-header with-border">
+                                                                                <h3 class="box-title">Invite Guest</h3>
+
+                                                                                <div class="box-tools pull-right">
+                                                                                    <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                                                                                        <i class="fa fa-plus"></i>
+                                                                                    </button>
+                                                                                </div>
+                                                                                <!-- /.box-tools -->
+                                                                            </div>
+                                                                            <!-- /.box-header -->
+                                                                            <div class="box-body" style="display: none;">
+
+                                                                                <div class="col-md-12">
+                                                                                    <div class="form-group">
+                                                                                        <label>Guest</label>
+                                                                                        <select class="form-control Guest" id="Guest" name="Guest" onChange="myNewFunction(this);">
+                                                                                            @foreach (var aa in ViewBag.Assignee)
+                                                                                            {
+                                                                                                <option value="@aa.Id">@aa.Email</option>
+                                                                                            }
+                                                                                        </select>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="col-md-12">
+                                                                                    <div class="form-group">
+                                                                                        <label>Guest</label>
+                                                                                        <select class="form-control StatusID" id="Guest" name="Guest">
+
+                                                                                            <option value="@mem.ID">@mem.ID</option>
+
+                                                                                        </select>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <p id="demo"></p>
+                                                                                <button onclick="myFunction()">Click me</button>
+
+                                                                            </div>
+                                                                            <!-- /.box-body -->
+                                                                        </div>
+                                                                        <!-- /.box -->
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </td>
+                                                @*<td><a href=" @Url.Action("Management", "Meetings", new { id = mem.ID }) " style="color:black">@mem.Date.Date.ToString("dd MMM yyyy") Start:@mem.StartTime.ToString("hh"):@mem.StartTime.ToString("mm") </a></td>
+                                                    <td><a href=" @Url.Action("Management", "Meetings", new { id = mem.ID }) " style="color:black">@mem.Location</a></td>
+                                                    <td><a href=" @Url.Action("Management", "Meetings", new { id = mem.ID }) " style="color:black">@mem.Description</a></td>*@
+                                                <td>
+                                                    @using (Html.BeginForm("Delete", "Meetings", new { id = @mem.ID }, FormMethod.Post))
+                                                    {
+
+                                                    }
+                                                </td>
+
+
+
+
+                                            </tr>
 
 
 
@@ -1072,6 +1240,7 @@
     <!-- FastClick -->
     <script src="@Url.Content("~/area/bower_components/fastclick/lib/fastclick.js")"></script>
     <!-- AdminLTE App -->
+    <script src="@Url.Content("~/area/plugins/timepicker/bootstrap-timepicker.min.js")"></script>
     <script src="@Url.Content("~/area/dist/js/adminlte.min.js")"></script>
     <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
     <script src="@Url.Content("~/area/dist/js/pages/dashboard.js")"></script>
@@ -1082,8 +1251,8 @@
         crossorigin="anonymous"></script>*@
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link rel="stylesheet" href="/resources/demos/style.css">
-    @*<script src="https://code.jquery.com/jquery-1.12.4.js"></script>*@
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    @*<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>*@
     <!--Data table-->
     @*<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" />
         <script src="~/area/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>*@
@@ -1094,9 +1263,35 @@
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css" />
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.5.6/css/buttons.bootstrap.min.css" />
+    <link href="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/css/select2.min.css" rel="stylesheet" />
+    <script src="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/js/select2.min.js"></script>
+
     <script>
+   
+      
+        function myFunction() {
+            $("#demo").val(""); 
+            var sel = document.getElementById("Guest");
+            var text = sel.options[sel.selectedIndex].text;
+            document.getElementById("demo").innerHTML = "You selected: " + text;
+        
+            
+        }
+        function myNewFunction(sel) {
+            //alert(sel.options[sel.selectedIndex].text);
+        }
+        $(document).ready(function () {
+
+            //$(".Guest").select2({ width: '100%', maximumSelectionSize: 1, placeholder: "Start typing" });
+            $(".Guest").select2();
+
+        });
         $('.datepicker').datepicker({
 
+        });
+
+        $('.timepicker').timepicker({
+            showInputs: false
         });
         function openCity(evt, cityName) {
             var i, tabcontent, tablinks;

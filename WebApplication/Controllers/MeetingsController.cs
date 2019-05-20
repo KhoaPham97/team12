@@ -20,7 +20,15 @@ namespace WebApplication.Controllers
             var meetings = db.Meetings.Include(m => m.AspNetUser);
             return View(meetings.ToList());
         }
+        public ActionResult Management(int? id)
+        {
+            ViewBag.Profile = db.Profiles;
+            ViewBag.Meetings = db.Meetings.Where(x => x.ID == id); ;
+            ViewBag.People = db.People.Where(x => x.IDMeeting == id); ;
+            ViewBag.Assignee = db.AspNetUsers;
+            return View();
 
+        }
         // GET: Meetings/Details/5
         public ActionResult Details(int? id)
         {
@@ -54,7 +62,7 @@ namespace WebApplication.Controllers
             {
                 db.Meetings.Add(meeting);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Calendar","Home");
             }
 
             ViewBag.Owner = new SelectList(db.AspNetUsers, "Id", "Email", meeting.Owner);
@@ -88,7 +96,7 @@ namespace WebApplication.Controllers
             {
                 db.Entry(meeting).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Calendar", "Home");
             }
             ViewBag.Owner = new SelectList(db.AspNetUsers, "Id", "Email", meeting.Owner);
             return View(meeting);
@@ -117,7 +125,7 @@ namespace WebApplication.Controllers
             Meeting meeting = db.Meetings.Find(id);
             db.Meetings.Remove(meeting);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Calendar", "Home");
         }
 
         protected override void Dispose(bool disposing)

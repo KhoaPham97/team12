@@ -31,6 +31,7 @@ namespace WebApplication.Controllers
 
         public ActionResult Calendar()
         {
+            ViewBag.Assignee = db.AspNetUsers;
             ViewBag.Listmembers = db.ListMembers;
             ViewBag.Profile = db.Profiles;
             ViewBag.Meeting = db.Meetings;

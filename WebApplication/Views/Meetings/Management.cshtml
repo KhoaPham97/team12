@@ -1,0 +1,1437 @@
+﻿@using Microsoft.AspNet.Identity;
+@model IEnumerable<WebApplication.Models.Meeting>
+
+@{
+    /**/
+
+    /**/
+
+    ViewBag.Title = "Index";
+    Layout = null;
+}
+
+<html>
+<head>
+
+
+    <title>VLU</title>
+    <meta charset="UTF-8">
+    <title>Trello Board Layout with CSS Grid & Flexbox</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css" rel="stylesheet" />
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+
+    <link rel="stylesheet" href="@Url.Content("~/area/css/style.css")">
+
+    <link rel="stylesheet" href="@Url.Content("~/area/dist/css/skins/_all-skins.min.css")">
+    <!-- Morris chart -->
+    <link rel="stylesheet" href="@Url.Content("~/area/bower_components/morris.js/morris.css")">
+    <!-- jvectormap -->
+    <link rel="stylesheet" href="@Url.Content("~/area/bower_components/jvectormap/jquery-jvectormap.css")">
+    <!-- Date Picker -->
+    <link rel="stylesheet" href="@Url.Content("~/area/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css")">
+    <!-- Daterange picker -->
+    <link rel="stylesheet" href="@Url.Content("~/area/bower_components/bootstrap-daterangepicker/daterangepicker.css")">
+    <!-- bootstrap wysihtml5 - text editor -->
+    <link rel="stylesheet" href="@Url.Content("~/area/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css")">
+    <link href="@Url.Content("~/area/dist/img/logo.png")" rel="shortcut icon" type="image/x-icon" />
+
+    <style>
+        #container {
+            height: 300px;
+            min-width: 310px;
+            max-width: 800px;
+        }
+
+        .tab {
+            overflow: hidden;
+            border: 1px solid #ccc;
+            background-color: #f1f1f1;
+        }
+
+            /* Style the buttons inside the tab */
+            .tab button {
+                background-color: inherit;
+                float: left;
+                border: none;
+                outline: none;
+                cursor: pointer;
+                padding: 14px 16px;
+                transition: 0.3s;
+                font-size: 17px;
+            }
+
+                /* Change background color of buttons on hover */
+                .tab button:hover {
+                    background-color: #ddd;
+                }
+
+                /* Create an active/current tablink class */
+                .tab button.active {
+                    background-color: #ccc;
+                }
+
+        /* Style the tab content */
+        .tabcontent {
+            display: none;
+            padding: 6px 12px;
+            border: 1px solid #ccc;
+            border-top: none;
+        }
+
+        .customers {
+            font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+            .customers td, .customers th {
+                border: 1px solid #ddd;
+                padding: 8px;
+            }
+
+            .customers tr:nth-child(even) {
+                background-color: #f2f2f2;
+            }
+
+            .customers tr:hover {
+                background-color: #ddd;
+            }
+
+            .customers th {
+                padding-top: 12px;
+                padding-bottom: 12px;
+                text-align: left;
+                background-color: #4CAF50;
+                color: white;
+            }
+
+        .customerss {
+            font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+            .customerss td, .customerss th {
+                border: 1px solid #ddd;
+                padding: 8px;
+            }
+
+            .customerss tr:nth-child(even) {
+                background-color: #f2f2f2;
+            }
+
+            .customerss tr:hover {
+                background-color: #ddd;
+            }
+
+            .customerss th {
+                padding-top: 12px;
+                padding-bottom: 12px;
+                text-align: left;
+                background-color: #4CAF50;
+                color: white;
+            }
+
+        .Download {
+            background-color: DodgerBlue;
+            border: none;
+            color: white;
+            padding: 4px 20px;
+            cursor: pointer;
+            font-size: 15px;
+        }
+
+            /* Darker background on mouse-over */
+            .Download:hover {
+                background-color: RoyalBlue;
+            }
+
+        .Button1 {
+            -moz-box-shadow: inset 0px 1px 0px 0px #ffffff;
+            -webkit-box-shadow: inset 0px 1px 0px 0px #ffffff;
+            box-shadow: inset 0px 1px 0px 0px #ffffff;
+            background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #ededed), color-stop(1, #dfdfdf));
+            background: -moz-linear-gradient(top, #ededed 5%, #dfdfdf 100%);
+            background: -webkit-linear-gradient(top, #ededed 5%, #dfdfdf 100%);
+            background: -o-linear-gradient(top, #ededed 5%, #dfdfdf 100%);
+            background: -ms-linear-gradient(top, #ededed 5%, #dfdfdf 100%);
+            background: linear-gradient(to bottom, #ededed 5%, #dfdfdf 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ededed', endColorstr='#dfdfdf',GradientType=0);
+            background-color: #ededed;
+            -moz-border-radius: 6px;
+            -webkit-border-radius: 6px;
+            border-radius: 6px;
+            border: 1px solid #dcdcdc;
+            display: inline-block;
+            cursor: pointer;
+            color: #777777;
+            font-family: Arial;
+            font-size: 15px;
+            font-weight: bold;
+            padding: 6px 24px;
+            text-decoration: none;
+            text-shadow: 0px 1px 0px #ffffff;
+        }
+
+            .Button1:hover {
+                background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #dfdfdf), color-stop(1, #ededed));
+                background: -moz-linear-gradient(top, #dfdfdf 5%, #ededed 100%);
+                background: -webkit-linear-gradient(top, #dfdfdf 5%, #ededed 100%);
+                background: -o-linear-gradient(top, #dfdfdf 5%, #ededed 100%);
+                background: -ms-linear-gradient(top, #dfdfdf 5%, #ededed 100%);
+                background: linear-gradient(to bottom, #dfdfdf 5%, #ededed 100%);
+                filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#dfdfdf', endColorstr='#ededed',GradientType=0);
+                background-color: #dfdfdf;
+            }
+
+            .Button1:active {
+                position: relative;
+                top: 1px;
+            }
+
+        .Button2 {
+            -moz-box-shadow: inset 0px 1px 0px 0px #fce2c1;
+            -webkit-box-shadow: inset 0px 1px 0px 0px #fce2c1;
+            box-shadow: inset 0px 1px 0px 0px #fce2c1;
+            background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #ffc477), color-stop(1, #fb9e25));
+            background: -moz-linear-gradient(top, #ffc477 5%, #fb9e25 100%);
+            background: -webkit-linear-gradient(top, #ffc477 5%, #fb9e25 100%);
+            background: -o-linear-gradient(top, #ffc477 5%, #fb9e25 100%);
+            background: -ms-linear-gradient(top, #ffc477 5%, #fb9e25 100%);
+            background: linear-gradient(to bottom, #ffc477 5%, #fb9e25 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffc477', endColorstr='#fb9e25',GradientType=0);
+            background-color: #ffc477;
+            -moz-border-radius: 6px;
+            -webkit-border-radius: 6px;
+            border-radius: 6px;
+            border: 1px solid #eeb44f;
+            display: inline-block;
+            cursor: pointer;
+            color: #ffffff;
+            font-family: Arial;
+            font-size: 15px;
+            font-weight: bold;
+            padding: 6px 24px;
+            text-decoration: none;
+            text-shadow: 0px 1px 0px #cc9f52;
+        }
+
+            .Button2:hover {
+                background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #fb9e25), color-stop(1, #ffc477));
+                background: -moz-linear-gradient(top, #fb9e25 5%, #ffc477 100%);
+                background: -webkit-linear-gradient(top, #fb9e25 5%, #ffc477 100%);
+                background: -o-linear-gradient(top, #fb9e25 5%, #ffc477 100%);
+                background: -ms-linear-gradient(top, #fb9e25 5%, #ffc477 100%);
+                background: linear-gradient(to bottom, #fb9e25 5%, #ffc477 100%);
+                filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fb9e25', endColorstr='#ffc477',GradientType=0);
+                background-color: #fb9e25;
+            }
+
+            .Button2:active {
+                position: relative;
+                top: 1px;
+            }
+
+
+        .Button3 {
+            -moz-box-shadow: inset 0px 1px 0px 0px #f5978e;
+            -webkit-box-shadow: inset 0px 1px 0px 0px #f5978e;
+            box-shadow: inset 0px 1px 0px 0px #f5978e;
+            background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #f24537), color-stop(1, #c62d1f));
+            background: -moz-linear-gradient(top, #f24537 5%, #c62d1f 100%);
+            background: -webkit-linear-gradient(top, #f24537 5%, #c62d1f 100%);
+            background: -o-linear-gradient(top, #f24537 5%, #c62d1f 100%);
+            background: -ms-linear-gradient(top, #f24537 5%, #c62d1f 100%);
+            background: linear-gradient(to bottom, #f24537 5%, #c62d1f 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f24537', endColorstr='#c62d1f',GradientType=0);
+            background-color: #f24537;
+            -moz-border-radius: 6px;
+            -webkit-border-radius: 6px;
+            border-radius: 6px;
+            border: 1px solid #d02718;
+            display: inline-block;
+            cursor: pointer;
+            color: #ffffff;
+            font-family: Arial;
+            font-size: 15px;
+            font-weight: bold;
+            padding: 6px 24px;
+            text-decoration: none;
+            text-shadow: 0px 1px 0px #810e05;
+        }
+
+            .Button3:hover {
+                background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #c62d1f), color-stop(1, #f24537));
+                background: -moz-linear-gradient(top, #c62d1f 5%, #f24537 100%);
+                background: -webkit-linear-gradient(top, #c62d1f 5%, #f24537 100%);
+                background: -o-linear-gradient(top, #c62d1f 5%, #f24537 100%);
+                background: -ms-linear-gradient(top, #c62d1f 5%, #f24537 100%);
+                background: linear-gradient(to bottom, #c62d1f 5%, #f24537 100%);
+                filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#c62d1f', endColorstr='#f24537',GradientType=0);
+                background-color: #c62d1f;
+            }
+
+            .Button3:active {
+                position: relative;
+                top: 1px;
+            }
+
+
+        select {
+            font-family: 'FontAwesome', 'Second Font name'
+        }
+
+
+        .box {
+            position: relative;
+            border-radius: 3px;
+            background: #ffffff;
+            border-top: 3px solid #d2d6de;
+            margin-bottom: 20px;
+            width: 100%;
+            box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+        }
+
+            .box.box-primary {
+                border-top-color: #3c8dbc;
+            }
+
+            .box.box-info {
+                border-top-color: #00c0ef;
+            }
+
+            .box.box-danger {
+                border-top-color: #dd4b39;
+            }
+
+            .box.box-warning {
+                border-top-color: #f39c12;
+            }
+
+            .box.box-success {
+                border-top-color: #00a65a;
+            }
+
+            .box.box-default {
+                border-top-color: #d2d6de;
+            }
+
+            .box.collapsed-box .box-body,
+            .box.collapsed-box .box-footer {
+                display: none;
+            }
+
+            .box .nav-stacked > li {
+                border-bottom: 1px solid #f4f4f4;
+                margin: 0;
+            }
+
+                .box .nav-stacked > li:last-of-type {
+                    border-bottom: none;
+                }
+
+            .box.height-control .box-body {
+                max-height: 300px;
+                overflow: auto;
+            }
+
+            .box .border-right {
+                border-right: 1px solid #f4f4f4;
+            }
+
+            .box .border-left {
+                border-left: 1px solid #f4f4f4;
+            }
+
+            .box.box-solid {
+                border-top: 0;
+            }
+
+                .box.box-solid > .box-header .btn.btn-default {
+                    background: transparent;
+                }
+
+                .box.box-solid > .box-header .btn:hover,
+                .box.box-solid > .box-header a:hover {
+                    background: rgba(0, 0, 0, 0.1);
+                }
+
+                .box.box-solid.box-default {
+                    border: 1px solid #d2d6de;
+                }
+
+                    .box.box-solid.box-default > .box-header {
+                        color: #444444;
+                        background: #d2d6de;
+                        background-color: #d2d6de;
+                    }
+
+                        .box.box-solid.box-default > .box-header a,
+                        .box.box-solid.box-default > .box-header .btn {
+                            color: #444444;
+                        }
+
+                .box.box-solid.box-primary {
+                    border: 1px solid #3c8dbc;
+                }
+
+                    .box.box-solid.box-primary > .box-header {
+                        color: #ffffff;
+                        background: #3c8dbc;
+                        background-color: #3c8dbc;
+                    }
+
+                        .box.box-solid.box-primary > .box-header a,
+                        .box.box-solid.box-primary > .box-header .btn {
+                            color: #ffffff;
+                        }
+
+                .box.box-solid.box-info {
+                    border: 1px solid #00c0ef;
+                }
+
+                    .box.box-solid.box-info > .box-header {
+                        color: #ffffff;
+                        background: #00c0ef;
+                        background-color: #00c0ef;
+                    }
+
+                        .box.box-solid.box-info > .box-header a,
+                        .box.box-solid.box-info > .box-header .btn {
+                            color: #ffffff;
+                        }
+
+                .box.box-solid.box-danger {
+                    border: 1px solid #dd4b39;
+                }
+
+                    .box.box-solid.box-danger > .box-header {
+                        color: #ffffff;
+                        background: #dd4b39;
+                        background-color: #dd4b39;
+                    }
+
+                        .box.box-solid.box-danger > .box-header a,
+                        .box.box-solid.box-danger > .box-header .btn {
+                            color: #ffffff;
+                        }
+
+                .box.box-solid.box-warning {
+                    border: 1px solid #f39c12;
+                }
+
+                    .box.box-solid.box-warning > .box-header {
+                        color: #ffffff;
+                        background: #f39c12;
+                        background-color: #f39c12;
+                    }
+
+                        .box.box-solid.box-warning > .box-header a,
+                        .box.box-solid.box-warning > .box-header .btn {
+                            color: #ffffff;
+                        }
+
+                .box.box-solid.box-success {
+                    border: 1px solid #00a65a;
+                }
+
+                    .box.box-solid.box-success > .box-header {
+                        color: #ffffff;
+                        background: #00a65a;
+                        background-color: #00a65a;
+                    }
+
+                        .box.box-solid.box-success > .box-header a,
+                        .box.box-solid.box-success > .box-header .btn {
+                            color: #ffffff;
+                        }
+
+                .box.box-solid > .box-header > .box-tools .btn {
+                    border: 0;
+                    box-shadow: none;
+                }
+
+                .box.box-solid[class*='bg'] > .box-header {
+                    color: #fff;
+                }
+
+            .box .box-group > .box {
+                margin-bottom: 5px;
+            }
+
+            .box .knob-label {
+                text-align: center;
+                color: #333;
+                font-weight: 100;
+                font-size: 12px;
+                margin-bottom: 0.3em;
+            }
+
+            .box > .overlay,
+            .overlay-wrapper > .overlay,
+            .box > .loading-img,
+            .overlay-wrapper > .loading-img {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+            }
+
+            .box .overlay,
+            .overlay-wrapper .overlay {
+                z-index: 50;
+                background: rgba(255, 255, 255, 0.7);
+                border-radius: 3px;
+            }
+
+                .box .overlay > .fa,
+                .overlay-wrapper .overlay > .fa {
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    margin-left: -15px;
+                    margin-top: -15px;
+                    color: #000;
+                    font-size: 30px;
+                }
+
+                .box .overlay.dark,
+                .overlay-wrapper .overlay.dark {
+                    background: rgba(0, 0, 0, 0.5);
+                }
+
+        .box-header:before,
+        .box-body:before,
+        .box-footer:before,
+        .box-header:after,
+        .box-body:after,
+        .box-footer:after {
+            content: " ";
+            display: table;
+        }
+
+        .box-header:after,
+        .box-body:after,
+        .box-footer:after {
+            clear: both;
+        }
+
+        .box-header {
+            color: #444;
+            display: block;
+            padding: 10px;
+            position: relative;
+        }
+
+            .box-header.with-border {
+                border-bottom: 1px solid #f4f4f4;
+            }
+
+        .collapsed-box .box-header.with-border {
+            border-bottom: none;
+        }
+
+        .box-header > .fa,
+        .box-header > .glyphicon,
+        .box-header > .ion,
+        .box-header .box-title {
+            display: inline-block;
+            font-size: 18px;
+            margin: 0;
+            line-height: 1;
+        }
+
+        .box-header > .fa,
+        .box-header > .glyphicon,
+        .box-header > .ion {
+            margin-right: 5px;
+        }
+
+        .box-header > .box-tools {
+            position: absolute;
+            right: 10px;
+            top: 5px;
+        }
+
+            .box-header > .box-tools [data-toggle="tooltip"] {
+                position: relative;
+            }
+
+            .box-header > .box-tools.pull-right .dropdown-menu {
+                right: 0;
+                left: auto;
+            }
+
+            .box-header > .box-tools .dropdown-menu > li > a {
+                color: #444 !important;
+            }
+
+        .btn-box-tool {
+            padding: 5px;
+            font-size: 12px;
+            background: transparent;
+            color: #97a0b3;
+        }
+
+            .open .btn-box-tool,
+            .btn-box-tool:hover {
+                color: #606c84;
+            }
+
+            .btn-box-tool.btn:active {
+                box-shadow: none;
+            }
+
+        .box-body {
+            border-top-left-radius: 0;
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 3px;
+            border-bottom-left-radius: 3px;
+            padding: 10px;
+        }
+
+        .no-header .box-body {
+            border-top-right-radius: 3px;
+            border-top-left-radius: 3px;
+        }
+
+        .box-body > .table {
+            margin-bottom: 0;
+        }
+
+        .box-body .fc {
+            margin-top: 5px;
+        }
+
+        .box-body .full-width-chart {
+            margin: -19px;
+        }
+
+        .box-body.no-padding .full-width-chart {
+            margin: -9px;
+        }
+
+        .box-body .box-pane {
+            border-top-left-radius: 0;
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+            border-bottom-left-radius: 3px;
+        }
+
+        .box-body .box-pane-right {
+            border-top-left-radius: 0;
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 3px;
+            border-bottom-left-radius: 0;
+        }
+
+        .box-footer {
+            border-top-left-radius: 0;
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 3px;
+            border-bottom-left-radius: 3px;
+            border-top: 1px solid #f4f4f4;
+            padding: 10px;
+            background-color: #ffffff;
+        }
+
+        .chart-legend {
+            margin: 10px 0;
+        }
+
+        .chat {
+            padding: 5px 20px 5px 10px;
+        }
+
+            .chat .item {
+                margin-bottom: 10px;
+            }
+
+                .chat .item:before,
+                .chat .item:after {
+                    content: " ";
+                    display: table;
+                }
+
+                .chat .item:after {
+                    clear: both;
+                }
+
+                .chat .item > img {
+                    width: 40px;
+                    height: 40px;
+                    border: 2px solid transparent;
+                    border-radius: 50%;
+                }
+
+                .chat .item > .online {
+                    border: 2px solid #00a65a;
+                }
+
+                .chat .item > .offline {
+                    border: 2px solid #dd4b39;
+                }
+
+                .chat .item > .message {
+                    margin-left: 55px;
+                    margin-top: -40px;
+                }
+
+                    .chat .item > .message > .name {
+                        display: block;
+                        font-weight: 600;
+                    }
+
+                .chat .item > .attachment {
+                    border-radius: 3px;
+                    background: #f4f4f4;
+                    margin-left: 65px;
+                    margin-right: 15px;
+                    padding: 10px;
+                }
+
+                    .chat .item > .attachment > h4 {
+                        margin: 0 0 5px 0;
+                        font-weight: 600;
+                        font-size: 14px;
+                    }
+
+                    .chat .item > .attachment > p,
+                    .chat .item > .attachment > .filename {
+                        font-weight: 600;
+                        font-size: 13px;
+                        font-style: italic;
+                        margin: 0;
+                    }
+
+                    .chat .item > .attachment:before,
+                    .chat .item > .attachment:after {
+                        content: " ";
+                        display: table;
+                    }
+
+                    .chat .item > .attachment:after {
+                        clear: both;
+                    }
+
+
+
+
+        .select2-results__option {
+            font-size: 15px;
+        }
+
+        .select2 {
+            font-size: 15px;
+        }
+
+        .myButton {
+            -moz-box-shadow: inset 0px 1px 0px 0px #ffffff;
+            -webkit-box-shadow: inset 0px 1px 0px 0px #ffffff;
+            box-shadow: inset 0px 1px 0px 0px #ffffff;
+            background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #ffffff), color-stop(1, #f6f6f6));
+            background: -moz-linear-gradient(top, #ffffff 5%, #f6f6f6 100%);
+            background: -webkit-linear-gradient(top, #ffffff 5%, #f6f6f6 100%);
+            background: -o-linear-gradient(top, #ffffff 5%, #f6f6f6 100%);
+            background: -ms-linear-gradient(top, #ffffff 5%, #f6f6f6 100%);
+            background: linear-gradient(to bottom, #ffffff 5%, #f6f6f6 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#f6f6f6',GradientType=0);
+            background-color: #ffffff;
+            -moz-border-radius: 6px;
+            -webkit-border-radius: 6px;
+            border-radius: 6px;
+            border: 1px solid #dcdcdc;
+            display: inline-block;
+            cursor: pointer;
+            color: #666666;
+            font-family: Arial;
+            font-size: 15px;
+            font-weight: bold;
+            padding: 6px 24px;
+            text-decoration: none;
+            text-shadow: 0px 1px 0px #ffffff;
+        }
+
+            .myButton:hover {
+                background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #f6f6f6), color-stop(1, #ffffff));
+                background: -moz-linear-gradient(top, #f6f6f6 5%, #ffffff 100%);
+                background: -webkit-linear-gradient(top, #f6f6f6 5%, #ffffff 100%);
+                background: -o-linear-gradient(top, #f6f6f6 5%, #ffffff 100%);
+                background: -ms-linear-gradient(top, #f6f6f6 5%, #ffffff 100%);
+                background: linear-gradient(to bottom, #f6f6f6 5%, #ffffff 100%);
+                filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f6f6f6', endColorstr='#ffffff',GradientType=0);
+                background-color: #f6f6f6;
+            }
+
+            .myButton:active {
+                position: relative;
+                top: 1px;
+            }
+    </style>
+</head>
+<body>
+
+    <!-- Masthead -->
+    <header class="masthead">
+
+        <div class="boards-menu">
+            <form action="@Url.Action("Calendar", "Home")">
+                <button class="boards-btn btn"><i class="fab fa-trello boards-btn-icon"></i>Boards</button>
+            </form>
+            <div class="board-search">
+                <input type="search" class="board-search-input" aria-label="Board Search">
+                <i class="fas fa-search search-icon" aria-hidden="true"></i>
+            </div>
+
+        </div>
+
+        <div class="logo">
+
+            <h1><img src="@Url.Content("~/area/login/images/vlu.png")" width="30" height="30" /> VLU</h1>
+
+        </div>
+
+        <div class="user-settings">
+
+            <button class="user-settings-btn btn" aria-label="Create">
+                <i class="fas fa-plus" aria-hidden="true"></i>
+            </button>
+
+            <button class="user-settings-btn btn" aria-label="Information">
+                <i class="fas fa-info-circle" aria-hidden="true"></i>
+            </button>
+
+            <button class="user-settings-btn btn" aria-label="Notifications">
+                <i class="fas fa-bell" aria-hidden="true"></i>
+            </button>
+
+            @*<button class="user-settings-btn btn" aria-label="User Settings">
+                    <i class="fas fa-user-circle" aria-hidden="true"></i>
+                </button>*@
+            <button class="user-settings-btn btn" data-toggle="modal" data-target="#profile">  <i class="fas fa-user-circle" aria-hidden="true"></i></button>
+            <div class="modal fade" id="profile" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            @using (Html.BeginForm("Create", "Profiles", FormMethod.Post, new { id = "Add", enctype = "multipart/form-data" }))
+                            {
+
+                                @Html.AntiForgeryToken()
+
+                                <select class="form-control " id="AccountID" name="AccountID" style="font-size:18px;display:none">
+                                    <option value="@User.Identity.GetUserId()">@User.Identity.GetUserName()</option>
+                                </select>
+
+
+                            }
+
+                            @foreach (var ab in ViewBag.Profile)
+                            {
+                                if (ab.AccountID == User.Identity.GetUserId())
+                                {
+                                    <img src="@Url.Content("~/area/login/images/vlu.png")" style="height:50px;width:50px; display: block;  margin-left: auto;  margin-right: auto;" alt="user image" class="offline">
+
+                                    <img src="@Url.Content("~/Content/"+@ab.Avatar)" style="height:160px;width:160px; display: block;  margin-left: auto;  margin-right: auto;" alt="user image" class="offline">
+                                    <hr />
+                                    <h1 style="font-size:25px; color:black;text-align:center"><b>@ab.Full_Name</b></h1>
+                                    <a href="javascript:document.getElementById('logoutForm').submit()" style="font-size:15px;align-content:center">Log Off</a>
+                                    <br />
+
+
+
+                                    <div class="tab">
+                                        <button class="tablinks" style="color:black" onclick="openCity(event, 'London')">Information</button>
+                                        <button class="tablinks" style="color:black" onclick="openCity(event, 'Paris')">Edit Informations</button>
+
+                                        @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+                                        {
+                                            @Html.AntiForgeryToken()
+
+
+
+                                        }
+
+                                    </div>
+
+                                    <div id="London" class="tabcontent">
+                                        <table id="customerss" class="customer">
+
+                                            <tr>
+                                                <td> <h1 style="font-size:18px; color:black;text-align:left"><i class="fa fa-user" aria-hidden="true"></i> Email</h1></td>
+                                                <td> <h1 style="font-size:18px; color:black;text-align:left"> @User.Identity.GetUserName()</h1></td>
+
+                                            </tr>
+                                            <tr>
+                                                <td>                                         <h1 style="font-size:18px; color:black;text-align:left"><i class="fa fa-birthday-cake" aria-hidden="true"></i> Birthday</h1></td>
+                                                <td>                                         <h1 style="font-size:18px; color:black;text-align:left">@ab.Birthday</h1></td>
+
+                                            </tr>
+                                            <tr>
+                                                <td>                                 <h1 style="font-size:18px; color:black;text-align:left"><i class="fa fa-mobile" aria-hidden="true"></i> Phone Number</h1></td>
+                                                <td>                                 <h1 style="font-size:18px; color:black;text-align:left"> @ab.PhoneNumber</h1></td>
+
+                                            </tr>
+                                            <tr>
+                                                <td>       <h1 style="font-size:18px; color:black;text-align:left"><i class="fa fa-map-marker" aria-hidden="true"></i> Address</h1></td>
+                                                <td>       <h1 style="font-size:18px; color:black;text-align:left"> @ab.Address</h1></td>
+
+                                            </tr>
+                                        </table>
+
+
+
+                                    </div>
+
+                                    <div id="Paris" class="tabcontent">
+                                        @using (Html.BeginForm("Edit", "Profiles", FormMethod.Post, new { id = @User.Identity.GetUserId(), enctype = "multipart/form-data" }))
+                                        {
+                                            foreach (var a in ViewBag.Profile)
+                                            {
+                                                if (a.AccountID == User.Identity.GetUserId())
+                                                {
+                                                    @Html.AntiForgeryToken()
+                                                    <label style="font-size:18px; color:black;float:left">Account</label>
+
+                                                    <select class="form-control " id="AccountID" name="AccountID" style="font-size:18px">
+                                                        <option value="@User.Identity.GetUserId()">@User.Identity.GetUserName()</option>
+                                                    </select>
+                                                    <label style="font-size:18px; color:black;float:left">Full Name</label>
+                                                    <input class="form-control text-box single-line" id="Full_Name" name="Full_Name" type="text" value="@a.Full_Name">
+                                                    <label style="font-size:18px; color:black;float:left">Birthday</label>
+                                                    <input class="form-control text-box single-line datepicker" data-val="true" data-val-date="The field Birthday must be a date." id="Birthday" name="Birthday" type="datetime" value="@a.Birthday">
+                                                    <label style="font-size:18px; color:black;float:left">Phone Number</label>
+                                                    <input class="form-control text-box single-line" id="PhoneNumber" name="PhoneNumber" type="text" value="@a.PhoneNumber">
+                                                    <label style="font-size:18px; color:black;float:left">Address</label>
+                                                    <input class="form-control text-box single-line" id="Address" name="Address" type="text" value="@a.Address">
+                                                    <input class="form-control text-box single-line" style="display:none" id="Avatar" name="Avatar" type="text" value="@a.Avatar">
+                                                    <div class="form-group" style="float:right">
+                                                        <div class="col-md-offset-2 col-md-10">
+                                                            <input type="submit" value="Save" class="btn btn-default myButton" />
+
+                                                        </div>
+                                                    </div>
+                                                }
+                                            }
+                                        }
+                                        <br /> <br /><hr>
+                                        @using (Html.BeginForm("Edit", "Profiles", FormMethod.Post, new { id = @User.Identity.GetUserId(), enctype = "multipart/form-data" }))
+                                        {
+                                            foreach (var a in ViewBag.Profile)
+                                            {
+                                                if (a.AccountID == User.Identity.GetUserId())
+                                                {
+                                                    @Html.AntiForgeryToken()
+
+                                                    <select class="form-control " id="AccountID" name="AccountID" style="font-size:18px;display:none">
+                                                        <option value="@User.Identity.GetUserId()">@User.Identity.GetUserName()</option>
+                                                    </select>
+                                                    <div style=" display:none">
+                                                        <label style="font-size:18px; color:black;float:left">Full Name</label>
+                                                        <input class="form-control text-box single-line" id="Full_Name" name="Full_Name" type="text" value="@a.Full_Name">
+                                                        <label style="font-size:18px; color:black;float:left">Birthday</label>
+                                                        <input class="form-control text-box single-line datepicker" data-val="true" data-val-date="The field Birthday must be a date." id="Birthday" name="Birthday" type="datetime" value="@a.Birthday">
+                                                        <label style="font-size:18px; color:black;float:left">Phone Number</label>
+                                                        <input class="form-control text-box single-line" id="PhoneNumber" name="PhoneNumber" type="text" value="@a.PhoneNumber">
+                                                        <label style="font-size:18px; color:black;float:left">Address</label>
+                                                        <input class="form-control text-box single-line" id="Address" name="Address" type="text" value="@a.Address">
+                                                        <input class="form-control text-box single-line" id="Avatar" name="Avatar" type="text" value="@a.Avatar">
+                                                    </div>
+                                                    <label for="file" style="font-size:15px; color:black;float:left"> Upload Avatar:</label>
+                                                    <input type="file" name="file" id="Avatar" style="width: 100%;font-size:20px" />
+
+                                                    <div class="form-group" style="float:right">
+                                                        <div class="col-md-offset-2 col-md-10">
+                                                            <input type="submit" value="Save Avatar" class="btn btn-default myButton" />
+
+                                                        </div>
+                                                    </div>
+                                                }
+                                            }
+                                        }
+                                    </div>
+
+
+
+                                }
+                            }
+
+
+
+
+                            <br />   <br />   <br />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- End of masthead -->
+    <!-- Board info bar -->
+    <section class="board-info-bar">
+        <div class="board-controls">
+
+
+
+            @foreach (var data in ViewBag.Meetings)
+            {
+                <button class="board-title btn">
+
+                    <h2>@data.Title</h2>
+                    <div id="Plan" style="display:none">@data.Title</div>
+
+                    <div id="MyEmail" style="display:none">@User.Identity.GetUserName()</div>
+                </button>
+
+
+                <button class="private-btn btn"><i class="far fa-calendar-alt" aria-hidden="true"></i>&nbsp; @data.Date.ToString("dd MMM yyyy")</button>
+                <button class="private-btn btn"><i class="fas fa-map-marker"></i>&nbsp;@data.Location</button>
+                <button class="private-btn btn"><i class="fas fa-clock"></i>&nbsp;Start - End: @data.StartTime.ToString(@"hh\:mm") - @data.EndTime.ToString(@"hh\:mm")</button>
+
+            }
+        </div>
+    </section>
+
+    <!-- End of board info bar -->
+    <!-- Lists container -->
+    <section class="lists-container">
+
+        <div class="list">
+
+            @foreach (var data in ViewBag.Meetings)
+            {
+              
+                    <h3 class="list-title">@data.Description</h3>
+
+                    <ul class="list-items">
+                        @foreach (var aa in ViewBag.Assignee)
+                        {
+                            if (data.Owner == aa.Id)
+                            {
+                                <li><b>Owner</b>:@aa.Email</li>
+                            }
+                            foreach (var a in ViewBag.People)
+                            {
+                                if (a.Guest == aa.Id)
+                                {
+                                    <li>@aa.Email</li>
+                                }
+                            }
+                        }
+                    </ul>
+               
+            }
+                <button class="add-card-btn btn">Add a card</button>
+
+            </div>
+
+  
+
+    </section>
+    <!-- End of lists container -->
+
+    <script src="@Url.Content("~/area/bower_components/jquery/dist/jquery.min.js")"></script>
+
+    <!-- Bootstrap 3.3.7 -->
+    <script src="@Url.Content("~/area/bower_components/bootstrap/dist/js/bootstrap.min.js")"></script>
+    <!-- Select2 -->
+    <script src="@Url.Content("~/area/bower_components/select2/dist/js/select2.full.min.js")"></script>
+    <!-- InputMask -->
+    <script src="@Url.Content("~/area/plugins/input-mask/jquery.inputmask.js")"></script>
+    <script src="@Url.Content("~/area/plugins/input-mask/jquery.inputmask.date.extensions.js")"></script>
+    <script src="@Url.Content("~/area/plugins/input-mask/jquery.inputmask.extensions.js")"></script>
+    <!-- date-range-picker -->
+    <script src="@Url.Content("~/area/bower_components/moment/min/moment.min.js")"></script>
+    <script src="@Url.Content("~/area/bower_components/bootstrap-daterangepicker/daterangepicker.js")"></script>
+    <!-- bootstrap datepicker -->
+    <script src="@Url.Content("~/area/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js")"></script>
+    <!-- bootstrap color picker -->
+    <script src="@Url.Content("~/area/bower_components/bootstrap-colorpicker/dist/js/bootstrap-colorpicker.min.js")"></script>
+    <!-- bootstrap time picker -->
+    <script src="@Url.Content("~/area/plugins/timepicker/bootstrap-timepicker.min.js")"></script>
+    <!-- SlimScroll -->
+    <script src="@Url.Content("~/area/bower_components/jquery-slimscroll/jquery.slimscroll.min.js")"></script>
+    <!-- iCheck 1.0.1 -->
+    <script src="@Url.Content("~/area/plugins/iCheck/icheck.min.js")"></script>
+    <!-- FastClick -->
+    <script src="@Url.Content("~/area/bower_components/fastclick/lib/fastclick.js")"></script>
+    <!-- AdminLTE App -->
+    <script src="@Url.Content("~/area/dist/js/adminlte.min.js")"></script>
+    <!-- AdminLTE for demo purposes -->
+    <script src="@Url.Content("~/area/dist/js/demo.js")"></script>
+
+
+</body>
+
+</html>
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+
+
+<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/data.js"></script>
+
+<script>
+       //loadcomment
+
+    $(".FormCmt").on('submit',function (e) {
+                        //console.log($(this));
+                        e.preventDefault(); // avoid to execute the actual submit of the form.
+                        var form = $(this);
+                        var taskID = $(this).children('input[name=TaskID]').val();
+                        console.log(taskID);
+                        var url = form.attr('action');
+                        var type = form.attr('method');
+                        var data = form.serialize();
+                        var token = $(this).children('input[name=__RequestVerificationToken]').val();
+                        var headers = {};
+        $.ajax({
+                            type: type,
+            url: url,
+            cache: false,
+            data: data, // serializes the form's elements.
+            success: function (data) {
+
+                $.ajax({
+                                    type: 'GET',
+                    url: "/Comments/getCommentById/"+taskID,
+                    success: function (data) {
+                                        console.log(data["ID"]);
+                                        var button_delete = $('<button class="btn btn-box-tool" type="submit" value="Delete" style="float:right;margin-right:10px;margin-top:10px;"> <i class="fa fa-times"></i></button>');
+                                        var comment_area = $('#comments_area_' + taskID);
+                                        var form = $('<form></form>');
+                                        var chat = $('<div class="box-body chat" id="chat-box"></div>');
+
+                                        var div_item = $('<div class="item"></div>');
+                                        var p_message = $('<p class="message"></p>')
+                        var span_comment = $('<span class="comment"></span>');
+                                        var img = $('<img alt="user image" class="offline">');
+                                        var a_name = $('<a href="#" class="name" style="color:#3c8dbc"></a>');
+                                        var small_name = $('<small class="text-muted pull-right"></small>');
+
+                                        var lastupdate = new Date(parseInt(data["LastUpdate"].substr(6)))
+                        console.log(lastupdate);
+                                        var datetime = (lastupdate.getMonth() + 1) + "/"
+                                            + lastupdate.getDate() + "/"
+                                            + lastupdate.getFullYear() + " "
+                                            + lastupdate.getHours() + ":"
+                                            + lastupdate.getMinutes() + ":"
+                                            + lastupdate.getSeconds();
+                                        small_name.append('<i class="fa fa-clock-o"></i>')
+                        small_name.append(datetime);
+                                        a_name.append(small_name);
+                                        a_name.append('@User.Identity.GetUserName()');
+
+                                        img.attr('src', 'whereImageIn');
+                                        span_comment.text(data["Name"]);
+                                        p_message.append(a_name);
+                                        p_message.append(span_comment);
+                                        div_item.append(img);
+                                        div_item.append(p_message);
+
+                                        chat.append(div_item);
+                                        form.attr('action', '/Comments/Delete/' + data["ID"]);
+                                        form.attr('method', 'POST');
+                                        form.append('@Html.AntiForgeryToken()');
+                                        form.append(button_delete);
+                                        console.log(div_item);
+                                        console.log(chat);
+                                        comment_area.append(form);
+                                        comment_area.append(chat);
+
+                                    }
+                                });
+
+                            },
+            error: function (error) {
+                                console.log('error');
+
+                                console.log(error);
+                            },
+            fail: function (fail) {
+                                console.log('fail');
+
+                                console.log(fail);
+                            }
+                        });
+
+
+                    });
+    $(document).ready(function () {
+
+        $('.datepicker').datepicker({
+
+                        });
+                    });
+
+        //$('.datepicker').datetpicker({
+        //    format: 'dd/mm/yyyy'
+        //});
+
+    function openCity(evt, cityName) {
+                        var i, tabcontent, tablinks;
+                        tabcontent = document.getElementsByClassName("tabcontent");
+                        for (i = 0; i < tabcontent.length; i++) {
+                            tabcontent[i].style.display = "none";
+                        }
+                        tablinks = document.getElementsByClassName("tablinks");
+                        for (i = 0; i < tablinks.length; i++) {
+                            tablinks[i].className = tablinks[i].className.replace(" active", "");
+                        }
+                        document.getElementById(cityName).style.display = "block";
+                        evt.currentTarget.className += " active";
+                    }
+                    document.getElementById("defaultOpen").click();
+                    var cls = document.getElementById("customers1").getElementsByTagName("td");
+                    var sum = 0;
+    for (var i = 0; i < cls.length; i++) {
+        if (cls[i].className == "countable") {
+            sum += isNaN(cls[i].innerHTML) ? 0 : parseInt(cls[i].innerHTML);
+                }
+            }
+    $('#detailInfo').html(sum);
+            var sum = 0;
+    for (var i = 0; i < cls.length; i++) {
+        if (cls[i].className == "countable2") {
+            sum += isNaN(cls[i].innerHTML) ? 0 : parseInt(cls[i].innerHTML);
+        }
+    }
+    $('#detailInfo2').html(sum);
+            var sum = 0;
+    for (var i = 0; i < cls.length; i++) {
+        if (cls[i].className == "countable3") {
+            sum += isNaN(cls[i].innerHTML) ? 0 : parseInt(cls[i].innerHTML);
+        }
+    }
+    $('#detailInfo3').html(sum);
+    //alert('sum is ' + sum);
+    $(document).ready(function () {
+                var r = $("#customers1 #detailInfo").text();
+                var rr = $("#customers1 #detailInfo2").text();
+                var rrr = $("#customers1 #detailInfo3").text();
+                var a = parseInt(r);
+                var aa = parseInt(rr);
+                var aaa = parseInt(rrr);
+                var chart = {
+            plotBackgroundColor: null,
+            plotBorderWidth: null,
+            plotShadow: false
+        };
+            var title = {
+            text: 'All Task In Plan'
+        };
+            var tooltip = {
+
+        };
+            var plotOptions = {
+            pie: {
+                allowPointSelect: true,
+                cursor: 'pointer',
+
+                dataLabels: {
+                    enabled: true,
+
+                    style: {
+                        color: (Highcharts.theme && Highcharts.theme.contrastTextColor) ||
+                            'black'
+                    }
+                }
+            }
+        };
+            var series = [{
+            type: 'pie',
+                name: 'Task',
+                data: [
+    
+                    ['Not Started Task', a],
+    
+                    ['In Progess Task', aa],
+    
+                    ['Completed Task',aaa]
+                ]
+        }];
+        var json = {};
+            json.chart = chart;
+        json.title = title;
+        json.tooltip = tooltip;
+        json.series = series;
+        json.plotOptions = plotOptions;
+        $('#container1').highcharts(json);
+
+
+    });
+    $(document).ready(function () {
+                var data = {
+            table: 'customers2'
+        };
+            var chart = {
+            type: 'column'
+        };
+            var title = {
+            text: 'Tasks In Bucket'
+        };
+            var yAxis = {
+            allowDecimals: false,
+            title: {
+                text: 'Task'
+            }
+        };
+            var tooltip = {
+            formatter: function () {
+                return '<b>' + this.series.name + '</b><br/>' +
+                    this.point.y + ' ' + this.point.name.toLowerCase();
+            }
+        };
+        var credits = {
+            enabled: false
+        };
+            var json = {};
+            json.chart = chart;
+        json.title = title;
+        json.data = data;
+        json.yAxis = yAxis;
+        json.credits = credits;
+        json.tooltip = tooltip;
+        $('#container2').highcharts(json);
+    });
+    $(document).ready(function () {
+                var data = {
+            table: 'customers3'
+        };
+            var chart = {
+            type: 'column'
+        };
+            var title = {
+            text: 'Members In Plan'
+        };
+            var yAxis = {
+            allowDecimals: false,
+            title: {
+                text: 'Task'
+            }
+        };
+            var tooltip = {
+            formatter: function () {
+                return '<b>' + this.series.name + '</b><br/>' +
+                    this.point.y + ' ' + this.point.name.toLowerCase();
+            }
+        };
+        var credits = {
+            enabled: false
+        };
+            var json = {};
+            json.chart = chart;
+        json.title = title;
+        json.data = data;
+        json.yAxis = yAxis;
+        json.credits = credits;
+        json.tooltip = tooltip;
+        $('#container3').highcharts(json);
+    });
+    $(document).ready(function () {
+
+                var url = "@this.Url.Action(actionName: "Create", controllerName: "Profiles")";
+        $.ajax({
+                    url: url,
+            type: 'POST',
+            cache: false,
+            data: jQuery('#Add').serialize(),
+            success: function (data) {
+                        location.reload();
+                    }
+                });
+
+            });
+
+
+
+
+    $(document).ready(function () {
+
+                var txt = $('#test span').text();
+                if (txt.length == 0) {
+                    var url = "@this.Url.Action(actionName: "Create", controllerName: "ListMembers")";
+        $.ajax({
+                        url: url,
+            type: 'POST',
+            cache: false,
+            data: jQuery('#AutoAdd').serialize(),
+            success: function (data) {
+                            location.reload();
+                        }
+                    });
+                }
+            });
+
+    function myFunction() {
+                var plan = $('#Plan').text();
+                var myemail = $('#MyEmail').text();
+                var url = window.location.href;
+                var name = $('.Assignee').find("option:selected").text();
+                var sendInfo = {
+            receiver_email: name,
+            plan_title: plan,
+            sender_email: myemail,
+            plan_url: url
+        };
+
+        $.ajax({
+                url: 'https://prod-27.southeastasia.logic.azure.com:443/workflows/9a238a5f88be49f9bdc42ea2c76d91b1/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=naSctSEt7-yUNRqPxm7G4eWirB-oMToKssqOM4Qf2OE',
+            type: 'post',
+            dataType: 'json',
+            contentType: 'application/json',
+            success: function (data) {
+                    alert(data);
+                },
+            data: JSON.stringify(sendInfo)
+        });
+    }
+
+
+    $(document).ready(function () {
+        $('disabled').not(':selected').remove();
+            });
+    function DownloadFile(fileId) {
+        $("#hfFileId").val(fileId);
+        $("#btnDownload")[0].click();
+            };
+    $(document).ready(function () {
+
+        $(".Assignee").select2({ width: '100%', maximumSelectionSize: 1, placeholder: "Start typing"});
+        $('.Assignee').val('1'); // Select the option with a value of '1'
+        $('.Assignee').trigger('change');
+
+            });
+
+    $('mymodal-task').on('show.bs.modal', function (f) {
+                if (f.relatedTarget === undefined) return;
+                // Do other stuff here
+            });
+
+    jQuery(function () {
+                jQuery('#K').click();
+            });
+    $(document).ready(function () {
+        $('[data-toggle="popover"]').popover();
+            });
+    $(document).ready(function () {
+                var a = $("#StatusID").val();
+                if (a == 3) {
+
+                }
+
+            });
+
+</script>
+
+

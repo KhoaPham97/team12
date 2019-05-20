@@ -201,6 +201,16 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="People">
+      <EntityTypeMapping TypeName="cap21t12Model.Person">
+        <MappingFragment StoreEntitySet="People">
+          <ScalarProperty Name="Apply" ColumnName="Apply" />
+          <ScalarProperty Name="IDMeeting" ColumnName="IDMeeting" />
+          <ScalarProperty Name="Guest" ColumnName="Guest" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="Meetings">
       <EntityTypeMapping TypeName="cap21t12Model.Meeting">
         <MappingFragment StoreEntitySet="Meeting">
@@ -211,16 +221,6 @@
           <ScalarProperty Name="EndTime" ColumnName="EndTime" />
           <ScalarProperty Name="StartTime" ColumnName="StartTime" />
           <ScalarProperty Name="Title" ColumnName="Title" />
-          <ScalarProperty Name="ID" ColumnName="ID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="People">
-      <EntityTypeMapping TypeName="cap21t12Model.Person">
-        <MappingFragment StoreEntitySet="People">
-          <ScalarProperty Name="Apply" ColumnName="Apply" />
-          <ScalarProperty Name="IDMeeting" ColumnName="IDMeeting" />
-          <ScalarProperty Name="Guest" ColumnName="Guest" />
           <ScalarProperty Name="ID" ColumnName="ID" />
         </MappingFragment>
       </EntityTypeMapping>

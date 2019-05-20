@@ -39,10 +39,10 @@
         <AssociationConnector Association="cap21t12Model.FK_Comment_Task" />
         <EntityTypeShape EntityType="cap21t12Model.Profile" Width="1.5" PointX="5.25" PointY="14.25" />
         <AssociationConnector Association="cap21t12Model.FK_Profile_AspNetUsers" />
-        <EntityTypeShape EntityType="cap21t12Model.Meeting" Width="1.5" PointX="5.25" PointY="18.125" />
         <EntityTypeShape EntityType="cap21t12Model.Person" Width="1.5" PointX="7.5" PointY="14.25" />
-        <AssociationConnector Association="cap21t12Model.FK_Meeting_AspNetUsers" />
         <AssociationConnector Association="cap21t12Model.FK_People_AspNetUsers" />
+        <EntityTypeShape EntityType="cap21t12Model.Meeting" Width="1.5" PointX="5.25" PointY="18.125" />
+        <AssociationConnector Association="cap21t12Model.FK_Meeting_AspNetUsers" />
         <AssociationConnector Association="cap21t12Model.FK_People_Meeting" />
         </Diagram>
     </edmx:Diagrams>

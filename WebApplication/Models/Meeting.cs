@@ -22,8 +22,8 @@ namespace WebApplication.Models
     
         public int ID { get; set; }
         public string Title { get; set; }
-        public System.TimeSpan StartTime { get; set; }
-        public System.TimeSpan EndTime { get; set; }
+        public System.DateTime StartTime { get; set; }
+        public System.DateTime EndTime { get; set; }
         public System.DateTime Date { get; set; }
         public string Owner { get; set; }
         public string Location { get; set; }

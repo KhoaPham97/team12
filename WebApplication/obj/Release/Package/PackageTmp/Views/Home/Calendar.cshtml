@@ -792,12 +792,12 @@
 
                                         <tr>
 
-                                            <td><a href=" @Url.Action("Management", "Buckets", new { id = mem.Title }) " style="color:black">@mem.Title</a></td>
-                                            <td><a href=" @Url.Action("Management", "Buckets", new { id = @mem.Title }) " style="color:black">@mem.Date.Date.ToString("dd MMM yyyy") Start:@mem.StartTime.ToString("hh"):@mem.StartTime.ToString("mm") </a></td>
-                                            <td><a href=" @Url.Action("Management", "Buckets", new { id = mem.Title }) " style="color:black">@mem.Location</a></td>
-                                            <td><a href=" @Url.Action("Management", "Buckets", new { id = mem.Title }) " style="color:black">@mem.Description</a></td>
+                                            <td><a href=" @Url.Action("Management", "Meetings", new { id = mem.ID }) " style="color:black">@mem.Title</a></td>
+                                            <td><a href=" @Url.Action("Management", "Meetings", new { id = mem.ID }) " style="color:black">@mem.Date.Date.ToString("dd MMM yyyy") Start:@mem.StartTime.ToString("hh"):@mem.StartTime.ToString("mm") </a></td>
+                                            <td><a href=" @Url.Action("Management", "Meetings", new { id = mem.ID }) " style="color:black">@mem.Location</a></td>
+                                            <td><a href=" @Url.Action("Management", "Meetings", new { id = mem.ID }) " style="color:black">@mem.Description</a></td>
                                             <td>
-                                                @using (Html.BeginForm("Delete", "Plans", new { id = @mem.Title }, FormMethod.Post))
+                                                @using (Html.BeginForm("Delete", "Meetings", new { id = @mem.ID }, FormMethod.Post))
                                                 {
 
                                                 }
