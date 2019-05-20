@@ -1620,9 +1620,15 @@
 
                                                 }
 
+<<<<<<< HEAD
                                                 <div class="box box-success" id="comments_area_@data.TaskID">
                                                     <div class="box-header">
                                                         <i class="fa fa-eercast"></i>
+=======
+                                            </div>
+                                            @foreach (var cmt in ViewBag.Comments)
+                                            {
+>>>>>>> d044ba0445f11548b1081d3294936332deb93095
 
                                                         <h3 class="box-title">  </h3>
 
@@ -1643,9 +1649,16 @@
                                                                 }
                                                             }
 
+<<<<<<< HEAD
                                                             <div class="box-body chat" id="chat-box">
                                                                 <div class="item">
                                                                     @foreach (var ab in ViewBag.Profile)
+=======
+                                                            <p class="message">
+                                                                <a href="#" class="name" style="color:#3c8dbc">
+                                                                    <small class="text-muted pull-right"><i class="fa fa-clock-o"></i>@cmt.LastUpdate.ToString("MM/d/yyyy H:mm:s")</small>
+                                                                    @foreach (var us in ViewBag.Assignee)
+>>>>>>> d044ba0445f11548b1081d3294936332deb93095
                                                                     {
                                                                         if (cmt.AccountID == ab.AccountID)
                                                                         {
@@ -1654,6 +1667,14 @@
                                                                         }
 
                                                                     }
+<<<<<<< HEAD
+=======
+                                                                </a>
+                                                                <span class="comment">@cmt.Name</span>
+
+                                                            </p>
+                                                        </div>
+>>>>>>> d044ba0445f11548b1081d3294936332deb93095
 
                                                                     <p class="message">
                                                                         <a href="#" class="name" style="color:#3c8dbc">
@@ -1704,6 +1725,7 @@
 
                                                             </p>
 
+<<<<<<< HEAD
                                                         </div>
 
 
@@ -1712,8 +1734,38 @@
                                                     @*@using(Html.BeginForm("Create","Comments", new { id = @data.TaskID }, FormMethod.Post, new { id = "FormCmt", @class = "FormCmt" })) { }*@
 
 
-                                                </div>
+=======
+                                            @*@using(Html.BeginForm("Create","Comments", new { id = @data.TaskID }, FormMethod.Post, new { id = "FormCmt", @class = "FormCmt" })) { }*@
 
+
+                                        </div>
+
+                                        @using (Html.BeginForm("Create", "Comments", FormMethod.Post, new { id = "FormCmt", @class = "FormCmt" }))
+                                        {
+                                            @Html.AntiForgeryToken()
+                                            <input type="hidden" name="TaskID" value="@data.TaskID" />
+
+                                            <div class="form-group" style="display: none;">
+                                                <label class="control-label col-md-2" for="AccountID">AccountID</label>
+                                                <div class="col-md-10">
+                                                    <select class="form-control" id="AccountID " name="AccountID">
+                                                        <option value="@User.Identity.GetUserId()">@User.Identity.GetUserName()</option>
+                                                    </select>
+                                                    <span class="field-validation-valid text-danger" data-valmsg-for="AccountID" data-valmsg-replace="true"></span>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group" style="display: none;">
+                                                <label class="control-label col-md-2" for="TaskID">TaskID</label>
+                                                <div class="col-md-10">
+
+
+                                                    <span class="field-validation-valid text-danger" data-valmsg-for="TaskID" data-valmsg-replace="true"></span>
+>>>>>>> d044ba0445f11548b1081d3294936332deb93095
+                                                </div>
+                                            </div>
+
+<<<<<<< HEAD
                                                 @using (Html.BeginForm("Create", "Comments", FormMethod.Post, new { id = "FormCmt", @class = "FormCmt" }))
                                                 {
                                                     @Html.AntiForgeryToken()
@@ -1747,18 +1799,45 @@
                                                     </div>
                                                     <div class="col-md-12">
                                                         <div class="form-group">
+=======
+                                            <div class="form-group" style="display: none;">
+                                                <label class="control-label col-md-2" for="LastUpdate">LastUpdate</label>
+                                                <div class="col-md-10">
+                                                    <input class="form-control text-box single-line" data-val="true" data-val-date="The field LastUpdate must be a date." data-val-required="The LastUpdate field is required." id="LastUpdate" name="LastUpdate" type="datetime" value="@DateTime.Now">
+                                                    <span class="field-validation-valid text-danger" data-valmsg-for="LastUpdate" data-valmsg-replace="true"></span>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+
+                                                    <textarea cols="5" id="Name" name="Name" rows="5" style="width: 100%; max-width: 100%;border: 1px solid #dddddd;" placeholder="Type message..."></textarea>
+
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group" style="float:right">
+                                                <div class="col-md-offset-2 col-md-10">
+                                                    <button type="submit" class="myButton btn-send-cmt">Send</button>
+                                                    @*<input type="button" class="myButton" value="Test" onclick="SaveDemo();" />*@
+                                                </div>
+                                            </div>
+>>>>>>> d044ba0445f11548b1081d3294936332deb93095
 
                                                             <textarea cols="5" id="Name" name="Name" rows="5" style="width: 100%; max-width: 100%;border: 1px solid #dddddd;" placeholder="Type message..."></textarea>
 
                                                         </div>
                                                     </div>
 
+<<<<<<< HEAD
                                                     <div class="form-group" style="float:right">
                                                         <div class="col-md-offset-2 col-md-10">
                                                             <button type="submit" class="myButton btn-send-cmt">Send</button>
                                                             @*<input type="button" class="myButton" value="Test" onclick="SaveDemo();" />*@
                                                         </div>
                                                     </div>
+=======
+                                        }
+>>>>>>> d044ba0445f11548b1081d3294936332deb93095
 
 
 
