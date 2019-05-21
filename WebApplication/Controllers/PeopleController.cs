@@ -55,7 +55,7 @@ namespace WebApplication.Controllers
             {
                 db.People.Add(person);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Calendar", "Home");
             }
 
             ViewBag.Guest = new SelectList(db.AspNetUsers, "Id", "Email", person.Guest);
@@ -91,7 +91,7 @@ namespace WebApplication.Controllers
             {
                 db.Entry(person).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Calendar", "Home");
             }
             ViewBag.Guest = new SelectList(db.AspNetUsers, "Id", "Email", person.Guest);
             ViewBag.IDMeeting = new SelectList(db.Meetings, "ID", "Title", person.IDMeeting);

@@ -776,7 +776,7 @@
                     </div>
                     <!-- /.box -->
                 </div>
-
+                <div id="MyEmail" style="display:none">@User.Identity.GetUserName()</div>
                 <div class="col-xs-12">
                     <div class="box">
                         <div class="box-header">
@@ -792,8 +792,8 @@
 
                                             <th>Title</th>
                                             @*<th>Date </th>
-                                                <th>Location </th>
-                                                <th>Description </th>*@
+                                    <th>Location </th>
+                                    <th>Description </th>*@
                                             <th>Option</th>
                                         </tr>
                                     </thead>
@@ -809,7 +809,7 @@
                                                     <a href="#" data-toggle="modal" data-target="@("#myModal" + mem.ID)" style="color:black"> @mem.Title</a>
 
 
-                                                    <div class="modal fade" id=@("myModal" +  mem.ID) role="dialog" aria-labelledby="myModalLabel">
+                                                    <div class="modal fade" id=@("myModal" + mem.ID) role="dialog" aria-labelledby="myModalLabel">
                                                         <div class="modal-dialog" role="document">
                                                             <div class="modal-content">
                                                                 <div class="modal-header">
@@ -906,51 +906,73 @@
                                                                         </div>
 
                                                                     }
-                                                                    <div class="col-md-12">
-                                                                        <div class="box box-default collapsed-box">
-                                                                            <div class="box-header with-border">
-                                                                                <h3 class="box-title">Invite Guest</h3>
+                                                                   
+                                                                        <div class="col-md-12">
+                                                                            <div class="box box-default collapsed-box">
+                                                                                <div class="box-header with-border">
+                                                                                    <h3 class="box-title">Invite Guest</h3>
 
-                                                                                <div class="box-tools pull-right">
-                                                                                    <button type="button" class="btn btn-box-tool" data-widget="collapse">
-                                                                                        <i class="fa fa-plus"></i>
-                                                                                    </button>
-                                                                                </div>
-                                                                                <!-- /.box-tools -->
-                                                                            </div>
-                                                                            <!-- /.box-header -->
-                                                                            <div class="box-body" style="display: none;">
-
-                                                                                <div class="col-md-12">
-                                                                                    <div class="form-group">
-                                                                                        <label>Guest</label>
-                                                                                        <select class="form-control Guest" id="Guest" name="Guest" onChange="myNewFunction(this);">
-                                                                                            @foreach (var aa in ViewBag.Assignee)
-                                                                                            {
-                                                                                                <option value="@aa.Id">@aa.Email</option>
-                                                                                            }
-                                                                                        </select>
+                                                                                    <div class="box-tools pull-right">
+                                                                                        <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                                                                                            <i class="fa fa-plus"></i>
+                                                                                        </button>
                                                                                     </div>
+                                                                                    <!-- /.box-tools -->
                                                                                 </div>
-                                                                                <div class="col-md-12">
-                                                                                    <div class="form-group">
-                                                                                        <label>Guest</label>
-                                                                                        <select class="form-control StatusID" id="Guest" name="Guest">
+                                                                                <!-- /.box-header -->
+                                                                              
+                                                                                <div class="box-body" style="display: none;">
+                                                                                    @*@using (Html.BeginForm("Create", "People",FormMethod.Post ,new { id = "AutoAdd" }))
+                                                                                    {
+                                                                                        @Html.AntiForgeryToken()*@
 
-                                                                                            <option value="@mem.ID">@mem.ID</option>
+                                                                                        <div class="col-md-12">
+                                                                                            <div class="form-group">
+                                                                                                <label>Guest</label>
+                                                                                                <select class="form-control Guest select_email" id="Guest" name="Guest">
+                                                                                                    @foreach (var aa in ViewBag.Assignee)
+                                                                                                    {
+                                                                                                        <option value="@aa.Id">@aa.Email</option>
+                                                                                                    }
+                                                                                                </select>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="col-md-12">
+                                                                                            <div class="form-group">
+                                                                                                <label>ID</label>
+                                                                                                <select class="form-control StatusID select_id" id="IDMeeting" name="IDMeeting">
 
-                                                                                        </select>
-                                                                                    </div>
+                                                                                                    <option value="@mem.ID">@mem.ID</option>
+
+                                                                                                </select>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="col-md-12">
+                                                                                            <div class="form-group">
+                                                                                                <label>Title</label>
+                                                                                                <select class="form-control StatusID select_title">
+
+                                                                                                    <option value="@mem.Title">@mem.Title</option>
+
+                                                                                                </select>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="checkbox">
+                                                                                            <input class="check-box" data-val="true" data-val-required="The Apply field is required." id="Apply" name="Apply" type="checkbox" value="false"><input name="Apply" type="hidden" value="false">
+                                                                                            <span class="field-validation-valid text-danger" data-valmsg-for="Apply" data-valmsg-replace="true"></span>
+                                                                                        </div>
+                                                                                 
+                                                                                        <p id="demo"></p>
+                                                                                        <button class="click_me">Click me</button>
+                                                                                    @*}*@
                                                                                 </div>
-                                                                                <p id="demo"></p>
-                                                                                <button onclick="myFunction()">Click me</button>
-
-                                                                            </div>
-                                                                            <!-- /.box-body -->
+                                                                                    <!-- /.box-body -->
+                                                                                </div>
+                                                                            <!-- /.box -->
                                                                         </div>
-                                                                        <!-- /.box -->
+                                                                      
+                                                                    
                                                                     </div>
-                                                                </div>
 
                                                             </div>
                                                         </div>
@@ -958,8 +980,8 @@
 
                                                 </td>
                                                 @*<td><a href=" @Url.Action("Management", "Meetings", new { id = mem.ID }) " style="color:black">@mem.Date.Date.ToString("dd MMM yyyy") Start:@mem.StartTime.ToString("hh"):@mem.StartTime.ToString("mm") </a></td>
-                                                    <td><a href=" @Url.Action("Management", "Meetings", new { id = mem.ID }) " style="color:black">@mem.Location</a></td>
-                                                    <td><a href=" @Url.Action("Management", "Meetings", new { id = mem.ID }) " style="color:black">@mem.Description</a></td>*@
+                                        <td><a href=" @Url.Action("Management", "Meetings", new { id = mem.ID }) " style="color:black">@mem.Location</a></td>
+                                        <td><a href=" @Url.Action("Management", "Meetings", new { id = mem.ID }) " style="color:black">@mem.Description</a></td>*@
                                                 <td>
                                                     @using (Html.BeginForm("Delete", "Meetings", new { id = @mem.ID }, FormMethod.Post))
                                                     {
@@ -1265,10 +1287,60 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.5.6/css/buttons.bootstrap.min.css" />
     <link href="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/css/select2.min.css" rel="stylesheet" />
     <script src="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/js/select2.min.js"></script>
-
+    
     <script>
    
-      
+
+        $('.click_me').on('click', function () {          
+            var email = $(this).closest('div').find('.select_email option:selected').text();
+            var email2 = $(this).closest('div').find('.select_email').val();
+            var id = $(this).closest('div').find('.select_id').val();
+            var title = $(this).closest('div').find('.select_title').val();
+            console.log(email)
+            console.log(id)
+            console.log(title)
+            var myemail = $('#MyEmail').text();
+            var url = window.location.href;
+            var sendInfo = {
+                receiver_email: email,
+                plan_title: title,
+                sender_email: myemail,
+                plan_url: url
+            };
+          
+            $.ajax({
+                url: 'https://prod-27.southeastasia.logic.azure.com:443/workflows/9a238a5f88be49f9bdc42ea2c76d91b1/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=naSctSEt7-yUNRqPxm7G4eWirB-oMToKssqOM4Qf2OE',
+                type: 'post',
+                dataType: 'json',
+                contentType: 'application/json',
+                success: function (data) {
+                    alert(data);
+                },
+                data: JSON.stringify(sendInfo)
+            });
+            var url2 = "@this.Url.Action(actionName: "Create", controllerName: "People")";
+            var sendData = {
+                Guest: email2,
+                IDMeeting: id,
+                Apply: 'False'
+              
+            };
+            e.preventDefault();
+            $.ajax({
+                url: url2,
+                type: 'post',
+                dataType: 'json',
+                contentType: 'application/json',
+                success: function (data) {
+                    alert(data);
+                },
+                data: JSON.stringify(sendData)
+            });
+              
+             
+             
+        })
+
         function myFunction() {
             $("#demo").val(""); 
             var sel = document.getElementById("Guest");
