@@ -686,7 +686,7 @@
                             <div class="box-body">
 
                                 <div class="row">
-                                    @using (Html.BeginForm("Create", "Meetings", FormMethod.Post, new { id = "AutoAdd", enctype = "multipart/form-data" }))
+                                    @using (Html.BeginForm("Create", "Meetings", FormMethod.Post))
                                     {
 
                                         @Html.AntiForgeryToken()
@@ -792,8 +792,8 @@
 
                                             <th>Title</th>
                                             @*<th>Date </th>
-                                    <th>Location </th>
-                                    <th>Description </th>*@
+                                                <th>Location </th>
+                                                <th>Description </th>*@
                                             <th>Option</th>
                                         </tr>
                                     </thead>
@@ -860,7 +860,7 @@
 
                                                                                         <label>Date</label>
                                                                                         <br />
-                                                                                        <input class="form-control datepicker  text-box single-line" data-val="true" data-val-date="The field Duedate must be a date." id="Date" name="Date" type="datetime" value="@mem.Date.ToString("dd MM yyyy")">
+                                                                                        <input class="form-control datepicker  text-box single-line " data-val="true" data-val-date="The field Duedate must be a date." id="Date" name="Date" type="datetime" value="@mem.Date.ToString("dd MM yyyy")">
                                                                                         <span class="field-validation-valid text-danger" data-valmsg-for="Date" data-valmsg-replace="true"></span>
 
                                                                                     </div>
@@ -894,85 +894,189 @@
                                                                                     </div>
 
 
-                                                                                    <div class="form-group" style="float:right">
-                                                                                        <div class="col-md-offset-2 col-md-10">
-                                                                                            <input type="submit" value="Save" class="btn btn-info myButton" />
+                                                                                    @if (mem.Owner == @User.Identity.GetUserId())
+                                                                                    {
 
+
+                                                                                        <div class="form-group" style="float:right">
+                                                                                            <div class="col-md-offset-2 col-md-10">
+                                                                                                <input type="submit" value="Save" class="btn btn-info myButton" />
+
+                                                                                            </div>
                                                                                         </div>
-                                                                                    </div>
-
+                                                                                    }
                                                                                 </div>
                                                                             </div>
                                                                         </div>
 
                                                                     }
-                                                                   
-                                                                        <div class="col-md-12">
-                                                                            <div class="box box-default collapsed-box">
-                                                                                <div class="box-header with-border">
-                                                                                    <h3 class="box-title">Invite Guest</h3>
 
-                                                                                    <div class="box-tools pull-right">
-                                                                                        <button type="button" class="btn btn-box-tool" data-widget="collapse">
-                                                                                            <i class="fa fa-plus"></i>
-                                                                                        </button>
+                                                                    <div class="col-md-12">
+                                                                        <div class="box box-default collapsed-box">
+                                                                            <div class="box-header with-border">
+                                                                                <h3 class="box-title">Invite Guest</h3>
+
+                                                                                <div class="box-tools pull-right">
+                                                                                    <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                                                                                        <i class="fa fa-plus"></i>
+                                                                                    </button>
+                                                                                </div>
+                                                                                <!-- /.box-tools -->
+                                                                            </div>
+                                                                            <!-- /.box-header -->
+
+                                                                            <div class="box-body" style="display: none;">
+                                                                                @*@using (Html.BeginForm("Create", "People",FormMethod.Post ,new { id = "AutoAdd" }))
+        {
+            @Html.AntiForgeryToken()*@
+
+
+                                                                                <div class="col-md-12">
+                                                                                    <div class="form-group" style="display:none">
+                                                                                        <label>ID</label>
+                                                                                        <select class="form-control StatusID select_id" id="IDMeeting" name="IDMeeting">
+
+                                                                                            <option value="@mem.ID">@mem.ID</option>
+
+                                                                                        </select>
                                                                                     </div>
-                                                                                    <!-- /.box-tools -->
                                                                                 </div>
-                                                                                <!-- /.box-header -->
-                                                                              
-                                                                                <div class="box-body" style="display: none;">
-                                                                                    @*@using (Html.BeginForm("Create", "People",FormMethod.Post ,new { id = "AutoAdd" }))
-                                                                                    {
-                                                                                        @Html.AntiForgeryToken()*@
+                                                                                <div class="col-md-12">
+                                                                                    <div class="form-group" style="display:none">
+                                                                                        <label>Title</label>
+                                                                                        <select class="form-control StatusID select_title">
 
-                                                                                        <div class="col-md-12">
-                                                                                            <div class="form-group">
-                                                                                                <label>Guest</label>
-                                                                                                <select class="form-control Guest select_email" id="Guest" name="Guest">
-                                                                                                    @foreach (var aa in ViewBag.Assignee)
+                                                                                            <option value="@mem.Title">@mem.Title</option>
+
+                                                                                        </select>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="col-md-12">
+                                                                                    <div class="form-group" style="display:none">
+                                                                                        <label>Date</label>
+                                                                                        <select class="form-control StatusID select_date">
+
+                                                                                            <option value="@mem.Date.ToString("dd MM yyyy")">@mem.Date.ToString("dd MM yyyy")</option>
+
+                                                                                        </select>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="col-md-12">
+                                                                                    <div class="form-group" style="display:none">
+                                                                                        <label>StartTime</label>
+                                                                                        <select class="form-control StatusID select_starttime">
+
+                                                                                            <option value="@mem.StartTime.ToString(@"hh\:mm")">@mem.StartTime.ToString(@"hh\:mm")</option>
+
+                                                                                        </select>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="col-md-12">
+                                                                                    <div class="form-group" style="display:none">
+                                                                                        <label>EndTime</label>
+                                                                                        <select class="form-control StatusID select_endtime">
+
+                                                                                            <option value="@mem.EndTime.ToString(@"hh\:mm")">@mem.EndTime.ToString(@"hh\:mm")</option>
+
+                                                                                        </select>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="col-md-12">
+                                                                                    <div class="form-group" style="display:none">
+                                                                                        <label>Location</label>
+                                                                                        <select class="form-control StatusID select_location">
+
+                                                                                            <option value="@mem.Location">@mem.Location</option>
+
+                                                                                        </select>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="col-md-12">
+                                                                                    <div class="form-group" style="display:none">
+                                                                                        <label>Description</label>
+                                                                                        <select class="form-control StatusID select_content">
+
+                                                                                            <option value="@mem.Description">@mem.Description</option>
+
+                                                                                        </select>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="checkbox" style="display:none">
+                                                                                    <input class="check-box" data-val="true" data-val-required="The Apply field is required." id="Apply" name="Apply" type="checkbox" value="false"><input name="Apply" type="hidden" value="false">
+                                                                                    <span class="field-validation-valid text-danger" data-valmsg-for="Apply" data-valmsg-replace="true"></span>
+                                                                                </div>
+                                                                                <div class="col-md-12" style="float:right">
+                                                                                    <div class="form-group">
+                                                                                        <label>Guest</label>
+                                                                                        <select class="form-control Guest select_email" id="Guest" name="Guest">
+                                                                                            @foreach (var aa in ViewBag.Assignee)
+                                                                                            {
+                                                                                                <option value="@aa.Id">@aa.Email</option>
+                                                                                            }
+                                                                                        </select>
+                                                                                    </div>
+
+                                                                                </div>
+
+                                                                                <p id="demo"></p>
+                                                                                @if (mem.Owner == @User.Identity.GetUserId())
+                                                                                {
+
+                                                                                    <button class="click_me btn btn-info myButton" style="float:right">Send</button>
+                                                                                }
+
+
+                                                                                <div class="col-md-12" style="float:right">
+                                                                                    <div class="form-group">
+                                                                                        <label>Check Guest Apply</label>
+
+                                                                                        <select class="form-control A" id="mySelect" name="mySelect">
+                                                                                            @foreach (var aa in ViewBag.Assignee)
+                                                                                            {
+                                                                                                foreach (var a in ViewBag.People)
+                                                                                                {
+                                                                                                    if (a.Guest == aa.Id && a.IDMeeting == mem.ID)
                                                                                                     {
-                                                                                                        <option value="@aa.Id">@aa.Email</option>
+                                                                                                        <option value="@a.ID,@aa.Id">@aa.Email </option>
                                                                                                     }
-                                                                                                </select>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                        <div class="col-md-12">
-                                                                                            <div class="form-group">
-                                                                                                <label>ID</label>
-                                                                                                <select class="form-control StatusID select_id" id="IDMeeting" name="IDMeeting">
+                                                                                                }
+                                                                                            }
 
-                                                                                                    <option value="@mem.ID">@mem.ID</option>
+                                                                                        </select>
+                                                                                    </div>
 
-                                                                                                </select>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                        <div class="col-md-12">
-                                                                                            <div class="form-group">
-                                                                                                <label>Title</label>
-                                                                                                <select class="form-control StatusID select_title">
-
-                                                                                                    <option value="@mem.Title">@mem.Title</option>
-
-                                                                                                </select>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                        <div class="checkbox">
-                                                                                            <input class="check-box" data-val="true" data-val-required="The Apply field is required." id="Apply" name="Apply" type="checkbox" value="false"><input name="Apply" type="hidden" value="false">
-                                                                                            <span class="field-validation-valid text-danger" data-valmsg-for="Apply" data-valmsg-replace="true"></span>
-                                                                                        </div>
-                                                                                 
-                                                                                        <p id="demo"></p>
-                                                                                        <button class="click_me">Click me</button>
-                                                                                    @*}*@
                                                                                 </div>
-                                                                                    <!-- /.box-body -->
+                                                                                <button class="click_mee btn btn-info myButton" style="float:right">Check</button>
+                                                                                <div class="col-md-12" style="float:right">
+                                                                                    <div class="form-group">
+                                                                                        <label>Guests Have Applied</label>
+
+                                                                                        <select class="form-control AA" id="mySelecttt" name="mySelecttt">
+                                                                                            @foreach (var aa in ViewBag.Assignee)
+                                                                                            {
+                                                                                                foreach (var a in ViewBag.People)
+                                                                                                {
+                                                                                                    if (a.Guest == aa.Id && a.IDMeeting == mem.ID && a.Apply == true)
+                                                                                                    {
+                                                                                                        <option value="@a.ID,@aa.Id">@aa.Email </option>
+                                                                                                    }
+                                                                                                }
+                                                                                            }
+
+                                                                                        </select>
+                                                                                    </div>
+
                                                                                 </div>
-                                                                            <!-- /.box -->
+                                                                                @*}*@
+                                                                            </div>
+                                                                            <!-- /.box-body -->
                                                                         </div>
-                                                                      
-                                                                    
+                                                                        <!-- /.box -->
                                                                     </div>
+
+
+
+                                                                </div>
 
                                                             </div>
                                                         </div>
@@ -980,12 +1084,17 @@
 
                                                 </td>
                                                 @*<td><a href=" @Url.Action("Management", "Meetings", new { id = mem.ID }) " style="color:black">@mem.Date.Date.ToString("dd MMM yyyy") Start:@mem.StartTime.ToString("hh"):@mem.StartTime.ToString("mm") </a></td>
-                                        <td><a href=" @Url.Action("Management", "Meetings", new { id = mem.ID }) " style="color:black">@mem.Location</a></td>
-                                        <td><a href=" @Url.Action("Management", "Meetings", new { id = mem.ID }) " style="color:black">@mem.Description</a></td>*@
+                                                    <td><a href=" @Url.Action("Management", "Meetings", new { id = mem.ID }) " style="color:black">@mem.Location</a></td>
+                                                    <td><a href=" @Url.Action("Management", "Meetings", new { id = mem.ID }) " style="color:black">@mem.Description</a></td>*@
                                                 <td>
                                                     @using (Html.BeginForm("Delete", "Meetings", new { id = @mem.ID }, FormMethod.Post))
                                                     {
+                                                        if (mem.Owner == @User.Identity.GetUserId())
+                                                        {
+                                                            @Html.AntiForgeryToken()
 
+                                                            <input type="submit" class="btn btn-danger" style="float:left;" value="Delete">
+                                                        }
                                                     }
                                                 </td>
 
@@ -1279,37 +1388,54 @@
     @*<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" />
         <script src="~/area/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>*@
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
-    script>
+
+
     <script type="text/javascript" charset="utf-8" src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap.min.js
 "></script>
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css" />
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.5.6/css/buttons.bootstrap.min.css" />
+    @*<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>*@
     <link href="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/css/select2.min.css" rel="stylesheet" />
     <script src="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/js/select2.min.js"></script>
-    
-    <script>
-   
 
-        $('.click_me').on('click', function () {          
+    <script>
+
+
+        $('.click_me').on('click', function () {
             var email = $(this).closest('div').find('.select_email option:selected').text();
             var email2 = $(this).closest('div').find('.select_email').val();
             var id = $(this).closest('div').find('.select_id').val();
             var title = $(this).closest('div').find('.select_title').val();
+            var date = $(this).closest('div').find('.select_date').val();
+            var starttime = $(this).closest('div').find('.select_starttime').val();
+            var endtime = $(this).closest('div').find('.select_endtime').val();
+            var content = $(this).closest('div').find('.select_content').val();
+            var location = $(this).closest('div').find('.select_location').val();
+            console.log(email2)
             console.log(email)
             console.log(id)
             console.log(title)
+            console.log(date)
+            console.log(starttime)
+            console.log(endtime)
+
             var myemail = $('#MyEmail').text();
             var url = window.location.href;
             var sendInfo = {
-                receiver_email: email,
-                plan_title: title,
-                sender_email: myemail,
-                plan_url: url
+                meetingName: title,
+                date: date,
+                startTime: starttime,
+                endTime: endtime,
+                content: content,
+                location: location,
+                inviter: myemail,
+                receiver: email
+
             };
-          
+
             $.ajax({
-                url: 'https://prod-27.southeastasia.logic.azure.com:443/workflows/9a238a5f88be49f9bdc42ea2c76d91b1/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=naSctSEt7-yUNRqPxm7G4eWirB-oMToKssqOM4Qf2OE',
+                url: 'https://prod-05.southeastasia.logic.azure.com:443/workflows/65344e71ff55442d9b88b5e794a10fad/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=3G9lhWckp9uyTAIOd0j6xIufjaiFOx1CIofCwDT0mZo',
                 type: 'post',
                 dataType: 'json',
                 contentType: 'application/json',
@@ -1319,35 +1445,86 @@
                 data: JSON.stringify(sendInfo)
             });
             var url2 = "@this.Url.Action(actionName: "Create", controllerName: "People")";
-            var sendData = {
-                Guest: email2,
-                IDMeeting: id,
-                Apply: 'False'
-              
-            };
-            e.preventDefault();
+
+
+            var token = $('[name=__RequestVerificationToken]').val();
+
             $.ajax({
                 url: url2,
-                type: 'post',
+                type: 'POST',
                 dataType: 'json',
-                contentType: 'application/json',
-                success: function (data) {
-                    alert(data);
+                cache: false,
+                data: {
+                    __RequestVerificationToken: token,
+                    'Guest': email2,
+                    'IDMeeting': id,
+                    'Apply': 'False',
                 },
-                data: JSON.stringify(sendData)
+                success: function (data) {
+
+                }
             });
-              
-             
-             
+            $('#mySelect').append('<option value="' + email2 + '">' + email + '</option>');
+
+        })
+
+              $(document).ready(function () {
+
+            //$(".Guest").select2({ width: '100%', maximumSelectionSize: 1, placeholder: "Start typing" });
+            $(".Guest").select2({ width: '100%' });
+
+
+        });
+        $('.click_mee').on('click', function () {
+            var email = $(this).closest('div').find('.A option:selected').text();
+            var email22 = $(this).closest('div').find('.A').val();
+            var k = email22.split(",")[0]; 
+            var kk = email22.split(",")[1]; 
+            var id = $(this).closest('div').find('.select_id').val();
+            var title = $(this).closest('div').find('.select_title').val();
+            var date = $(this).closest('div').find('.select_date').val();
+            var starttime = $(this).closest('div').find('.select_starttime').val();
+            var endtime = $(this).closest('div').find('.select_endtime').val();
+            var content = $(this).closest('div').find('.select_content').val();
+            var location = $(this).closest('div').find('.select_location').val();
+            console.log(k)
+            console.log(kk)
+            console.log(email22)
+            console.log(email)
+            console.log(id)
+            console.log(title)
+            console.log(date)
+            console.log(starttime)
+            console.log(endtime)
+
+            var token = $('[name=__RequestVerificationToken]').val();
+
+            $.ajax({
+                url: "/People/Edit/" + k,
+                type: 'POST',
+                dataType: 'json',
+                cache: false,
+                data: {
+                    __RequestVerificationToken: token,
+                    'Guest': kk,
+                    'IDMeeting': id,
+                    'Apply': 'True',
+                },
+                success: function (data) {
+
+                }
+            });
+            $('#mySelecttt').append('<option value="' + kk + '">' + email + '</option>');
+
         })
 
         function myFunction() {
-            $("#demo").val(""); 
+            $("#demo").val("");
             var sel = document.getElementById("Guest");
             var text = sel.options[sel.selectedIndex].text;
             document.getElementById("demo").innerHTML = "You selected: " + text;
-        
-            
+
+
         }
         function myNewFunction(sel) {
             //alert(sel.options[sel.selectedIndex].text);
@@ -1355,8 +1532,9 @@
         $(document).ready(function () {
 
             //$(".Guest").select2({ width: '100%', maximumSelectionSize: 1, placeholder: "Start typing" });
-            $(".Guest").select2();
-
+            $(".Guest").select2({ width: '100%' });
+            $(".A").select2({ width: '100%' });
+          
         });
         $('.datepicker').datepicker({
 
@@ -1365,6 +1543,7 @@
         $('.timepicker').timepicker({
             showInputs: false
         });
+    
         function openCity(evt, cityName) {
             var i, tabcontent, tablinks;
             tabcontent = document.getElementsByClassName("tabcontent");

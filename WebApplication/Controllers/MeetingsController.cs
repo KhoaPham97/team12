@@ -8,6 +8,10 @@ using System.Web;
 using System.Web.Mvc;
 using WebApplication.Models;
 
+using System.IO;
+using System.Configuration;
+using System.Data.SqlClient;
+
 namespace WebApplication.Controllers
 {
     public class MeetingsController : Controller
@@ -123,11 +127,40 @@ namespace WebApplication.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Meeting meeting = db.Meetings.Find(id);
+            db.People.RemoveRange(db.People.Where(x => x.IDMeeting == id));
             db.Meetings.Remove(meeting);
             db.SaveChanges();
             return RedirectToAction("Calendar", "Home");
         }
+        [HttpPost]
+        public ActionResult Test(HttpPostedFileBase postedFile,string  Guest,int? IDMeeting)
+        {
+            byte[] bytes = null;
+            using (BinaryReader br = new BinaryReader(postedFile.InputStream))
+            {
+                bytes = br.ReadBytes(postedFile.ContentLength);
+            }
 
+            string constr = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+            using (SqlConnection con = new SqlConnection(constr))
+            {
+                string query = "INSERT INTO Attachments VALUES (@Guest,@IDMeeting,@Apply)";
+                using (SqlCommand cmd = new SqlCommand(query))
+                {
+                    
+
+                    cmd.Parameters.AddWithValue("@Guest", "30ae29b5 - e171 - 485e-818e - 86e6f7015126");
+                    cmd.Parameters.AddWithValue("@IDMeeting", "2");
+                    cmd.Parameters.AddWithValue("@Apply", "False");
+                   
+                    con.Open();
+                    cmd.ExecuteNonQuery();
+                    con.Close();
+                }
+            }
+
+            return Redirect(Request.UrlReferrer.ToString());
+        }
         protected override void Dispose(bool disposing)
         {
             if (disposing)
