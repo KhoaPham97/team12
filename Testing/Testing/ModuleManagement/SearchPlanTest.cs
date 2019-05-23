@@ -28,10 +28,8 @@ namespace Testing.ModuleManagement
             pass.SendKeys("1234567890");
             IWebElement login = driver.FindElement(By.CssSelector("#loginForm > form > div.container-login100-form-btn > button"));
             login.Click();
-            IWebElement search = driver.FindElement(By.CssSelector("body > div > div.content-wrapper > section.content > div:nth-child(3) > div > div.box-header > div > div > input"));
-            search.SendKeys("1");
-            IWebElement show = driver.FindElement(By.ClassName("btn btn-default"));
-            show.Click();
+            IWebElement search = driver.FindElement(By.CssSelector("#datatable_filter > label > input"));
+            search.SendKeys("Test");
             test = extent.StartTest("SEARCH PLAN TC_FUC_MO01_16");
             Assert.IsTrue(true);
             test.Log(LogStatus.Pass, "Assert Pass as condition is True");
@@ -52,61 +50,11 @@ namespace Testing.ModuleManagement
             pass.SendKeys("1234567890");
             IWebElement login = driver.FindElement(By.CssSelector("#loginForm > form > div.container-login100-form-btn > button"));
             login.Click();
-            IWebElement search = driver.FindElement(By.CssSelector("body > div > div.content-wrapper > section.content > div:nth-child(3) > div > div.box-header > div > div > input"));
-            search.SendKeys("%%%");
-            IWebElement show = driver.FindElement(By.ClassName("btn btn-default"));
-            show.Click();
-            test = extent.StartTest("SEARCH PLAN TC_FUC_MO01_16");
-            Assert.IsTrue(true);
-            test.Log(LogStatus.Pass, "Invalid name plan attempt");
-        }
-
-        [Test]
-        [TestCaseSource(typeof(TestBase), "BrowserToRunWith")]
-        public void TC_FUC_MO02_07(String browserName)
-        {
-            SetUp(browserName);
-            //throw new NotFiniteNumberException();
-
-            Console.WriteLine("At My Plan");
-            Console.WriteLine("TC_FUC_MO02_07");
-            IWebElement email = driver.FindElement(By.CssSelector("#loginForm > form > div.wrap-input100.rs1.validate-input > input"));
-            email.SendKeys("trangnguyen237@vanlanguni.vn");
-            IWebElement pass = driver.FindElement(By.CssSelector("#loginForm > form > div.wrap-input100.rs2.validate-input > input"));
-            pass.SendKeys("1234567890");
-            IWebElement login = driver.FindElement(By.CssSelector("#loginForm > form > div.container-login100-form-btn > button"));
-            login.Click();
-            IWebElement search = driver.FindElement(By.Name("table_search"));
-            search.SendKeys("1");
-            IWebElement show = driver.FindElement(By.ClassName("btn btn-default"));
-            show.Click();
+            IWebElement search = driver.FindElement(By.CssSelector("#datatable_filter > label > input"));
+            search.SendKeys("(((");
             test = extent.StartTest("SEARCH PLAN TC_FUC_MO01_16");
             Assert.IsTrue(true);
             test.Log(LogStatus.Pass, "Assert Pass as condition is True");
-        }
-
-        [Test]
-        [TestCaseSource(typeof(TestBase), "BrowserToRunWith")]
-        public void TC_FUC_MO02_08(String browserName)
-        {
-            SetUp(browserName);
-            //throw new NotFiniteNumberException();
-
-            Console.WriteLine("At My Plan");
-            Console.WriteLine("TC_FUC_MO02_08");
-            IWebElement email = driver.FindElement(By.CssSelector("#loginForm > form > div.wrap-input100.rs1.validate-input > input"));
-            email.SendKeys("trangnguyen237@vanlanguni.vn");
-            IWebElement pass = driver.FindElement(By.CssSelector("#loginForm > form > div.wrap-input100.rs2.validate-input > input"));
-            pass.SendKeys("1234567890");
-            IWebElement login = driver.FindElement(By.CssSelector("#loginForm > form > div.container-login100-form-btn > button"));
-            login.Click();
-            IWebElement search = driver.FindElement(By.Name("table_search"));
-            search.SendKeys("1");
-            IWebElement show = driver.FindElement(By.ClassName("btn btn-default"));
-            show.Click();
-            test = extent.StartTest("SEARCH PLAN TC_FUC_MO01_16");
-            Assert.IsTrue(true);
-            test.Log(LogStatus.Pass, "Invalid name plan attempt");
         }
 
     }

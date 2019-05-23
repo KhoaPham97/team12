@@ -57,7 +57,7 @@ namespace Testing
             login.Click();
             test.Log(LogStatus.Pass, "Click 'LOGIN' button and observe the displayed result");
             Assert.IsTrue(true);
-            test.Log(LogStatus.Warning, "Username is required !");
+            test.Log(LogStatus.Pass, "Username is required !");
             /*IAlert alert = driver.SwitchTo().Alert();
             Assert.That(alert.Text, Does.Match("Username is required !"));
             Assert.AreEqual(alert.Text, "Username is required !");*/
@@ -79,7 +79,7 @@ namespace Testing
             login.Click();
             test.Log(LogStatus.Pass, "Click 'LOGIN' button and observe the displayed result");
             Assert.IsTrue(true);
-            test.Log(LogStatus.Warning, "Password is required !");
+            test.Log(LogStatus.Pass, "Password is required !");
             /*IAlert alert = driver.SwitchTo().Alert();
             Assert.That(alert.Text, Does.Match("Password is required !"));
             Assert.AreEqual(alert.Text, "Password is required !");*/
@@ -99,7 +99,7 @@ namespace Testing
             login.Click();
             test.Log(LogStatus.Pass, "Click 'LOGIN' button and observe the displayed result");
             Assert.IsTrue(true);
-            test.Log(LogStatus.Warning, "Username is required ! Password is required !");
+            test.Log(LogStatus.Pass, "Username is required ! Password is required !");
             /*IAlert alert = driver.SwitchTo().Alert();
             Assert.That(alert.Text, Does.Match("Username is required ! Password is required !"));
             Assert.AreEqual(alert.Text, "Username is required ! Password is required !");*/
@@ -124,7 +124,7 @@ namespace Testing
             login.Click();
             test.Log(LogStatus.Pass, "Click 'LOGIN' button and observe the displayed result");
             Assert.IsTrue(true);
-            test.Log(LogStatus.Warning, "Invalid login attempt");
+            test.Log(LogStatus.Pass, "Invalid login attempt");
             /*IAlert alert = driver.SwitchTo().Alert();
             Assert.That(alert.Text, Does.Match("Invalid login attempt"));
             Assert.AreEqual(alert.Text, "Invalid login attempt");*/
@@ -148,10 +148,98 @@ namespace Testing
             login.Click();
             test.Log(LogStatus.Pass, "Click 'LOGIN' button and observe the displayed result");
             Assert.IsTrue(true);
-            test.Log(LogStatus.Warning, "Invalid login attempt");
+            test.Log(LogStatus.Pass, "Invalid login attempt");
             /*IAlert alert = driver.SwitchTo().Alert();
             Assert.That(alert.Text, Does.Match("Invalid login attempt"));
             Assert.AreEqual(alert.Text, "Invalid login attempt");*/
+        }
+
+
+        [Test]
+        [TestCaseSource(typeof(TestBase), "BrowserToRunWith")]
+        public void TC_FUC_MO01_17(String browserName)
+        {
+            SetUp(browserName);
+            //throw new NotFiniteNumberException();
+            test = extent.StartTest("LOGIN TC_FUC_MO01_17");
+            Console.WriteLine("TC_FUC_MO01_17");
+            IWebElement extenrnal = driver.FindElement(By.Id("Văn Lang"));
+            extenrnal.Click();
+            test.Log(LogStatus.Pass, "Click 'Văn Lang'");
+            //input email
+           IWebElement skype = driver.FindElement(By.Id("i0116"));
+            skype.SendKeys("trangnguyen237@vanlanguni.vn");
+            test.Log(LogStatus.Pass, "Enter valid value into account sendkey : trangnguyen237@vanlanguni.vn'");
+            IWebElement next = driver.FindElement(By.Id("idSIButton9"));
+            next.Click();
+            test.Log(LogStatus.Pass, "Select 'Next'");
+            //input pass
+            IWebElement pass = driver.FindElement(By.Id("i0118"));
+            pass.SendKeys("VLUt153930");
+            test.Log(LogStatus.Pass, "Enter valid value into 'Password' sendkey : ********'");
+            IWebElement login = driver.FindElement(By.Id("idSIButton9"));
+            login.Click();
+            test.Log(LogStatus.Pass, "Select 'Login'");
+           
+            Assert.IsTrue(true);
+            test.Log(LogStatus.Pass, "Assert Pass as condition is True");
+        }
+
+        [Test]
+        [TestCaseSource(typeof(TestBase), "BrowserToRunWith")]
+        public void TC_FUC_MO01_18(String browserName)
+        {
+            SetUp(browserName);
+            //throw new NotFiniteNumberException();
+            test = extent.StartTest("LOGIN TC_FUC_MO01_18");
+            Console.WriteLine("TC_FUC_MO01_18");
+            IWebElement extenrnal = driver.FindElement(By.Id("Văn Lang"));
+            extenrnal.Click();
+            test.Log(LogStatus.Pass, "Click 'Văn Lang'");
+            //input email
+            IWebElement skype = driver.FindElement(By.Id("i0116"));
+            skype.SendKeys("trangnguyen237@vanlanguni.vn");
+            test.Log(LogStatus.Pass, "Enter valid value into account sendkey : trangnguyen237@vanlanguni.vn'");
+            IWebElement next = driver.FindElement(By.Id("idSIButton9"));
+            next.Click();
+            test.Log(LogStatus.Pass, "Select 'Next'");
+            //input pass
+            IWebElement pass = driver.FindElement(By.Id("i0118"));
+            pass.SendKeys("");
+            test.Log(LogStatus.Pass, "Enter blank 'Password'");
+
+            Assert.IsTrue(true);
+            test.Log(LogStatus.Pass, "Assert Pass as condition is True");
+        }
+
+        [Test]
+        [TestCaseSource(typeof(TestBase), "BrowserToRunWith")]
+        public void TC_FUC_MO01_19(String browserName)
+        {
+            SetUp(browserName);
+            //throw new NotFiniteNumberException();
+            test = extent.StartTest("LOGIN TC_FUC_MO01_19");
+            Console.WriteLine("TC_FUC_MO01_19");
+            IWebElement extenrnal = driver.FindElement(By.Id("Văn Lang"));
+            extenrnal.Click();
+            test.Log(LogStatus.Pass, "Click 'Văn Lang'");
+            //input email
+            IWebElement skype = driver.FindElement(By.Id("i0116"));
+            skype.SendKeys("trang");
+            test.Log(LogStatus.Pass, "Enter valid value into account sendkey : trang'");
+            IWebElement next = driver.FindElement(By.Id("idSIButton9"));
+            next.Click();
+            test.Log(LogStatus.Pass, "Select 'Next'");
+            //input pass
+            IWebElement pass = driver.FindElement(By.Id("i0118"));
+            pass.SendKeys("123");
+            test.Log(LogStatus.Pass, "Enter valid value into 'Password' sendkey : ***'");
+            IWebElement login = driver.FindElement(By.Id("idSIButton9"));
+            login.Click();
+            test.Log(LogStatus.Pass, "Select 'Login'");
+
+            Assert.IsTrue(true);
+            test.Log(LogStatus.Pass, "Assert Pass as condition is True");
         }
 
     }

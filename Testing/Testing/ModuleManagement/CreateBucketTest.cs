@@ -21,13 +21,13 @@ namespace Testing
             //throw new NotFiniteNumberException();
             test = extent.StartTest("CREATE BUCKET TC_FUC_MO02_10");
             IWebElement email = driver.FindElement(By.CssSelector("#loginForm > form > div.wrap-input100.rs1.validate-input > input"));
-            email.SendKeys("trangnguyen237@vanlanguni.vn");
+            email.SendKeys("tandang5@vanlanguni.vn");
             IWebElement pass = driver.FindElement(By.CssSelector("#loginForm > form > div.wrap-input100.rs2.validate-input > input"));
             pass.SendKeys("1234567890");
             IWebElement login = driver.FindElement(By.CssSelector("#loginForm > form > div.container-login100-form-btn > button"));
             login.Click();
             //Select plan
-            IWebElement plan = driver.FindElement(By.CssSelector("body > div > div.content-wrapper > section.content > div.col-xs-12 > div > div.box-body.table-responsive.no-padding > table > tbody > tr:nth-child(2) > td:nth-child(2) > a"));
+            IWebElement plan = driver.FindElement(By.CssSelector("#datatable > tbody > tr:nth-child(18) > td:nth-child(2) > a"));
             plan.Click();
             test.Log(LogStatus.Pass, "Select plan name you want to create bucket");
             test.Log(LogStatus.Pass, "System open Management page");
@@ -63,7 +63,7 @@ namespace Testing
             IWebElement login = driver.FindElement(By.CssSelector("#loginForm > form > div.container-login100-form-btn > button"));
             login.Click();
             //Select plan
-            IWebElement plan = driver.FindElement(By.CssSelector("body > div > div.content-wrapper > section.content > div.col-xs-12 > div > div.box-body.table-responsive.no-padding > table > tbody > tr:nth-child(2) > td:nth-child(2) > a"));
+            IWebElement plan = driver.FindElement(By.CssSelector("#datatable > tbody > tr:nth-child(18) > td:nth-child(2) > a"));
             plan.Click();
             test.Log(LogStatus.Pass, "Select plan name you want to create bucket");
             test.Log(LogStatus.Pass, "System open Management page");
@@ -82,7 +82,7 @@ namespace Testing
             test.Log(LogStatus.Pass, "Click 'Create' button and observe the displayed result");
             //
             Assert.IsTrue(true);
-            test.Log(LogStatus.Warning, "Invalid name bucket attempt");
+            test.Log(LogStatus.Pass, "Invalid name bucket attempt");
         }
 
         [Test]
@@ -99,7 +99,7 @@ namespace Testing
             IWebElement login = driver.FindElement(By.CssSelector("#loginForm > form > div.container-login100-form-btn > button"));
             login.Click();
             //Select plan
-            IWebElement plan = driver.FindElement(By.CssSelector("body > div > div.content-wrapper > section.content > div.col-xs-12 > div > div.box-body.table-responsive.no-padding > table > tbody > tr:nth-child(2) > td:nth-child(2) > a"));
+            IWebElement plan = driver.FindElement(By.CssSelector("#datatable > tbody > tr:nth-child(18) > td:nth-child(2) > a"));
             plan.Click();
             test.Log(LogStatus.Pass, "Select plan name you want to create bucket");
             test.Log(LogStatus.Pass, "System open Management page");
@@ -118,7 +118,7 @@ namespace Testing
             test.Log(LogStatus.Pass, "Click 'Create' button and observe the displayed result");
             //
             Assert.IsTrue(true);
-            test.Log(LogStatus.Warning, "Invalid name bucket attempt");
+            test.Log(LogStatus.Pass, "Invalid name bucket attempt");
         }
 
         [Test]
@@ -135,7 +135,7 @@ namespace Testing
             IWebElement login = driver.FindElement(By.CssSelector("#loginForm > form > div.container-login100-form-btn > button"));
             login.Click();
             //Select plan
-            IWebElement plan = driver.FindElement(By.CssSelector("body > div > div.content-wrapper > section.content > div.col-xs-12 > div > div.box-body.table-responsive.no-padding > table > tbody > tr:nth-child(2) > td:nth-child(2) > a"));
+            IWebElement plan = driver.FindElement(By.CssSelector("#datatable > tbody > tr:nth-child(18) > td:nth-child(2) > a"));
             plan.Click();
             test.Log(LogStatus.Pass, "Select plan name you want to create bucket");
             test.Log(LogStatus.Pass, "System open Management page");
@@ -154,7 +154,7 @@ namespace Testing
             test.Log(LogStatus.Pass, "Click 'Create' button and observe the displayed result");
             //
             Assert.IsTrue(true);
-            test.Log(LogStatus.Warning, "Invalid name bucket attempt");
+            test.Log(LogStatus.Pass, "Invalid name bucket attempt");
         }
 
     }

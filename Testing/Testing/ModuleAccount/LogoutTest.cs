@@ -32,11 +32,11 @@ namespace Testing.Steps
             login.Click();
             test.Log(LogStatus.Pass, "User successfully logged into the system");
 
-            IWebElement button = driver.FindElement(By.CssSelector("body > div.wrapper > header > nav > div > ul > li.dropdown.user.user-menu > a > span"));
+            IWebElement button = driver.FindElement(By.CssSelector("body > div.wrapper > header > nav > div > button > i"));
             button.Click();
-            test.Log(LogStatus.Pass, "Click dropdown-menu");
+            test.Log(LogStatus.Pass, "Click icon Profile");
 
-            IWebElement logout = driver.FindElement(By.CssSelector("#logoutForm > div > a"));
+            IWebElement logout = driver.FindElement(By.CssSelector("#profile > div > div > div > a"));
             logout.Click();
             test.Log(LogStatus.Pass, "Choose button Sign out and result");
 

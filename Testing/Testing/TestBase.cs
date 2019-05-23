@@ -37,7 +37,7 @@ namespace Testing
             else
                 driver = new OperaDriver();
 
-            driver.Navigate().GoToUrl("https://teamfighter.azurewebsites.net");
+            driver.Navigate().GoToUrl("http://cntttest.vanlanguni.edu.vn:18080/Cap21T12/");
             Console.WriteLine("Open URL");
 
         }
