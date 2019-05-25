@@ -497,7 +497,7 @@
                             <div class="box-body">
 
                                 <div class="row">
-                                    @using (Html.BeginForm("Create", "Plans", FormMethod.Post, new { id = "AutoAdd", enctype = "multipart/form-data" }))
+                                    @using (Html.BeginForm("Create", "Plans", FormMethod.Post, new { id = "AutoAdd", enctype = "multipart/form-data", onsubmit = "return validateForm()" ,name = "AutoAdd" }))
                                     {
 
                                         @Html.AntiForgeryToken()
@@ -512,7 +512,7 @@
                                                     <div class="col-md-12">
                                                         <div class="form-group">
 
-                                                            <input type="text" class="form-control" id="Title" name="Title" placeholder="Plan Name">
+                                                            <input type="text" class="form-control Title" id="Title" name="Title" placeholder="Plan Name">
                                                         </div>
                                                     </div>
                                                     <div class="col-md-12" style="display:none">
@@ -524,7 +524,7 @@
 
                                                     <div class="form-group" style="float:right">
                                                         <div class="col-md-offset-2 col-md-10">
-                                                            <input type="submit" value="Submit" class="btn blue" />
+                                                            <input type="submit" value="Submit" id="btnSubmit"  class="btn blue" />
 
                                                         </div>
                                                     </div>
@@ -938,7 +938,43 @@
             evt.currentTarget.className += " active";
         }
 
+        //$(document).ready(function () {
+        //    $('#btnSubmit').click(function (e) {
+        //        var isValid = true;
+        //        $('input[type="text"]').each(function () {
+        //            if ($.trim($(this).val()) == '') {
+        //                isValid = false;
+        //                $(this).css({
+        //                    "border": "1px solid red",
+        //                    "background": "#FFCECE"
+        //                });
+        //            }
+        //            else {
+        //                $(this).css({
+        //                    "border": "",
+        //                    "background": ""
+        //                });
+        //                console.log('Thank you for submitting');
 
+        //            }
+        //        });
+        //        if (isValid == false)
+        //            e.preventDefault();
+        //        else
+        //            console.log('Thank you for submitting');
+
+        //    });
+        //});
+        function validateForm() {
+            var x = document.forms["AutoAdd"]["Title"].value;
+            if (x == "") {             
+                $('input[type="text"]').css({
+                    "border": "1px solid red",
+                     "background": "#FFCECE"
+                  });
+                return false;
+            }
+        }
         $(document).ready(function () {
             $('#datatable').DataTable();         
         });
@@ -949,6 +985,8 @@
             $("#Duedate").focus();
         }
         $(function () {
+          
+
             $("#Startdate").datepicker({
                 numberOfMonths: 2,
                 onSelect: function (selected) {

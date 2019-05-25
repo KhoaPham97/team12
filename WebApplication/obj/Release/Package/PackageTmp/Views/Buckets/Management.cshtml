@@ -1748,7 +1748,7 @@
                                                     <div class="col-md-12">
                                                         <div class="form-group">
 
-                                                            <textarea cols="5" id="Name" name="Name" rows="5" style="width: 100%; max-width: 100%;border: 1px solid #dddddd;" placeholder="Type message..."></textarea>
+                                                            <textarea cols="5" id="Name" name="Name" rows="5" style="width: 100%; max-width: 100%;border: 1px solid #dddddd;" placeholder="Type message..." required></textarea>
 
                                                         </div>
                                                     </div>
@@ -1849,7 +1849,7 @@
 
                                     <div class="form-group">
 
-                                        <input type="text" class="form-control" id="Title" name="Title" placeholder="Task Name">
+                                        <input type="text" class="form-control" id="Title" name="Title" placeholder="Task Name" required>
                                     </div>
 
                                     <div class="col-md-4" style="display: none;">
@@ -1956,7 +1956,7 @@
                         <h4 class="modal-title" style="color:black;font-size:20px">New Bucket</h4>
                     </div>
                     <div class="modal-body">
-                        <form action="@Url.Action("Create", "Buckets")" method="post">
+                        <form action="@Url.Action("Create", "Buckets")" name="Bucket" method="post">
                             @Html.AntiForgeryToken()
                             <!-- left column -->
 
@@ -1968,7 +1968,7 @@
 
                             <div class="form-group">
 
-                                <input type="text" class="form-control" id="Title" name="Title" placeholder="Bucket Name">
+                                <input type="text" class="form-control" id="Title" name="Title" placeholder="Bucket Name" required>
                             </div>
 
                             <div class="modal-footer">
@@ -2054,7 +2054,7 @@
 
                 $.ajax({
                     type: 'GET',
-                    url: "/Comments/getCommentById/"+taskID,
+                    url: "@this.Url.Action(actionName: "getCommentById", controllerName: "Comments")/"+taskID,
                     success: function (data) {
                         console.log(data["ID"]);
                         var button_delete = $('<button class="btn btn-box-tool" type="submit" value="Delete" style="float:right;margin-right:10px;margin-top:10px;"> <i class="fa fa-times"></i></button>');
@@ -2090,7 +2090,7 @@
                         div_item.append(p_message);
 
                         chat.append(div_item);
-                        form.attr('action', '/Comments/Delete/' + data["ID"]);
+                        form.attr('action', '@this.Url.Action(actionName: "Delete", controllerName: "Comments")/' + data["ID"]);
                         form.attr('method', 'POST');
                         form.append('@Html.AntiForgeryToken()');
                         form.append(button_delete);

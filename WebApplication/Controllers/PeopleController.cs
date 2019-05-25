@@ -97,6 +97,25 @@ namespace WebApplication.Controllers
             ViewBag.IDMeeting = new SelectList(db.Meetings, "ID", "Title", person.IDMeeting);
             return View(person);
         }
+        public JsonResult beforeCheckPeople(int? idMeeting)
+        {
+            var allPeople = db.People.Where(x => x.IDMeeting == idMeeting).ToList();
+            // save tất cả cột apply của allpeople thành false tại đây
+            //code here
+            foreach (var people in allPeople)
+            {
+                people.Apply = false;
+                db.Entry(people).State = EntityState.Modified;
+            }
+            db.SaveChanges();
+            return Json(new
+            {
+                status_code = 202,
+                status_message = "All false",
+
+            }, JsonRequestBehavior.AllowGet);
+
+        }
 
         // GET: People/Delete/5
         public ActionResult Delete(int? id)

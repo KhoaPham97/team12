@@ -860,21 +860,21 @@
 
                                                                                         <label>Date</label>
                                                                                         <br />
-                                                                                        <input class="form-control datepicker  text-box single-line " data-val="true" data-val-date="The field Duedate must be a date." id="Date" name="Date" type="datetime" value="@mem.Date.ToString("dd MM yyyy")">
+                                                                                        <input class="form-control datepicker  text-box single-line " data-val="true" data-val-date="The field Duedate must be a date." id="Date" name="Date" type="datetime" value="@mem.Date.ToString("MM dd yyyy")">
                                                                                         <span class="field-validation-valid text-danger" data-valmsg-for="Date" data-valmsg-replace="true"></span>
 
                                                                                     </div>
                                                                                     <div class="col-md-3">
 
                                                                                         <label>Start Time</label>
-                                                                                        <input style="width: 80%" class="form-control timepicker  text-box single-line" data-val="true" data-val-date="The field Duedate must be a date." id="StartTime" name="StartTime" type="datetime" value="@mem.StartTime.ToString(@"hh\:mm")">
+                                                                                        <input style="width: 80%" class="form-control timepicker  text-box single-line" data-val="true" data-val-date="The field Duedate must be a date." id="StartTime" name="StartTime" type="datetime" value="@mem.StartTime.ToString(@"hh\:mm tt")">
                                                                                         <span class="field-validation-valid text-danger" data-valmsg-for="StartTime" data-valmsg-replace="true"></span>
 
                                                                                     </div>
                                                                                     <div class="col-md-3">
 
                                                                                         <label>End Time</label>
-                                                                                        <input style="width: 80%" class="form-control timepicker  text-box single-line" data-val="true" data-val-date="The field Duedate must be a date." id="EndTime" name="EndTime" type="datetime" value="@mem.EndTime.ToString(@"hh\:mm")">
+                                                                                        <input style="width: 80%" class="form-control timepicker  text-box single-line" data-val="true" data-val-date="The field Duedate must be a date." id="EndTime" name="EndTime" type="datetime" value="@mem.EndTime.ToString(@"hh\:mm tt")">
                                                                                         <span class="field-validation-valid text-danger" data-valmsg-for="EndTime" data-valmsg-replace="true"></span>
                                                                                     </div>
 
@@ -1500,7 +1500,7 @@
             var token = $('[name=__RequestVerificationToken]').val();
 
             $.ajax({
-                url: "/People/Edit/" + k,
+                url: " @this.Url.Action(actionName: "Edit", controllerName: "People")/" + k,
                 type: 'POST',
                 dataType: 'json',
                 cache: false,
