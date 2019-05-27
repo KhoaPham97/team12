@@ -7,6 +7,10 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using WebApplication.Models;
+using System.IO;
+
+using System.Configuration;
+using System.Data.SqlClient;
 
 namespace WebApplication.Controllers
 {
@@ -115,6 +119,53 @@ namespace WebApplication.Controllers
 
             }, JsonRequestBehavior.AllowGet);
 
+        }
+        public JsonResult getPeopleById(int id)
+        {
+            var a = db.People.Where(x => x.IDMeeting == id);
+            var comment = a.OrderByDescending(o => o.ID).FirstOrDefault();
+            return Json(new
+            {
+                ID = comment.ID,
+                AccountID = comment.Guest,
+                TaskID = comment.IDMeeting,
+                LastUpdate = comment.Apply,
+         
+            }, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public ActionResult Test(HttpPostedFileBase postedFile, int? id)
+        {
+            byte[] bytes = null;
+            using (BinaryReader br = new BinaryReader(postedFile.InputStream))
+            {
+                bytes = br.ReadBytes(postedFile.ContentLength);
+            }
+
+            string constr = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+            using (SqlConnection con = new SqlConnection(constr))
+            {
+                string query = "UPDATE INTO People VALUES (@Guest,@IDMeeting,@Apply)";
+                using (SqlCommand cmd = new SqlCommand(query))
+                {
+                    cmd.Connection = con;
+                    cmd.Parameters.AddWithValue("@CommentID", DBNull.Value);
+                    cmd.Parameters.AddWithValue("@Reporter", DBNull.Value);
+                    cmd.Parameters.AddWithValue("@Date", DBNull.Value);
+                    cmd.Parameters.AddWithValue("@ChecklistID", DBNull.Value);
+
+                    cmd.Parameters.AddWithValue("@Name", Path.GetFileName(postedFile.FileName));
+                    cmd.Parameters.AddWithValue("@ContentType", postedFile.ContentType);
+                    cmd.Parameters.AddWithValue("@Data", bytes);
+                    cmd.Parameters.AddWithValue("@TaskID", Convert.ToInt32(id));
+                    con.Open();
+                    cmd.ExecuteNonQuery();
+                    con.Close();
+                }
+            }
+
+            return Redirect(Request.UrlReferrer.ToString());
         }
 
         // GET: People/Delete/5
