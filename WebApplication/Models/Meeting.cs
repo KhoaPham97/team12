@@ -18,6 +18,7 @@ namespace WebApplication.Models
         public Meeting()
         {
             this.People = new HashSet<Person>();
+            this.FileMeetings = new HashSet<FileMeeting>();
         }
     
         public int ID { get; set; }
@@ -28,9 +29,13 @@ namespace WebApplication.Models
         public string Owner { get; set; }
         public string Location { get; set; }
         public string Description { get; set; }
+        public int StatusID { get; set; }
     
         public virtual AspNetUser AspNetUser { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Person> People { get; set; }
+        public virtual Status Status { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<FileMeeting> FileMeetings { get; set; }
     }
 }

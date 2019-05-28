@@ -214,6 +214,7 @@
     <EntitySetMapping Name="Meetings">
       <EntityTypeMapping TypeName="cap21t12Model.Meeting">
         <MappingFragment StoreEntitySet="Meeting">
+          <ScalarProperty Name="StatusID" ColumnName="StatusID" />
           <ScalarProperty Name="Description" ColumnName="Description" />
           <ScalarProperty Name="Location" ColumnName="Location" />
           <ScalarProperty Name="Owner" ColumnName="Owner" />
@@ -221,6 +222,17 @@
           <ScalarProperty Name="EndTime" ColumnName="EndTime" />
           <ScalarProperty Name="StartTime" ColumnName="StartTime" />
           <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FileMeetings">
+      <EntityTypeMapping TypeName="cap21t12Model.FileMeeting">
+        <MappingFragment StoreEntitySet="FileMeeting">
+          <ScalarProperty Name="MeetingID" ColumnName="MeetingID" />
+          <ScalarProperty Name="Data" ColumnName="Data" />
+          <ScalarProperty Name="ContentType" ColumnName="ContentType" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="ID" ColumnName="ID" />
         </MappingFragment>
       </EntityTypeMapping>

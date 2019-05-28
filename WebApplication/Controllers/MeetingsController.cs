@@ -21,11 +21,95 @@ namespace WebApplication.Controllers
         // GET: Meetings
         public ActionResult Index()
         {
-            var meetings = db.Meetings.Include(m => m.AspNetUser);
-            return View(meetings.ToList());
+            return Redirect(Request.UrlReferrer.ToString());
+        }
+
+        [HttpPost]
+        public ActionResult Index(HttpPostedFileBase postedFile, int? id)
+        {
+            byte[] bytes = null;
+            using (BinaryReader br = new BinaryReader(postedFile.InputStream))
+            {
+                bytes = br.ReadBytes(postedFile.ContentLength);
+            }
+
+            string constr = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+            using (SqlConnection con = new SqlConnection(constr))
+            {
+                string query = "INSERT INTO FileMeeting VALUES (@Name, @ContentType, @Data,@MeetingID)";
+                using (SqlCommand cmd = new SqlCommand(query))
+                {
+                    cmd.Connection = con;               
+
+                    cmd.Parameters.AddWithValue("@Name", Path.GetFileName(postedFile.FileName));
+                    cmd.Parameters.AddWithValue("@ContentType", postedFile.ContentType);
+                    cmd.Parameters.AddWithValue("@Data", bytes);
+                    cmd.Parameters.AddWithValue("@MeetingID", Convert.ToInt32(id));
+                    con.Open();
+                    cmd.ExecuteNonQuery();
+                    con.Close();
+                }
+            }
+
+            return Redirect(Request.UrlReferrer.ToString());
+        }
+        [HttpPost]
+        public FileResult DownloadFile(int? fileId)
+        {
+            byte[] bytes;
+            string fileName, contentType;
+            string constr = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+            using (SqlConnection con = new SqlConnection(constr))
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.CommandText = "SELECT Name, Data, ContentType FROM FileMeeting WHERE ID=@Id";
+                    cmd.Parameters.AddWithValue("@ID", fileId);
+                    cmd.Connection = con;
+                    con.Open();
+                    using (SqlDataReader sdr = cmd.ExecuteReader())
+                    {
+                        sdr.Read();
+                        bytes = (byte[])sdr["Data"];
+                        contentType = sdr["ContentType"].ToString();
+                        fileName = sdr["Name"].ToString();
+                    }
+                    con.Close();
+                }
+            }
+
+            return File(bytes, contentType, fileName);
+        }
+
+        private static List<Attachment> GetFiles()
+        {
+            List<Attachment> files = new List<Attachment>();
+            string constr = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+            using (SqlConnection con = new SqlConnection(constr))
+            {
+                using (SqlCommand cmd = new SqlCommand("SELECT Id, Name FROM FileMeeting"))
+                {
+                    cmd.Connection = con;
+                    con.Open();
+                    using (SqlDataReader sdr = cmd.ExecuteReader())
+                    {
+                        while (sdr.Read())
+                        {
+                            files.Add(new Attachment
+                            {
+                                ID = Convert.ToInt32(sdr["Id"]),
+                                Name = sdr["Name"].ToString()
+                            });
+                        }
+                    }
+                    con.Close();
+                }
+            }
+            return files;
         }
         public ActionResult Management(int? id)
         {
+            ViewBag.Status = db.Status;
             ViewBag.Profile = db.Profiles;
             ViewBag.Meetings = db.Meetings.Where(x => x.ID == id); ;
             ViewBag.People = db.People.Where(x => x.IDMeeting == id); ;
@@ -60,7 +144,7 @@ namespace WebApplication.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,Title,StartTime,EndTime,Date,Owner,Location,Description")] Meeting meeting)
+        public ActionResult Create([Bind(Include = "ID,Title,StartTime,EndTime,Date,Owner,Location,Description,StatusID")] Meeting meeting)
         {
             if (ModelState.IsValid)
             {
@@ -94,7 +178,7 @@ namespace WebApplication.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,Title,StartTime,EndTime,Date,Owner,Location,Description")] Meeting meeting)
+        public ActionResult Edit([Bind(Include = "ID,Title,StartTime,EndTime,Date,Owner,Location,Description,StatusID")] Meeting meeting)
         {
             if (ModelState.IsValid)
             {

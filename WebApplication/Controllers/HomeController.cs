@@ -46,6 +46,8 @@ namespace WebApplication.Controllers
         }
         public ActionResult Calendar()
         {
+            ViewBag.FileMeetings = db.FileMeetings;
+            ViewBag.Status = db.Status;
             ViewBag.Assignee = db.AspNetUsers;
             ViewBag.Listmembers = db.ListMembers;
             ViewBag.Profile = db.Profiles;

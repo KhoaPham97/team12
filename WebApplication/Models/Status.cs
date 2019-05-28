@@ -18,6 +18,7 @@ namespace WebApplication.Models
         public Status()
         {
             this.Tasks = new HashSet<Task>();
+            this.Meetings = new HashSet<Meeting>();
         }
     
         public int ID { get; set; }
@@ -26,5 +27,7 @@ namespace WebApplication.Models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Task> Tasks { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Meeting> Meetings { get; set; }
     }
 }

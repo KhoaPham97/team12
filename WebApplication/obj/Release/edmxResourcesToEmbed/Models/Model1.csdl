@@ -136,6 +136,15 @@
       <End Role="Meeting" EntitySet="Meetings" />
       <End Role="Person" EntitySet="People" />
     </AssociationSet>
+    <AssociationSet Name="FK_Meeting_Status" Association="cap21t12Model.FK_Meeting_Status">
+      <End Role="Status" EntitySet="Status" />
+      <End Role="Meeting" EntitySet="Meetings" />
+    </AssociationSet>
+    <EntitySet Name="FileMeetings" EntityType="cap21t12Model.FileMeeting" />
+    <AssociationSet Name="FK_FileMeeting_Meeting" Association="cap21t12Model.FK_FileMeeting_Meeting">
+      <End Role="Meeting" EntitySet="Meetings" />
+      <End Role="FileMeeting" EntitySet="FileMeetings" />
+    </AssociationSet>
   </EntityContainer>
   <ComplexType Name="sp_helpdiagramdefinition_Result">
     <Property Type="Int32" Name="version" Nullable="true" />
@@ -245,6 +254,7 @@
     <Property Name="StatusName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="Description" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="Tasks" Relationship="cap21t12Model.FK_Task_Status" FromRole="Status" ToRole="Task" />
+    <NavigationProperty Name="Meetings" Relationship="cap21t12Model.FK_Meeting_Status" FromRole="Status" ToRole="Meeting" />
   </EntityType>
   <EntityType Name="sysdiagram">
     <Key>
@@ -605,6 +615,9 @@
     <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="AspNetUser" Relationship="cap21t12Model.FK_Meeting_AspNetUsers" FromRole="Meeting" ToRole="AspNetUser" />
     <NavigationProperty Name="People" Relationship="cap21t12Model.FK_People_Meeting" FromRole="Meeting" ToRole="Person" />
+    <Property Name="StatusID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Status" Relationship="cap21t12Model.FK_Meeting_Status" FromRole="Meeting" ToRole="Status" />
+    <NavigationProperty Name="FileMeetings" Relationship="cap21t12Model.FK_FileMeeting_Meeting" FromRole="Meeting" ToRole="FileMeeting" />
   </EntityType>
   <Association Name="FK_Meeting_AspNetUsers">
     <End Type="cap21t12Model.AspNetUser" Role="AspNetUser" Multiplicity="1" />
@@ -627,6 +640,41 @@
       </Principal>
       <Dependent Role="Person">
         <PropertyRef Name="IDMeeting" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Meeting_Status">
+    <End Type="cap21t12Model.Status" Role="Status" Multiplicity="1" />
+    <End Type="cap21t12Model.Meeting" Role="Meeting" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Status">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Meeting">
+        <PropertyRef Name="StatusID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="FileMeeting">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="ContentType" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Data" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+    <Property Name="MeetingID" Type="Int32" />
+    <NavigationProperty Name="Meeting" Relationship="cap21t12Model.FK_FileMeeting_Meeting" FromRole="FileMeeting" ToRole="Meeting" />
+  </EntityType>
+  <Association Name="FK_FileMeeting_Meeting">
+    <End Type="cap21t12Model.Meeting" Role="Meeting" Multiplicity="0..1" />
+    <End Type="cap21t12Model.FileMeeting" Role="FileMeeting" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Meeting">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="FileMeeting">
+        <PropertyRef Name="MeetingID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

@@ -44,6 +44,7 @@ namespace WebApplication.Models
         public virtual DbSet<Profile> Profiles { get; set; }
         public virtual DbSet<Person> People { get; set; }
         public virtual DbSet<Meeting> Meetings { get; set; }
+        public virtual DbSet<FileMeeting> FileMeetings { get; set; }
     
         public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
         {

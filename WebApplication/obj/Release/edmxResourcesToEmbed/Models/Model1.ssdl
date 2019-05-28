@@ -102,6 +102,16 @@
     <Property Name="LastUpdate" Type="datetime" Nullable="false" />
     <Property Name="Name" Type="nvarchar" MaxLength="250" Nullable="false" />
   </EntityType>
+  <EntityType Name="FileMeeting">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="ContentType" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="Data" Type="varbinary(max)" Nullable="false" />
+    <Property Name="MeetingID" Type="int" />
+  </EntityType>
   <EntityType Name="ListMember">
     <Key>
       <PropertyRef Name="ID" />
@@ -125,6 +135,7 @@
     <Property Name="Owner" Type="nvarchar" MaxLength="128" Nullable="false" />
     <Property Name="Location" Type="nvarchar" MaxLength="255" />
     <Property Name="Description" Type="nvarchar" MaxLength="255" />
+    <Property Name="StatusID" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="People">
     <Key>
@@ -338,6 +349,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_FileMeeting_Meeting">
+    <End Role="Meeting" Type="Self.Meeting" Multiplicity="0..1" />
+    <End Role="FileMeeting" Type="Self.FileMeeting" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Meeting">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="FileMeeting">
+        <PropertyRef Name="MeetingID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_ListMember_AspNetUsers">
     <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
     <End Role="ListMember" Type="Self.ListMember" Multiplicity="*" />
@@ -371,6 +394,18 @@
       </Principal>
       <Dependent Role="Meeting">
         <PropertyRef Name="Owner" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Meeting_Status">
+    <End Role="Status" Type="Self.Status" Multiplicity="1" />
+    <End Role="Meeting" Type="Self.Meeting" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Status">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Meeting">
+        <PropertyRef Name="StatusID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -512,6 +547,7 @@
     <EntitySet Name="Buckets" EntityType="Self.Buckets" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Checklist" EntityType="Self.Checklist" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Comments" EntityType="Self.Comments" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="FileMeeting" EntityType="Self.FileMeeting" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ListMember" EntityType="Self.ListMember" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Meeting" EntityType="Self.Meeting" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="People" EntityType="Self.People" Schema="dbo" store:Type="Tables" />
@@ -568,6 +604,10 @@
       <End Role="AspNetUsers" EntitySet="AspNetUsers" />
       <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
     </AssociationSet>
+    <AssociationSet Name="FK_FileMeeting_Meeting" Association="Self.FK_FileMeeting_Meeting">
+      <End Role="Meeting" EntitySet="Meeting" />
+      <End Role="FileMeeting" EntitySet="FileMeeting" />
+    </AssociationSet>
     <AssociationSet Name="FK_ListMember_AspNetUsers" Association="Self.FK_ListMember_AspNetUsers">
       <End Role="AspNetUsers" EntitySet="AspNetUsers" />
       <End Role="ListMember" EntitySet="ListMember" />
@@ -578,6 +618,10 @@
     </AssociationSet>
     <AssociationSet Name="FK_Meeting_AspNetUsers" Association="Self.FK_Meeting_AspNetUsers">
       <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="Meeting" EntitySet="Meeting" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Meeting_Status" Association="Self.FK_Meeting_Status">
+      <End Role="Status" EntitySet="Status" />
       <End Role="Meeting" EntitySet="Meeting" />
     </AssociationSet>
     <AssociationSet Name="FK_People_AspNetUsers" Association="Self.FK_People_AspNetUsers">
