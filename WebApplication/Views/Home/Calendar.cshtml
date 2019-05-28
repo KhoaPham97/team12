@@ -1484,21 +1484,29 @@
                 data: JSON.stringify(sendInfo),
                 success: function (data) {
                     //return id moi nhat vua dc tao.
-                    let id_moi_nhat_vua_duoc_tao = data.id; //lay id moi nhat vua dc them
-                    let parent = this_send.closest("div.invite_guest");
-                    let div_check = parent.find(".check_guest");
-                    let new_div_ckb = $("<div class='checkbox'></div>")
-                    let label_ckb = $("<label></label>");
-                    let input_ckb = $("<input type='checkbox'>");
-                    input_ckb.attr("data-id", id_moi_nhat_vua_duoc_tao);
                    
-                    input_ckb.val(email2)
-                    input_ckb.attr("name", "check_email");
+                     $.ajax({
+                         type: 'GET',
+                         url: "@this.Url.Action(actionName: "getPeopleById", controllerName: "People")/" + id,
+                    success: function (data) {
+                        console.log(data["ID"]);
+                        let id_moi_nhat_vua_duoc_tao = data["ID"]; //lay id moi nhat vua dc them
+                        let parent = this_send.closest("div.invite_guest");
+                        let div_check = parent.find(".check_guest");
+                        let new_div_ckb = $("<div class='checkbox'></div>")
+                        let label_ckb = $("<label></label>");
+                        let input_ckb = $("<input type='checkbox'>");
+                        input_ckb.attr("data-id", id_moi_nhat_vua_duoc_tao);
 
-                    label_ckb.append(input_ckb).append(email)
-                    new_div_ckb.append(label_ckb)
-                    div_check.append(new_div_ckb);
-                    console.log(div_check)
+                        input_ckb.val(email2)
+                        input_ckb.attr("name", "check_email");
+
+                        label_ckb.append(input_ckb).append(email)
+                        new_div_ckb.append(label_ckb)
+                        div_check.append(new_div_ckb);
+                        console.log(div_check)
+                         }
+                     });
                 },
             });
             $('#mySelect').append('<option value="' + email2 + '">' + email + '</option>');
@@ -1528,8 +1536,9 @@
             console.log(ckb_group);
             // controller thêm action cho tất cả id meeting = id hiện tại cho cột apply status = false hết
             //ajax apple status = faslse đặt trong đây
+          
             $.ajax({
-                url: "/People/beforeCheckPeople/" + id,
+                url:   "@this.Url.Action(actionName: "beforeCheckPeople", controllerName: "People")/" + id,
                 type: 'get',
                 data: {
                     idMeeting: id
@@ -1542,9 +1551,9 @@
                         var kk = $(this).val();
                         var k = $(this).data("id");
                         console.log(k);
-
+                       
                         $.ajax({
-                            url: "/People/Edit/" + k,
+                            url:  "@this.Url.Action(actionName: "Edit", controllerName: "People")/" + k,
                             type: 'POST',
                             dataType: 'json',
                             cache: false,

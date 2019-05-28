@@ -701,14 +701,14 @@
                                                     <div class="col-md-12">
                                                         <div class="form-group">
                                                             <label>Title</label>
-                                                            <input type="text" class="form-control" id="Title" name="Title" placeholder="Title">
+                                                            <input type="text" class="form-control" id="Title" name="Title" placeholder="Title" required>
                                                         </div>
                                                     </div>
 
                                                     <div class="col-md-12">
                                                         <div class="form-group">
                                                             <label>Date</label>
-                                                            <input class="form-control  datepicker  text-box single-line" data-val="true" data-val-date="The field Startdate must be a date." id="Date" name="Date" type="datetime">
+                                                            <input class="form-control  datepicker  text-box single-line" data-val="true" data-val-date="The field Startdate must be a date." id="Date" name="Date" type="datetime" required>
                                                             <span class="field-validation-valid text-danger" data-valmsg-for="Date" data-valmsg-replace="true"></span>
 
                                                         </div>
@@ -716,7 +716,7 @@
                                                     <div class="col-md-6">
                                                         <div class="form-group">
                                                             <label>Start Time</label>
-                                                            <input class="form-control timepicker text-box single-line" data-val="true" data-val-date="The field Startdate must be a date." id="StartTime" name="StartTime" type="datetime" data-format="hh:mm:ss">
+                                                            <input class="form-control timepicker text-box single-line" data-val="true" data-val-date="The field Startdate must be a date." id="StartTime" name="StartTime" type="datetime" data-format="hh:mm:ss" required>
                                                             <span class="field-validation-valid text-danger" data-valmsg-for="Date" data-valmsg-replace="true"></span>
 
                                                         </div>
@@ -724,7 +724,7 @@
                                                     <div class="col-md-6">
                                                         <div class="form-group">
                                                             <label>End Time</label>
-                                                            <input class="form-control timepicker text-box single-line" data-val="true" data-val-date="The field Startdate must be a date." id="Date" name="EndTime" type="EndTime" data-format="hh:mm:ss">
+                                                            <input class="form-control timepicker text-box single-line" data-val="true" data-val-date="The field Startdate must be a date." id="Date" name="EndTime" type="datetime" data-format="hh:mm:ss" required>
                                                             <span class="field-validation-valid text-danger" data-valmsg-for="Date" data-valmsg-replace="true"></span>
 
                                                         </div>
@@ -742,7 +742,7 @@
 
                                                         <div class="form-group">
                                                             <label>Location</label>
-                                                            <input type="text" class="form-control" id="Location" name="Location" placeholder="Location">
+                                                            <input type="text" class="form-control" id="Location" name="Location" placeholder="Location" required>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-12">
@@ -927,8 +927,8 @@
 
                                                                             <div class="box-body" style="display: none;">
                                                                                 @*@using (Html.BeginForm("Create", "People",FormMethod.Post ,new { id = "AutoAdd" }))
-        {
-            @Html.AntiForgeryToken()*@
+                                                                                    {
+                                                                                        @Html.AntiForgeryToken()*@
 
 
                                                                                 <div class="col-md-12">
@@ -1005,68 +1005,86 @@
                                                                                     <input class="check-box" data-val="true" data-val-required="The Apply field is required." id="Apply" name="Apply" type="checkbox" value="false"><input name="Apply" type="hidden" value="false">
                                                                                     <span class="field-validation-valid text-danger" data-valmsg-for="Apply" data-valmsg-replace="true"></span>
                                                                                 </div>
-                                                                                <div class="col-md-12" style="float:right">
-                                                                                    <div class="form-group">
-                                                                                        <label>Guest</label>
-                                                                                        <select class="form-control Guest select_email" id="Guest" name="Guest">
-                                                                                            @foreach (var aa in ViewBag.Assignee)
-                                                                                            {
-                                                                                                <option value="@aa.Id">@aa.Email</option>
-                                                                                            }
-                                                                                        </select>
+                                                                                <div class="invite_guest">
+                                                                                    <div class="col-md-12" style="float:right">
+                                                                                        <div class="form-group">
+                                                                                            <label>Guest</label>
+                                                                                            <select class="form-control Guest select_email" id="Guest" name="Guest">
+                                                                                                @foreach (var aa in ViewBag.Assignee)
+                                                                                                {
+                                                                                                    <option value="@aa.Id">@aa.Email</option>
+                                                                                                }
+                                                                                            </select>
+                                                                                        </div>
+                                                                                        <p id="demo"></p>
+                                                                                        @if (mem.Owner == @User.Identity.GetUserId())
+                                                                                        {
+
+                                                                                            <button class="click_me btn btn-info myButton" style="float:right">Send</button>
+                                                                                        }
                                                                                     </div>
 
-                                                                                </div>
+                                                                                    <div class="col-md-12 " style="float:right">
+                                                                                        <div class="form-group">
+                                                                                            <label>Check Guest Apply</label>
 
-                                                                                <p id="demo"></p>
-                                                                                @if (mem.Owner == @User.Identity.GetUserId())
-                                                                                {
-
-                                                                                    <button class="click_me btn btn-info myButton" style="float:right">Send</button>
-                                                                                }
-
-
-                                                                                <div class="col-md-12" style="float:right">
-                                                                                    <div class="form-group">
-                                                                                        <label>Check Guest Apply</label>
-
-                                                                                        <select class="form-control A" id="mySelect" name="mySelect">
-                                                                                            @foreach (var aa in ViewBag.Assignee)
-                                                                                            {
-                                                                                                foreach (var a in ViewBag.People)
+                                                                                            <div class="form-group check_guest">
+                                                                                                @foreach (var aa in ViewBag.Assignee)
                                                                                                 {
-                                                                                                    if (a.Guest == aa.Id && a.IDMeeting == mem.ID)
+                                                                                                    foreach (var a in ViewBag.People)
                                                                                                     {
-                                                                                                        <option value="@a.ID,@aa.Id">@aa.Email </option>
+                                                                                                        if (a.Guest == aa.Id && a.IDMeeting == mem.ID)
+                                                                                                        {
+                                                                                                            if (a.Apply == true)
+                                                                                                            {
+                                                                                                                <div class="checkbox">
+
+                                                                                                                    <label><input checked type="checkbox" name="check_email" data-id="@a.ID" value="@aa.Id">@aa.Email </label>
+                                                                                                                </div>
+                                                                                                            }
+                                                                                                            else
+                                                                                                            {
+                                                                                                                <div class="checkbox">
+
+                                                                                                                    <label><input type="checkbox" name="check_email" data-id="@a.ID" value="@aa.Id">@aa.Email </label>
+                                                                                                                </div>
+                                                                                                            }
+
+
+                                                                                                        }
                                                                                                     }
                                                                                                 }
-                                                                                            }
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <button class="click_mee btn btn-info myButton" style="float:right">Check</button>
 
-                                                                                        </select>
                                                                                     </div>
-
                                                                                 </div>
-                                                                                <button class="click_mee btn btn-info myButton" style="float:right">Check</button>
-                                                                                <div class="col-md-12" style="float:right">
-                                                                                    <div class="form-group">
-                                                                                        <label>Guests Have Applied</label>
 
-                                                                                        <select class="form-control AA" id="mySelecttt" name="mySelecttt">
-                                                                                            @foreach (var aa in ViewBag.Assignee)
-                                                                                            {
-                                                                                                foreach (var a in ViewBag.People)
+
+
+
+
+                                                                                @*<div class="col-md-12" style="float:right">
+                                                                                        <div class="form-group">
+                                                                                            <label>Guests Have Applied</label>
+
+                                                                                            <select class="form-control AA" id="mySelecttt" name="mySelecttt">
+                                                                                                @foreach (var aa in ViewBag.Assignee)
                                                                                                 {
-                                                                                                    if (a.Guest == aa.Id && a.IDMeeting == mem.ID && a.Apply == true)
+                                                                                                    foreach (var a in ViewBag.People)
                                                                                                     {
-                                                                                                        <option value="@a.ID,@aa.Id">@aa.Email </option>
+                                                                                                        if (a.Guest == aa.Id && a.IDMeeting == mem.ID && a.Apply == true)
+                                                                                                        {
+                                                                                                            <option value="@a.ID,@aa.Id">@aa.Email </option>
+                                                                                                        }
                                                                                                     }
                                                                                                 }
-                                                                                            }
 
-                                                                                        </select>
-                                                                                    </div>
+                                                                                            </select>
+                                                                                        </div>
 
-                                                                                </div>
+                                                                                    </div>*@
                                                                                 @*}*@
                                                                             </div>
                                                                             <!-- /.box-body -->
@@ -1402,25 +1420,30 @@
     <script>
 
 
-        $('.click_me').on('click', function () {
-            var email = $(this).closest('div').find('.select_email option:selected').text();
-            var email2 = $(this).closest('div').find('.select_email').val();
-            var id = $(this).closest('div').find('.select_id').val();
-            var title = $(this).closest('div').find('.select_title').val();
-            var date = $(this).closest('div').find('.select_date').val();
-            var starttime = $(this).closest('div').find('.select_starttime').val();
-            var endtime = $(this).closest('div').find('.select_endtime').val();
-            var content = $(this).closest('div').find('.select_content').val();
-            var location = $(this).closest('div').find('.select_location').val();
-            console.log(email2)
-            console.log(email)
+        $('.click_me').on('click', function (e) {
+            e.preventDefault();
+            var this_send = $(this);
+            var this_2 = $(this).closest("div").parent().parent();
+            var email = this_2.find('.select_email option:selected').text();
+            var email2 = this_2.find('.select_email').val();
+            var id = this_2.find('.select_id').val();
+            var title = this_2.find('.select_title').val();
+            var date = this_2.find('.select_date').val();
+            var starttime = this_2.find('.select_starttime').val();
+            var endtime = this_2.find('.select_endtime').val();
+            var content = this_2.find('.select_content').val();
+            var location = this_2.find('.select_location').val();
+            var myemail = $('#MyEmail').text();
             console.log(id)
             console.log(title)
             console.log(date)
             console.log(starttime)
             console.log(endtime)
-
-            var myemail = $('#MyEmail').text();
+            console.log(content)
+            console.log(location)
+            console.log(myemail)
+            console.log(email)
+        
             var url = window.location.href;
             var sendInfo = {
                 meetingName: title,
@@ -1431,19 +1454,8 @@
                 location: location,
                 inviter: myemail,
                 receiver: email
-
             };
 
-            $.ajax({
-                url: 'https://prod-05.southeastasia.logic.azure.com:443/workflows/65344e71ff55442d9b88b5e794a10fad/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=3G9lhWckp9uyTAIOd0j6xIufjaiFOx1CIofCwDT0mZo',
-                type: 'post',
-                dataType: 'json',
-                contentType: 'application/json',
-                success: function (data) {
-                    alert(data);
-                },
-                data: JSON.stringify(sendInfo)
-            });
             var url2 = "@this.Url.Action(actionName: "Create", controllerName: "People")";
 
 
@@ -1464,6 +1476,39 @@
 
                 }
             });
+        
+            $.ajax({
+                url: 'https://prod-05.southeastasia.logic.azure.com:443/workflows/65344e71ff55442d9b88b5e794a10fad/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=3G9lhWckp9uyTAIOd0j6xIufjaiFOx1CIofCwDT0mZo',
+                type: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify(sendInfo),
+                success: function (data) {
+                    //return id moi nhat vua dc tao.
+                   
+                     $.ajax({
+                         type: 'GET',
+                         url: "@this.Url.Action(actionName: "getPeopleById", controllerName: "People")/" + id,
+                    success: function (data) {
+                        console.log(data["ID"]);
+                        let id_moi_nhat_vua_duoc_tao = data["ID"]; //lay id moi nhat vua dc them
+                        let parent = this_send.closest("div.invite_guest");
+                        let div_check = parent.find(".check_guest");
+                        let new_div_ckb = $("<div class='checkbox'></div>")
+                        let label_ckb = $("<label></label>");
+                        let input_ckb = $("<input type='checkbox'>");
+                        input_ckb.attr("data-id", id_moi_nhat_vua_duoc_tao);
+
+                        input_ckb.val(email2)
+                        input_ckb.attr("name", "check_email");
+
+                        label_ckb.append(input_ckb).append(email)
+                        new_div_ckb.append(label_ckb)
+                        div_check.append(new_div_ckb);
+                        console.log(div_check)
+                         }
+                     });
+                },
+            });
             $('#mySelect').append('<option value="' + email2 + '">' + email + '</option>');
 
         })
@@ -1475,46 +1520,56 @@
 
 
         });
-        $('.click_mee').on('click', function () {
-            var email = $(this).closest('div').find('.A option:selected').text();
-            var email22 = $(this).closest('div').find('.A').val();
-            var k = email22.split(",")[0]; 
-            var kk = email22.split(",")[1]; 
-            var id = $(this).closest('div').find('.select_id').val();
-            var title = $(this).closest('div').find('.select_title').val();
-            var date = $(this).closest('div').find('.select_date').val();
-            var starttime = $(this).closest('div').find('.select_starttime').val();
-            var endtime = $(this).closest('div').find('.select_endtime').val();
-            var content = $(this).closest('div').find('.select_content').val();
-            var location = $(this).closest('div').find('.select_location').val();
-            console.log(k)
-            console.log(kk)
-            console.log(email22)
-            console.log(email)
-            console.log(id)
-            console.log(title)
-            console.log(date)
-            console.log(starttime)
-            console.log(endtime)
+        $(document).on('click', '.click_mee', function () {
 
-            var token = $('[name=__RequestVerificationToken]').val();
-
+            var this_2 = $(this).closest("div").parent().parent();
+            var ckb_group = $(document).find($(this)).closest("div").find('input[name="check_email"]');
+            var id = this_2.find('.select_id').val();
+            var title = this_2.find('.select_title').val();
+            var date = this_2.find('.select_date').val();
+            var starttime = this_2.find('.select_starttime').val();
+            var endtime = this_2.find('.select_endtime').val();
+            var content = this_2.find('.select_content').val();
+            var location = this_2.find('.select_location').val();
+            var email = this_2.find('.select_email option:selected').text();
+            var email2 = this_2.find('.select_email').val();
+            console.log(ckb_group);
+            // controller thêm action cho tất cả id meeting = id hiện tại cho cột apply status = false hết
+            //ajax apple status = faslse đặt trong đây
+          
             $.ajax({
-                url: " @this.Url.Action(actionName: "Edit", controllerName: "People")/" + k,
-                type: 'POST',
-                dataType: 'json',
-                cache: false,
+                url:   "@this.Url.Action(actionName: "beforeCheckPeople", controllerName: "People")/" + id,
+                type: 'get',
                 data: {
-                    __RequestVerificationToken: token,
-                    'Guest': kk,
-                    'IDMeeting': id,
-                    'Apply': 'True',
+                    idMeeting: id
                 },
                 success: function (data) {
-
+                    console.log(data)
+                    $('input[name="check_email"]:checked').each(function () {
+                        var token = $('[name=__RequestVerificationToken]').val();
+                        console.log(this.value);
+                        var kk = $(this).val();
+                        var k = $(this).data("id");
+                        console.log(k);
+                       
+                        $.ajax({
+                            url:  "@this.Url.Action(actionName: "Edit", controllerName: "People")/" + k,
+                            type: 'POST',
+                            dataType: 'json',
+                            cache: false,
+                            data: {
+                                __RequestVerificationToken: token,
+                                'Guest': kk,
+                                'IDMeeting': id,
+                                'Apply': 'True',
+                            },
+                            success: function (data) {
+                                alert('thanh cong');
+                            }
+                        });
+                    });
                 }
             });
-            $('#mySelecttt').append('<option value="' + kk + '">' + email + '</option>');
 
         })
 
@@ -1534,7 +1589,7 @@
             //$(".Guest").select2({ width: '100%', maximumSelectionSize: 1, placeholder: "Start typing" });
             $(".Guest").select2({ width: '100%' });
             $(".A").select2({ width: '100%' });
-          
+
         });
         $('.datepicker').datepicker({
 
@@ -1543,7 +1598,7 @@
         $('.timepicker').timepicker({
             showInputs: false
         });
-    
+
         function openCity(evt, cityName) {
             var i, tabcontent, tablinks;
             tabcontent = document.getElementsByClassName("tabcontent");

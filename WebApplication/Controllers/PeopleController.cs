@@ -123,13 +123,13 @@ namespace WebApplication.Controllers
         public JsonResult getPeopleById(int id)
         {
             var a = db.People.Where(x => x.IDMeeting == id);
-            var comment = a.OrderByDescending(o => o.ID).FirstOrDefault();
+            var people = a.OrderByDescending(o => o.ID).FirstOrDefault();
             return Json(new
             {
-                ID = comment.ID,
-                AccountID = comment.Guest,
-                TaskID = comment.IDMeeting,
-                LastUpdate = comment.Apply,
+                ID = people.ID,
+                GuestID = people.Guest,
+                MeetingID = people.IDMeeting,
+                Apply = people.Apply,
          
             }, JsonRequestBehavior.AllowGet);
         }
