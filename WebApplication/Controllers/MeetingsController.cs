@@ -225,6 +225,7 @@ namespace WebApplication.Controllers
         {
             Meeting meeting = db.Meetings.Find(id);
             db.People.RemoveRange(db.People.Where(x => x.IDMeeting == id));
+            db.FileMeetings.RemoveRange(db.FileMeetings.Where(x => x.MeetingID == id));
             db.Meetings.Remove(meeting);
             db.SaveChanges();
             return RedirectToAction("Calendar", "Home");

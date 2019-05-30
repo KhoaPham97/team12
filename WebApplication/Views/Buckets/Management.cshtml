@@ -1018,73 +1018,88 @@
                                 }
                             </div>
                         </div>
-                
+
                         @using (Html.BeginForm("Create", "Listmembers", FormMethod.Post))
                         {
                             @Html.AntiForgeryToken()
-                            <div class="modal-body">
-
-                                @foreach (var data in ViewBag.Message)
+                        <div class="modal-body">
+                            <select class="form-control" id="abc" name="abc" style="font-size:20px;display:none" >
+                                @foreach (var aa in ViewBag.Listmembers)
                                 {
-                                    <input type="hidden" class="form-control" id="PlanID" name="PlanID" value="@data.IDPlan" hidden>
-                                }
-                                <div class="form-group">
-                                    <label style="font-size:18px; color:black">Member</label>
-                                    <select class="form-control Assignee " id="AccountID" name="AccountID" style="font-size:20px">
-
-                                        @foreach (var ass in ViewBag.Assignee)
+                                    foreach (var bb in ViewBag.Assignee)
+                                    {
+                                        if (aa.AccountID == bb.Id)
                                         {
-
-                                            <option value="@ass.Id">@ass.Email </option>
-
+                                            <option value="@bb.Id">@bb.Email </option>
 
                                         }
-                                    </select>
+                                    }
+                                }
+                            </select>
+
+                            @foreach (var data in ViewBag.Message)
+                            {
+                                <input type="hidden" class="form-control select_planid" id="PlanID" name="PlanID" value="@data.IDPlan" hidden>
+                            }
+                            <div class="form-group">
+                                <label style="font-size:18px; color:black">Member</label>
+                                <select class="form-control Assignee " id="AccountID" name="AccountID" style="font-size:20px">
+
+                                    @foreach (var ass in ViewBag.Assignee)
+                                    {
+
+                                        <option value="@ass.Id">@ass.Email </option>
 
 
-                                </div>
-
-                                <br />   <br />   <br />
-                                <div class="form-group">
-                                    <label style="font-size:18px; color:black;float:left">
-                                        Role In Project : <input class="check-box" data-val="true" data-val-required="The RoleProject field is required." id="RoleProject" name="RoleProject" type="checkbox" value="true"><input name="RoleProject" type="hidden" value="false">
-                                        <span class="field-validation-valid text-danger" data-valmsg-for="RoleProject" data-valmsg-replace="true"></span>
-                                    </label>
-                                </div>
-                                <br> <br> <br> <br>
-                                <div class="col-md-6" style="float:left">
-                                    <div class="form-group">
-                                        <label style="font-size:18px; color:black;"> Date Joined  </label>
-                                        <div class="input-group date">
-                                            <div class="input-group-addon">
-                                                <i class="fa fa-calendar" onclick="Startdate()"></i>
-                                            </div>
-                                            <input type="datetime" class="form-control datepicker" id="DateJoined" name="DateJoined" readonly="true" value="@DateTime.Now">
-                                        </div>
-                                    </div>
-                                </div>
+                                    }
+                                </select>
 
 
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label style="font-size:18px; color:black;"> Date Left  </label>
-                                        <div class="input-group date">
-                                            <div class="input-group-addon">
-                                                <i class="fa fa-calendar" onclick="Startdate()"></i>
-                                            </div>
-                                            <input type="datetime" class="form-control datepicker" id="DateLeft" name="DateLeft" readonly="true" value="">
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="form-group" style="float:right">
-                                    <div class="col-md-offset-2 col-md-10">
-                                        <input type="submit" value="Create" onclick="myFunction()" class="btn btn-default myButton" />
-
-                                    </div>
-                                </div>
-                                <br><br><br><br><br><br><br><br><br><br>
                             </div>
+
+                            <br />
+
+                            <br />   <br />
+                            <div class="form-group">
+                                <label style="font-size:18px; color:black;float:left">
+                                    Role In Project : <input class="check-box" data-val="true" data-val-required="The RoleProject field is required." id="RoleProject" name="RoleProject" type="checkbox" value="true"><input name="RoleProject" type="hidden" value="false">
+                                    <span class="field-validation-valid text-danger" data-valmsg-for="RoleProject" data-valmsg-replace="true"></span>
+                                </label>
+                            </div>
+                            <br> <br> <br> <br>
+                            <div class="col-md-6" style="float:left">
+                                <div class="form-group">
+                                    <label style="font-size:18px; color:black;"> Date Joined  </label>
+                                    <div class="input-group date">
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-calendar" onclick="Startdate()"></i>
+                                        </div>
+                                        <input type="datetime" class="form-control datepicker" id="DateJoined" name="DateJoined" readonly="true" value="@DateTime.Now">
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label style="font-size:18px; color:black;"> Date Left  </label>
+                                    <div class="input-group date">
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-calendar" onclick="Startdate()"></i>
+                                        </div>
+                                        <input type="datetime" class="form-control datepicker" id="DateLeft" name="DateLeft" readonly="true" value="">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group" style="float:right">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <button class="click_me btn btn-info myButton" style="float:right">Send</button>
+
+                                </div>
+                            </div>
+                            <br><br><br><br><br><br><br><br><br><br>
+                        </div>
                         }
 
                     </div>
@@ -1701,18 +1716,18 @@
                                                 @using (Html.BeginForm("Create", "Comments", FormMethod.Post, new { id = "FormCmt", @class = "FormCmt" }))
                                                 {
                                                     @Html.AntiForgeryToken()
-                                                  
-                                                        foreach (var abb in ViewBag.Profile)
+
+                                                    foreach (var abb in ViewBag.Profile)
+                                                    {
+                                                        if (User.Identity.GetUserId() == abb.AccountID)
                                                         {
-                                                            if (User.Identity.GetUserId() == abb.AccountID)
-                                                            {
-                                                             
-                                                                <input  name="Ava" type="hidden" value="@abb.Avatar" />
 
-                                                            }
+                                                            <input name="Ava" type="hidden" value="@abb.Avatar" />
+
                                                         }
+                                                    }
 
-                                                
+
                                                     <input type="hidden" name="TaskID" value="@data.TaskID" />
 
                                                     <div class="form-group" style="display: none;">
@@ -2066,7 +2081,7 @@
                         var img = $('<img alt="user image" class="offline">');
                         var a_name = $('<a href="#" class="name" style="color:#3c8dbc"></a>');
                         var small_name = $('<small class="text-muted pull-right"></small>');
-                      
+
                         var lastupdate = new Date(parseInt(data["LastUpdate"].substr(6)))
                         console.log(lastupdate);
                         var datetime = (lastupdate.getMonth() + 1) + "/"
@@ -2079,7 +2094,7 @@
                         small_name.append(datetime);
                         a_name.append(small_name);
                         a_name.append('@User.Identity.GetUserName()');
-                      
+
                         img.attr('src', '@Url.Content("~/Content/")'+Ava);
                         span_comment.text(data["Name"]);
                         p_message.append(a_name);
@@ -2302,11 +2317,17 @@
 
 
 
-    function myFunction() {
+        $('.click_me').on('click', function (e) {
+            e.preventDefault();
         var plan = $('#Plan').text();
         var myemail = $('#MyEmail').text();
         var url = window.location.href;
-        var name = $('.Assignee').find("option:selected").text();
+           var name = $('.Assignee').find("option:selected").text();
+           var ID = $('.Assignee').find("option:selected").val();
+           var planid = $('.select_planid').val();
+           console.log(planid);
+           console.log(name);
+           console.log(ID);
         var sendInfo = {
             receiver_email: name,
             plan_title: plan,
@@ -2323,9 +2344,35 @@
                 alert(data);
             },
             data: JSON.stringify(sendInfo)
-        });
-    }
+           });
+           var token = $('[name=__RequestVerificationToken]').val();
+           $.ajax({
+               url: '@this.Url.Action(actionName: "Create", controllerName: "ListMembers")',
+               type: 'POST',
+               dataType: 'json',
+               cache: false,
+               data: {
+                   __RequestVerificationToken: token,
+                   'AccountID': ID,
+                   'PlanID': planid,
+                   'RoleProject': 'False',
+                   'DateJoined': '@DateTime.Now',
+               },
+               success: function (data) {
+           
+               }
+           });
 
+
+           $("#test").append("<span class='label label-success'  style='font-size:10px;float:left'>" + name + '</span>');
+           $('#abc').append('<option value="' + ID + '">' + name + '</option>');
+           $("#abc option").each(function () {
+               $("#AccountID option[value='" + $(this).val() + "']").remove();
+           });
+    })
+    $("#abc option").each(function () {
+        $("#AccountID option[value='" + $(this).val() + "']").remove();
+    });
 
     $(document).ready(function () {
         $('disabled').not(':selected').remove();
