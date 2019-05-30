@@ -150,6 +150,19 @@ namespace WebApplication.Controllers
             {
                 db.Meetings.Add(meeting);
                 db.SaveChanges();
+                int id = meeting.ID;
+                string Ow = meeting.Owner;
+                using (cap21t12Entities db = new cap21t12Entities())
+                {
+                    Person people = new Person();
+                    people.Guest = Ow;
+                    people.IDMeeting = id;
+                    people.Apply = true;
+                    db.People.Add(people);
+                    db.SaveChanges();
+                }
+          
+             
                 return RedirectToAction("Calendar","Home");
             }
 

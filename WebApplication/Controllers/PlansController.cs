@@ -55,7 +55,18 @@ namespace WebApplication.Controllers
             {
                 db.Plans.Add(plan);                
                 db.SaveChanges();
-
+                int id = plan.IDPlan;
+                string Ow = plan.AccountID;
+                using (cap21t12Entities db = new cap21t12Entities())
+                {
+                    ListMember people = new ListMember();
+                    people.AccountID = Ow;
+                    people.PlanID = id;
+                    people.RoleProject = false;
+                    people.DateJoined = DateTime.Now;               
+                    db.ListMembers.Add(people);
+                    db.SaveChanges();
+                }
                 return RedirectToAction("Management", "Buckets", new { id = plan.IDPlan });
             }
             return View(plan);

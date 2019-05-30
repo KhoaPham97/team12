@@ -1018,24 +1018,7 @@
                                 }
                             </div>
                         </div>
-                        @using (Html.BeginForm("Create", "ListMembers", FormMethod.Post, new { id = "AutoAdd" }))
-                        {
-
-                            @Html.AntiForgeryToken()
-
-                            foreach (var data in ViewBag.Message)
-
-                            {
-                                <div style="display:none">
-                                    <input type="text" class="form-control" id="PlanID" name="PlanID" value="@data.IDPlan">
-                                </div>
-                            }
-                            <div style="display:none">
-                                <input type="text" id="AccountID" name="AccountID" value="@User.Identity.GetUserId()" />
-                                <input type="text" class="form-control datepicker" id="DateJoined" name="DateJoined" readonly="true" value="@DateTime.Now">
-                                <input type="submit" class="myButton" value="Send" onclick="SaveDemo();" />
-                            </div>
-                        }
+                
                         @using (Html.BeginForm("Create", "Listmembers", FormMethod.Post))
                         {
                             @Html.AntiForgeryToken()
@@ -1651,6 +1634,7 @@
                                                                         {
 
                                                                             <img src="@Url.Content("~/Content/" + @ab.Avatar)" alt="user image" class="offline">
+
                                                                         }
 
                                                                     }
@@ -1686,8 +1670,8 @@
                                                         <div class="item">
                                                             @foreach (var ab in ViewBag.Profile)
                                                             {
-
                                                                 <img src="@Url.Content("~/Content/"+@ab.Avatar)" alt="user image" class="offline">
+
                                                             }
 
                                                             <p class="message">
@@ -1717,6 +1701,18 @@
                                                 @using (Html.BeginForm("Create", "Comments", FormMethod.Post, new { id = "FormCmt", @class = "FormCmt" }))
                                                 {
                                                     @Html.AntiForgeryToken()
+                                                  
+                                                        foreach (var abb in ViewBag.Profile)
+                                                        {
+                                                            if (User.Identity.GetUserId() == abb.AccountID)
+                                                            {
+                                                             
+                                                                <input  name="Ava" type="hidden" value="@abb.Avatar" />
+
+                                                            }
+                                                        }
+
+                                                
                                                     <input type="hidden" name="TaskID" value="@data.TaskID" />
 
                                                     <div class="form-group" style="display: none;">
@@ -2039,6 +2035,8 @@
         e.preventDefault(); // avoid to execute the actual submit of the form.
         var form = $(this);
         var taskID = $(this).children('input[name=TaskID]').val();
+        var Ava = $(this).children('input[name=Ava]').val();
+        console.log(Ava)
         console.log(taskID);
         var url = form.attr('action');
         var type = form.attr('method');
@@ -2068,7 +2066,7 @@
                         var img = $('<img alt="user image" class="offline">');
                         var a_name = $('<a href="#" class="name" style="color:#3c8dbc"></a>');
                         var small_name = $('<small class="text-muted pull-right"></small>');
-
+                      
                         var lastupdate = new Date(parseInt(data["LastUpdate"].substr(6)))
                         console.log(lastupdate);
                         var datetime = (lastupdate.getMonth() + 1) + "/"
@@ -2081,8 +2079,8 @@
                         small_name.append(datetime);
                         a_name.append(small_name);
                         a_name.append('@User.Identity.GetUserName()');
-
-                        img.attr('src', 'whereImageIn');
+                      
+                        img.attr('src', '@Url.Content("~/Content/")'+Ava);
                         span_comment.text(data["Name"]);
                         p_message.append(a_name);
                         p_message.append(span_comment);
@@ -2303,22 +2301,6 @@
 
 
 
-    $(document).ready(function () {
-
-        var txt = $('#test span').text();
-        if (txt.length == 0) {
-                var url = "@this.Url.Action(actionName: "Create", controllerName: "ListMembers")";
-        $.ajax({
-            url: url,
-            type: 'POST',
-            cache: false,
-            data: jQuery('#AutoAdd').serialize(),
-            success: function (data) {
-                location.reload();
-            }
-        });
-       }
-  });
 
     function myFunction() {
         var plan = $('#Plan').text();
