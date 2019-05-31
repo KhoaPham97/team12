@@ -1043,7 +1043,7 @@
                             }
                             <div class="form-group">
                                 <label style="font-size:18px; color:black">Member</label>
-                                <select class="form-control Assignee " id="AccountID" name="AccountID" style="font-size:20px">
+                                <select class="form-control Assignee " id="AccountID" name="AccountID" style="font-size:20px" required>
 
                                     @foreach (var ass in ViewBag.Assignee)
                                     {
@@ -1890,7 +1890,7 @@
                                     <br /><br />
                                     <div class="form-group">
                                         <label style="font-size:20px ;float:left">Assignee</label>
-                                        <select class="form-control Assignee " id="AssigneeID" name="AssigneeID" style="font-size:20px">
+                                        <select class="form-control Assignee " id="AssigneeID" name="AssigneeID" style="font-size:20px" required>
                                             @foreach (var member in ViewBag.Listmembers)
                                             {
                                                 foreach (var ass in ViewBag.Assignee)
