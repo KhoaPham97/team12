@@ -2050,9 +2050,12 @@
         e.preventDefault(); // avoid to execute the actual submit of the form.
         var form = $(this);
         var taskID = $(this).children('input[name=TaskID]').val();
-        var Ava = $(this).children('input[name=Ava]').val();
+        var Ava = $(this).children('input[name=Ava]').val();    
+        var this_2 = $(this).closest("div").parent().parent();     
+        var a = this_2.find('textarea#Name').val();
         console.log(Ava)
         console.log(taskID);
+        console.log(a);
         var url = form.attr('action');
         var type = form.attr('method');
         var data = form.serialize();
@@ -2111,7 +2114,7 @@
                         console.log(chat);
                         comment_area.append(form);
                         comment_area.append(chat);
-
+                        this_2.find('textarea#Name').val('');
                     }
                 });
 
@@ -2127,7 +2130,7 @@
                 console.log(fail);
             }
         });
-
+     
 
     });
     $(document).ready(function () {
