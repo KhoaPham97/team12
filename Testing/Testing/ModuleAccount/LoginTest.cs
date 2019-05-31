@@ -17,12 +17,12 @@ namespace Testing
        
         [Test]
         [TestCaseSource(typeof(TestBase), "BrowserToRunWith")]
-        public void TC_FUC_MO01_11(String browserName)
+        public void TC_FUC_MO01_01(String browserName)
         {
             SetUp(browserName);
             //throw new NotImplementedException();
-            Console.WriteLine("TC_FUC_MO01_11");
-            test = extent.StartTest("LOGIN TC_FUC_MO01_11");
+            Console.WriteLine("TC_FUC_MO01_01");
+            test = extent.StartTest("LOGIN TC_FUC_MO01_01");
 
             IWebElement email = driver.FindElement(By.CssSelector("#loginForm > form > div.wrap-input100.rs1.validate-input > input"));
             email.SendKeys("trangnguyen237@vanlanguni.vn");
@@ -42,12 +42,12 @@ namespace Testing
 
         [Test]
         [TestCaseSource(typeof(TestBase), "BrowserToRunWith")]
-        public void TC_FUC_MO01_12(String browserName)
+        public void TC_FUC_MO01_02(String browserName)
         {
             SetUp(browserName);
             //throw new NotImplementedException();
-            test = extent.StartTest("LOGIN TC_FUC_MO01_12");
-            Console.WriteLine("TC_FUC_MO01_12");
+            test = extent.StartTest("LOGIN TC_FUC_MO01_02");
+            Console.WriteLine("TC_FUC_MO01_02");
 
             test.Log(LogStatus.Pass, "Leave blank 'Email'");
             IWebElement pass = driver.FindElement(By.CssSelector("#loginForm > form > div.wrap-input100.rs2.validate-input > input"));
@@ -65,12 +65,12 @@ namespace Testing
 
         [Test]
         [TestCaseSource(typeof(TestBase), "BrowserToRunWith")]
-        public void TC_FUC_MO01_13(String browserName)
+        public void TC_FUC_MO01_03(String browserName)
         {
             SetUp(browserName);
             //throw new NotImplementedException();
-            test = extent.StartTest("LOGIN TC_FUC_MO01_13");
-            Console.WriteLine("TC_FUC_MO01_13");
+            test = extent.StartTest("LOGIN TC_FUC_MO01_03");
+            Console.WriteLine("TC_FUC_MO01_03");
             IWebElement email = driver.FindElement(By.CssSelector("#loginForm > form > div.wrap-input100.rs1.validate-input > input"));
             email.SendKeys("trangnguyen237@vanlanguni.vn");
             test.Log(LogStatus.Pass, "Enter valid value into 'Email' sendkey: trangnguyen237@vanlanguni.vn'");
@@ -87,12 +87,12 @@ namespace Testing
 
         [Test]
         [TestCaseSource(typeof(TestBase), "BrowserToRunWith")]
-        public void TC_FUC_MO01_14(String browserName)
+        public void TC_FUC_MO01_04(String browserName)
         {
             SetUp(browserName);
             //throw new NotImplementedException();
-            test = extent.StartTest("LOGIN TC_FUC_MO01_14");
-            Console.WriteLine("TC_FUC_MO01_14");
+            test = extent.StartTest("LOGIN TC_FUC_MO01_04");
+            Console.WriteLine("TC_FUC_MO01_04");
             test.Log(LogStatus.Pass, "Leave blank 'Email'");
             test.Log(LogStatus.Pass, "Leave blank 'Password'");
             IWebElement login = driver.FindElement(By.CssSelector("#loginForm > form > div.container-login100-form-btn > button"));
@@ -108,12 +108,12 @@ namespace Testing
 
         [Test]
         [TestCaseSource(typeof(TestBase), "BrowserToRunWith")]
-        public void TC_FUC_MO01_15(String browserName)
+        public void TC_FUC_MO01_05(String browserName)
         {
             SetUp(browserName);
             //throw new NotImplementedException();
-            test = extent.StartTest("LOGIN TC_FUC_MO01_15");
-            Console.WriteLine("TC_FUC_MO01_15");
+            test = extent.StartTest("LOGIN TC_FUC_MO01_05");
+            Console.WriteLine("TC_FUC_MO01_05");
             IWebElement email = driver.FindElement(By.CssSelector("#loginForm > form > div.wrap-input100.rs1.validate-input > input"));
             email.SendKeys("trangnguyen@gmail.com");
             test.Log(LogStatus.Pass, "Enter value into 'Email' sendkey : trangnguyen@mail.com");
@@ -132,12 +132,12 @@ namespace Testing
 
         [Test]
         [TestCaseSource(typeof(TestBase), "BrowserToRunWith")]
-        public void TC_FUC_MO01_16(String browserName)
+        public void TC_FUC_MO01_06(String browserName)
         {
             SetUp(browserName);
             //throw new NotImplementedException();
-            test = extent.StartTest("LOGIN TC_FUC_MO01_16");
-            Console.WriteLine("TC_FUC_MO01_16");
+            test = extent.StartTest("LOGIN TC_FUC_MO01_06");
+            Console.WriteLine("TC_FUC_MO01_06");
             IWebElement email = driver.FindElement(By.CssSelector("#loginForm > form > div.wrap-input100.rs1.validate-input > input"));
             email.SendKeys("trangnguyen237@vanlanguni.vn");
             test.Log(LogStatus.Pass, "Enter value into 'Email' sendkey : trangnguye237@vanlanguni.vn");
@@ -157,12 +157,12 @@ namespace Testing
 
         [Test]
         [TestCaseSource(typeof(TestBase), "BrowserToRunWith")]
-        public void TC_FUC_MO01_17(String browserName)
+        public void TC_FUC_MO01_07(String browserName)
         {
             SetUp(browserName);
             //throw new NotFiniteNumberException();
-            test = extent.StartTest("LOGIN TC_FUC_MO01_17");
-            Console.WriteLine("TC_FUC_MO01_17");
+            test = extent.StartTest("LOGIN TC_FUC_MO01_07");
+            Console.WriteLine("TC_FUC_MO01_07");
             IWebElement extenrnal = driver.FindElement(By.Id("Văn Lang"));
             extenrnal.Click();
             test.Log(LogStatus.Pass, "Click 'Văn Lang'");
@@ -187,12 +187,12 @@ namespace Testing
 
         [Test]
         [TestCaseSource(typeof(TestBase), "BrowserToRunWith")]
-        public void TC_FUC_MO01_18(String browserName)
+        public void TC_FUC_MO01_08(String browserName)
         {
             SetUp(browserName);
             //throw new NotFiniteNumberException();
-            test = extent.StartTest("LOGIN TC_FUC_MO01_18");
-            Console.WriteLine("TC_FUC_MO01_18");
+            test = extent.StartTest("LOGIN TC_FUC_MO01_08");
+            Console.WriteLine("TC_FUC_MO01_08");
             IWebElement extenrnal = driver.FindElement(By.Id("Văn Lang"));
             extenrnal.Click();
             test.Log(LogStatus.Pass, "Click 'Văn Lang'");
@@ -214,12 +214,12 @@ namespace Testing
 
         [Test]
         [TestCaseSource(typeof(TestBase), "BrowserToRunWith")]
-        public void TC_FUC_MO01_19(String browserName)
+        public void TC_FUC_MO01_09(String browserName)
         {
             SetUp(browserName);
             //throw new NotFiniteNumberException();
-            test = extent.StartTest("LOGIN TC_FUC_MO01_19");
-            Console.WriteLine("TC_FUC_MO01_19");
+            test = extent.StartTest("LOGIN TC_FUC_MO01_09");
+            Console.WriteLine("TC_FUC_MO01_09");
             IWebElement extenrnal = driver.FindElement(By.Id("Văn Lang"));
             extenrnal.Click();
             test.Log(LogStatus.Pass, "Click 'Văn Lang'");
@@ -242,5 +242,35 @@ namespace Testing
             test.Log(LogStatus.Pass, "Assert Pass as condition is True");
         }
 
+
+        [Test]
+        [TestCaseSource(typeof(TestBase), "BrowserToRunWith")]
+        public void TC_FUC_MO01_10(String browserName)
+        {
+            SetUp(browserName);
+            //throw new NotFiniteNumberException();
+            test = extent.StartTest("LOGIN TC_FUC_MO01_10");
+            Console.WriteLine("TC_FUC_MO01_10");
+            IWebElement extenrnal = driver.FindElement(By.Id("Văn Lang"));
+            extenrnal.Click();
+            test.Log(LogStatus.Pass, "Click 'Văn Lang'");
+            //input email
+            IWebElement skype = driver.FindElement(By.Id("i0116"));
+            skype.SendKeys("trang");
+            test.Log(LogStatus.Pass, "Enter valid value into account sendkey : trang'");
+            IWebElement next = driver.FindElement(By.Id("idSIButton9"));
+            next.Click();
+            test.Log(LogStatus.Pass, "Select 'Next'");
+            //input pass
+            IWebElement pass = driver.FindElement(By.Id("i0118"));
+            pass.SendKeys("123");
+            test.Log(LogStatus.Pass, "Enter valid value into 'Password' sendkey : ***'");
+            IWebElement login = driver.FindElement(By.Id("idSIButton9"));
+            login.Click();
+            test.Log(LogStatus.Pass, "Select 'Login'");
+
+            Assert.IsTrue(true);
+            test.Log(LogStatus.Pass, "Assert Pass as condition is True");
+        }
     }
 }

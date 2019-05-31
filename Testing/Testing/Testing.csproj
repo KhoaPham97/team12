@@ -111,7 +111,6 @@
     <Compile Include="ModuleManagement\CreatePlanTest.cs" />
     <Compile Include="ModuleAccount\LoginTest.cs" />
     <Compile Include="ModuleAccount\LogoutTest.cs" />
-    <Compile Include="ModuleAccount\RegisterTest.cs" />
     <Compile Include="ModuleManagement\CreateTaskTest.cs" />
     <Compile Include="ModuleManagement\DeleteBucketTest.cs" />
     <Compile Include="ModuleManagement\DeletePlanTest.cs" />
