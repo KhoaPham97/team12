@@ -139,7 +139,7 @@ namespace WebApplication.Controllers
             var product = db.Tasks.ToList().Where(p => p.AssigneeID == User.Identity.GetUserId());
             ViewBag.Comments = db.Comments;
             ViewBag.Attachments = db.Attachments;
-  
+            ViewBag.Profile = db.Profiles;
             ViewBag.Assignee = db.AspNetUsers;
             ViewBag.Status = db.Status;
             return View(product);
