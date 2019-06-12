@@ -784,10 +784,10 @@
             <form action="@Url.Action("Index", "Home")">
                 <button class="boards-btn btn"><i class="fab fa-trello boards-btn-icon"></i>Boards</button>
             </form>
-            <div class="board-search">
+            @*<div class="board-search">
                 <input type="search" class="board-search-input" aria-label="Board Search">
                 <i class="fas fa-search search-icon" aria-hidden="true"></i>
-            </div>
+            </div>*@
 
         </div>
 
@@ -799,7 +799,7 @@
 
         <div class="user-settings">
 
-            <button class="user-settings-btn btn" aria-label="Create">
+            @*<button class="user-settings-btn btn" aria-label="Create">
                 <i class="fas fa-plus" aria-hidden="true"></i>
             </button>
 
@@ -809,7 +809,7 @@
 
             <button class="user-settings-btn btn" aria-label="Notifications">
                 <i class="fas fa-bell" aria-hidden="true"></i>
-            </button>
+            </button>*@
 
             @*<button class="user-settings-btn btn" aria-label="User Settings">
                     <i class="fas fa-user-circle" aria-hidden="true"></i>
@@ -861,7 +861,7 @@
                                     </div>
 
                                     <div id="London" class="tabcontent">
-                                        <table id="customerss" class="customer">
+                                        <table id="customerss" class="customers">
 
                                             <tr>
                                                 <td> <h1 style="font-size:18px; color:black;text-align:left"><i class="fa fa-user" aria-hidden="true"></i> Email</h1></td>
@@ -899,9 +899,11 @@
                                                     @Html.AntiForgeryToken()
                                                     <label style="font-size:18px; color:black;float:left">Account</label>
 
-                                                    <select class="form-control " id="AccountID" name="AccountID" style="font-size:18px">
-                                                        <option value="@User.Identity.GetUserId()">@User.Identity.GetUserName()</option>
+                                                    <select class="form-control" style="font-size:18px">
+                                                        <option value="">@User.Identity.GetUserName()</option>
+
                                                     </select>
+                                                    <input class="form-control text-box single-line" id="AccountID" name="AccountID" type="text" value="@User.Identity.GetUserId()" style="display:none">
                                                     <label style="font-size:18px; color:black;float:left">Full Name</label>
                                                     <input class="form-control text-box single-line" id="Full_Name" name="Full_Name" type="text" value="@a.Full_Name">
                                                     <label style="font-size:18px; color:black;float:left">Birthday</label>
@@ -929,9 +931,7 @@
                                                 {
                                                     @Html.AntiForgeryToken()
 
-                                                    <select class="form-control " id="AccountID" name="AccountID" style="font-size:18px;display:none">
-                                                        <option value="@User.Identity.GetUserId()">@User.Identity.GetUserName()</option>
-                                                    </select>
+                                                    <input class="form-control text-box single-line" id="AccountID" name="AccountID" type="text" value="@User.Identity.GetUserId()" style="display:none">
                                                     <div style=" display:none">
                                                         <label style="font-size:18px; color:black;float:left">Full Name</label>
                                                         <input class="form-control text-box single-line" id="Full_Name" name="Full_Name" type="text" value="@a.Full_Name">
@@ -944,8 +944,9 @@
                                                         <input class="form-control text-box single-line" id="Avatar" name="Avatar" type="text" value="@a.Avatar">
                                                     </div>
                                                     <label for="file" style="font-size:15px; color:black;float:left"> Upload Avatar:</label>
-                                                    <input type="file" name="file" id="Avatar" style="width: 100%;font-size:20px" />
-
+                                                    <input type="file" required name="file" id="Avatar" style="width: 100%;font-size:20px" />
+                                                    <p style="font-weight:bold;color:black;font-size:15px;">* Please select only Supported Files .png | .jpg | .jpeg | .gif </p>
+                                                    <p style="font-weight:bold;color:black;font-size:15px;">* Maximum allowed file size is 5 MB</p>
                                                     <div class="form-group" style="float:right">
                                                         <div class="col-md-offset-2 col-md-10">
                                                             <input type="submit" value="Save Avatar" class="btn btn-default myButton" />
@@ -1778,9 +1779,11 @@
                                                 @using (Html.BeginForm("Index", "Tasks", new { id = @data.TaskID }, FormMethod.Post, new { enctype = "multipart/form-data" }))
                                                 {
 
-                                                    <input type="file" name="postedFile" style="padding-top:80px" />
+                                                    <input type="file" name="postedFile" required style="padding-top:80px" />
                                                     <br>
-                                                    <input type="submit" id="btnUpload" value="Upload" />
+                                                    <input type="submit" id="btnUpload" value="Upload"  />
+                                                    <p style="font-weight:bold">* Please select only Supported Files .png | .jpg | .jpeg | .gif | .docx | .doc | .xls | .xlsx | .xlsm | .txt</p>
+                                                    <p style="font-weight:bold">* Maximum allowed file size is 5 MB</p>
                                                 }
                                                 @using (Html.BeginForm("DownloadFile", "Tasks", FormMethod.Post))
                                                 {

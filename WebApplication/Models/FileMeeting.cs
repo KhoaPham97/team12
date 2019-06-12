@@ -11,9 +11,13 @@ namespace WebApplication.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+    using WebApplication.Helper_Code.Common;
     public partial class FileMeeting
     {
+        [Required]
+        [Display(Name = "Upload File")]      
+        [AllowFileSize(FileSize = 5 * 1024 * 1024, ErrorMessage = "Maximum allowed file size is 5 MB")]
         public int ID { get; set; }
         public string Name { get; set; }
         public string ContentType { get; set; }

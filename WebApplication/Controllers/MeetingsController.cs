@@ -23,35 +23,63 @@ namespace WebApplication.Controllers
         {
             return Redirect(Request.UrlReferrer.ToString());
         }
-
+        public int FileSize { get; set; } = 1 * 1024 * 1024 * 1024;
+        public string Extensions { get; set; } = "png,jpg,jpeg,gif,docx,doc,xls,xlsx,xlsm,txt";
         [HttpPost]
         public ActionResult Index(HttpPostedFileBase postedFile, int? id)
         {
-            byte[] bytes = null;
-            using (BinaryReader br = new BinaryReader(postedFile.InputStream))
-            {
-                bytes = br.ReadBytes(postedFile.ContentLength);
-            }
 
-            string constr = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
-            using (SqlConnection con = new SqlConnection(constr))
+            bool isValid = true;
+            List<string> allowedExtensions = this.Extensions.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries).ToList();
+            // Settings.
+            int allowedFileSize = this.FileSize;
+            if (postedFile != null)
             {
-                string query = "INSERT INTO FileMeeting VALUES (@Name, @ContentType, @Data,@MeetingID)";
-                using (SqlCommand cmd = new SqlCommand(query))
+                // Initialization.
+                var fileSize = postedFile.ContentLength;
+                var fileName = postedFile.FileName;
+
+                // Settings.
+                isValid = allowedExtensions.Any(y => fileName.EndsWith(y)) && fileSize <= allowedFileSize;
+
+                if (isValid == true)
                 {
-                    cmd.Connection = con;               
+                    byte[] bytes = null;
+                    using (BinaryReader br = new BinaryReader(postedFile.InputStream))
+                    {
+                        bytes = br.ReadBytes(postedFile.ContentLength);
+                    }
 
-                    cmd.Parameters.AddWithValue("@Name", Path.GetFileName(postedFile.FileName));
-                    cmd.Parameters.AddWithValue("@ContentType", postedFile.ContentType);
-                    cmd.Parameters.AddWithValue("@Data", bytes);
-                    cmd.Parameters.AddWithValue("@MeetingID", Convert.ToInt32(id));
-                    con.Open();
-                    cmd.ExecuteNonQuery();
-                    con.Close();
+                    string constr = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+                    using (SqlConnection con = new SqlConnection(constr))
+                    {
+                        string query = "INSERT INTO FileMeeting VALUES (@Name, @ContentType, @Data,@MeetingID)";
+                        using (SqlCommand cmd = new SqlCommand(query))
+                        {
+                            cmd.Connection = con;
+
+                            cmd.Parameters.AddWithValue("@Name", Path.GetFileName(postedFile.FileName));
+                            cmd.Parameters.AddWithValue("@ContentType", postedFile.ContentType);
+                            cmd.Parameters.AddWithValue("@Data", bytes);
+                            cmd.Parameters.AddWithValue("@MeetingID", Convert.ToInt32(id));
+                            con.Open();
+                            cmd.ExecuteNonQuery();
+                            con.Close();
+                        }
+                    }
+                    ViewBag.Message = "Your application description page.";
+                    return Redirect(Request.UrlReferrer.ToString());
                 }
+                else
+                {
+                    return Redirect(Request.UrlReferrer.ToString());
+                    ViewBag.Message = "Your application description page.";
+                  
+                }
+        
+               
             }
-
-            return Redirect(Request.UrlReferrer.ToString());
+            return View(); 
         }
         [HttpPost]
         public FileResult DownloadFile(int? fileId)

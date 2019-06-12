@@ -87,7 +87,66 @@
             /* bug fix - no overlay */
             display: none;
         }
+           .tabcontent {
+            display: none;
+            padding: 6px 12px;
+            border: 1px solid #ccc;
+            border-top: none;
+        }
 
+        .customers {
+            font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+            .customers td, .customers th {
+                border: 1px solid #ddd;
+                padding: 8px;
+            }
+
+            .customers tr:nth-child(even) {
+                background-color: #f2f2f2;
+            }
+
+            .customers tr:hover {
+                background-color: #ddd;
+            }
+
+            .customers th {
+                padding-top: 12px;
+                padding-bottom: 12px;
+                text-align: left;
+                background-color: #4CAF50;
+                color: white;
+            }
+
+        .customerss {
+            font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+            .customerss td, .customerss th {
+                border: 1px solid #ddd;
+                padding: 8px;
+            }
+
+            .customerss tr:nth-child(even) {
+                background-color: #f2f2f2;
+            }
+
+            .customerss tr:hover {
+                background-color: #ddd;
+            }
+
+            .customerss th {
+                padding-top: 12px;
+                padding-bottom: 12px;
+                text-align: left;
+                background-color: #4CAF50;
+                color: white;
+            }
         .green {
             position: absolute;
             right: 0 !important;
@@ -293,8 +352,8 @@
 
                                             </div>
 
-                                            <div id="London" class="tabcontent">
-                                                <table id="customerss">
+                                            <div id="London" class="tabcontent" >
+                                                <table id="customerss" class="customers">
 
                                                     <tr>
                                                         <td> <h1 style="font-size:18px; color:black;text-align:left"><i class="fa fa-user" aria-hidden="true"></i> Email</h1></td>
@@ -377,8 +436,9 @@
                                                                 <input class="form-control text-box single-line" id="Avatar" name="Avatar" type="text" value="@a.Avatar">
                                                             </div>
                                                             <label for="file" style="font-size:15px; color:black;float:left"> Upload Avatar:</label>
-                                                            <input type="file" name="file" id="Avatar" style="width: 100%;font-size:20px" />
-
+                                                            <input type="file" name="file" required id="Avatar" style="width: 100%;font-size:20px" />
+                                                            <p style="font-weight:bold">* Please select only Supported Files .png | .jpg | .jpeg | .gif </p>
+                                                            <p style="font-weight:bold">* Maximum allowed file size is 5 MB</p>
                                                             <div class="form-group" style="float:right">
                                                                 <div class="col-md-offset-2 col-md-10">
                                                                     <input type="submit" value="Save Avatar" class="btn btn-default myButton" />
@@ -457,7 +517,7 @@
                           
                         </ul>
                     </li>
-                    <li class="treeview">
+                    @*<li class="treeview">
                         <a href="#">
                             <i class="fa fa-check-square-o"></i> <span>Surveys</span>
                             <span class="pull-right-container">
@@ -468,7 +528,7 @@
                             <li><a href="pages/tables/simple.html"><i class="fa fa-circle-o"></i> Simple tables</a></li>
                             <li><a href="pages/tables/data.html"><i class="fa fa-circle-o"></i> Data tables</a></li>
                         </ul>
-                    </li>
+                    </li>*@
 
 
 
@@ -965,6 +1025,21 @@
 
         //    });
         //});
+         $(document).ready(function () {
+
+       var url = "@this.Url.Action(actionName: "Create", controllerName: "Profiles")";
+        $.ajax({
+            url: url,
+            type: 'POST',
+            cache: false,
+            data: jQuery('#Add').serialize(),
+            success: function (data) {
+                location.reload();
+            }
+        });
+
+    });
+
         function validateForm() {
             var x = document.forms["AutoAdd"]["Title"].value;
             if (x == "") {             

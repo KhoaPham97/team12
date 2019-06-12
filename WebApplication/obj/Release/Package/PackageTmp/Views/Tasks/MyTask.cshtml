@@ -35,7 +35,256 @@
     <!-- bootstrap wysihtml5 - text editor -->
     <link rel="stylesheet" href="@Url.Content("~/area/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css")">
     <link href="@Url.Content("~/area/dist/img/logo.png")" rel="shortcut icon" type="image/x-icon" />
+
     <style>
+
+
+        #container {
+            height: 300px;
+            min-width: 310px;
+            max-width: 800px;
+        }
+
+        .tab {
+            overflow: hidden;
+            border: 1px solid #ccc;
+            background-color: #f1f1f1;
+        }
+
+            /* Style the buttons inside the tab */
+            .tab button {
+                background-color: inherit;
+                float: left;
+                border: none;
+                outline: none;
+                cursor: pointer;
+                padding: 14px 16px;
+                transition: 0.3s;
+                font-size: 17px;
+            }
+
+                /* Change background color of buttons on hover */
+                .tab button:hover {
+                    background-color: #ddd;
+                }
+
+                /* Create an active/current tablink class */
+                .tab button.active {
+                    background-color: #ccc;
+                }
+
+        /* Style the tab content */
+        .tabcontent {
+            display: none;
+            padding: 6px 12px;
+            border: 1px solid #ccc;
+            border-top: none;
+        }
+
+        .customers {
+            font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+            .customers td, .customers th {
+                border: 1px solid #ddd;
+                padding: 8px;
+            }
+
+            .customers tr:nth-child(even) {
+                background-color: #f2f2f2;
+            }
+
+            .customers tr:hover {
+                background-color: #ddd;
+            }
+
+            .customers th {
+                padding-top: 12px;
+                padding-bottom: 12px;
+                text-align: left;
+                background-color: #4CAF50;
+                color: white;
+            }
+
+        .customerss {
+            font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+            .customerss td, .customerss th {
+                border: 1px solid #ddd;
+                padding: 8px;
+            }
+
+            .customerss tr:nth-child(even) {
+                background-color: #f2f2f2;
+            }
+
+            .customerss tr:hover {
+                background-color: #ddd;
+            }
+
+            .customerss th {
+                padding-top: 12px;
+                padding-bottom: 12px;
+                text-align: left;
+                background-color: #4CAF50;
+                color: white;
+            }
+
+        .Download {
+            background-color: DodgerBlue;
+            border: none;
+            color: white;
+            padding: 4px 20px;
+            cursor: pointer;
+            font-size: 15px;
+        }
+
+            /* Darker background on mouse-over */
+            .Download:hover {
+                background-color: RoyalBlue;
+            }
+
+        .Button1 {
+            -moz-box-shadow: inset 0px 1px 0px 0px #ffffff;
+            -webkit-box-shadow: inset 0px 1px 0px 0px #ffffff;
+            box-shadow: inset 0px 1px 0px 0px #ffffff;
+            background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #ededed), color-stop(1, #dfdfdf));
+            background: -moz-linear-gradient(top, #ededed 5%, #dfdfdf 100%);
+            background: -webkit-linear-gradient(top, #ededed 5%, #dfdfdf 100%);
+            background: -o-linear-gradient(top, #ededed 5%, #dfdfdf 100%);
+            background: -ms-linear-gradient(top, #ededed 5%, #dfdfdf 100%);
+            background: linear-gradient(to bottom, #ededed 5%, #dfdfdf 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ededed', endColorstr='#dfdfdf',GradientType=0);
+            background-color: #ededed;
+            -moz-border-radius: 6px;
+            -webkit-border-radius: 6px;
+            border-radius: 6px;
+            border: 1px solid #dcdcdc;
+            display: inline-block;
+            cursor: pointer;
+            color: #777777;
+            font-family: Arial;
+            font-size: 15px;
+            font-weight: bold;
+            padding: 6px 24px;
+            text-decoration: none;
+            text-shadow: 0px 1px 0px #ffffff;
+        }
+
+            .Button1:hover {
+                background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #dfdfdf), color-stop(1, #ededed));
+                background: -moz-linear-gradient(top, #dfdfdf 5%, #ededed 100%);
+                background: -webkit-linear-gradient(top, #dfdfdf 5%, #ededed 100%);
+                background: -o-linear-gradient(top, #dfdfdf 5%, #ededed 100%);
+                background: -ms-linear-gradient(top, #dfdfdf 5%, #ededed 100%);
+                background: linear-gradient(to bottom, #dfdfdf 5%, #ededed 100%);
+                filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#dfdfdf', endColorstr='#ededed',GradientType=0);
+                background-color: #dfdfdf;
+            }
+
+            .Button1:active {
+                position: relative;
+                top: 1px;
+            }
+
+        .Button2 {
+            -moz-box-shadow: inset 0px 1px 0px 0px #fce2c1;
+            -webkit-box-shadow: inset 0px 1px 0px 0px #fce2c1;
+            box-shadow: inset 0px 1px 0px 0px #fce2c1;
+            background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #ffc477), color-stop(1, #fb9e25));
+            background: -moz-linear-gradient(top, #ffc477 5%, #fb9e25 100%);
+            background: -webkit-linear-gradient(top, #ffc477 5%, #fb9e25 100%);
+            background: -o-linear-gradient(top, #ffc477 5%, #fb9e25 100%);
+            background: -ms-linear-gradient(top, #ffc477 5%, #fb9e25 100%);
+            background: linear-gradient(to bottom, #ffc477 5%, #fb9e25 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffc477', endColorstr='#fb9e25',GradientType=0);
+            background-color: #ffc477;
+            -moz-border-radius: 6px;
+            -webkit-border-radius: 6px;
+            border-radius: 6px;
+            border: 1px solid #eeb44f;
+            display: inline-block;
+            cursor: pointer;
+            color: #ffffff;
+            font-family: Arial;
+            font-size: 15px;
+            font-weight: bold;
+            padding: 6px 24px;
+            text-decoration: none;
+            text-shadow: 0px 1px 0px #cc9f52;
+        }
+
+            .Button2:hover {
+                background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #fb9e25), color-stop(1, #ffc477));
+                background: -moz-linear-gradient(top, #fb9e25 5%, #ffc477 100%);
+                background: -webkit-linear-gradient(top, #fb9e25 5%, #ffc477 100%);
+                background: -o-linear-gradient(top, #fb9e25 5%, #ffc477 100%);
+                background: -ms-linear-gradient(top, #fb9e25 5%, #ffc477 100%);
+                background: linear-gradient(to bottom, #fb9e25 5%, #ffc477 100%);
+                filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fb9e25', endColorstr='#ffc477',GradientType=0);
+                background-color: #fb9e25;
+            }
+
+            .Button2:active {
+                position: relative;
+                top: 1px;
+            }
+
+
+        .Button3 {
+            -moz-box-shadow: inset 0px 1px 0px 0px #f5978e;
+            -webkit-box-shadow: inset 0px 1px 0px 0px #f5978e;
+            box-shadow: inset 0px 1px 0px 0px #f5978e;
+            background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #f24537), color-stop(1, #c62d1f));
+            background: -moz-linear-gradient(top, #f24537 5%, #c62d1f 100%);
+            background: -webkit-linear-gradient(top, #f24537 5%, #c62d1f 100%);
+            background: -o-linear-gradient(top, #f24537 5%, #c62d1f 100%);
+            background: -ms-linear-gradient(top, #f24537 5%, #c62d1f 100%);
+            background: linear-gradient(to bottom, #f24537 5%, #c62d1f 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f24537', endColorstr='#c62d1f',GradientType=0);
+            background-color: #f24537;
+            -moz-border-radius: 6px;
+            -webkit-border-radius: 6px;
+            border-radius: 6px;
+            border: 1px solid #d02718;
+            display: inline-block;
+            cursor: pointer;
+            color: #ffffff;
+            font-family: Arial;
+            font-size: 15px;
+            font-weight: bold;
+            padding: 6px 24px;
+            text-decoration: none;
+            text-shadow: 0px 1px 0px #810e05;
+        }
+
+            .Button3:hover {
+                background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #c62d1f), color-stop(1, #f24537));
+                background: -moz-linear-gradient(top, #c62d1f 5%, #f24537 100%);
+                background: -webkit-linear-gradient(top, #c62d1f 5%, #f24537 100%);
+                background: -o-linear-gradient(top, #c62d1f 5%, #f24537 100%);
+                background: -ms-linear-gradient(top, #c62d1f 5%, #f24537 100%);
+                background: linear-gradient(to bottom, #c62d1f 5%, #f24537 100%);
+                filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#c62d1f', endColorstr='#f24537',GradientType=0);
+                background-color: #c62d1f;
+            }
+
+            .Button3:active {
+                position: relative;
+                top: 1px;
+            }
+
+
+        select {
+            font-family: 'FontAwesome', 'Second Font name'
+        }
+
+
         .box {
             position: relative;
             border-radius: 3px;
@@ -533,10 +782,10 @@
             <form action="@Url.Action("Index", "Home")">
                 <button class="boards-btn btn"><i class="fab fa-trello boards-btn-icon"></i>Boards</button>
             </form>
-            <div class="board-search">
+            @*<div class="board-search">
                 <input type="search" class="board-search-input" aria-label="Board Search">
                 <i class="fas fa-search search-icon" aria-hidden="true"></i>
-            </div>
+            </div>*@
 
         </div>
 
@@ -548,22 +797,178 @@
 
         <div class="user-settings">
 
-            <button class="user-settings-btn btn" aria-label="Create">
-                <i class="fas fa-plus" aria-hidden="true"></i>
-            </button>
+            @*<button class="user-settings-btn btn" aria-label="Create">
+            <i class="fas fa-plus" aria-hidden="true"></i>
+        </button>
 
-            <button class="user-settings-btn btn" aria-label="Information">
-                <i class="fas fa-info-circle" aria-hidden="true"></i>
-            </button>
+        <button class="user-settings-btn btn" aria-label="Information">
+            <i class="fas fa-info-circle" aria-hidden="true"></i>
+        </button>
 
-            <button class="user-settings-btn btn" aria-label="Notifications">
-                <i class="fas fa-bell" aria-hidden="true"></i>
-            </button>
+        <button class="user-settings-btn btn" aria-label="Notifications">
+            <i class="fas fa-bell" aria-hidden="true"></i>
+        </button>
 
-            <button class="user-settings-btn btn" aria-label="User Settings">
-                <i class="fas fa-user-circle" aria-hidden="true"></i>
-            </button>
+        <button class="user-settings-btn btn" aria-label="User Settings">
+            <i class="fas fa-user-circle" aria-hidden="true"></i>
+        </button>*@
+            <button class="user-settings-btn btn" data-toggle="modal" data-target="#profile">  <i class="fas fa-user-circle" aria-hidden="true"></i></button>
+            <div class="modal fade" id="profile" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            @using (Html.BeginForm("Create", "Profiles", FormMethod.Post, new { id = "Add", enctype = "multipart/form-data" }))
+                            {
 
+                                @Html.AntiForgeryToken()
+
+                                <select class="form-control " id="AccountID" name="AccountID" style="font-size:18px;display:none">
+                                    <option value="@User.Identity.GetUserId()">@User.Identity.GetUserName()</option>
+                                </select>
+
+
+                            }
+
+                            @foreach (var ab in ViewBag.Profile)
+                            {
+                                if (ab.AccountID == User.Identity.GetUserId())
+                                {
+                                    <img src="@Url.Content("~/area/login/images/vlu.png")" style="height:50px;width:50px; display: block;  margin-left: auto;  margin-right: auto;" alt="user image" class="offline">
+
+                                    <img src="@Url.Content("~/Content/"+@ab.Avatar)" style="height:160px;width:160px; display: block;  margin-left: auto;  margin-right: auto;" alt="user image" class="offline">
+                                    <hr />
+                                    <h1 style="font-size:25px; color:black;text-align:center"><b>@ab.Full_Name</b></h1>
+                                    <a href="javascript:document.getElementById('logoutForm').submit()" style="font-size:15px;align-content:center">Log Off</a>
+                                    <br />
+
+
+
+                                    <div class="tab">
+                                        <button class="tablinks" style="color:black" onclick="openCity(event, 'London')">Information</button>
+                                        <button class="tablinks" style="color:black" onclick="openCity(event, 'Paris')">Edit Informations</button>
+
+                                        @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+                                        {
+                                            @Html.AntiForgeryToken()
+
+
+
+                                        }
+
+                                    </div>
+
+                                    <div id="London" class="tabcontent">
+                                        <table id="customerss" class="customers">
+
+                                            <tr>
+                                                <td> <h1 style="font-size:18px; color:black;text-align:left"><i class="fa fa-user" aria-hidden="true"></i> Email</h1></td>
+                                                <td> <h1 style="font-size:18px; color:black;text-align:left"> @User.Identity.GetUserName()</h1></td>
+
+                                            </tr>
+                                            <tr>
+                                                <td>                                         <h1 style="font-size:18px; color:black;text-align:left"><i class="fa fa-birthday-cake" aria-hidden="true"></i> Birthday</h1></td>
+                                                <td>                                         <h1 style="font-size:18px; color:black;text-align:left">@ab.Birthday</h1></td>
+
+                                            </tr>
+                                            <tr>
+                                                <td>                                 <h1 style="font-size:18px; color:black;text-align:left"><i class="fa fa-mobile" aria-hidden="true"></i> Phone Number</h1></td>
+                                                <td>                                 <h1 style="font-size:18px; color:black;text-align:left"> @ab.PhoneNumber</h1></td>
+
+                                            </tr>
+                                            <tr>
+                                                <td>       <h1 style="font-size:18px; color:black;text-align:left"><i class="fa fa-map-marker" aria-hidden="true"></i> Address</h1></td>
+                                                <td>       <h1 style="font-size:18px; color:black;text-align:left"> @ab.Address</h1></td>
+
+                                            </tr>
+                                        </table>
+
+
+
+                                    </div>
+
+                                    <div id="Paris" class="tabcontent">
+                                        @using (Html.BeginForm("Edit", "Profiles", FormMethod.Post, new { id = @User.Identity.GetUserId(), enctype = "multipart/form-data" }))
+                                        {
+                                            foreach (var a in ViewBag.Profile)
+                                            {
+                                                if (a.AccountID == User.Identity.GetUserId())
+                                                {
+                                                    @Html.AntiForgeryToken()
+                                                    <label style="font-size:18px; color:black;float:left">Account</label>
+
+                                                    <select class="form-control " id="AccountID" name="AccountID" style="font-size:18px">
+                                                        <option value="@User.Identity.GetUserId()">@User.Identity.GetUserName()</option>
+                                                    </select>
+                                                    <label style="font-size:18px; color:black;float:left">Full Name</label>
+                                                    <input class="form-control text-box single-line" id="Full_Name" name="Full_Name" type="text" value="@a.Full_Name">
+                                                    <label style="font-size:18px; color:black;float:left">Birthday</label>
+                                                    <input class="form-control text-box single-line datepicker" data-val="true" data-val-date="The field Birthday must be a date." id="Birthday" name="Birthday" type="datetime" value="@a.Birthday">
+                                                    <label style="font-size:18px; color:black;float:left">Phone Number</label>
+                                                    <input class="form-control text-box single-line" id="PhoneNumber" name="PhoneNumber" type="text" value="@a.PhoneNumber">
+                                                    <label style="font-size:18px; color:black;float:left">Address</label>
+                                                    <input class="form-control text-box single-line" id="Address" name="Address" type="text" value="@a.Address">
+                                                    <input class="form-control text-box single-line" style="display:none" id="Avatar" name="Avatar" type="text" value="@a.Avatar">
+                                                    <div class="form-group" style="float:right">
+                                                        <div class="col-md-offset-2 col-md-10">
+                                                            <input type="submit" value="Save" class="btn btn-default myButton" />
+
+                                                        </div>
+                                                    </div>
+                                                }
+                                            }
+                                        }
+                                        <br /> <br /><hr>
+                                        @using (Html.BeginForm("Edit", "Profiles", FormMethod.Post, new { id = @User.Identity.GetUserId(), enctype = "multipart/form-data" }))
+                                        {
+                                            foreach (var a in ViewBag.Profile)
+                                            {
+                                                if (a.AccountID == User.Identity.GetUserId())
+                                                {
+                                                    @Html.AntiForgeryToken()
+
+                                                    <select class="form-control " id="AccountID" name="AccountID" style="font-size:18px;display:none">
+                                                        <option value="@User.Identity.GetUserId()">@User.Identity.GetUserName()</option>
+                                                    </select>
+                                                    <div style=" display:none">
+                                                        <label style="font-size:18px; color:black;float:left">Full Name</label>
+                                                        <input class="form-control text-box single-line" id="Full_Name" name="Full_Name" type="text" value="@a.Full_Name">
+                                                        <label style="font-size:18px; color:black;float:left">Birthday</label>
+                                                        <input class="form-control text-box single-line datepicker" data-val="true" data-val-date="The field Birthday must be a date." id="Birthday" name="Birthday" type="datetime" value="@a.Birthday">
+                                                        <label style="font-size:18px; color:black;float:left">Phone Number</label>
+                                                        <input class="form-control text-box single-line" id="PhoneNumber" name="PhoneNumber" type="text" value="@a.PhoneNumber">
+                                                        <label style="font-size:18px; color:black;float:left">Address</label>
+                                                        <input class="form-control text-box single-line" id="Address" name="Address" type="text" value="@a.Address">
+                                                        <input class="form-control text-box single-line" id="Avatar" name="Avatar" type="text" value="@a.Avatar">
+                                                    </div>
+                                                    <label for="file" style="font-size:15px; color:black;float:left"> Upload Avatar:</label>
+                                                    <input type="file" name="file" required id="Avatar" style="width: 100%;font-size:20px" />
+                                                    <p style="font-weight:bold;color:black;font-size:15px;">* Please select only Supported Files .png | .jpg | .jpeg | .gif </p>
+                                                    <p style="font-weight:bold;color:black;font-size:15px;">* Maximum allowed file size is 5 MB</p>
+                                                    <div class="form-group" style="float:right">
+                                                        <div class="col-md-offset-2 col-md-10">
+                                                            <input type="submit" value="Save Avatar" class="btn btn-default myButton" />
+
+                                                        </div>
+                                                    </div>
+                                                }
+                                            }
+                                        }
+                                    </div>
+
+
+
+                                }
+                            }
+
+
+
+
+                            <br />   <br />   <br />
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
     </header>
@@ -578,7 +983,7 @@
             </button>
         </div>
 
-        <button class="menu-btn btn"><i class="fas fa-ellipsis-h menu-btn-icon" aria-hidden="true"></i>Show Menu</button>
+        @*<button class="menu-btn btn"><i class="fas fa-ellipsis-h menu-btn-icon" aria-hidden="true"></i>Show Menu</button>*@
 
     </section>
     <!-- End of board info bar -->
@@ -590,18 +995,43 @@
             <h3 class="list-title">Not Started Tasks</h3>
 
             <ul class="list-items">
-                @foreach (var item in Model)
+                @foreach (var data in Model)
                 {
-                    if (item.StatusID == 1)
+                    if (data.StatusID == 1)
                     {
                         <li>
-                            <button type="button" class="btn" data-toggle="modal" data-target="@("#myModal" + item.TaskID)" style="max-width:100%">@item.Title</button>
 
-                            <div class="modal fade" id=@("myModal" + item.TaskID) tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                            <a href="#" data-toggle="modal" data-target="@("#myModal" + data.TaskID)" style="color:black">
+                                @if (data.StatusID == 1)
+                                {
+                                    <span class="label label-default" style="font-size:10px;float:left;color: #777">AAA</span>
+                                }
+                                @if (data.StatusID == 2)
+                                {
+                                    <span class="label label-warning" style="font-size:10px;float:left;color: #f0ad4e">AAA</span>
+                                }
+                                @if (data.StatusID == 3)
+                                {
+                                    <span class="label label-danger" style="font-size:10px;float:left;color: #d9534f">AAA</span>
+                                }&nbsp; @data.Title
+
+                            </a>
+
+                            @using (Html.BeginForm("Delete", "Tasks", new { id = @data.TaskID }, FormMethod.Post))
+                            {
+                                @Html.AntiForgeryToken()
+                                <div class="box-tools pull-right" data-is-focusable="false" tabindex="-1">
+                                    <button class="btn btn-box-tool" type="submit" value="Delete"> <i class="fa fa-times"></i></button>
+                                </div>
+                            }
+                            <div class="modal fade" id=@("myModal" + data.TaskID) tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content">
-                                        <div class="modal-body">
-                                            @using (Html.BeginForm("Edit", "Tasks", new { id = @item.TaskID }, FormMethod.Post))
+                                        <div class="modal-header">
+
+                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+                                            @using (Html.BeginForm("Edit", "Tasks", new { id = @data.TaskID }, FormMethod.Post))
                                             {
 
                                                 <style>
@@ -616,17 +1046,48 @@
                                                     <!-- left column -->
 
                                                     <div class="col-md-12">
-                                                        <!-- general form elements -->
+                                                        @if (@data.StatusID == 1)
+                                                        {
+                                                            <a href="#" class="Button1">Not Started</a>
+                                                            <!-- general form elements -->
+                                                        }
+                                                        @if (@data.StatusID == 2)
+                                                        {
+                                                            <a href="#" class="Button2">In Progess</a>
+                                                            <!-- general form elements -->
+                                                        }
+                                                        @if (@data.StatusID == 3)
+                                                        {
+                                                            <a href="#" class="Button3">Completed</a>
+                                                            <!-- general form elements -->
+                                                        }
+                                                        @foreach (var C in ViewBag.Assignee)
+                                                        {
+
+                                                            if (data.ReporterID == C.Id)
+                                                            {
+                                                                <p>Assignor:<span class="label label-success" style="font-size:10px;">@C.Email</span></p>
+                                                            }
+                                                            if (data.AssigneeID == C.Id)
+                                                            {
+                                                                <p>Assignee:<span class="label label-success" style="font-size:10px;">@C.Email</span></p>
+                                                            }
+                                                        }
+
+
+
+
+
 
                                                         <div class="box box-primary">
 
-                                                            <input data-val="true" data-val-number="The field TaskID must be a number." data-val-required="The TaskID field is required." id="TaskID" name="TaskID" type="hidden" value="@item.TaskID">
+                                                            <input data-val="true" data-val-number="The field TaskID must be a number." data-val-required="The TaskID field is required." id="TaskID" name="TaskID" type="hidden" value="@data.TaskID ">
 
                                                             <div class="box-header with-border">
                                                                 <div class="col-md-12">
                                                                     <div class="form-group">
                                                                         <h2>
-                                                                            <textarea cols="20" id="Title" name="Title" rows="1" style="width: 100%; max-width: 100%;border: 1px solid #dddddd;">@item.Title</textarea>
+                                                                            <textarea cols="20" id="Title" name="Title" rows="1" style="width: 100%; max-width: 100%;border: 1px solid #dddddd;">@data.Title</textarea>
                                                                             <span class="field-validation-valid text-danger" data-valmsg-for="Title" data-valmsg-replace="true"></span>
                                                                         </h2>
                                                                     </div>
@@ -637,34 +1098,42 @@
                                                                     <div class="col-md-12">
                                                                         <label>Bucket</label>
                                                                         <select class="form-control" id="BucketID" name="BucketID">
-                                                                            <option selected="selected" value="@item.BucketID">@item.Bucket.Title</option>
-
+                                                                            <option selected="selected" value="@data.BucketID">@data.Bucket.Title</option>
+                                                                            @foreach (var b in Model)
+                                                                            {
+                                                                                if (b.BucketID != data.BucketID)
+                                                                                {
+                                                                                    <option value="@b.BucketID">@b.Title</option>
+                                                                                }
+                                                                            }
                                                                         </select>
                                                                         <span class="field-validation-valid text-danger" data-valmsg-for="BucketID" data-valmsg-replace="true"></span>
                                                                     </div>
                                                                 </div>
+
                                                                 <div class="col-md-4">
                                                                     <div class="form-group">
-                                                                        <label>Status</label>
+                                                                        <label> Status</label>
 
                                                                         <select class="form-control StatusID" id="StatusID" name="StatusID">
-                                                                            @if (@item.StatusID == 1)
+                                                                            @if (@data.StatusID == 1)
                                                                             {
-                                                                                <option selected="selected" value="@item.StatusID">@item.Status.StatusName</option>
-                                                                                <option value="2">In Progess</option>
-                                                                                <option value="3">Completed</option>
+                                                                                <option selected="selected" value="@data.StatusID">	&#xf1db; @data.Status.StatusName </option>
+                                                                                <option value="2">	&#xf042; In Progess</option>
+                                                                                <option value="3">&#xf00c; Completed</option>
                                                                             }
-                                                                            else if (@item.StatusID == 2)
+                                                                            else if (@data.StatusID == 2)
                                                                             {
-                                                                                <option value="1">Not started</option>
-                                                                                <option selected="selected" value="@item.StatusID">@item.Status.StatusName</option>
-                                                                                <option value="3">Completed</option>
+
+                                                                                <option value="1">	&#xf1db; Not started</option>
+                                                                                <option selected="selected" value="@data.StatusID">	&#xf042;  @data.Status.StatusName</option>
+                                                                                <option value="3">&#xf00c;Completed</option>
                                                                             }
-                                                                            else if (@item.StatusID == 3)
+                                                                            else if (@data.StatusID == 3)
                                                                             {
-                                                                                <option value="1">Not started</option>
-                                                                                <option value="2">In Progess</option>
-                                                                                <option selected="selected" value="@item.StatusID">@item.Status.StatusName</option>
+                                                                                <option value="1">	&#xf1db; Not started</option>
+                                                                                <option value="2">	&#xf042; In Progess</option>
+                                                                                <option selected="selected" value="@data.StatusID">&#xf00c; @data.Status.StatusName</option>
 
                                                                             }
 
@@ -674,10 +1143,11 @@
                                                                     </div>
                                                                 </div>
 
+
                                                                 <div class="col-md-4">
                                                                     <div class="form-group">
                                                                         <label>Start Date</label>
-                                                                        <input class="form-control  datepicker  text-box single-line" data-val="true" data-val-date="The field Startdate must be a date." id="Startdate" name="Startdate" type="datetime" value="@item.Startdate">
+                                                                        <input class="form-control  datepicker  text-box single-line" data-val="true" data-val-date="The field Startdate must be a date." id="Startdate" name="Startdate" type="datetime" value="@data.Startdate">
                                                                         <span class="field-validation-valid text-danger" data-valmsg-for="Startdate" data-valmsg-replace="true"></span>
 
                                                                     </div>
@@ -687,17 +1157,18 @@
                                                                 <div class="col-md-4">
                                                                     <div class="form-group">
                                                                         <label>Due Date</label>
-                                                                        <input class="form-control datepicker  text-box single-line" data-val="true" data-val-date="The field Duedate must be a date." id="Duedate" name="Duedate" type="datetime" value="@item.Duedate">
+                                                                        <input class="form-control datepicker  text-box single-line" data-val="true" data-val-date="The field Duedate must be a date." id="Duedate" name="Duedate" type="datetime" value="@data.Duedate">
                                                                         <span class="field-validation-valid text-danger" data-valmsg-for="Duedate" data-valmsg-replace="true"></span>
                                                                     </div>
                                                                 </div>
-                                                                <div class="col-md-6">
+
+                                                                <div class="col-md-6" style="display:none">
                                                                     <div class="form-group">
                                                                         <label>Assignor</label>
                                                                         <select class="form-control  disabled  " id="ReporterID" name="ReporterID">
                                                                             @foreach (var C in ViewBag.Assignee)
                                                                             {
-                                                                                if (item.ReporterID == C.Id)
+                                                                                if (data.ReporterID == C.Id)
                                                                                 {
                                                                                     <option value="@C.Id">@C.Email</option>
                                                                                 }
@@ -707,35 +1178,46 @@
                                                                         <span class="field-validation-valid text-danger" data-valmsg-for="ReporterID" data-valmsg-replace="true"></span>
                                                                     </div>
                                                                 </div>
-                                                                <div class="col-md-6">
-                                                                    <div class="form-group">
-                                                                        <label>Assignee</label>
+                                                                @if (data.ReporterID == User.Identity.GetUserId())
+                                                                {
+                                                                    <div class="col-md-6">
+                                                                        <div class="form-group">
+                                                                            <label>Assignee</label>
 
-                                                                        <select class="form-control  disabled  " id="AssigneeID" name="AssigneeID">
-                                                                            @if (item.AssigneeID != null)
-                                                                            {
-                                                                                <option selected="selected" value="@item.AssigneeID">@item.AspNetUser.Email</option>
-                                                                            }
-                                                                            else
-                                                                            {
-                                                                                foreach (var mem in ViewBag.Listmembers)
+                                                                            <select class="form-control  disabled  " id="AssigneeID" name="AssigneeID">
+
+
+                                                                                <option selected="selected" value="@data.AssigneeID">@data.AspNetUser.Email</option>
+                                                                                @foreach (var mem in ViewBag.Listmembers)
                                                                                 {
-                                                                                    if (mem.AccountID != item.AssigneeID)
+                                                                                    if (mem.AccountID != @data.AssigneeID)
                                                                                     {
                                                                                         <option value="@mem.AccountID">@mem.AspNetUser.Email</option>
+
                                                                                     }
                                                                                 }
-                                                                            }
-                                                                        </select>
-                                                                        <span class="field-validation-valid text-danger" data-valmsg-for="AssigneeID" data-valmsg-replace="true"></span>
+
+                                                                            </select>
+                                                                            <span class="field-validation-valid text-danger" data-valmsg-for="AssigneeID" data-valmsg-replace="true"></span>
+                                                                        </div>
                                                                     </div>
-                                                                </div>
+                                                                }
+                                                                else
+                                                                {
+
+                                                                    <select class="form-control  disabled  " id="AssigneeID" name="AssigneeID" style=" display:none">
+
+
+                                                                        <option selected="selected" value="@data.AssigneeID">@data.AspNetUser.Email</option>
+
+                                                                    </select>
+                                                                }
 
 
                                                                 <div class="col-md-12">
                                                                     <div class="form-group">
                                                                         <label>Description</label>
-                                                                        <textarea cols="20" id="Description" name="Description" rows="10" style="width: 100%; max-width: 100%;border: 1px solid #dddddd;">@item.Description</textarea>
+                                                                        <textarea cols="20" id="Description" name="Description" rows="10" style="width: 100%; max-width: 100%;border: 1px solid #dddddd;">@data.Description</textarea>
                                                                         <span class="field-validation-valid text-danger" data-valmsg-for="Description" data-valmsg-replace="true"></span>
                                                                     </div>
                                                                 </div>
@@ -759,28 +1241,45 @@
 
                                             }
 
-                                            <div class="box box-success">
+                                            <div class="box box-success" id="comments_area_@data.TaskID">
                                                 <div class="box-header">
-                                                    <i class="fa fa-comments-o"></i>
+                                                    <i class="fa fa-eercast"></i>
 
-                                                    <h3 class="box-title">Comments</h3>
+                                                    <h3 class="box-title">  </h3>
 
                                                 </div>
                                                 @foreach (var cmt in ViewBag.Comments)
                                                 {
 
 
-                                                    if (cmt.TaskID == item.TaskID)
+                                                    if (cmt.TaskID == data.TaskID)
                                                     {
-                                                        <button class="btn btn-box-tool" type="submit" value="Delete" style="float:right;margin-right:10px;margin-top:10px;"> <i class="fa fa-times"></i></button>
+                                                        using (Html.BeginForm("Delete", "Comments", new { id = cmt.ID }, FormMethod.Post))
+                                                        {
+                                                            if (cmt.AccountID == @User.Identity.GetUserId())
+                                                            {
+                                                                @Html.AntiForgeryToken()
+
+                                                                <button class="btn btn-box-tool" type="submit" value="Delete" style="float:right;margin-right:10px;margin-top:10px;"> <i class="fa fa-times"></i></button>
+                                                            }
+                                                        }
 
                                                         <div class="box-body chat" id="chat-box">
                                                             <div class="item">
-                                                                <img src="@Url.Content("~/area/dist/img/user2-160x160.jpg")" alt="user image" class="offline">
+                                                                @foreach (var ab in ViewBag.Profile)
+                                                                {
+                                                                    if (cmt.AccountID == ab.AccountID)
+                                                                    {
+
+                                                                        <img src="@Url.Content("~/Content/" + @ab.Avatar)" alt="user image" class="offline">
+
+                                                                    }
+
+                                                                }
 
                                                                 <p class="message">
                                                                     <a href="#" class="name" style="color:#3c8dbc">
-                                                                        <small class="text-muted pull-right"><i class="fa fa-clock-o"></i>@cmt.LastUpdate</small>
+                                                                        <small class="text-muted pull-right"><i class="fa fa-clock-o"></i>@cmt.LastUpdate.ToString("MM/d/yyyy H:mm:s")</small>
                                                                         @foreach (var us in ViewBag.Assignee)
                                                                         {
                                                                             if (cmt.AccountID == us.Id)
@@ -789,7 +1288,8 @@
                                                                             }
                                                                         }
                                                                     </a>
-                                                                    @cmt.Name
+                                                                    <span class="comment">@cmt.Name</span>
+
                                                                 </p>
                                                             </div>
 
@@ -806,7 +1306,11 @@
                                                     <!-- /.item -->
                                                     <!-- chat item -->
                                                     <div class="item">
-                                                        <img src="@Url.Content("~/area/dist/img/user2-160x160.jpg")" alt="user image" class="offline">
+                                                        @foreach (var ab in ViewBag.Profile)
+                                                        {
+                                                            <img src="@Url.Content("~/Content/"+@ab.Avatar)" alt="user image" class="offline">
+
+                                                        }
 
                                                         <p class="message">
                                                             <a href="#" class="name" style="color:#3c8dbc">
@@ -827,100 +1331,126 @@
 
                                                 </div>
 
+                                                @*@using(Html.BeginForm("Create","Comments", new { id = @data.TaskID }, FormMethod.Post, new { id = "FormCmt", @class = "FormCmt" })) { }*@
 
-
-                                                @using (Html.BeginForm("Create", "Comments", FormMethod.Post, new { id = "FormCmt" }))
-                                                {
-                                                    @Html.AntiForgeryToken()
-
-                                                    <div class="form-group" style="display: none;">
-                                                        <label class="control-label col-md-2" for="AccountIDD">AccountID</label>
-                                                        <div class="col-md-10">
-                                                            <select class="form-control" id="AccountID " name="AccountID">
-                                                                <option value="@User.Identity.GetUserId()">@User.Identity.GetUserName()</option>
-                                                            </select>
-                                                            <span class="field-validation-valid text-danger" data-valmsg-for="AccountID" data-valmsg-replace="true"></span>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="form-group" style="display: none;">
-                                                        <label class="control-label col-md-2" for="TaskID">TaskID</label>
-                                                        <div class="col-md-10">
-                                                            <select class="form-control" id="TaskID" name="TaskID">
-                                                                <option value="@item.TaskID">@item.Title</option>
-                                                            </select>
-                                                            <span class="field-validation-valid text-danger" data-valmsg-for="TaskID" data-valmsg-replace="true"></span>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="form-group" style="display: none;">
-                                                        <label class="control-label col-md-2" for="LastUpdate">LastUpdate</label>
-                                                        <div class="col-md-10">
-                                                            <input class="form-control text-box single-line" data-val="true" data-val-date="The field LastUpdate must be a date." data-val-required="The LastUpdate field is required." id="LastUpdate" name="LastUpdate" type="datetime" value="@DateTime.Now">
-                                                            <span class="field-validation-valid text-danger" data-valmsg-for="LastUpdate" data-valmsg-replace="true"></span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-12">
-                                                        <div class="form-group">
-
-                                                            <textarea cols="5" id="Name" name="Name" rows="5" style="width: 100%; max-width: 100%;border: 1px solid #dddddd;" placeholder="Type message..."></textarea>
-
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="form-group" style="float:right">
-                                                        <div class="col-md-offset-2 col-md-10">
-                                                            <input type="submit" class="myButton" value="Send" @*onclick="SaveDemo();"*@ />
-
-                                                        </div>
-                                                    </div>
-
-
-
-                                                }
-                                                @using (Html.BeginForm("Index", "Tasks", new { id = @item.TaskID }, FormMethod.Post, new { enctype = "multipart/form-data" }))
-                                                {
-
-                                                    <input type="file" name="postedFile" style="padding-top:80px" />
-                                                    <br>
-                                                    <input type="submit" id="btnUpload" value="Upload" />
-                                                }
-                                                @using (Html.BeginForm("DownloadFile", "Tasks", FormMethod.Post))
-                                                {
-                                                    <input type="hidden" id="hfFileId" name="FileId" />
-                                                    <input type="submit" id="btnDownload" value="Download" style="display:none" />
-                                                }
-                                                <hr />
-                                                <table cellpadding="0" cellspacing="0">
-                                                    <tr>
-
-                                                        <th style="width:120px">File Name</th>
-                                                        <th style="width:80px">Download</th>
-                                                    </tr>
-
-                                                    @foreach (var file in ViewBag.Attachments)
-                                                    {
-
-                                                        <tr>
-                                                            @if (file.TaskID == item.TaskID)
-                                                            {
-                                                                <td>@file.Name</td>
-                                                                <td><a href="javascript:;" onclick="DownloadFile(@file.ID)">Download</a></td>
-                                                            }
-                                                        </tr>
-
-
-
-                                                    }
-
-                                                </table>
 
                                             </div>
 
+                                            @using (Html.BeginForm("Create", "Comments", FormMethod.Post, new { id = "FormCmt", @class = "FormCmt" }))
+                                            {
+                                                @Html.AntiForgeryToken()
+
+                                                foreach (var abb in ViewBag.Profile)
+                                                {
+                                                    if (User.Identity.GetUserId() == abb.AccountID)
+                                                    {
+
+                                                        <input name="Ava" type="hidden" value="@abb.Avatar" />
+
+                                                    }
+                                                }
+
+
+                                                <input type="hidden" name="TaskID" value="@data.TaskID" />
+
+                                                <div class="form-group" style="display: none;">
+                                                    <label class="control-label col-md-2" for="AccountID">AccountID</label>
+                                                    <div class="col-md-10">
+                                                        <select class="form-control" id="AccountID " name="AccountID">
+                                                            <option value="@User.Identity.GetUserId()">@User.Identity.GetUserName()</option>
+                                                        </select>
+                                                        <span class="field-validation-valid text-danger" data-valmsg-for="AccountID" data-valmsg-replace="true"></span>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group" style="display: none;">
+                                                    <label class="control-label col-md-2" for="TaskID">TaskID</label>
+                                                    <div class="col-md-10">
+
+
+                                                        <span class="field-validation-valid text-danger" data-valmsg-for="TaskID" data-valmsg-replace="true"></span>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group" style="display: none;">
+                                                    <label class="control-label col-md-2" for="LastUpdate">LastUpdate</label>
+                                                    <div class="col-md-10">
+                                                        <input class="form-control text-box single-line" data-val="true" data-val-date="The field LastUpdate must be a date." data-val-required="The LastUpdate field is required." id="LastUpdate" name="LastUpdate" type="datetime" value="@DateTime.Now">
+                                                        <span class="field-validation-valid text-danger" data-valmsg-for="LastUpdate" data-valmsg-replace="true"></span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+
+                                                        <textarea cols="5" id="Name" name="Name" rows="5" style="width: 100%; max-width: 100%;border: 1px solid #dddddd;" placeholder="Type message..." required></textarea>
+
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group" style="float:right">
+                                                    <div class="col-md-offset-2 col-md-10">
+                                                        <button type="submit" class="myButton btn-send-cmt">Send</button>
+                                                        @*<input type="button" class="myButton" value="Test" onclick="SaveDemo();" />*@
+                                                    </div>
+                                                </div>
+
+
+
+                                            }
+
+
+                                            <!-- Button trigger modal -->
+                                            @using (Html.BeginForm("Index", "Tasks", new { id = @data.TaskID }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+                                            {
+
+                                                <input type="file" name="postedFile" required style="padding-top:80px" />
+                                                <br>
+                                                <input type="submit" id="btnUpload" value="Upload" />
+                                                <p style="font-weight:bold">* Please select only Supported Files .png | .jpg | .jpeg | .gif | .docx | .doc | .xls | .xlsx | .xlsm | .txt</p>
+                                                <p style="font-weight:bold">* Maximum allowed file size is 5 MB</p>
+                                            }
+                                            @using (Html.BeginForm("DownloadFile", "Tasks", FormMethod.Post))
+                                            {
+                                                <input type="hidden" id="hfFileId" name="FileId" />
+                                                <input type="submit" id="btnDownload" value="Download" style="display:none" />
+                                            }
+                                            <hr />
+                                            <table cellpadding="0" cellspacing="0">
+                                                <tr>
+
+                                                    <th style="width:120px">File Name</th>
+                                                    <th style="width:80px"></th>
+                                                </tr>
+
+                                                @foreach (var file in ViewBag.Attachments)
+                                                {
+
+                                                    <tr>
+                                                        @if (file.TaskID == data.TaskID)
+                                                        {
+                                                            <td>@file.Name</td>
+
+                                                            <td>
+                                                                <a href="javascript:;" onclick="DownloadFile(@file.ID)" class="Download"><i class="fa fa-download"></i> Download</a>
+                                                            </td>
+                                                        }
+                                                    </tr>
+
+
+
+                                                }
+
+                                            </table>
+
+
                                         </div>
                                     </div>
+
                                 </div>
                             </div>
+
+
+
                         </li>
                     }
                 }
@@ -937,339 +1467,463 @@
             <h3 class="list-title">In Progess Tasks</h3>
 
             <ul class="list-items">
-                @foreach (var item in Model)
+                @foreach (var data in Model)
                 {
-                    if (item.StatusID == 2)
+                    if (data.StatusID == 2)
                     {
-                <li>
-                    <button type="button" class="btn" data-toggle="modal" data-target="@("#myModal" + item.TaskID)" style="max-width:100%">@item.Title</button>
+                        <li>
+
+                            <a href="#" data-toggle="modal" data-target="@("#myModal" + data.TaskID)" style="color:black">
+                                @if (data.StatusID == 1)
+                                {
+                                    <span class="label label-default" style="font-size:10px;float:left;color: #777">AAA</span>
+                                }
+                                @if (data.StatusID == 2)
+                                {
+                                    <span class="label label-warning" style="font-size:10px;float:left;color: #f0ad4e">AAA</span>
+                                }
+                                @if (data.StatusID == 3)
+                                {
+                                    <span class="label label-danger" style="font-size:10px;float:left;color: #d9534f">AAA</span>
+                                }&nbsp; @data.Title
+
+                            </a>
+
+                            @using (Html.BeginForm("Delete", "Tasks", new { id = @data.TaskID }, FormMethod.Post))
+                            {
+                                @Html.AntiForgeryToken()
+                                <div class="box-tools pull-right" data-is-focusable="false" tabindex="-1">
+                                    <button class="btn btn-box-tool" type="submit" value="Delete"> <i class="fa fa-times"></i></button>
+                                </div>
+                            }
+                            <div class="modal fade" id=@("myModal" + data.TaskID) tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+
+                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+                                            @using (Html.BeginForm("Edit", "Tasks", new { id = @data.TaskID }, FormMethod.Post))
+                                            {
+
+                                                <style>
+                                                    .select#StatusID option[value="1"] {
+                                                        color: red;
+                                                    }
+                                                </style>
+                                                @Html.AntiForgeryToken()
+
+                                                <div class="row">
+
+                                                    <!-- left column -->
+
+                                                    <div class="col-md-12">
+                                                        @if (@data.StatusID == 1)
+                                                        {
+                                                            <a href="#" class="Button1">Not Started</a>
+                                                            <!-- general form elements -->
+                                                        }
+                                                        @if (@data.StatusID == 2)
+                                                        {
+                                                            <a href="#" class="Button2">In Progess</a>
+                                                            <!-- general form elements -->
+                                                        }
+                                                        @if (@data.StatusID == 3)
+                                                        {
+                                                            <a href="#" class="Button3">Completed</a>
+                                                            <!-- general form elements -->
+                                                        }
+                                                        @foreach (var C in ViewBag.Assignee)
+                                                        {
+
+                                                            if (data.ReporterID == C.Id)
+                                                            {
+                                                                <p>Assignor:<span class="label label-success" style="font-size:10px;">@C.Email</span></p>
+                                                            }
+                                                            if (data.AssigneeID == C.Id)
+                                                            {
+                                                                <p>Assignee:<span class="label label-success" style="font-size:10px;">@C.Email</span></p>
+                                                            }
+                                                        }
 
 
-                    <div class="modal fade" id=@("myModal" + item.TaskID) tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-body">
-                                    @using (Html.BeginForm("Edit", "Tasks", new { id = @item.TaskID }, FormMethod.Post))
-                                    {
-
-                                        <style>
-                                            .select#StatusID option[value="1"] {
-                                                color: red;
-                                            }
-                                        </style>
-                                        @Html.AntiForgeryToken()
-
-                                        <div class="row">
-
-                                            <!-- left column -->
-
-                                            <div class="col-md-12">
-                                                <!-- general form elements -->
-
-                                                <div class="box box-primary">
-
-                                                    <input data-val="true" data-val-number="The field TaskID must be a number." data-val-required="The TaskID field is required." id="TaskID" name="TaskID" type="hidden" value="@item.TaskID">
-
-                                                    <div class="box-header with-border">
-                                                        <div class="col-md-12">
-                                                            <div class="form-group">
-                                                                <h2>
-                                                                    <textarea cols="20" id="Title" name="Title" rows="1" style="width: 100%; max-width: 100%;border: 1px solid #dddddd;">@item.Title</textarea>
-                                                                    <span class="field-validation-valid text-danger" data-valmsg-for="Title" data-valmsg-replace="true"></span>
-                                                                </h2>
-                                                            </div>
-                                                        </div>
 
 
-                                                        <div class="form-group">
-                                                            <div class="col-md-12">
-                                                                <label>Bucket</label>
-                                                                <select class="form-control" id="BucketID" name="BucketID">
-                                                                    <option selected="selected" value="@item.BucketID">@item.Bucket.Title</option>
-
-                                                                </select>
-                                                                <span class="field-validation-valid text-danger" data-valmsg-for="BucketID" data-valmsg-replace="true"></span>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-4">
-                                                            <div class="form-group">
-                                                                <label>Status</label>
-
-                                                                <select class="form-control StatusID" id="StatusID" name="StatusID">
-                                                                    @if (@item.StatusID == 1)
-                                                                    {
-                                                                        <option selected="selected" value="@item.StatusID">@item.Status.StatusName</option>
-                                                                        <option value="2">In Progess</option>
-                                                                        <option value="3">Completed</option>
-                                                                    }
-                                                                    else if (@item.StatusID == 2)
-                                                                    {
-                                                                        <option value="1">Not started</option>
-                                                                        <option selected="selected" value="@item.StatusID">@item.Status.StatusName</option>
-                                                                        <option value="3">Completed</option>
-                                                                    }
-                                                                    else if (@item.StatusID == 3)
-                                                                    {
-                                                                        <option value="1">Not started</option>
-                                                                        <option value="2">In Progess</option>
-                                                                        <option selected="selected" value="@item.StatusID">@item.Status.StatusName</option>
-
-                                                                    }
-
-                                                                </select>
-
-                                                                <span class="field-validation-valid text-danger" data-valmsg-for="StatusID" data-valmsg-replace="true"></span>
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="col-md-4">
-                                                            <div class="form-group">
-                                                                <label>Start Date</label>
-                                                                <input class="form-control  datepicker  text-box single-line" data-val="true" data-val-date="The field Startdate must be a date." id="Startdate" name="Startdate" type="datetime" value="@item.Startdate">
-                                                                <span class="field-validation-valid text-danger" data-valmsg-for="Startdate" data-valmsg-replace="true"></span>
-
-                                                            </div>
-                                                        </div>
 
 
-                                                        <div class="col-md-4">
-                                                            <div class="form-group">
-                                                                <label>Due Date</label>
-                                                                <input class="form-control datepicker  text-box single-line" data-val="true" data-val-date="The field Duedate must be a date." id="Duedate" name="Duedate" type="datetime" value="@item.Duedate">
-                                                                <span class="field-validation-valid text-danger" data-valmsg-for="Duedate" data-valmsg-replace="true"></span>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            <div class="form-group">
-                                                                <label>Assignor</label>
-                                                                <select class="form-control  disabled  " id="ReporterID" name="ReporterID">
-                                                                    @foreach (var C in ViewBag.Assignee)
-                                                                    {
-                                                                        if (item.ReporterID == C.Id)
-                                                                        {
-                                                                            <option value="@C.Id">@C.Email</option>
-                                                                        }
-                                                                    }
+                                                        <div class="box box-primary">
 
-                                                                </select>
-                                                                <span class="field-validation-valid text-danger" data-valmsg-for="ReporterID" data-valmsg-replace="true"></span>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            <div class="form-group">
-                                                                <label>Assignee</label>
+                                                            <input data-val="true" data-val-number="The field TaskID must be a number." data-val-required="The TaskID field is required." id="TaskID" name="TaskID" type="hidden" value="@data.TaskID ">
 
-                                                                <select class="form-control  disabled  " id="AssigneeID" name="AssigneeID">
-                                                                    @if (item.AssigneeID != null)
-                                                                    {
-                                                                        <option selected="selected" value="@item.AssigneeID">@item.AspNetUser.Email</option>
-                                                                    }
-                                                                    else
-                                                                    {
-                                                                        foreach (var mem in ViewBag.Listmembers)
-                                                                        {
-                                                                            if (mem.AccountID != item.AssigneeID)
+                                                            <div class="box-header with-border">
+                                                                <div class="col-md-12">
+                                                                    <div class="form-group">
+                                                                        <h2>
+                                                                            <textarea cols="20" id="Title" name="Title" rows="1" style="width: 100%; max-width: 100%;border: 1px solid #dddddd;">@data.Title</textarea>
+                                                                            <span class="field-validation-valid text-danger" data-valmsg-for="Title" data-valmsg-replace="true"></span>
+                                                                        </h2>
+                                                                    </div>
+                                                                </div>
+
+
+                                                                <div class="form-group">
+                                                                    <div class="col-md-12">
+                                                                        <label>Bucket</label>
+                                                                        <select class="form-control" id="BucketID" name="BucketID">
+                                                                            <option selected="selected" value="@data.BucketID">@data.Bucket.Title</option>
+                                                                            @foreach (var b in Model)
                                                                             {
-                                                                                <option value="@mem.AccountID">@mem.AspNetUser.Email</option>
+                                                                                if (b.BucketID != data.BucketID)
+                                                                                {
+                                                                                    <option value="@b.BucketID">@b.Title</option>
+                                                                                }
                                                                             }
-                                                                        }
-                                                                    }
-                                                                </select>
-                                                                <span class="field-validation-valid text-danger" data-valmsg-for="AssigneeID" data-valmsg-replace="true"></span>
+                                                                        </select>
+                                                                        <span class="field-validation-valid text-danger" data-valmsg-for="BucketID" data-valmsg-replace="true"></span>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="col-md-4">
+                                                                    <div class="form-group">
+                                                                        <label> Status</label>
+
+                                                                        <select class="form-control StatusID" id="StatusID" name="StatusID">
+                                                                            @if (@data.StatusID == 1)
+                                                                            {
+                                                                                <option selected="selected" value="@data.StatusID">	&#xf1db; @data.Status.StatusName </option>
+                                                                                <option value="2">	&#xf042; In Progess</option>
+                                                                                <option value="3">&#xf00c; Completed</option>
+                                                                            }
+                                                                            else if (@data.StatusID == 2)
+                                                                            {
+
+                                                                                <option value="1">	&#xf1db; Not started</option>
+                                                                                <option selected="selected" value="@data.StatusID">	&#xf042;  @data.Status.StatusName</option>
+                                                                                <option value="3">&#xf00c;Completed</option>
+                                                                            }
+                                                                            else if (@data.StatusID == 3)
+                                                                            {
+                                                                                <option value="1">	&#xf1db; Not started</option>
+                                                                                <option value="2">	&#xf042; In Progess</option>
+                                                                                <option selected="selected" value="@data.StatusID">&#xf00c; @data.Status.StatusName</option>
+
+                                                                            }
+
+                                                                        </select>
+
+                                                                        <span class="field-validation-valid text-danger" data-valmsg-for="StatusID" data-valmsg-replace="true"></span>
+                                                                    </div>
+                                                                </div>
+
+
+                                                                <div class="col-md-4">
+                                                                    <div class="form-group">
+                                                                        <label>Start Date</label>
+                                                                        <input class="form-control  datepicker  text-box single-line" data-val="true" data-val-date="The field Startdate must be a date." id="Startdate" name="Startdate" type="datetime" value="@data.Startdate">
+                                                                        <span class="field-validation-valid text-danger" data-valmsg-for="Startdate" data-valmsg-replace="true"></span>
+
+                                                                    </div>
+                                                                </div>
+
+
+                                                                <div class="col-md-4">
+                                                                    <div class="form-group">
+                                                                        <label>Due Date</label>
+                                                                        <input class="form-control datepicker  text-box single-line" data-val="true" data-val-date="The field Duedate must be a date." id="Duedate" name="Duedate" type="datetime" value="@data.Duedate">
+                                                                        <span class="field-validation-valid text-danger" data-valmsg-for="Duedate" data-valmsg-replace="true"></span>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="col-md-6" style="display:none">
+                                                                    <div class="form-group">
+                                                                        <label>Assignor</label>
+                                                                        <select class="form-control  disabled  " id="ReporterID" name="ReporterID">
+                                                                            @foreach (var C in ViewBag.Assignee)
+                                                                            {
+                                                                                if (data.ReporterID == C.Id)
+                                                                                {
+                                                                                    <option value="@C.Id">@C.Email</option>
+                                                                                }
+                                                                            }
+
+                                                                        </select>
+                                                                        <span class="field-validation-valid text-danger" data-valmsg-for="ReporterID" data-valmsg-replace="true"></span>
+                                                                    </div>
+                                                                </div>
+                                                                @if (data.ReporterID == User.Identity.GetUserId())
+                                                                {
+                                                                    <div class="col-md-6">
+                                                                        <div class="form-group">
+                                                                            <label>Assignee</label>
+
+                                                                            <select class="form-control  disabled  " id="AssigneeID" name="AssigneeID">
+
+
+                                                                                <option selected="selected" value="@data.AssigneeID">@data.AspNetUser.Email</option>
+                                                                                @foreach (var mem in ViewBag.Listmembers)
+                                                                                {
+                                                                                    if (mem.AccountID != @data.AssigneeID)
+                                                                                    {
+                                                                                        <option value="@mem.AccountID">@mem.AspNetUser.Email</option>
+
+                                                                                    }
+                                                                                }
+
+                                                                            </select>
+                                                                            <span class="field-validation-valid text-danger" data-valmsg-for="AssigneeID" data-valmsg-replace="true"></span>
+                                                                        </div>
+                                                                    </div>
+                                                                }
+                                                                else
+                                                                {
+
+                                                                    <select class="form-control  disabled  " id="AssigneeID" name="AssigneeID" style=" display:none">
+
+
+                                                                        <option selected="selected" value="@data.AssigneeID">@data.AspNetUser.Email</option>
+
+                                                                    </select>
+                                                                }
+
+
+                                                                <div class="col-md-12">
+                                                                    <div class="form-group">
+                                                                        <label>Description</label>
+                                                                        <textarea cols="20" id="Description" name="Description" rows="10" style="width: 100%; max-width: 100%;border: 1px solid #dddddd;">@data.Description</textarea>
+                                                                        <span class="field-validation-valid text-danger" data-valmsg-for="Description" data-valmsg-replace="true"></span>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="form-group" style="float:right">
+                                                                    <div class="col-md-offset-2 col-md-10">
+                                                                        <button type="submit" value="Save" class="myButton">Save</button>
+
+                                                                    </div>
+                                                                </div>
                                                             </div>
-                                                        </div>
 
-
-                                                        <div class="col-md-12">
-                                                            <div class="form-group">
-                                                                <label>Description</label>
-                                                                <textarea cols="20" id="Description" name="Description" rows="10" style="width: 100%; max-width: 100%;border: 1px solid #dddddd;">@item.Description</textarea>
-                                                                <span class="field-validation-valid text-danger" data-valmsg-for="Description" data-valmsg-replace="true"></span>
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="form-group" style="float:right">
-                                                            <div class="col-md-offset-2 col-md-10">
-                                                                <button type="submit" value="Save" class="myButton">Save</button>
-
-                                                            </div>
                                                         </div>
                                                     </div>
 
                                                 </div>
-                                            </div>
-
-                                        </div>
 
 
 
-                                        <!-- /.row -->
+                                                <!-- /.row -->
 
-                                    }
+                                            }
 
-                                    <div class="box box-success">
-                                        <div class="box-header">
-                                            <i class="fa fa-comments-o"></i>
+                                            <div class="box box-success" id="comments_area_@data.TaskID">
+                                                <div class="box-header">
+                                                    <i class="fa fa-eercast"></i>
 
-                                            <h3 class="box-title">Comments</h3>
+                                                    <h3 class="box-title">  </h3>
 
-                                        </div>
-                                        @foreach (var cmt in ViewBag.Comments)
-                                        {
+                                                </div>
+                                                @foreach (var cmt in ViewBag.Comments)
+                                                {
 
 
-                                            if (cmt.TaskID == item.TaskID)
-                                            {
-                                                <button class="btn btn-box-tool" type="submit" value="Delete" style="float:right;margin-right:10px;margin-top:10px;"> <i class="fa fa-times"></i></button>
+                                                    if (cmt.TaskID == data.TaskID)
+                                                    {
+                                                        using (Html.BeginForm("Delete", "Comments", new { id = cmt.ID }, FormMethod.Post))
+                                                        {
+                                                            if (cmt.AccountID == @User.Identity.GetUserId())
+                                                            {
+                                                                @Html.AntiForgeryToken()
 
-                                                <div class="box-body chat" id="chat-box">
+                                                                <button class="btn btn-box-tool" type="submit" value="Delete" style="float:right;margin-right:10px;margin-top:10px;"> <i class="fa fa-times"></i></button>
+                                                            }
+                                                        }
+
+                                                        <div class="box-body chat" id="chat-box">
+                                                            <div class="item">
+                                                                @foreach (var ab in ViewBag.Profile)
+                                                                {
+                                                                    if (cmt.AccountID == ab.AccountID)
+                                                                    {
+
+                                                                        <img src="@Url.Content("~/Content/" + @ab.Avatar)" alt="user image" class="offline">
+
+                                                                    }
+
+                                                                }
+
+                                                                <p class="message">
+                                                                    <a href="#" class="name" style="color:#3c8dbc">
+                                                                        <small class="text-muted pull-right"><i class="fa fa-clock-o"></i>@cmt.LastUpdate.ToString("MM/d/yyyy H:mm:s")</small>
+                                                                        @foreach (var us in ViewBag.Assignee)
+                                                                        {
+                                                                            if (cmt.AccountID == us.Id)
+                                                                            {
+                                                                                @us.Email
+                                                                            }
+                                                                        }
+                                                                    </a>
+                                                                    <span class="comment">@cmt.Name</span>
+
+                                                                </p>
+                                                            </div>
+
+                                                            <!-- /.item -->
+                                                            <!-- /.item -->
+                                                        </div>
+
+                                                    }
+
+                                                }
+
+                                                <div class="box-body chat" id="myDIV" style="display:none">
+                                                    <!-- chat item -->
+                                                    <!-- /.item -->
+                                                    <!-- chat item -->
                                                     <div class="item">
-                                                        <img src="@Url.Content("~/area/dist/img/user2-160x160.jpg")" alt="user image" class="offline">
+                                                        @foreach (var ab in ViewBag.Profile)
+                                                        {
+                                                            <img src="@Url.Content("~/Content/"+@ab.Avatar)" alt="user image" class="offline">
+
+                                                        }
 
                                                         <p class="message">
                                                             <a href="#" class="name" style="color:#3c8dbc">
-                                                                <small class="text-muted pull-right"><i class="fa fa-clock-o"></i>@cmt.LastUpdate</small>
-                                                                @foreach (var us in ViewBag.Assignee)
-                                                                {
-                                                                    if (cmt.AccountID == us.Id)
-                                                                    {
-                                                                        @us.Email
-                                                                    }
-                                                                }
+                                                                <small class="text-muted pull-right"><i class="fa fa-clock-o"></i>@DateTime.Now</small>
+                                                                @User.Identity.GetUserName()
                                                             </a>
-                                                            @cmt.Name
+                                                            <label id="1">
+
+                                                            </label>
+                                                            <label id="2">
+                                                            </label>
+
+
                                                         </p>
+
                                                     </div>
 
-                                                    <!-- /.item -->
-                                                    <!-- /.item -->
+
                                                 </div>
+
+                                                @*@using(Html.BeginForm("Create","Comments", new { id = @data.TaskID }, FormMethod.Post, new { id = "FormCmt", @class = "FormCmt" })) { }*@
+
+
+                                            </div>
+
+                                            @using (Html.BeginForm("Create", "Comments", FormMethod.Post, new { id = "FormCmt", @class = "FormCmt" }))
+                                            {
+                                                @Html.AntiForgeryToken()
+
+                                                foreach (var abb in ViewBag.Profile)
+                                                {
+                                                    if (User.Identity.GetUserId() == abb.AccountID)
+                                                    {
+
+                                                        <input name="Ava" type="hidden" value="@abb.Avatar" />
+
+                                                    }
+                                                }
+
+
+                                                <input type="hidden" name="TaskID" value="@data.TaskID" />
+
+                                                <div class="form-group" style="display: none;">
+                                                    <label class="control-label col-md-2" for="AccountID">AccountID</label>
+                                                    <div class="col-md-10">
+                                                        <select class="form-control" id="AccountID " name="AccountID">
+                                                            <option value="@User.Identity.GetUserId()">@User.Identity.GetUserName()</option>
+                                                        </select>
+                                                        <span class="field-validation-valid text-danger" data-valmsg-for="AccountID" data-valmsg-replace="true"></span>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group" style="display: none;">
+                                                    <label class="control-label col-md-2" for="TaskID">TaskID</label>
+                                                    <div class="col-md-10">
+
+
+                                                        <span class="field-validation-valid text-danger" data-valmsg-for="TaskID" data-valmsg-replace="true"></span>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group" style="display: none;">
+                                                    <label class="control-label col-md-2" for="LastUpdate">LastUpdate</label>
+                                                    <div class="col-md-10">
+                                                        <input class="form-control text-box single-line" data-val="true" data-val-date="The field LastUpdate must be a date." data-val-required="The LastUpdate field is required." id="LastUpdate" name="LastUpdate" type="datetime" value="@DateTime.Now">
+                                                        <span class="field-validation-valid text-danger" data-valmsg-for="LastUpdate" data-valmsg-replace="true"></span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+
+                                                        <textarea cols="5" id="Name" name="Name" rows="5" style="width: 100%; max-width: 100%;border: 1px solid #dddddd;" placeholder="Type message..." required></textarea>
+
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group" style="float:right">
+                                                    <div class="col-md-offset-2 col-md-10">
+                                                        <button type="submit" class="myButton btn-send-cmt">Send</button>
+                                                        @*<input type="button" class="myButton" value="Test" onclick="SaveDemo();" />*@
+                                                    </div>
+                                                </div>
+
+
 
                                             }
 
-                                        }
 
-                                        <div class="box-body chat" id="myDIV" style="display:none">
-                                            <!-- chat item -->
-                                            <!-- /.item -->
-                                            <!-- chat item -->
-                                            <div class="item">
-                                                <img src="@Url.Content("~/area/dist/img/user2-160x160.jpg")" alt="user image" class="offline">
+                                            <!-- Button trigger modal -->
+                                            @using (Html.BeginForm("Index", "Tasks", new { id = @data.TaskID }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+                                            {
 
-                                                <p class="message">
-                                                    <a href="#" class="name" style="color:#3c8dbc">
-                                                        <small class="text-muted pull-right"><i class="fa fa-clock-o"></i>@DateTime.Now</small>
-                                                        @User.Identity.GetUserName()
-                                                    </a>
-                                                    <label id="1">
+                                                <input type="file" name="postedFile" required style="padding-top:80px" />
+                                                <br>
+                                                <input type="submit" id="btnUpload" value="Upload" />
+                                                <p style="font-weight:bold">* Please select only Supported Files .png | .jpg | .jpeg | .gif | .docx | .doc | .xls | .xlsx | .xlsm | .txt</p>
+                                                <p style="font-weight:bold">* Maximum allowed file size is 5 MB</p>
+                                            }
+                                            @using (Html.BeginForm("DownloadFile", "Tasks", FormMethod.Post))
+                                            {
+                                                <input type="hidden" id="hfFileId" name="FileId" />
+                                                <input type="submit" id="btnDownload" value="Download" style="display:none" />
+                                            }
+                                            <hr />
+                                            <table cellpadding="0" cellspacing="0">
+                                                <tr>
 
-                                                    </label>
-                                                    <label id="2">
-                                                    </label>
+                                                    <th style="width:120px">File Name</th>
+                                                    <th style="width:80px"></th>
+                                                </tr>
+
+                                                @foreach (var file in ViewBag.Attachments)
+                                                {
+
+                                                    <tr>
+                                                        @if (file.TaskID == data.TaskID)
+                                                        {
+                                                            <td>@file.Name</td>
+
+                                                            <td>
+                                                                <a href="javascript:;" onclick="DownloadFile(@file.ID)" class="Download"><i class="fa fa-download"></i> Download</a>
+                                                            </td>
+                                                        }
+                                                    </tr>
 
 
-                                                </p>
 
-                                            </div>
+                                                }
+
+                                            </table>
 
 
                                         </div>
-
-
-
-                                        @using (Html.BeginForm("Create", "Comments", FormMethod.Post, new { id = "FormCmt" }))
-                                        {
-                                            @Html.AntiForgeryToken()
-
-                                            <div class="form-group" style="display: none;">
-                                                <label class="control-label col-md-2" for="AccountIDD">AccountID</label>
-                                                <div class="col-md-10">
-                                                    <select class="form-control" id="AccountID " name="AccountID">
-                                                        <option value="@User.Identity.GetUserId()">@User.Identity.GetUserName()</option>
-                                                    </select>
-                                                    <span class="field-validation-valid text-danger" data-valmsg-for="AccountID" data-valmsg-replace="true"></span>
-                                                </div>
-                                            </div>
-
-                                            <div class="form-group" style="display: none;">
-                                                <label class="control-label col-md-2" for="TaskID">TaskID</label>
-                                                <div class="col-md-10">
-                                                    <select class="form-control" id="TaskID" name="TaskID">
-                                                        <option value="@item.TaskID">@item.Title</option>
-                                                    </select>
-                                                    <span class="field-validation-valid text-danger" data-valmsg-for="TaskID" data-valmsg-replace="true"></span>
-                                                </div>
-                                            </div>
-
-                                            <div class="form-group" style="display: none;">
-                                                <label class="control-label col-md-2" for="LastUpdate">LastUpdate</label>
-                                                <div class="col-md-10">
-                                                    <input class="form-control text-box single-line" data-val="true" data-val-date="The field LastUpdate must be a date." data-val-required="The LastUpdate field is required." id="LastUpdate" name="LastUpdate" type="datetime" value="@DateTime.Now">
-                                                    <span class="field-validation-valid text-danger" data-valmsg-for="LastUpdate" data-valmsg-replace="true"></span>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-12">
-                                                <div class="form-group">
-
-                                                    <textarea cols="5" id="Name" name="Name" rows="5" style="width: 100%; max-width: 100%;border: 1px solid #dddddd;" placeholder="Type message..."></textarea>
-
-                                                </div>
-                                            </div>
-
-                                            <div class="form-group" style="float:right">
-                                                <div class="col-md-offset-2 col-md-10">
-                                                    <input type="submit" class="myButton" value="Send" @*onclick="SaveDemo();"*@ />
-
-                                                </div>
-                                            </div>
-
-
-
-                                        }
-                                        @using (Html.BeginForm("Index", "Tasks", new { id = @item.TaskID }, FormMethod.Post, new { enctype = "multipart/form-data" }))
-                                        {
-
-                                            <input type="file" name="postedFile" style="padding-top:80px" />
-                                            <br>
-                                            <input type="submit" id="btnUpload" value="Upload" />
-                                        }
-                                        @using (Html.BeginForm("DownloadFile", "Tasks", FormMethod.Post))
-                                        {
-                                            <input type="hidden" id="hfFileId" name="FileId" />
-                                            <input type="submit" id="btnDownload" value="Download" style="display:none" />
-                                        }
-                                        <hr />
-                                        <table cellpadding="0" cellspacing="0">
-                                            <tr>
-
-                                                <th style="width:120px">File Name</th>
-                                                <th style="width:80px">Download</th>
-                                            </tr>
-
-                                            @foreach (var file in ViewBag.Attachments)
-                                            {
-
-                                                <tr>
-                                                    @if (file.TaskID == item.TaskID)
-                                                    {
-                                                        <td>@file.Name</td>
-                                                        <td><a href="javascript:;" onclick="DownloadFile(@file.ID)">Download</a></td>
-                                                    }
-                                                </tr>
-
-
-
-                                            }
-
-                                        </table>
-
                                     </div>
 
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                </li>
+
+
+
+                        </li>
                     }
                 }
 
@@ -1283,339 +1937,463 @@
             <h3 class="list-title">Completed Tasks</h3>
 
             <ul class="list-items">
-                @foreach (var item in Model)
+                @foreach (var data in Model)
                 {
-                    if (item.StatusID == 3)
+                    if (data.StatusID == 3)
                     {
-                <li>
-                    <button type="button" class="btn" data-toggle="modal" data-target="@("#myModal" + item.TaskID)" style="max-width:100%">@item.Title</button>
+                        <li>
+
+                            <a href="#" data-toggle="modal" data-target="@("#myModal" + data.TaskID)" style="color:black">
+                                @if (data.StatusID == 1)
+                                {
+                                    <span class="label label-default" style="font-size:10px;float:left;color: #777">AAA</span>
+                                }
+                                @if (data.StatusID == 2)
+                                {
+                                    <span class="label label-warning" style="font-size:10px;float:left;color: #f0ad4e">AAA</span>
+                                }
+                                @if (data.StatusID == 3)
+                                {
+                                    <span class="label label-danger" style="font-size:10px;float:left;color: #d9534f">AAA</span>
+                                }&nbsp; @data.Title
+
+                            </a>
+
+                            @using (Html.BeginForm("Delete", "Tasks", new { id = @data.TaskID }, FormMethod.Post))
+                            {
+                                @Html.AntiForgeryToken()
+                                <div class="box-tools pull-right" data-is-focusable="false" tabindex="-1">
+                                    <button class="btn btn-box-tool" type="submit" value="Delete"> <i class="fa fa-times"></i></button>
+                                </div>
+                            }
+                            <div class="modal fade" id=@("myModal" + data.TaskID) tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+
+                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+                                            @using (Html.BeginForm("Edit", "Tasks", new { id = @data.TaskID }, FormMethod.Post))
+                                            {
+
+                                                <style>
+                                                    .select#StatusID option[value="1"] {
+                                                        color: red;
+                                                    }
+                                                </style>
+                                                @Html.AntiForgeryToken()
+
+                                                <div class="row">
+
+                                                    <!-- left column -->
+
+                                                    <div class="col-md-12">
+                                                        @if (@data.StatusID == 1)
+                                                        {
+                                                            <a href="#" class="Button1">Not Started</a>
+                                                            <!-- general form elements -->
+                                                        }
+                                                        @if (@data.StatusID == 2)
+                                                        {
+                                                            <a href="#" class="Button2">In Progess</a>
+                                                            <!-- general form elements -->
+                                                        }
+                                                        @if (@data.StatusID == 3)
+                                                        {
+                                                            <a href="#" class="Button3">Completed</a>
+                                                            <!-- general form elements -->
+                                                        }
+                                                        @foreach (var C in ViewBag.Assignee)
+                                                        {
+
+                                                            if (data.ReporterID == C.Id)
+                                                            {
+                                                                <p>Assignor:<span class="label label-success" style="font-size:10px;">@C.Email</span></p>
+                                                            }
+                                                            if (data.AssigneeID == C.Id)
+                                                            {
+                                                                <p>Assignee:<span class="label label-success" style="font-size:10px;">@C.Email</span></p>
+                                                            }
+                                                        }
 
 
-                    <div class="modal fade" id=@("myModal" + item.TaskID) tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-body">
-                                    @using (Html.BeginForm("Edit", "Tasks", new { id = @item.TaskID }, FormMethod.Post))
-                                    {
-
-                                        <style>
-                                            .select#StatusID option[value="1"] {
-                                                color: red;
-                                            }
-                                        </style>
-                                        @Html.AntiForgeryToken()
-
-                                        <div class="row">
-
-                                            <!-- left column -->
-
-                                            <div class="col-md-12">
-                                                <!-- general form elements -->
-
-                                                <div class="box box-primary">
-
-                                                    <input data-val="true" data-val-number="The field TaskID must be a number." data-val-required="The TaskID field is required." id="TaskID" name="TaskID" type="hidden" value="@item.TaskID">
-
-                                                    <div class="box-header with-border">
-                                                        <div class="col-md-12">
-                                                            <div class="form-group">
-                                                                <h2>
-                                                                    <textarea cols="20" id="Title" name="Title" rows="1" style="width: 100%; max-width: 100%;border: 1px solid #dddddd;">@item.Title</textarea>
-                                                                    <span class="field-validation-valid text-danger" data-valmsg-for="Title" data-valmsg-replace="true"></span>
-                                                                </h2>
-                                                            </div>
-                                                        </div>
 
 
-                                                        <div class="form-group">
-                                                            <div class="col-md-12">
-                                                                <label>Bucket</label>
-                                                                <select class="form-control" id="BucketID" name="BucketID">
-                                                                    <option selected="selected" value="@item.BucketID">@item.Bucket.Title</option>
-
-                                                                </select>
-                                                                <span class="field-validation-valid text-danger" data-valmsg-for="BucketID" data-valmsg-replace="true"></span>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-4">
-                                                            <div class="form-group">
-                                                                <label>Status</label>
-
-                                                                <select class="form-control StatusID" id="StatusID" name="StatusID">
-                                                                    @if (@item.StatusID == 1)
-                                                                    {
-                                                                        <option selected="selected" value="@item.StatusID">@item.Status.StatusName</option>
-                                                                        <option value="2">In Progess</option>
-                                                                        <option value="3">Completed</option>
-                                                                    }
-                                                                    else if (@item.StatusID == 2)
-                                                                    {
-                                                                        <option value="1">Not started</option>
-                                                                        <option selected="selected" value="@item.StatusID">@item.Status.StatusName</option>
-                                                                        <option value="3">Completed</option>
-                                                                    }
-                                                                    else if (@item.StatusID == 3)
-                                                                    {
-                                                                        <option value="1">Not started</option>
-                                                                        <option value="2">In Progess</option>
-                                                                        <option selected="selected" value="@item.StatusID">@item.Status.StatusName</option>
-
-                                                                    }
-
-                                                                </select>
-
-                                                                <span class="field-validation-valid text-danger" data-valmsg-for="StatusID" data-valmsg-replace="true"></span>
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="col-md-4">
-                                                            <div class="form-group">
-                                                                <label>Start Date</label>
-                                                                <input class="form-control  datepicker  text-box single-line" data-val="true" data-val-date="The field Startdate must be a date." id="Startdate" name="Startdate" type="datetime" value="@item.Startdate">
-                                                                <span class="field-validation-valid text-danger" data-valmsg-for="Startdate" data-valmsg-replace="true"></span>
-
-                                                            </div>
-                                                        </div>
 
 
-                                                        <div class="col-md-4">
-                                                            <div class="form-group">
-                                                                <label>Due Date</label>
-                                                                <input class="form-control datepicker  text-box single-line" data-val="true" data-val-date="The field Duedate must be a date." id="Duedate" name="Duedate" type="datetime" value="@item.Duedate">
-                                                                <span class="field-validation-valid text-danger" data-valmsg-for="Duedate" data-valmsg-replace="true"></span>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            <div class="form-group">
-                                                                <label>Assignor</label>
-                                                                <select class="form-control  disabled  " id="ReporterID" name="ReporterID">
-                                                                    @foreach (var C in ViewBag.Assignee)
-                                                                    {
-                                                                        if (item.ReporterID == C.Id)
-                                                                        {
-                                                                            <option value="@C.Id">@C.Email</option>
-                                                                        }
-                                                                    }
+                                                        <div class="box box-primary">
 
-                                                                </select>
-                                                                <span class="field-validation-valid text-danger" data-valmsg-for="ReporterID" data-valmsg-replace="true"></span>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            <div class="form-group">
-                                                                <label>Assignee</label>
+                                                            <input data-val="true" data-val-number="The field TaskID must be a number." data-val-required="The TaskID field is required." id="TaskID" name="TaskID" type="hidden" value="@data.TaskID ">
 
-                                                                <select class="form-control  disabled  " id="AssigneeID" name="AssigneeID">
-                                                                    @if (item.AssigneeID != null)
-                                                                    {
-                                                                        <option selected="selected" value="@item.AssigneeID">@item.AspNetUser.Email</option>
-                                                                    }
-                                                                    else
-                                                                    {
-                                                                        foreach (var mem in ViewBag.Listmembers)
-                                                                        {
-                                                                            if (mem.AccountID != item.AssigneeID)
+                                                            <div class="box-header with-border">
+                                                                <div class="col-md-12">
+                                                                    <div class="form-group">
+                                                                        <h2>
+                                                                            <textarea cols="20" id="Title" name="Title" rows="1" style="width: 100%; max-width: 100%;border: 1px solid #dddddd;">@data.Title</textarea>
+                                                                            <span class="field-validation-valid text-danger" data-valmsg-for="Title" data-valmsg-replace="true"></span>
+                                                                        </h2>
+                                                                    </div>
+                                                                </div>
+
+
+                                                                <div class="form-group">
+                                                                    <div class="col-md-12">
+                                                                        <label>Bucket</label>
+                                                                        <select class="form-control" id="BucketID" name="BucketID">
+                                                                            <option selected="selected" value="@data.BucketID">@data.Bucket.Title</option>
+                                                                            @foreach (var b in Model)
                                                                             {
-                                                                                <option value="@mem.AccountID">@mem.AspNetUser.Email</option>
+                                                                                if (b.BucketID != data.BucketID)
+                                                                                {
+                                                                                    <option value="@b.BucketID">@b.Title</option>
+                                                                                }
                                                                             }
-                                                                        }
-                                                                    }
-                                                                </select>
-                                                                <span class="field-validation-valid text-danger" data-valmsg-for="AssigneeID" data-valmsg-replace="true"></span>
+                                                                        </select>
+                                                                        <span class="field-validation-valid text-danger" data-valmsg-for="BucketID" data-valmsg-replace="true"></span>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="col-md-4">
+                                                                    <div class="form-group">
+                                                                        <label> Status</label>
+
+                                                                        <select class="form-control StatusID" id="StatusID" name="StatusID">
+                                                                            @if (@data.StatusID == 1)
+                                                                            {
+                                                                                <option selected="selected" value="@data.StatusID">	&#xf1db; @data.Status.StatusName </option>
+                                                                                <option value="2">	&#xf042; In Progess</option>
+                                                                                <option value="3">&#xf00c; Completed</option>
+                                                                            }
+                                                                            else if (@data.StatusID == 2)
+                                                                            {
+
+                                                                                <option value="1">	&#xf1db; Not started</option>
+                                                                                <option selected="selected" value="@data.StatusID">	&#xf042;  @data.Status.StatusName</option>
+                                                                                <option value="3">&#xf00c;Completed</option>
+                                                                            }
+                                                                            else if (@data.StatusID == 3)
+                                                                            {
+                                                                                <option value="1">	&#xf1db; Not started</option>
+                                                                                <option value="2">	&#xf042; In Progess</option>
+                                                                                <option selected="selected" value="@data.StatusID">&#xf00c; @data.Status.StatusName</option>
+
+                                                                            }
+
+                                                                        </select>
+
+                                                                        <span class="field-validation-valid text-danger" data-valmsg-for="StatusID" data-valmsg-replace="true"></span>
+                                                                    </div>
+                                                                </div>
+
+
+                                                                <div class="col-md-4">
+                                                                    <div class="form-group">
+                                                                        <label>Start Date</label>
+                                                                        <input class="form-control  datepicker  text-box single-line" data-val="true" data-val-date="The field Startdate must be a date." id="Startdate" name="Startdate" type="datetime" value="@data.Startdate">
+                                                                        <span class="field-validation-valid text-danger" data-valmsg-for="Startdate" data-valmsg-replace="true"></span>
+
+                                                                    </div>
+                                                                </div>
+
+
+                                                                <div class="col-md-4">
+                                                                    <div class="form-group">
+                                                                        <label>Due Date</label>
+                                                                        <input class="form-control datepicker  text-box single-line" data-val="true" data-val-date="The field Duedate must be a date." id="Duedate" name="Duedate" type="datetime" value="@data.Duedate">
+                                                                        <span class="field-validation-valid text-danger" data-valmsg-for="Duedate" data-valmsg-replace="true"></span>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="col-md-6" style="display:none">
+                                                                    <div class="form-group">
+                                                                        <label>Assignor</label>
+                                                                        <select class="form-control  disabled  " id="ReporterID" name="ReporterID">
+                                                                            @foreach (var C in ViewBag.Assignee)
+                                                                            {
+                                                                                if (data.ReporterID == C.Id)
+                                                                                {
+                                                                                    <option value="@C.Id">@C.Email</option>
+                                                                                }
+                                                                            }
+
+                                                                        </select>
+                                                                        <span class="field-validation-valid text-danger" data-valmsg-for="ReporterID" data-valmsg-replace="true"></span>
+                                                                    </div>
+                                                                </div>
+                                                                @if (data.ReporterID == User.Identity.GetUserId())
+                                                                {
+                                                                    <div class="col-md-6">
+                                                                        <div class="form-group">
+                                                                            <label>Assignee</label>
+
+                                                                            <select class="form-control  disabled  " id="AssigneeID" name="AssigneeID">
+
+
+                                                                                <option selected="selected" value="@data.AssigneeID">@data.AspNetUser.Email</option>
+                                                                                @foreach (var mem in ViewBag.Listmembers)
+                                                                                {
+                                                                                    if (mem.AccountID != @data.AssigneeID)
+                                                                                    {
+                                                                                        <option value="@mem.AccountID">@mem.AspNetUser.Email</option>
+
+                                                                                    }
+                                                                                }
+
+                                                                            </select>
+                                                                            <span class="field-validation-valid text-danger" data-valmsg-for="AssigneeID" data-valmsg-replace="true"></span>
+                                                                        </div>
+                                                                    </div>
+                                                                }
+                                                                else
+                                                                {
+
+                                                                    <select class="form-control  disabled  " id="AssigneeID" name="AssigneeID" style=" display:none">
+
+
+                                                                        <option selected="selected" value="@data.AssigneeID">@data.AspNetUser.Email</option>
+
+                                                                    </select>
+                                                                }
+
+
+                                                                <div class="col-md-12">
+                                                                    <div class="form-group">
+                                                                        <label>Description</label>
+                                                                        <textarea cols="20" id="Description" name="Description" rows="10" style="width: 100%; max-width: 100%;border: 1px solid #dddddd;">@data.Description</textarea>
+                                                                        <span class="field-validation-valid text-danger" data-valmsg-for="Description" data-valmsg-replace="true"></span>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="form-group" style="float:right">
+                                                                    <div class="col-md-offset-2 col-md-10">
+                                                                        <button type="submit" value="Save" class="myButton">Save</button>
+
+                                                                    </div>
+                                                                </div>
                                                             </div>
-                                                        </div>
 
-
-                                                        <div class="col-md-12">
-                                                            <div class="form-group">
-                                                                <label>Description</label>
-                                                                <textarea cols="20" id="Description" name="Description" rows="10" style="width: 100%; max-width: 100%;border: 1px solid #dddddd;">@item.Description</textarea>
-                                                                <span class="field-validation-valid text-danger" data-valmsg-for="Description" data-valmsg-replace="true"></span>
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="form-group" style="float:right">
-                                                            <div class="col-md-offset-2 col-md-10">
-                                                                <button type="submit" value="Save" class="myButton">Save</button>
-
-                                                            </div>
                                                         </div>
                                                     </div>
 
                                                 </div>
-                                            </div>
-
-                                        </div>
 
 
 
-                                        <!-- /.row -->
+                                                <!-- /.row -->
 
-                                    }
+                                            }
 
-                                    <div class="box box-success">
-                                        <div class="box-header">
-                                            <i class="fa fa-comments-o"></i>
+                                            <div class="box box-success" id="comments_area_@data.TaskID">
+                                                <div class="box-header">
+                                                    <i class="fa fa-eercast"></i>
 
-                                            <h3 class="box-title">Comments</h3>
+                                                    <h3 class="box-title">  </h3>
 
-                                        </div>
-                                        @foreach (var cmt in ViewBag.Comments)
-                                        {
+                                                </div>
+                                                @foreach (var cmt in ViewBag.Comments)
+                                                {
 
 
-                                            if (cmt.TaskID == item.TaskID)
-                                            {
-                                                <button class="btn btn-box-tool" type="submit" value="Delete" style="float:right;margin-right:10px;margin-top:10px;"> <i class="fa fa-times"></i></button>
+                                                    if (cmt.TaskID == data.TaskID)
+                                                    {
+                                                        using (Html.BeginForm("Delete", "Comments", new { id = cmt.ID }, FormMethod.Post))
+                                                        {
+                                                            if (cmt.AccountID == @User.Identity.GetUserId())
+                                                            {
+                                                                @Html.AntiForgeryToken()
 
-                                                <div class="box-body chat" id="chat-box">
+                                                                <button class="btn btn-box-tool" type="submit" value="Delete" style="float:right;margin-right:10px;margin-top:10px;"> <i class="fa fa-times"></i></button>
+                                                            }
+                                                        }
+
+                                                        <div class="box-body chat" id="chat-box">
+                                                            <div class="item">
+                                                                @foreach (var ab in ViewBag.Profile)
+                                                                {
+                                                                    if (cmt.AccountID == ab.AccountID)
+                                                                    {
+
+                                                                        <img src="@Url.Content("~/Content/" + @ab.Avatar)" alt="user image" class="offline">
+
+                                                                    }
+
+                                                                }
+
+                                                                <p class="message">
+                                                                    <a href="#" class="name" style="color:#3c8dbc">
+                                                                        <small class="text-muted pull-right"><i class="fa fa-clock-o"></i>@cmt.LastUpdate.ToString("MM/d/yyyy H:mm:s")</small>
+                                                                        @foreach (var us in ViewBag.Assignee)
+                                                                        {
+                                                                            if (cmt.AccountID == us.Id)
+                                                                            {
+                                                                                @us.Email
+                                                                            }
+                                                                        }
+                                                                    </a>
+                                                                    <span class="comment">@cmt.Name</span>
+
+                                                                </p>
+                                                            </div>
+
+                                                            <!-- /.item -->
+                                                            <!-- /.item -->
+                                                        </div>
+
+                                                    }
+
+                                                }
+
+                                                <div class="box-body chat" id="myDIV" style="display:none">
+                                                    <!-- chat item -->
+                                                    <!-- /.item -->
+                                                    <!-- chat item -->
                                                     <div class="item">
-                                                        <img src="@Url.Content("~/area/dist/img/user2-160x160.jpg")" alt="user image" class="offline">
+                                                        @foreach (var ab in ViewBag.Profile)
+                                                        {
+                                                            <img src="@Url.Content("~/Content/"+@ab.Avatar)" alt="user image" class="offline">
+
+                                                        }
 
                                                         <p class="message">
                                                             <a href="#" class="name" style="color:#3c8dbc">
-                                                                <small class="text-muted pull-right"><i class="fa fa-clock-o"></i>@cmt.LastUpdate</small>
-                                                                @foreach (var us in ViewBag.Assignee)
-                                                                {
-                                                                    if (cmt.AccountID == us.Id)
-                                                                    {
-                                                                        @us.Email
-                                                                    }
-                                                                }
+                                                                <small class="text-muted pull-right"><i class="fa fa-clock-o"></i>@DateTime.Now</small>
+                                                                @User.Identity.GetUserName()
                                                             </a>
-                                                            @cmt.Name
+                                                            <label id="1">
+
+                                                            </label>
+                                                            <label id="2">
+                                                            </label>
+
+
                                                         </p>
+
                                                     </div>
 
-                                                    <!-- /.item -->
-                                                    <!-- /.item -->
+
                                                 </div>
+
+                                                @*@using(Html.BeginForm("Create","Comments", new { id = @data.TaskID }, FormMethod.Post, new { id = "FormCmt", @class = "FormCmt" })) { }*@
+
+
+                                            </div>
+
+                                            @using (Html.BeginForm("Create", "Comments", FormMethod.Post, new { id = "FormCmt", @class = "FormCmt" }))
+                                            {
+                                                @Html.AntiForgeryToken()
+
+                                                foreach (var abb in ViewBag.Profile)
+                                                {
+                                                    if (User.Identity.GetUserId() == abb.AccountID)
+                                                    {
+
+                                                        <input name="Ava" type="hidden" value="@abb.Avatar" />
+
+                                                    }
+                                                }
+
+
+                                                <input type="hidden" name="TaskID" value="@data.TaskID" />
+
+                                                <div class="form-group" style="display: none;">
+                                                    <label class="control-label col-md-2" for="AccountID">AccountID</label>
+                                                    <div class="col-md-10">
+                                                        <select class="form-control" id="AccountID " name="AccountID">
+                                                            <option value="@User.Identity.GetUserId()">@User.Identity.GetUserName()</option>
+                                                        </select>
+                                                        <span class="field-validation-valid text-danger" data-valmsg-for="AccountID" data-valmsg-replace="true"></span>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group" style="display: none;">
+                                                    <label class="control-label col-md-2" for="TaskID">TaskID</label>
+                                                    <div class="col-md-10">
+
+
+                                                        <span class="field-validation-valid text-danger" data-valmsg-for="TaskID" data-valmsg-replace="true"></span>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group" style="display: none;">
+                                                    <label class="control-label col-md-2" for="LastUpdate">LastUpdate</label>
+                                                    <div class="col-md-10">
+                                                        <input class="form-control text-box single-line" data-val="true" data-val-date="The field LastUpdate must be a date." data-val-required="The LastUpdate field is required." id="LastUpdate" name="LastUpdate" type="datetime" value="@DateTime.Now">
+                                                        <span class="field-validation-valid text-danger" data-valmsg-for="LastUpdate" data-valmsg-replace="true"></span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+
+                                                        <textarea cols="5" id="Name" name="Name" rows="5" style="width: 100%; max-width: 100%;border: 1px solid #dddddd;" placeholder="Type message..." required></textarea>
+
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group" style="float:right">
+                                                    <div class="col-md-offset-2 col-md-10">
+                                                        <button type="submit" class="myButton btn-send-cmt">Send</button>
+                                                        @*<input type="button" class="myButton" value="Test" onclick="SaveDemo();" />*@
+                                                    </div>
+                                                </div>
+
+
 
                                             }
 
-                                        }
 
-                                        <div class="box-body chat" id="myDIV" style="display:none">
-                                            <!-- chat item -->
-                                            <!-- /.item -->
-                                            <!-- chat item -->
-                                            <div class="item">
-                                                <img src="@Url.Content("~/area/dist/img/user2-160x160.jpg")" alt="user image" class="offline">
+                                            <!-- Button trigger modal -->
+                                            @using (Html.BeginForm("Index", "Tasks", new { id = @data.TaskID }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+                                            {
 
-                                                <p class="message">
-                                                    <a href="#" class="name" style="color:#3c8dbc">
-                                                        <small class="text-muted pull-right"><i class="fa fa-clock-o"></i>@DateTime.Now</small>
-                                                        @User.Identity.GetUserName()
-                                                    </a>
-                                                    <label id="1">
+                                                <input type="file" name="postedFile" required style="padding-top:80px" />
+                                                <br>
+                                                <input type="submit" id="btnUpload" value="Upload" />
+                                                <p style="font-weight:bold">* Please select only Supported Files .png | .jpg | .jpeg | .gif | .docx | .doc | .xls | .xlsx | .xlsm | .txt</p>
+                                                <p style="font-weight:bold">* Maximum allowed file size is 5 MB</p>
+                                            }
+                                            @using (Html.BeginForm("DownloadFile", "Tasks", FormMethod.Post))
+                                            {
+                                                <input type="hidden" id="hfFileId" name="FileId" />
+                                                <input type="submit" id="btnDownload" value="Download" style="display:none" />
+                                            }
+                                            <hr />
+                                            <table cellpadding="0" cellspacing="0">
+                                                <tr>
 
-                                                    </label>
-                                                    <label id="2">
-                                                    </label>
+                                                    <th style="width:120px">File Name</th>
+                                                    <th style="width:80px"></th>
+                                                </tr>
+
+                                                @foreach (var file in ViewBag.Attachments)
+                                                {
+
+                                                    <tr>
+                                                        @if (file.TaskID == data.TaskID)
+                                                        {
+                                                            <td>@file.Name</td>
+
+                                                            <td>
+                                                                <a href="javascript:;" onclick="DownloadFile(@file.ID)" class="Download"><i class="fa fa-download"></i> Download</a>
+                                                            </td>
+                                                        }
+                                                    </tr>
 
 
-                                                </p>
 
-                                            </div>
+                                                }
+
+                                            </table>
 
 
                                         </div>
-
-
-
-                                        @using (Html.BeginForm("Create", "Comments", FormMethod.Post, new { id = "FormCmt" }))
-                                        {
-                                            @Html.AntiForgeryToken()
-
-                                            <div class="form-group" style="display: none;">
-                                                <label class="control-label col-md-2" for="AccountIDD">AccountID</label>
-                                                <div class="col-md-10">
-                                                    <select class="form-control" id="AccountID " name="AccountID">
-                                                        <option value="@User.Identity.GetUserId()">@User.Identity.GetUserName()</option>
-                                                    </select>
-                                                    <span class="field-validation-valid text-danger" data-valmsg-for="AccountID" data-valmsg-replace="true"></span>
-                                                </div>
-                                            </div>
-
-                                            <div class="form-group" style="display: none;">
-                                                <label class="control-label col-md-2" for="TaskID">TaskID</label>
-                                                <div class="col-md-10">
-                                                    <select class="form-control" id="TaskID" name="TaskID">
-                                                        <option value="@item.TaskID">@item.Title</option>
-                                                    </select>
-                                                    <span class="field-validation-valid text-danger" data-valmsg-for="TaskID" data-valmsg-replace="true"></span>
-                                                </div>
-                                            </div>
-
-                                            <div class="form-group" style="display: none;">
-                                                <label class="control-label col-md-2" for="LastUpdate">LastUpdate</label>
-                                                <div class="col-md-10">
-                                                    <input class="form-control text-box single-line" data-val="true" data-val-date="The field LastUpdate must be a date." data-val-required="The LastUpdate field is required." id="LastUpdate" name="LastUpdate" type="datetime" value="@DateTime.Now">
-                                                    <span class="field-validation-valid text-danger" data-valmsg-for="LastUpdate" data-valmsg-replace="true"></span>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-12">
-                                                <div class="form-group">
-
-                                                    <textarea cols="5" id="Name" name="Name" rows="5" style="width: 100%; max-width: 100%;border: 1px solid #dddddd;" placeholder="Type message..."></textarea>
-
-                                                </div>
-                                            </div>
-
-                                            <div class="form-group" style="float:right">
-                                                <div class="col-md-offset-2 col-md-10">
-                                                    <input type="submit" class="myButton" value="Send" @*onclick="SaveDemo();"*@ />
-
-                                                </div>
-                                            </div>
-
-
-
-                                        }
-                                        @using (Html.BeginForm("Index", "Tasks", new { id = @item.TaskID }, FormMethod.Post, new { enctype = "multipart/form-data" }))
-                                        {
-
-                                            <input type="file" name="postedFile" style="padding-top:80px" />
-                                            <br>
-                                            <input type="submit" id="btnUpload" value="Upload" />
-                                        }
-                                        @using (Html.BeginForm("DownloadFile", "Tasks", FormMethod.Post))
-                                        {
-                                            <input type="hidden" id="hfFileId" name="FileId" />
-                                            <input type="submit" id="btnDownload" value="Download" style="display:none" />
-                                        }
-                                        <hr />
-                                        <table cellpadding="0" cellspacing="0">
-                                            <tr>
-
-                                                <th style="width:120px">File Name</th>
-                                                <th style="width:80px">Download</th>
-                                            </tr>
-
-                                            @foreach (var file in ViewBag.Attachments)
-                                            {
-
-                                                <tr>
-                                                    @if (file.TaskID == item.TaskID)
-                                                    {
-                                                        <td>@file.Name</td>
-                                                        <td><a href="javascript:;" onclick="DownloadFile(@file.ID)">Download</a></td>
-                                                    }
-                                                </tr>
-
-
-
-                                            }
-
-                                        </table>
-
                                     </div>
 
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                </li>
+
+
+
+                        </li>
                     }
                 }
 
@@ -1667,7 +2445,106 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
 
 <script>
+      $(".FormCmt").on('submit',function (e) {
+        //console.log($(this));
+        e.preventDefault(); // avoid to execute the actual submit of the form.
+        var form = $(this);
+        var taskID = $(this).children('input[name=TaskID]').val();
+        var Ava = $(this).children('input[name=Ava]').val();    
+        var this_2 = $(this).closest("div").parent().parent();     
+        var a = this_2.find('textarea#Name').val();
+        console.log(Ava)
+        console.log(taskID);
+        console.log(a);
+        var url = form.attr('action');
+        var type = form.attr('method');
+        var data = form.serialize();
+        var token = $(this).children('input[name=__RequestVerificationToken]').val();
+        var headers = {};
+        $.ajax({
+            type: type,
+            url: url,
+            cache: false,
+            data: data, // serializes the form's elements.
+            success: function (data) {
+
+                $.ajax({
+                    type: 'GET',
+                    url: "@this.Url.Action(actionName: "getCommentById", controllerName: "Comments")/"+taskID,
+                    success: function (data) {
+                        console.log(data["ID"]);
+                        var button_delete = $('<button class="btn btn-box-tool" type="submit" value="Delete" style="float:right;margin-right:10px;margin-top:10px;"> <i class="fa fa-times"></i></button>');
+                        var comment_area = $('#comments_area_' + taskID);
+                        var form = $('<form></form>');
+                        var chat = $('<div class="box-body chat" id="chat-box"></div>');
+
+                        var div_item = $('<div class="item"></div>');
+                        var p_message = $('<p class="message"></p>')
+                        var span_comment = $('<span class="comment"></span>');
+                        var img = $('<img alt="user image" class="offline">');
+                        var a_name = $('<a href="#" class="name" style="color:#3c8dbc"></a>');
+                        var small_name = $('<small class="text-muted pull-right"></small>');
+
+                        var lastupdate = new Date(parseInt(data["LastUpdate"].substr(6)))
+                        console.log(lastupdate);
+                        var datetime = (lastupdate.getMonth() + 1) + "/"
+                            + lastupdate.getDate() + "/"
+                            + lastupdate.getFullYear() + " "
+                            + lastupdate.getHours() + ":"
+                            + lastupdate.getMinutes() + ":"
+                            + lastupdate.getSeconds();
+                        small_name.append('<i class="fa fa-clock-o"></i>')
+                        small_name.append(datetime);
+                        a_name.append(small_name);
+                        a_name.append('@User.Identity.GetUserName()');
+
+                        img.attr('src', '@Url.Content("~/Content/")'+Ava);
+                        span_comment.text(data["Name"]);
+                        p_message.append(a_name);
+                        p_message.append(span_comment);
+                        div_item.append(img);
+                        div_item.append(p_message);
+
+                        chat.append(div_item);
+                        form.attr('action', '@this.Url.Action(actionName: "Delete", controllerName: "Comments")/' + data["ID"]);
+                        form.attr('method', 'POST');
+                        form.append('@Html.AntiForgeryToken()');
+                        form.append(button_delete);
+                        console.log(div_item);
+                        console.log(chat);
+                        comment_area.append(form);
+                        comment_area.append(chat);
+                        this_2.find('textarea#Name').val('');
+                    }
+                });
+
+            },
+            error: function (error) {
+                console.log('error');
+
+                console.log(error);
+            },
+            fail: function (fail) {
+                console.log('fail');
+
+                console.log(fail);
+            }
+        });
+      });
     $('.datepicker').datepicker();
+    function openCity(evt, cityName) {
+        var i, tabcontent, tablinks;
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+        }
+        tablinks = document.getElementsByClassName("tablinks");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+        document.getElementById(cityName).style.display = "block";
+        evt.currentTarget.className += " active";
+    }
 </script>
 
 

@@ -859,7 +859,7 @@
                                     </div>
 
                                     <div id="London" class="tabcontent">
-                                        <table id="customerss" class="customer">
+                                        <table id="customerss" class="customers">
 
                                             <tr>
                                                 <td> <h1 style="font-size:18px; color:black;text-align:left"><i class="fa fa-user" aria-hidden="true"></i> Email</h1></td>
@@ -942,8 +942,9 @@
                                                         <input class="form-control text-box single-line" id="Avatar" name="Avatar" type="text" value="@a.Avatar">
                                                     </div>
                                                     <label for="file" style="font-size:15px; color:black;float:left"> Upload Avatar:</label>
-                                                    <input type="file" name="file" id="Avatar" style="width: 100%;font-size:20px" />
-
+                                                    <input type="file" name="file" required id="Avatar" style="width: 100%;font-size:20px" />
+                                                    <p style="font-weight:bold;color:black;font-size:15px;">* Please select only Supported Files .png | .jpg | .jpeg | .gif </p>
+                                                    <p style="font-weight:bold;color:black;font-size:15px;">* Maximum allowed file size is 5 MB</p>
                                                     <div class="form-group" style="float:right">
                                                         <div class="col-md-offset-2 col-md-10">
                                                             <input type="submit" value="Save Avatar" class="btn btn-default myButton" />
@@ -1402,9 +1403,11 @@
                                             @using (Html.BeginForm("Index", "Tasks", new { id = @data.TaskID }, FormMethod.Post, new { enctype = "multipart/form-data" }))
                                             {
 
-                                                <input type="file" name="postedFile" style="padding-top:80px" />
+                                                <input type="file" name="postedFile" required style="padding-top:80px" />
                                                 <br>
                                                 <input type="submit" id="btnUpload" value="Upload" />
+                                                <p style="font-weight:bold">* Please select only Supported Files .png | .jpg | .jpeg | .gif | .docx | .doc | .xls | .xlsx | .xlsm | .txt</p>
+                                                <p style="font-weight:bold">* Maximum allowed file size is 5 MB</p>
                                             }
                                             @using (Html.BeginForm("DownloadFile", "Tasks", FormMethod.Post))
                                             {
@@ -1872,9 +1875,11 @@
                                             @using (Html.BeginForm("Index", "Tasks", new { id = @data.TaskID }, FormMethod.Post, new { enctype = "multipart/form-data" }))
                                             {
 
-                                                <input type="file" name="postedFile" style="padding-top:80px" />
+                                                <input type="file" name="postedFile" required style="padding-top:80px" />
                                                 <br>
                                                 <input type="submit" id="btnUpload" value="Upload" />
+                                                <p style="font-weight:bold">* Please select only Supported Files .png | .jpg | .jpeg | .gif | .docx | .doc | .xls | .xlsx | .xlsm | .txt</p>
+                                                <p style="font-weight:bold">* Maximum allowed file size is 5 MB</p>
                                             }
                                             @using (Html.BeginForm("DownloadFile", "Tasks", FormMethod.Post))
                                             {
@@ -2340,9 +2345,11 @@
                                             @using (Html.BeginForm("Index", "Tasks", new { id = @data.TaskID }, FormMethod.Post, new { enctype = "multipart/form-data" }))
                                             {
 
-                                                <input type="file" name="postedFile" style="padding-top:80px" />
+                                                <input type="file" name="postedFile" required style="padding-top:80px" />
                                                 <br>
                                                 <input type="submit" id="btnUpload" value="Upload" />
+                                                <p style="font-weight:bold">* Please select only Supported Files .png | .jpg | .jpeg | .gif | .docx | .doc | .xls | .xlsx | .xlsm | .txt</p>
+                                                <p style="font-weight:bold">* Maximum allowed file size is 5 MB</p>
                                             }
                                             @using (Html.BeginForm("DownloadFile", "Tasks", FormMethod.Post))
                                             {

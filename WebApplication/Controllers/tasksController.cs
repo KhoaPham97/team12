@@ -32,10 +32,27 @@ namespace WebApplication.Controllers
             return Redirect(Request.UrlReferrer.ToString());
         }
 
+        public int FileSize { get; set; } = 1 * 1024 * 1024 * 1024;
+        public string Extensions { get; set; } = "png,jpg,jpeg,gif,docx,doc,xls,xlsx,xlsm,txt";
         [HttpPost]
         public ActionResult Index(HttpPostedFileBase postedFile,int? id)
         {
-            byte[] bytes =null;
+            bool isValid = true;
+            List<string> allowedExtensions = this.Extensions.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries).ToList();
+            // Settings.
+            int allowedFileSize = this.FileSize;
+            if (postedFile != null)
+            {
+                // Initialization.
+                var fileSize = postedFile.ContentLength;
+                var fileName = postedFile.FileName;
+
+                // Settings.
+                isValid = allowedExtensions.Any(y => fileName.EndsWith(y)) && fileSize <= allowedFileSize;
+
+                if (isValid == true)
+                {
+                    byte[] bytes =null;
             using (BinaryReader br = new BinaryReader(postedFile.InputStream))
             {
                 bytes = br.ReadBytes(postedFile.ContentLength);
@@ -62,8 +79,18 @@ namespace WebApplication.Controllers
                     con.Close();
                 }
             }
+                    return Redirect(Request.UrlReferrer.ToString());
+                }
+                else
+                {
+                    return Redirect(Request.UrlReferrer.ToString());
+                  
 
-            return Redirect(Request.UrlReferrer.ToString());
+                }
+
+
+            }
+            return View();
         }
 
         [HttpPost]
@@ -131,11 +158,13 @@ namespace WebApplication.Controllers
             ViewBag.Bucket = db.Buckets;
             ViewBag.Assignee = db.AspNetUsers;
             ViewBag.Status = db.Status;
+ 
             var model = db.Tasks.ToList().Where(x => x.BucketID == id);
             return View(model);
         }
         public ActionResult MyTask()
         {
+            ViewBag.Listmembers = db.ListMembers;
             var product = db.Tasks.ToList().Where(p => p.AssigneeID == User.Identity.GetUserId());
             ViewBag.Comments = db.Comments;
             ViewBag.Attachments = db.Attachments;

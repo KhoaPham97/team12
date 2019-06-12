@@ -668,7 +668,7 @@
                                             </div>
 
                                             <div id="London" class="tabcontent">
-                                                <table id="customerss">
+                                                <table id="customerss" class="customers">
 
                                                     <tr>
                                                         <td> <h1 style="font-size:18px; color:black;text-align:left"><i class="fa fa-user" aria-hidden="true"></i> Email</h1></td>
@@ -751,8 +751,9 @@
                                                                 <input class="form-control text-box single-line" id="Avatar" name="Avatar" type="text" value="@a.Avatar">
                                                             </div>
                                                             <label for="file" style="font-size:15px; color:black;float:left"> Upload Avatar:</label>
-                                                            <input type="file" name="file" id="Avatar" style="width: 100%;font-size:20px" />
-
+                                                            <input type="file" name="file" required id="Avatar" style="width: 100%;font-size:20px" />
+                                                            <p style="font-weight:bold">* Please select only Supported Files .png | .jpg | .jpeg | .gif </p>
+                                                            <p style="font-weight:bold">* Maximum allowed file size is 5 MB</p>
                                                             <div class="form-group" style="float:right">
                                                                 <div class="col-md-offset-2 col-md-10">
                                                                     <input type="submit" value="Save Avatar" class="btn btn-default myButton" />
@@ -1257,8 +1258,8 @@
 
                                                                                     <div class="box-body" style="display: none;">
                                                                                         @*@using (Html.BeginForm("Create", "People",FormMethod.Post ,new { id = "AutoAdd" }))
-                                                                                {
-                                                                                    @Html.AntiForgeryToken()*@
+                    {
+                        @Html.AntiForgeryToken()*@
 
 
                                                                                         <div class="col-md-12">
@@ -1412,7 +1413,13 @@
 
 
                                                                                             </div>
-                                                                                            <button class="click_mee btn btn-info myButton" style="float:right">Check</button>
+                                                                                            @if (mem.Owner == @User.Identity.GetUserId())
+                                                                                            {
+
+                                                                                                <button class="click_mee btn btn-info myButton" style="float:right">Check</button>
+                                                                                            }
+
+
                                                                                         </div>
 
 
@@ -1430,15 +1437,20 @@
 
                                                                                 if (mem.Owner == @User.Identity.GetUserId())
                                                                                 {
-                                                                                    <input type="file" name="postedFile" style="padding-top:80px" />
+
+
+                                                                                    <input type="file" name="postedFile" required style="padding-top:80px" />
                                                                                     <br>
-                                                                                    <input type="submit" id="btnUpload" value="Upload" />
+                                                                                    <input type="submit" id="btnUpload" value="Upload" class="btn btn-danger" />
+                                                                                    <br>
+                                                                                    <p style="font-weight:bold">* Please select only Supported Files .png | .jpg | .jpeg | .gif | .docx | .doc | .xls | .xlsx | .xlsm | .txt</p>
+                                                                                    <p  style="font-weight:bold">* Maximum allowed file size is 5 MB</p>
                                                                                 }
                                                                             }
                                                                             @using (Html.BeginForm("DownloadFile", "Meetings", FormMethod.Post))
                                                                             {
                                                                                 <input type="hidden" id="hfFileId" name="FileId" />
-                                                                                <input type="submit" id="btnDownload" value="Download" style="display:none" />
+                                                                                <input type="submit" id="btnDownload" class="btn btn-danger" value="Download" style="display:none" />
                                                                             }
                                                                             <hr />
                                                                             <table cellpadding="0" cellspacing="0">
@@ -1798,7 +1810,12 @@
 
 
                                                                                             </div>
-                                                                                            <button class="click_mee btn btn-info myButton" style="float:right">Check</button>
+                                                                                            @if (mem.Owner == @User.Identity.GetUserId())
+                                                                                            {
+
+                                                                                                <button class="click_mee btn btn-info myButton" style="float:right">Check</button>
+                                                                                            }
+
                                                                                         </div>
 
 
@@ -1817,7 +1834,7 @@
                                                                                 {
                                                                                     <input type="file" name="postedFile" style="padding-top:80px" />
                                                                                     <br>
-                                                                                    <input type="submit" id="btnUpload" value="Upload" />
+                                                                                    <input type="submit"  id="btnUpload" value="Upload"  class="btn btn-danger"  />
                                                                                 }
                                                                             }
                                                                             @using (Html.BeginForm("DownloadFile", "Meetings", FormMethod.Post))
@@ -2183,7 +2200,12 @@
 
 
                                                                                             </div>
-                                                                                            <button class="click_mee btn btn-info myButton" style="float:right">Check</button>
+                                                                                            @if (mem.Owner == @User.Identity.GetUserId())
+                                                                                            {
+
+                                                                                                <button class="click_mee btn btn-info myButton" style="float:right">Check</button>
+                                                                                            }
+
                                                                                         </div>
 
 
@@ -2200,9 +2222,10 @@
                                                                             {
                                                                                 if (mem.Owner == @User.Identity.GetUserId())
                                                                                 {
-                                                                                    <input type="file" name="postedFile" style="padding-top:80px" />
+                                                                                    <input type="file" name="postedFile" style="padding-top:80px"  onchange="checkFilesCount(this)" />
                                                                                     <br>
-                                                                                    <input type="submit" id="btnUpload" value="Upload" />
+                                                                                    <input type="submit" id="btnUpload" value="Upload"  class="btn btn-danger"  />
+                                                                              
                                                                                 }
                                                                             }
                                                                             @using (Html.BeginForm("DownloadFile", "Meetings", FormMethod.Post))
@@ -2568,7 +2591,6 @@
     <script src="https://code.highcharts.com/highcharts.js"></script>
     <script src="https://code.highcharts.com/modules/data.js"></script>
     <script>
-
 
         $('.click_me').on('click', function (e) {
             e.preventDefault();

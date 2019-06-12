@@ -46,22 +46,42 @@ namespace WebApplication.Controllers
         // POST: Profiles/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+
+        public int FileSize { get; set; } = 1 * 1024 * 1024 * 1024;
+        public string Extensions { get; set; } = "png,jpg,jpeg,gif";
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "AccountID,Full_Name,Birthday,PhoneNumber,Address,Avatar")] Profile profile, HttpPostedFileBase file)
         {
+            bool isValid = true;
+            List<string> allowedExtensions = this.Extensions.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries).ToList();
+            // Settings.
+            int allowedFileSize = this.FileSize;
             if (ModelState.IsValid)
             {
+           
+             
                 if (file != null)
                 {
-                    file.SaveAs(HttpContext.Server.MapPath("~/Content/Images/")
+                    var fileSize = file.ContentLength;
+                    var fileName = file.FileName;
+
+                    // Settings.
+                    isValid = allowedExtensions.Any(y => fileName.EndsWith(y)) && fileSize <= allowedFileSize;
+
+                    if (isValid == true)
+                    {
+                        file.SaveAs(HttpContext.Server.MapPath("~/Content/Images/")
                                                                   + file.FileName);
-                    profile.Avatar = file.FileName;
+                        profile.Avatar = file.FileName;
+                     
+                    }
+                 
                 }
-             
                 db.Profiles.Add(profile);
                 db.SaveChanges();
                 return Redirect(Request.UrlReferrer.ToString());
+
             }
 
             ViewBag.AccountID = new SelectList(db.AspNetUsers, "Id", "Email", profile.AccountID);
@@ -91,13 +111,26 @@ namespace WebApplication.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "AccountID,Full_Name,Birthday,PhoneNumber,Address,Avatar")] Profile profile, HttpPostedFileBase file)
         {
+            bool isValid = true;
+            List<string> allowedExtensions = this.Extensions.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries).ToList();
+            // Settings.
+            int allowedFileSize = this.FileSize;
             if (ModelState.IsValid)
             {
                 if (file != null)
                 {
-                    file.SaveAs(HttpContext.Server.MapPath("~/Content/")
+                    var fileSize = file.ContentLength;
+                    var fileName = file.FileName;
+
+                    // Settings.
+                    isValid = allowedExtensions.Any(y => fileName.EndsWith(y)) && fileSize <= allowedFileSize;
+
+                    if (isValid == true) { 
+                        file.SaveAs(HttpContext.Server.MapPath("~/Content/")
                                                                   + file.FileName);
                     profile.Avatar = file.FileName;
+                }
+             
                 }
                 db.Entry(profile).State = EntityState.Modified;
                 db.SaveChanges();
